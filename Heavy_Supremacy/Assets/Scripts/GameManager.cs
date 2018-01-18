@@ -53,4 +53,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ToggleGameObject(GameObject target)
+    {
+        target.SetActive(!target.active);
+    }
+
 }
