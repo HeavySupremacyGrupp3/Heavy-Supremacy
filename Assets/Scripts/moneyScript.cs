@@ -18,10 +18,20 @@ public class moneyScript : MonoBehaviour {
 	{
 		t.text = "Money: " + Money;
 	}
-
-	public void addMoney(int value)
+	
+	void OnEnable() //events
 	{
-		Money += value;
+		produktScript.earnMoney +=addMoney;
+	}
+	
+	void OnDisable() //events
+	{
+		produktScript.earnMoney -=addMoney;
+	}	
+
+	public void addMoney()
+	{
+		Money += 50;
 	}
 
 	public void setMoney(int value)
