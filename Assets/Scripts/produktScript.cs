@@ -9,12 +9,20 @@ public class produktScript : MonoBehaviour {
 	
 	void Update ()
 	{
-		transform.Translate(Vector3.right * 1f*Time.deltaTime);
+		transform.Translate(Vector3.right * 2f*Time.deltaTime);
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
 	{
-		earnMoney();
-		Debug.Log("hej jag krockade");
+		if(other.gameObject.tag=="Maskin")
+		{
+			Debug.Log("hej jag uppgraderades");
+		}
+		
+		if(other.gameObject.tag=="Box")
+		{
+			earnMoney();
+			Destroy(gameObject);
+		}
 	}
 }
