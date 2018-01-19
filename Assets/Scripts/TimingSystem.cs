@@ -6,6 +6,7 @@ public abstract class TimingSystem : MonoBehaviour
 {
 
     public KeyCode ActivateKey;
+    public bool CanExitCollider;
 
     protected GameObject target;
 
@@ -42,6 +43,16 @@ public abstract class TimingSystem : MonoBehaviour
         if (collision.tag == "TimingObject")
         {
             target = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        target = null;
+
+        if (!CanExitCollider && collision.transform.position.y < transform.position.y - 1)
+        {
+            FailTiming();
         }
     }
 }
