@@ -10,6 +10,7 @@ public class produktScript : MonoBehaviour {
 	public Sprite[] Sprites;
 	public Sprite spoilSprite;
 	public int currentStage=0;
+	public bool Spoiled=false;
 	
 	void Update ()
 	{
@@ -18,14 +19,7 @@ public class produktScript : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
 	{
-		if(other.gameObject.tag=="Maskin")
-		{
-			//currentStage++;
-			//GetComponent<SpriteRenderer>().sprite=Sprites[currentStage];			
-			//Debug.Log("currentStage: "+currentStage);
-		}
-		
-		if(other.gameObject.tag=="Box")
+		if(other.gameObject.tag=="Box" && !Spoiled)
 		{
 			earnMoney();
 			Destroy(gameObject);
@@ -35,5 +29,6 @@ public class produktScript : MonoBehaviour {
 	public void spoil()
 	{
 		GetComponent<SpriteRenderer>().sprite=spoilSprite;
+		Spoiled=true;
 	}
 }

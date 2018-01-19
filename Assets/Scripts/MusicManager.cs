@@ -20,17 +20,17 @@ public class MusicManager : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayMusic(AudioClip music1, bool loop)
+    public void PlayMusic2(AudioClip music1, bool loop)
     {
         GetComponent<AudioSource>().PlayOneShot(music1, volume);
     }
 
-    public void PlayMusic(AudioClip music2, bool loop)
+    public void PlayMusic3(AudioClip music2, bool loop)
     {
         GetComponent<AudioSource>().PlayOneShot(music2, volume);
     }
 
-    public void PlayMusic(AudioClip music3, bool loop)
+    public void PlayMusic4(AudioClip music3, bool loop)
     {
         GetComponent<AudioSource>().PlayOneShot(music3, volume);
     }
@@ -48,12 +48,12 @@ public class MusicManager : MonoBehaviour {
         audioSource.volume = volume;
     }
 
-    public void StopMusic(AudioClip music1)
+    public void StopMusic2(AudioClip music1)
     {
         audioSource.Stop();
     }
 
-    public void StopMusic(AudioClip music2)
+    public void StopMusic3(AudioClip music2)
     {
         audioSource.Stop();
     }
