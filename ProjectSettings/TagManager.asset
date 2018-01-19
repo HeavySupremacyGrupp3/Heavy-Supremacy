@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Maskin
   - Box
+  - TimingObject
   layers:
   - Default
   - TransparentFX
