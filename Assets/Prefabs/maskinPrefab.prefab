@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4911481647438148}
   - component: {fileID: 212102190296852698}
   - component: {fileID: 61819894868522292}
+  - component: {fileID: 114034213965195218}
   m_Layer: 0
   m_Name: maskinPrefab
   m_TagString: Maskin
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &114034213965195218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147418782498688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bbe80e6b5ce664e8b34eae72ff0c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivateKey: 32
 --- !u!212 &212102190296852698
 SpriteRenderer:
   m_ObjectHideFlags: 1

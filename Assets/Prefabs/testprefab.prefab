@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 50597055320878130}
   m_Layer: 0
   m_Name: testprefab
-  m_TagString: Untagged
+  m_TagString: TimingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,11 +90,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 21300000, guid: d4e95af0064f48948b3e83eb5cbf076d, type: 3}
-  - {fileID: 21300000, guid: 4b0473514c13d804bbc6487beb678953, type: 3}
-  - {fileID: 21300000, guid: 266a9633da228954a9c2ff42aa0b2185, type: 3}
-  - {fileID: 21300000, guid: 266a9633da228954a9c2ff42aa0b2185, type: 3}
-  spoilSprite: {fileID: 0}
+  - {fileID: 21300000, guid: d17f2d552c8610140a3beeb3a164144a, type: 3}
+  - {fileID: 21300000, guid: c89b640df4779284d8f4b391f822486a, type: 3}
+  - {fileID: 21300000, guid: 12ba7211288bd144c83f4b90a44eaddc, type: 3}
+  - {fileID: 21300000, guid: bce140a883eae194e8a444aa6974bfff, type: 3}
+  spoilSprite: {fileID: 21300000, guid: 62e2a38784175e54a977d9f5380d8d0b, type: 3}
   currentStage: 0
 --- !u!212 &212435108676253202
 SpriteRenderer:
@@ -130,7 +130,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d4e95af0064f48948b3e83eb5cbf076d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d17f2d552c8610140a3beeb3a164144a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

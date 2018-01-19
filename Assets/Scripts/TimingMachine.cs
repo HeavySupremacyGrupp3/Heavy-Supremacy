@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimingMachine : TimingSystem {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	int timesChanged=0;
 	
 	public override void SucceedTiming()
     {
-		base.SucceedTiming();
 		produktScript sc=target.GetComponent<produktScript>();
-		sc.currentStage++;
-		target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];		
+		
+		if(timesChanged==0 && !sc.Spoiled)
+		{
+			base.SucceedTiming();			
+			sc.currentStage++;
+			target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
+			timesChanged++;			
+		}		
     }
 	
 	public override void FailTiming()
     {
         base.FailTiming();
-		produktScript sc=target.GetComponent<produktScript>();
-		sc.spoil();
     }
+	
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if(timesChanged==0)
+		{
+			produktScript sc=target.GetComponent<produktScript>();
+			sc.spoil();
+		}
+	}
 
 }
