@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameManager : MonoBehaviour {
 
-    private bool gameOver;
+    public bool gameOver;
+    public GameManager gmScript; 
 
     void Start () {
-		
+        gmScript = GetComponent<GameManager>();
 	}
 	
 	
 	void Update () {
-        GameOver();
+ 
 	}
 
     public void GameOver()
@@ -24,7 +25,14 @@ public class MiniGameManager : MonoBehaviour {
 
     public void ReloadScene()
     {
-        if (gameOver) //&& Input.
+        if (gameOver) //TODO: && Input.
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void LoadHUB()
+    {
+        gmScript.LoadHUB();
+    }
+
+   
 }
