@@ -8,12 +8,13 @@ public class MiniGameManager : MonoBehaviour {
     public bool gameOver;
     public GameManager gmScript; 
 
-    void Start () {
+    void Start ()
+	{
         gmScript = GetComponent<GameManager>();
-	}
+	}	
 	
-	
-	void Update () {
+	void Update ()
+	{
  
 	}
 
