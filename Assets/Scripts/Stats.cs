@@ -17,7 +17,7 @@ public class Stats : MonoBehaviour {
 		
 	void Update ()
 	{
-	//	amount+=0.01f;
+		amount+=0.01f;
 		amount=amount%1.0f;
 		showProgressBar(amount);
 	}		
