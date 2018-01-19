@@ -14,14 +14,16 @@ public class produktScript : MonoBehaviour {
 	
 	void Update ()
 	{
-		transform.Translate(Vector3.right * 2f*Time.deltaTime);
+		transform.Translate(Vector3.right * 3f*Time.deltaTime);
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
 	{
-		if(other.gameObject.tag=="Box" && !Spoiled)
+		if(other.gameObject.tag=="Box")
 		{
-			earnMoney();
+			if(!Spoiled)
+				earnMoney();
+			
 			Destroy(gameObject);
 		}
 	}

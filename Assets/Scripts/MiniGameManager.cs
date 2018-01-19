@@ -7,6 +7,9 @@ public class MiniGameManager : MonoBehaviour {
 
     public bool gameOver;
     public GameManager gmScript; 
+	
+	public GameObject ProduktPrefab;
+	private List<GameObject> produkter;
 
     void Start ()
 	{
@@ -15,7 +18,8 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void Update ()
 	{
- 
+		GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
+		produkter.Add(nyProdukt);
 	}
 
     public void GameOver()

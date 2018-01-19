@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivateKey: 32
+  CanExitCollider: 0
 --- !u!212 &212102190296852698
 SpriteRenderer:
   m_ObjectHideFlags: 1
