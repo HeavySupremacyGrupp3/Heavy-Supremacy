@@ -89,6 +89,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e381ce6044e56104d8f2761025b3d2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: d4e95af0064f48948b3e83eb5cbf076d, type: 3}
+  - {fileID: 21300000, guid: 4b0473514c13d804bbc6487beb678953, type: 3}
+  - {fileID: 21300000, guid: 266a9633da228954a9c2ff42aa0b2185, type: 3}
+  - {fileID: 21300000, guid: 266a9633da228954a9c2ff42aa0b2185, type: 3}
+  spoilSprite: {fileID: 0}
+  currentStage: 0
 --- !u!212 &212435108676253202
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -123,13 +130,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d4e95af0064f48948b3e83eb5cbf076d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.65, y: 1.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
