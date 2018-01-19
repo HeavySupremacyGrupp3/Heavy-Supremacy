@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class NoteGenerator : MonoBehaviour
 {
-    public AudioClip AudioClip;
-    public AudioSource AudioSource;
+    public AudioClip Music;
+    public AudioClip NoteGenerationAudio;
+    public AudioSource MusicAudioSource;
+    public AudioSource NoteGenerationAudioSource;
     public float UpdateInterval = 0.1f; //For optimizing performance.
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
-    public float StartDelay = 1;
+    public float MusicStartDelay = 1;
     private float volumeTreshold = 1;
     public GameObject NotePrefab;
 
@@ -20,26 +22,24 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(InitializeDelayTimer());
-    }
-
-    IEnumerator InitializeDelayTimer()
-    {
-        yield return new WaitForSeconds(StartDelay);
         Initialize();
     }
 
     void Initialize()
     {
         clipSampleData = new float[SampleDataLength];
-        AudioSource.clip = AudioClip;
-        AudioSource.Play();
+
+        MusicAudioSource.clip = Music;
+        MusicAudioSource.PlayDelayed(MusicStartDelay);
+
+        NoteGenerationAudioSource.clip = NoteGenerationAudio;
+        NoteGenerationAudioSource.Play();
     }
 
     void Update()
     {
 
-        if (AudioSource.isPlaying && CheckForNote())
+        if (NoteGenerationAudioSource.isPlaying && CheckForNote())
             SendNote();
     }
 
@@ -49,18 +49,19 @@ public class NoteGenerator : MonoBehaviour
         if (clipTime >= UpdateInterval)
         {
             clipTime = 0f;
-            AudioSource.clip.GetData(clipSampleData, AudioSource.timeSamples);
+            NoteGenerationAudioSource.clip.GetData(clipSampleData, NoteGenerationAudioSource.timeSamples);
             foreach (float sample in clipSampleData)
             {
                 clipVolume += Mathf.Abs(sample);
             }
             //clipVolume /= SampleDataLength; //Used for what?
-            Debug.Log(clipVolume);
+            //Debug.Log(clipVolume);
 
+            //Set volumetreshold to the volume of the first note.
             if (volumeTreshold <= 1 && clipVolume > 1)
                 volumeTreshold = clipVolume;
 
-            //If the tone is long, create one note.
+            //If the tone is long, create only one note.
             if (clipVolume > lastClipVolume + volumeTreshold)
                 canSendNextNote = true;
             lastClipVolume = clipVolume;
@@ -78,6 +79,6 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
-        Instantiate(NotePrefab, Vector3.zero, Quaternion.identity);
+        Instantiate(NotePrefab, transform.position, Quaternion.identity);
     }
 }
