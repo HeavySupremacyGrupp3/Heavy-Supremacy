@@ -45,14 +45,4 @@ public abstract class TimingSystem : MonoBehaviour
             target = collision.gameObject;
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        target = null;
-
-        if (!CanExitCollider && collision.transform.position.y < transform.position.y - 1)
-        {
-            FailTiming();
-        }
-    }
 }

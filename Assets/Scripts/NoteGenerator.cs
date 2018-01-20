@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NoteGenerator : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class NoteGenerator : MonoBehaviour
     public float UpdateInterval = 0.1f; //For optimizing performance.
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
     public float MusicStartDelay = 1;
+    public float NoteGenerationStartDelay = 1;
     private float volumeTreshold = 1;
     public GameObject NotePrefab;
 
@@ -33,12 +35,11 @@ public class NoteGenerator : MonoBehaviour
         MusicAudioSource.PlayDelayed(MusicStartDelay);
 
         NoteGenerationAudioSource.clip = NoteGenerationAudio;
-        NoteGenerationAudioSource.Play();
+        NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
     }
 
     void Update()
     {
-
         if (NoteGenerationAudioSource.isPlaying && CheckForNote())
             SendNote();
     }
@@ -55,14 +56,14 @@ public class NoteGenerator : MonoBehaviour
                 clipVolume += Mathf.Abs(sample);
             }
             //clipVolume /= SampleDataLength; //Used for what?
-            //Debug.Log(clipVolume);
+            Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.
             if (volumeTreshold <= 1 && clipVolume > 1)
                 volumeTreshold = clipVolume;
 
             //If the tone is long, create only one note.
-            if (clipVolume > lastClipVolume + volumeTreshold)
+            if (clipVolume >= lastClipVolume)
                 canSendNextNote = true;
             lastClipVolume = clipVolume;
 
