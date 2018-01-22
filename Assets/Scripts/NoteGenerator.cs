@@ -13,14 +13,16 @@ public class NoteGenerator : MonoBehaviour
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
     public float MusicStartDelay = 1;
     public float NoteGenerationStartDelay = 1;
-    private float volumeTreshold = 1;
     public GameObject NotePrefab;
+    public float NoteSpawnMinInterval = 0.1f;
 
-    private float clipTime = 0f;
+    private float clipTime = 0;
     private float clipVolume;
     private float lastClipVolume;
+    private float volumeTreshold = 1;
     private float[] clipSampleData;
     private bool canSendNextNote = true;
+    private float noteSpawnTimer = 0;
 
     void Start()
     {
@@ -40,12 +42,13 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (NoteGenerationAudioSource.isPlaying && CheckForNote())
+        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval)
             SendNote();
     }
 
     bool CheckForNote()
     {
+        noteSpawnTimer += Time.deltaTime;
         clipTime += Time.deltaTime;
         if (clipTime >= UpdateInterval)
         {
@@ -81,5 +84,6 @@ public class NoteGenerator : MonoBehaviour
     void SendNote()
     {
         Instantiate(NotePrefab, transform.position, Quaternion.identity);
+        noteSpawnTimer = 0;
     }
 }
