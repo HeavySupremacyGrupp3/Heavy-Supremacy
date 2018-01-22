@@ -8,11 +8,15 @@ public class Stats : MonoBehaviour {
 
 	float amount;
 	
+	public GameObject SliderObject;
 	public Slider progressSlider;
 
 	void Start ()
 	{
-		amount=0.0f;
+		DontDestroyOnLoad(gameObject);
+		//SliderObject=GameObject.Find("energySlider");
+		//progressSlider=SliderObject.GetComponent<Slider>();
+		//amount=25.0f;
 	}
 		
 	void Update ()

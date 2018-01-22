@@ -11,6 +11,7 @@ public class moneyScript : MonoBehaviour {
 
 	void Start () 
 	{
+		DontDestroyOnLoad(gameObject);
 		//StatReference.GetComponent<Slider>().enabled=false;
 		Money = StatReference.getAmount();
 		t=GetComponent<Text> ();
