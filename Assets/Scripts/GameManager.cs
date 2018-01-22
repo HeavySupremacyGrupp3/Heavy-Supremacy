@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     public Object WorkScene;
     public Object PracticeScene;
     public Object GigScene;
+    public FadeOutManager fadeScript;
 
     void Start()
     {
         Initialize();
+        fadeScript = GetComponent<FadeOutManager>();
     }
 
     void Initialize()
@@ -50,7 +52,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadSleep()
     {
-
+        fadeScript = FindObjectOfType<FadeOutManager>();
+        fadeScript.FadeOut();
     }
 
     public void ToggleGameObject(GameObject target)
