@@ -3,29 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MiniGameManager : MonoBehaviour {
+public class gigManagerTest : MonoBehaviour {
 
     public bool gameOver;
-    public GameManager gmScript; 
+    //public GameManager gmScript; 
 	
-	public Object HUBScene;
 	public Object WorkScene;
-	
-	public GameObject ProduktPrefab;
-	private List<GameObject> produkter;
 
     void Start ()
 	{
-        gmScript = GetComponent<GameManager>();
+        //gmScript = GetComponent<GameManager>();
 	}	
 	
 	void Update ()
 	{
-		if(Time.fixedTime%3==2)	
-		{
-			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
-			produkter.Add(nyProdukt);
-		}
+
 	}
 
     public void GameOver()
@@ -40,13 +32,7 @@ public class MiniGameManager : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void LoadHUB()
-    {
-		SceneManager.LoadScene(HUBScene.name);
-        //gmScript.LoadHUB();
-    }
-	
-	public void LoadWork()
+    public void LoadWork()
     {
 		SceneManager.LoadScene(WorkScene.name);
         //gmScript.LoadHUB();
