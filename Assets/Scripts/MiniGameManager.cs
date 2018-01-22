@@ -18,8 +18,8 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
-		produkter.Add(nyProdukt);
+		//GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
+		//produkter.Add(nyProdukt);
 	}
 
     public void GameOver()
