@@ -20,7 +20,7 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		if(Time.fixedTime%3==0)	
+		if(Time.fixedTime%3==2)	
 		{
 			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
 			produkter.Add(nyProdukt);

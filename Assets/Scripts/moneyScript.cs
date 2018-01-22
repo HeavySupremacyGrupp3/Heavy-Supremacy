@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class moneyScript : MonoBehaviour {
 
-	public int Money;
+	public float Money;
+	public Stats StatReference;
 	private Text t;
 
 	void Start () 
 	{
-		Money = 0;
+		//StatReference.GetComponent<Slider>().enabled=false;
+		Money = StatReference.getAmount();
 		t=GetComponent<Text> ();
 	}
 
@@ -31,15 +33,15 @@ public class moneyScript : MonoBehaviour {
 
 	public void addMoney()
 	{
-		Money += 50;
+		Money += 50f;
 	}
 
-	public void setMoney(int value)
+	public void setMoney(float value)
 	{
 		Money = value;
 	}
 
-	public int getMoney()
+	public float getMoney()
 	{
 		return Money;
 	}
