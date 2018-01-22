@@ -11,31 +11,17 @@ public class MusicManager : MonoBehaviour {
     [SerializeField]
     private AudioClip music3;
 
-    private AudioSource audioSource;
+    private AudioSource[] audioSources;
     private float volume;
 
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
     }
 
-    public void PlayMusic2(AudioClip music1, bool loop)
-    {
-        GetComponent<AudioSource>().PlayOneShot(music1, volume);
-    }
-
-    public void PlayMusic3(AudioClip music2, bool loop)
-    {
-        GetComponent<AudioSource>().PlayOneShot(music2, volume);
-    }
-
-    public void PlayMusic4(AudioClip music3, bool loop)
-    {
-        GetComponent<AudioSource>().PlayOneShot(music3, volume);
-    }
-
-
+    //Old solution
+    /*
     public void PlayMusic(AudioClip audioClip, bool loop)
     {
         audioSource.clip = audioClip;
@@ -43,41 +29,37 @@ public class MusicManager : MonoBehaviour {
         audioSource.Play();
     }
 
-    public void SetVolume(float volume)
-    {
-        audioSource.volume = volume;
-    }
+     public void SetVolume(float volume)
+     {
+         audioSource.volume = volume;
+     }
 
-    public void StopMusic2(AudioClip music1)
-    {
-        audioSource.Stop();
-    }
 
-    public void StopMusic3(AudioClip music2)
-    {
-        audioSource.Stop();
-    }
+     public void ToggleLoop()
+     {
+         audioSource.loop = !audioSource.loop;
+     }
 
-    public void StopMusic(AudioClip music1)
-    {
-        audioSource.Stop();
-    }
+     public void SetLoop(bool loop)
+     {
+         audioSources[index].loop = loop;
+     }*/
 
-    public void ToggleLoop()
-    {
-        audioSource.loop = !audioSource.loop;
-    }
+    public void StopMusic(AudioClip audioClip, int index)
+{
+    audioSources[index].clip = audioClip;
+    audioSources[index].Stop();
+}
 
-    public void SetLoop(bool loop)
+    public void PlayMusic(AudioClip audioClip, int index, bool loop)
     {
-        audioSource.loop = loop;
-    }
+        // Index 0: Music, 1: Sound Effects, 2: Something else
+        audioSources[index].clip = audioClip;
+        audioSources[index].volume = volume;
+        audioSources[index].PlayOneShot(audioClip, volume);
+        audioSources[index].loop = !audioSources[index].loop;
+        audioSources[index].loop = loop;
 
-    //possible solution
-   /* public void PlayMusic(AudioClip audioClip, bool loop)
-    {
-        audioSource.clip = audioClip;
-        GetComponent<AudioSource>().PlayOneShot(audioClip, volume);
-    }*/
+    }
 
 }
