@@ -13,19 +13,38 @@ public class MiniGameManager : MonoBehaviour {
 	
 	public GameObject ProduktPrefab;
 	private List<GameObject> produkter;
+	
+	happinessStatScript StatReference;
+	
+	int updateCounter=0;
 
     void Start ()
 	{
         gmScript = GetComponent<GameManager>();
+		StatReference=GameObject.Find("happinessObject").GetComponent<happinessStatScript>();
 	}	
 	
 	void Update ()
 	{
+		/*
 		if(Time.fixedTime%3==2)	
 		{
+			StatReference.addOrRemoveAmount(-20f);
+			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
+			produkter.Add(nyProdukt);		
+		}
+		*/
+		
+		updateCounter++;
+		if(updateCounter%100==99)	
+		{
+			updateCounter=0;
+			StatReference.addOrRemoveAmount(-20f);
 			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
 			produkter.Add(nyProdukt);
+			
 		}
+		//Debug.Log(updateCounter);
 	}
 
     public void GameOver()
