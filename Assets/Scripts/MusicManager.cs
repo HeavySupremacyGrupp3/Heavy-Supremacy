@@ -11,6 +11,7 @@ public class MusicManager : MonoBehaviour {
     [SerializeField]
     private AudioClip music3;
 
+    [SerializeField]
     private AudioSource[] audioSources;
     private float volume;
 
