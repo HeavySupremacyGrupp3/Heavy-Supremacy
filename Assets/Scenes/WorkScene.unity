@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   gmScript: {fileID: 0}
-  HUBScene: {fileID: 0}
+  HUBScene: {fileID: 102900000, guid: 7886df58fe784294cb22bfc0bdeea97d, type: 3}
   ProduktPrefab: {fileID: 1852084873410506, guid: 0a866ee52ebbf9f4480a3acba519471f,
     type: 2}
 --- !u!4 &1237345
