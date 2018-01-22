@@ -46,7 +46,7 @@ public class MiniGameManager : MonoBehaviour {
         //gmScript.LoadHUB();
     }
 	
-	    public void LoadWork()
+	public void LoadWork()
     {
 		SceneManager.LoadScene(WorkScene.name);
         //gmScript.LoadHUB();

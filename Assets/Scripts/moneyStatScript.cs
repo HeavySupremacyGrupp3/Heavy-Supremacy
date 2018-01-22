@@ -16,6 +16,7 @@ public class moneyStatScript : Stats {
 
 	public void addMoney()
 	{
-		amount += 50f;
+		addOrRemoveAmount(50f);
+		//amount += 50f;
 	}
 }

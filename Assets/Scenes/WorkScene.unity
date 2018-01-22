@@ -253,7 +253,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 130713710}
-  - component: {fileID: 130713709}
   - component: {fileID: 130713711}
   m_Layer: 0
   m_Name: moneyObject
@@ -262,18 +261,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &130713709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 130713708}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b1a4cd8188eca14e8aa6f3770d0b7cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 0
 --- !u!4 &130713710
 Transform:
   m_ObjectHideFlags: 0
@@ -626,7 +613,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 947916721}
-  - component: {fileID: 947916720}
   - component: {fileID: 947916722}
   m_Layer: 0
   m_Name: happinessObject
@@ -635,18 +621,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &947916720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 947916719}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b1a4cd8188eca14e8aa6f3770d0b7cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 0
 --- !u!4 &947916721
 Transform:
   m_ObjectHideFlags: 0
@@ -792,17 +766,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1237344}
         m_MethodName: LoadWork
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 947916722}
-        m_MethodName: addOrRemoveAmount
-        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
