@@ -8,6 +8,8 @@ public class MiniGameManager : MonoBehaviour {
     public bool gameOver;
     public GameManager gmScript; 
 	
+	public Object HUBScene;
+	
 	public GameObject ProduktPrefab;
 	private List<GameObject> produkter;
 
@@ -18,8 +20,11 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		//GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
-		//produkter.Add(nyProdukt);
+		if(Time.fixedTime%3==0)	
+		{
+			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
+			produkter.Add(nyProdukt);
+		}
 	}
 
     public void GameOver()
@@ -36,7 +41,8 @@ public class MiniGameManager : MonoBehaviour {
 
     public void LoadHUB()
     {
-        gmScript.LoadHUB();
+		SceneManager.LoadScene(HUBScene.name);
+        //gmScript.LoadHUB();
     }
 
    
