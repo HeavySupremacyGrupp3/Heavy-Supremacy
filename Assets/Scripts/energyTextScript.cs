@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class moneyTextScript : MonoBehaviour {
+public class energyTextScript : MonoBehaviour {
 
-	public float Money;
+	public float energy;
 	Stats StatReference;
 	private Text t;
 
 	void Start () 
 	{
 		StatReference = FindObjectOfType<energyStatScript>();
-		Money=StatReference.getAmount();		
+		energy=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}
 
 	void Update () 
 	{
-		Money = StatReference.getAmount();
-		t.text = "Money: " + Money;
+		energy = StatReference.getAmount();
+		t.text = "Energy: " + energy;
 	}
 }

@@ -13,7 +13,7 @@ public class barScript : MonoBehaviour {
 
 	void Update ()
 	{
-		StatReference=GameObject.Find("happinessObject").GetComponent<happinessStatScript>();
+		StatReference=GameObject.Find("energyObject").GetComponent<energyStatScript>();
 		amount=StatReference.getAmount();		
 		progressSlider.value=amount;
 	}
