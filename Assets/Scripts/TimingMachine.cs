@@ -31,6 +31,7 @@ public class TimingMachine : TimingSystem {
 			produktScript sc=target.GetComponent<produktScript>();
 			sc.spoil();
 		}
+		timesChanged=0;
 	}
 
 }
