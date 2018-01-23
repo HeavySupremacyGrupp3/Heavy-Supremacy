@@ -5,21 +5,20 @@ using UnityEngine.UI;
 
 public class happinessTextScript : MonoBehaviour {
 
-	public float Money;
+	public float Happiness;
 	Stats StatReference;
 	private Text t;
 
 	void Start () 
 	{
         StatReference = FindObjectOfType<happinessStatScript>();
-		Money=StatReference.getAmount();		
+		Happiness=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}
 
 	void Update () 
 	{
-		Money = StatReference.getAmount();
-		t.text = "Happiness: " + Money;
+		Happiness = StatReference.getAmount();
+		t.text = "Happiness: " + Happiness;
 	}
-
 }
