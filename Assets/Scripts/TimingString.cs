@@ -6,6 +6,10 @@ public class TimingString : TimingSystem
 {
     public AudioClip ErrorSound;
     public AudioSource AudioSource;
+    public happinessStatScript HappinessStatScript;
+    public metalStatScript MetalStatScript;
+    public float HappinessRewardAmount = 10;
+    public float MetalRewardAmount = 15;
 
     public override void FailTiming()
     {
@@ -17,6 +21,8 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
         Destroy(target);
+        HappinessStatScript.addOrRemoveAmount(HappinessRewardAmount);
+        MetalStatScript.addOrRemoveAmount(MetalRewardAmount);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

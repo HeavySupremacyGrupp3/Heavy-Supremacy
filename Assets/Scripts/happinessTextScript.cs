@@ -11,7 +11,7 @@ public class happinessTextScript : MonoBehaviour {
 
 	void Start () 
 	{
-		StatReference=GameObject.Find("happinessObject").GetComponent<happinessStatScript>();
+        StatReference = FindObjectOfType<happinessStatScript>();
 		Money=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}
