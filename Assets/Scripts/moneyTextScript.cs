@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class happinessScript : MonoBehaviour {
+public class moneyTextScript : MonoBehaviour {
 
 	public float Money;
 	Stats StatReference;
@@ -11,7 +11,7 @@ public class happinessScript : MonoBehaviour {
 
 	void Start () 
 	{
-		StatReference=GameObject.Find("happinessObject").GetComponent<happinessStatScript>();
+		StatReference=GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
 		Money=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}
@@ -19,7 +19,6 @@ public class happinessScript : MonoBehaviour {
 	void Update () 
 	{
 		Money = StatReference.getAmount();
-		t.text = "Happiness: " + Money;
+		t.text = "Money: " + Money;
 	}
-
 }
