@@ -39,7 +39,7 @@ public class MiniGameManager : MonoBehaviour {
 		if(updateCounter%100==99)	
 		{
 			updateCounter=0;
-			StatReference.addOrRemoveAmount(-20f);
+			StatReference.addOrRemoveAmount(-0.05f);
 			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
 			produkter.Add(nyProdukt);
 			

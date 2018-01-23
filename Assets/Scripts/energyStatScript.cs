@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class eneryStatScript : Stats {
+public class energyStatScript : Stats {
 
 
 }
