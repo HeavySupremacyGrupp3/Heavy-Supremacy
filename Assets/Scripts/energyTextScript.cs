@@ -11,7 +11,7 @@ public class energyTextScript : MonoBehaviour {
 
 	void Start () 
 	{
-		StatReference=GameObject.Find("energyObject").GetComponent<energyStatScript>();
+		StatReference = FindObjectOfType<energyStatScript>();
 		energy=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}

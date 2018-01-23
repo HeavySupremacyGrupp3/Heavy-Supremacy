@@ -11,7 +11,7 @@ public class moneyTextScript : MonoBehaviour {
 
 	void Start () 
 	{
-		StatReference=GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
+		StatReference = FindObjectOfType<energyStatScript>();
 		Money=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}
