@@ -11,7 +11,7 @@ public class moneyTextScript : MonoBehaviour {
 
 	void Start () 
 	{
-		StatReference = FindObjectOfType<energyStatScript>();
+		StatReference = FindObjectOfType<moneyStatScript>();
 		Money=StatReference.getAmount();		
 		t=GetComponent<Text> ();
 	}

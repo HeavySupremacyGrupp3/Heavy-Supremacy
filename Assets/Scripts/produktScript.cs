@@ -12,9 +12,22 @@ public class produktScript : MonoBehaviour {
 	public int currentStage=0;
 	public bool Spoiled=false;
 	
+	bool moving=true;
+	
+	void OnEnable()
+	{
+		MiniGameManager.stopProducts +=stopAndGo;
+	}
+	
+	void OnDisable()
+	{
+		MiniGameManager.stopProducts -=stopAndGo;
+	}
+	
 	void Update ()
 	{
-		transform.Translate(Vector3.right * 3f*Time.deltaTime);
+		if(moving)
+			transform.Translate(Vector3.right * 3f*Time.deltaTime);
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
@@ -32,5 +45,10 @@ public class produktScript : MonoBehaviour {
 	{
 		GetComponent<SpriteRenderer>().sprite=spoilSprite;
 		Spoiled=true;
+	}
+	
+	void stopAndGo()
+	{
+		moving=!moving;
 	}
 }

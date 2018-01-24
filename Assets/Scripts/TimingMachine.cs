@@ -5,6 +5,10 @@ using UnityEngine;
 public class TimingMachine : TimingSystem {
 	
 	int timesChanged=0;
+	int waitTimer=0;
+	
+	public delegate void mittEvent();
+	public static event mittEvent productDetected;
 	
 	public override void SucceedTiming()
     {
@@ -14,7 +18,10 @@ public class TimingMachine : TimingSystem {
 		{
 			base.SucceedTiming();			
 			sc.currentStage++;
-			target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
+			
+			if(sc.currentStage<sc.Sprites.Length)
+				target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
+			
 			timesChanged++;			
 		}		
     }
@@ -24,6 +31,12 @@ public class TimingMachine : TimingSystem {
         base.FailTiming();
     }
 	
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		timesChanged=0;
+		productDetected();
+	}
+	
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if(timesChanged==0)
@@ -31,7 +44,6 @@ public class TimingMachine : TimingSystem {
 			produktScript sc=target.GetComponent<produktScript>();
 			sc.spoil();
 		}
-		timesChanged=0;
+		//timesChanged=0;
 	}
-
 }

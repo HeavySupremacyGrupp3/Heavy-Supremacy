@@ -17,6 +17,31 @@ public class MiniGameManager : MonoBehaviour {
 	happinessStatScript StatReference;
 	
 	int updateCounter=0;
+	bool spawnStuff=true;
+	
+	public delegate void mittEvent();
+	public static event mittEvent stopProducts;
+	
+	bool productsAreStopped=false;
+	
+	int stopCounter=0;
+	
+	void OnEnable()
+	{
+		TimingMachine.productDetected +=changeSpawnStopProducts;
+	}
+	
+	void OnDisable()
+	{
+		TimingMachine.productDetected -=changeSpawnStopProducts;
+	}
+	
+	void changeSpawnStopProducts()
+	{
+		spawnStuff=!spawnStuff;
+		productsAreStopped=!productsAreStopped;
+		stopProducts();
+	}
 
     void Start ()
 	{
@@ -36,13 +61,24 @@ public class MiniGameManager : MonoBehaviour {
 		*/
 		
 		updateCounter++;
-		if(updateCounter%100==99)	
+		if(spawnStuff && updateCounter%100==99)	
 		{
 			updateCounter=0;
 			StatReference.addOrRemoveAmount(-0.05f);
 			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
-			produkter.Add(nyProdukt);
+			//produkter.Add(nyProdukt);
 			
+		}
+		
+		if(productsAreStopped)
+		{
+			stopCounter++;
+			Debug.Log(stopCounter);
+			if(stopCounter==100)
+			{
+				changeSpawnStopProducts();
+				stopCounter=0;
+			}
 		}
 		//Debug.Log(updateCounter);
 	}
