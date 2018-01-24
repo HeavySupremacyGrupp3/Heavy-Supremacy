@@ -17,7 +17,6 @@ public class FadeOutManager : MonoBehaviour {
         Debug.Log("Sleeping");
         fadeImage.enabled = true;
         StartCoroutine(FadeAway(true));
-        
     }
  
     IEnumerator FadeAway(bool fadeAway)
@@ -44,9 +43,11 @@ public class FadeOutManager : MonoBehaviour {
                 fadeImage.color = new Color(0, 0, 0, i);
                 yield return new WaitForSeconds(0.05f);
 
-                if (i <= 0)
+                if (i <= 0.01)
                 {
+					Debug.Log("fade out test");
                     fadeImage.enabled = false;  //This isn't working yet :c
+					GetComponent<Image>().enabled=false;
                 }
               
             }
