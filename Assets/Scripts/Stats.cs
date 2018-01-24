@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public abstract class Stats : MonoBehaviour {
 
 	protected float amount;
+	string thisStat;
 	
 	//public GameObject SliderObject;
 	//public Slider progressSlider;
@@ -38,6 +39,11 @@ public abstract class Stats : MonoBehaviour {
 	public float getAmount()
 	{
 		return amount;
+	}
+	
+	public string getStat()
+	{
+		return thisStat;
 	}
 }
 
