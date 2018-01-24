@@ -15,6 +15,7 @@ public class NoteGenerator : MonoBehaviour
     public float NoteGenerationStartDelay = 1;
     public GameObject NotePrefab;
     public float NoteSpawnMinInterval = 0.1f;
+    public GameObject EndGamePanel;
 
     private float clipTime = 0;
     private float clipVolume;
@@ -45,7 +46,7 @@ public class NoteGenerator : MonoBehaviour
         if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval)
             SendNote();
         else if (!MusicAudioSource.isPlaying) //End game if song is over.
-            LoadHub();
+            EndGamePanel.SetActive(true);
     }
 
     bool CheckForNote()
