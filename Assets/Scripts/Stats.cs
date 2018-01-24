@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public abstract class Stats : MonoBehaviour {
 
 	protected float amount;
-	string thisStat;
+	protected int thisStat;
 	
 	//public GameObject SliderObject;
 	//public Slider progressSlider;
@@ -15,9 +15,15 @@ public abstract class Stats : MonoBehaviour {
 	void Start ()
 	{
 		DontDestroyOnLoad(gameObject);
+		initialize();
 		//SliderObject=GameObject.Find("energySlider");
 		//progressSlider=SliderObject.GetComponent<Slider>();
 		//amount=25.0f;
+	}
+	
+	public virtual void initialize()
+	{
+		
 	}
 		
 	void Update ()
@@ -41,7 +47,7 @@ public abstract class Stats : MonoBehaviour {
 		return amount;
 	}
 	
-	public string getStat()
+	public int getStat()
 	{
 		return thisStat;
 	}
