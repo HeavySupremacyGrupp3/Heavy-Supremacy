@@ -429,7 +429,6 @@ MonoBehaviour:
   - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
   - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
   - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
-  speed: 0
   lerpTime: 1
 --- !u!4 &155887790
 Transform:
@@ -526,7 +525,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 197506065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.5, y: 187.5, z: 0}
+  m_LocalPosition: {x: 193, y: 154.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1040265526}
@@ -976,14 +975,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 947916722}
-        m_MethodName: addOrRemoveAmount
-        m_Mode: 4
+      - m_Target: {fileID: 1237344}
+        m_MethodName: LoadWork
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.2
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1183,6 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressSlider: {fileID: 1206704221}
+  InitialReference: {fileID: 947916722}
 --- !u!1 &1311998305
 GameObject:
   m_ObjectHideFlags: 0
