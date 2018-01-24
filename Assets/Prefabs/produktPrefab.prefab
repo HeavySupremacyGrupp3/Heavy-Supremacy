@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70875011287946620}
   - component: {fileID: 50597055320878130}
   m_Layer: 0
-  m_Name: testprefab
+  m_Name: produktprefab
   m_TagString: TimingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
