@@ -9,6 +9,7 @@ public class gigManagerTest : MonoBehaviour {
     //public GameManager gmScript; 
 	
 	public Object WorkScene;
+	public Object HubScene;
 
     void Start ()
 	{
@@ -35,6 +36,12 @@ public class gigManagerTest : MonoBehaviour {
     public void LoadWork()
     {
 		SceneManager.LoadScene(WorkScene.name);
+        //gmScript.LoadHUB();
+    }
+	
+	public void LoadHub()
+    {
+		SceneManager.LoadScene(HubScene.name);
         //gmScript.LoadHUB();
     }
 

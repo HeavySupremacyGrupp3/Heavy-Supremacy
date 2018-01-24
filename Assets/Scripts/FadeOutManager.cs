@@ -14,7 +14,7 @@ public class FadeOutManager : MonoBehaviour {
 
     public void FadeOut()
     {
-        Debug.Log("Sleeping");
+        //Debug.Log("Sleeping");
         fadeImage.enabled = true;
         StartCoroutine(FadeAway(true));
     }
