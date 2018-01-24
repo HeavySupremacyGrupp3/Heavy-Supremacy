@@ -6,10 +6,10 @@ public class TimingString : TimingSystem
 {
     public AudioClip ErrorSound;
     public AudioSource AudioSource;
-    public happinessStatScript HappinessStatScript;
-    public metalStatScript MetalStatScript;
+
     public float HappinessRewardAmount = 10;
     public float MetalRewardAmount = 15;
+    public float Health = 0;
 
     public GameObject HappinessPopupPrefab;
     public GameObject MetalPopupPrefab;
@@ -17,12 +17,25 @@ public class TimingString : TimingSystem
 
     public Animator StringAnimator;
 
+    private happinessStatScript HappinessStatScript;
+    private metalStatScript MetalStatScript;
+
+    void Start()
+    {
+        HappinessStatScript = FindObjectOfType<happinessStatScript>();
+        MetalStatScript = FindObjectOfType<metalStatScript>();
+    }
+
     public override void FailTiming()
     {
         base.FailTiming();
         AudioSource.PlayOneShot(ErrorSound);
 
         StringAnimator.SetTrigger("StringStroked");
+
+        Health--;
+        if (Health == 0)
+            FindObjectOfType<GameManager>().LoadHUB();
     }
 
     public override void SucceedTiming()

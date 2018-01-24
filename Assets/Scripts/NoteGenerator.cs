@@ -44,6 +44,8 @@ public class NoteGenerator : MonoBehaviour
     {
         if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval)
             SendNote();
+        else if (!MusicAudioSource.isPlaying) //End game if song is over.
+            LoadHub();
     }
 
     bool CheckForNote()
@@ -85,5 +87,15 @@ public class NoteGenerator : MonoBehaviour
     {
         Instantiate(NotePrefab, transform.position, Quaternion.identity);
         noteSpawnTimer = 0;
+    }
+
+    public void LoadHub()
+    {
+        if (FindObjectOfType<GameManager>() != null)
+            FindObjectOfType<GameManager>().LoadHUB();
+
+        //If you start the game in the Practice-scene.
+        else
+            SceneManager.LoadScene(0);
     }
 }
