@@ -30,6 +30,8 @@ public class FadeOutManager : MonoBehaviour {
                 // alpha opaque
                 fadeImage.color = new Color(0, 0, 0, i);
                 yield return new WaitForSeconds (0.05f);
+				
+				if(i>=0.95)
                 StartCoroutine(FadeAway(false));
             }
         }
@@ -45,13 +47,13 @@ public class FadeOutManager : MonoBehaviour {
 
                 if (i <= 0.01)
                 {
-					Debug.Log("fade out test");
-                    fadeImage.enabled = false;  //This isn't working yet :c
-					GetComponent<Image>().enabled=false;
+					//Debug.Log("fade out test");
+					//fadeImage.enabled = false;  //This isn't working yet :c					
                 }
               
             }
-            
+			fadeImage.enabled = false; 
+            GetComponent<Image>().enabled=false;
         }
     }
 }
