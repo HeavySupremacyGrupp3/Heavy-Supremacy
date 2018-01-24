@@ -19,7 +19,6 @@ public class energyTextScript : MonoBehaviour {
 	void Update () 
 	{
 		StatReference = FindObjectOfType<energyStatScript>();
-		Debug.Log("energiuppdatering");
 		energy = StatReference.getAmount();
 		t.text = "Energy: " + energy;
 	}

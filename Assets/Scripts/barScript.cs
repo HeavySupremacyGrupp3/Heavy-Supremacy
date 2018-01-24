@@ -5,23 +5,21 @@ using UnityEngine.UI;
 
 public class barScript : MonoBehaviour {
 
-	public Slider progressSlider;
+	private Slider progressSlider;
 	
-	public Stats InitialReference;
+	[SerializeField]
+	private Stats InitialReference;
 	Stats StatReference;
 	
 	float amount;
-	
-	void Start ()
-	{
-		StatReference=InitialReference;
-	}
 
-	void Update ()
+	void Start()
 	{
-		//StatReference=FindObjectOfType<happinessStatScript>();
-		//StatReference=null;
-		
+		progressSlider=GetComponent<Slider>();
+	}
+	
+	void Update ()
+	{		
 		Stats[] arr = FindObjectsOfType<Stats>();
 		
 		for(int i=0;i<arr.Length;i++)
@@ -29,9 +27,11 @@ public class barScript : MonoBehaviour {
 			if(arr[i].getStat()==InitialReference.getStat())
 			{
 				StatReference=arr[i];
+				amount=StatReference.getAmount();
+				progressSlider.value=amount;
+				Debug.Log(arr[i].getStat());
+				//Debug.Log(progressSlider.value); // nollställs hela tiden av okänd anlednin							
 			}
 		}
-		amount=StatReference.getAmount();		
-		progressSlider.value=amount;
 	}
 }

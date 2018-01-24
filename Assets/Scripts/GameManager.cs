@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public Object PracticeScene;
     public Object GigScene;
     public FadeOutManager fadeScript;
+	
+	public delegate void mittEvent();
+	public static event mittEvent sleep;
 
     void Start()
     {
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
+		sleep();
     }
 
     public void ToggleGameObject(GameObject target)
