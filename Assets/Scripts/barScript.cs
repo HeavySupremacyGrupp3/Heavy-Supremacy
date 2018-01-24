@@ -20,12 +20,16 @@ public class barScript : MonoBehaviour {
 	void Update ()
 	{
 		//StatReference=FindObjectOfType<happinessStatScript>();
-		StatReference=null;
+		//StatReference=null;
 		
 		Stats[] arr = FindObjectsOfType<Stats>();
-		for(int i=0;i<arr.length;i++)
+		
+		for(int i=0;i<arr.Length;i++)
 		{
-			arr[i].getStat();
+			if(arr[i].getStat()==InitialReference.getStat())
+			{
+				StatReference=arr[i];
+			}
 		}
 		amount=StatReference.getAmount();		
 		progressSlider.value=amount;
