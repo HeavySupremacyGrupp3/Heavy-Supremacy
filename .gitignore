@@ -30,6 +30,9 @@ ExportedObj/
 *.pdb
 *.info
 *.DS_Store
+.DS_Store
+Assets/.DS_Store
+Assets/PlaceHolder/.DS_Store
 
 # Unity3D generated meta files
 *.pidb.meta
