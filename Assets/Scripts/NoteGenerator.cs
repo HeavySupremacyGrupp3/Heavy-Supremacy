@@ -19,7 +19,7 @@ public class NoteGenerator : MonoBehaviour
     private float clipTime = 0;
     private float clipVolume;
     private float lastClipVolume;
-    private float volumeTreshold = 1;
+    private float volumeTreshold = 0.1f;
     private float[] clipSampleData;
     private bool canSendNextNote = true;
     private float noteSpawnTimer = 0;
@@ -58,7 +58,7 @@ public class NoteGenerator : MonoBehaviour
             {
                 clipVolume += Mathf.Abs(sample);
             }
-            //clipVolume /= SampleDataLength; //Used for what?
+            clipVolume /= SampleDataLength; //Used for what?
             //Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.
