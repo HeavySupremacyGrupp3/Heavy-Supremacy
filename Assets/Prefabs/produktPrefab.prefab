@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70875011287946620}
   - component: {fileID: 50597055320878130}
   m_Layer: 0
-  m_Name: produktprefab
+  m_Name: produktPrefab
   m_TagString: TimingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,9 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprites:
   - {fileID: 21300000, guid: d17f2d552c8610140a3beeb3a164144a, type: 3}
-  - {fileID: 21300000, guid: c89b640df4779284d8f4b391f822486a, type: 3}
-  - {fileID: 21300000, guid: 12ba7211288bd144c83f4b90a44eaddc, type: 3}
-  - {fileID: 21300000, guid: bce140a883eae194e8a444aa6974bfff, type: 3}
+  - {fileID: 21300000, guid: 9142a6981ae375145b10d4d8c83d7c19, type: 3}
+  - {fileID: 21300000, guid: 8b693afcaff6de64193ee9e5e56b501f, type: 3}
+  - {fileID: 21300000, guid: 01cabb468f30c8744bdb90e02baa09d0, type: 3}
   spoilSprite: {fileID: 21300000, guid: 62e2a38784175e54a977d9f5380d8d0b, type: 3}
   currentStage: 0
   Spoiled: 0
