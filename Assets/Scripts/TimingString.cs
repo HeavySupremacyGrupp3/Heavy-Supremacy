@@ -11,6 +11,9 @@ public class TimingString : TimingSystem
     public float HappinessRewardAmount = 10;
     public float MetalRewardAmount = 15;
 
+    public GameObject HappinessPopupPrefab;
+    public GameObject MetalPopupPrefab;
+
     public override void FailTiming()
     {
         base.FailTiming();
@@ -23,6 +26,13 @@ public class TimingString : TimingSystem
         Destroy(target);
         HappinessStatScript.addOrRemoveAmount(HappinessRewardAmount);
         MetalStatScript.addOrRemoveAmount(MetalRewardAmount);
+
+        GameObject metalPopup = Instantiate(MetalPopupPrefab, transform.position, Quaternion.identity) as GameObject;
+        GameObject happinessPopup = Instantiate(HappinessPopupPrefab, transform.position, Quaternion.identity) as GameObject;
+
+        Destroy(metalPopup, 2);
+        Destroy(happinessPopup, 2);
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
