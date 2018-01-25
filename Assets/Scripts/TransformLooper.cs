@@ -12,25 +12,39 @@ public class TransformLooper : MonoBehaviour
     private float posTimer = 0;
     private Vector2 startPos;
 
+    private bool looping;
+
+    void OnEnable()
+    {
+        MiniGameManager.stopProducts += StopLoop;
+    }
+
+    void OnDisable()
+    {
+        MiniGameManager.stopProducts -= StopLoop;
+    }
 
     private void Start()
     {
+        looping = true;
         startPos = transform.localPosition;
         TargetPosition = new Vector2(transform.localPosition.x + TargetPosition.x, transform.localPosition.y + TargetPosition.y);
     }
 
     void Update()
     {
+        if (looping)
+        {
+            posTimer += Time.deltaTime * Speed;
+            if (posTimer >= 1)
+                posTimer = 0;
 
-        posTimer += Time.deltaTime * Speed;
-        if (posTimer >= 1)
-            posTimer = 0;
-
-        transform.localPosition = Vector2.Lerp(startPos, TargetPosition, posTimer);
+            transform.localPosition = Vector2.Lerp(startPos, TargetPosition, posTimer);
+        }
     }
 
-    private void StopLerp()
+    private void StopLoop()
     {
-
+        looping = !looping;
     }
 }
