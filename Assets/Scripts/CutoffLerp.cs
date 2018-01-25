@@ -3,10 +3,10 @@
 public class CutoffLerp : MonoBehaviour
 {
     public float TransitionTime = 1;
+    public string MaterialValueString = "_Cutoff";
 
     private MeshRenderer meshRenderer;
     private float timer = 0;
-    private string MaterialValueString = "_Cutoff";
     private float LerpStartValue = 1;
 
     void Start()
