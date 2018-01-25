@@ -358,7 +358,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 257630004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -19.529999, z: 0}
+  m_LocalPosition: {x: 0, y: -68.97479, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1754853855}
@@ -466,7 +466,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333584484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30.940002, z: 0}
+  m_LocalPosition: {x: 0, y: -69.89906, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 253035178}
@@ -936,7 +936,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848598614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30.940002, z: 0}
+  m_LocalPosition: {x: 0, y: -67.949585, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1252764394}
@@ -1030,8 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c8f794d1343fb4d864c0b97d49bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressSlider: {fileID: 848974507}
-  InitialReference: {fileID: 1939318168}
+  StatIndex: 2
 --- !u!114 &848974507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,9 +1071,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 866247598}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 5000
   m_WholeNumbers: 0
-  m_Value: 0.721
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1104,7 +1103,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866247597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30.940002, z: 0}
+  m_LocalPosition: {x: 0, y: -70, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2128231596}
@@ -1350,7 +1349,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 943870717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -19.529999, z: 0}
+  m_LocalPosition: {x: 0, y: -70, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 192234891}
@@ -1540,7 +1539,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052157838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -19.529999, z: 0}
+  m_LocalPosition: {x: 0, y: -69.94953, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1582935523}
@@ -1634,8 +1633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c8f794d1343fb4d864c0b97d49bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressSlider: {fileID: 1052179907}
-  InitialReference: {fileID: 296804771}
+  StatIndex: 0
 --- !u!114 &1052179907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1676,9 +1674,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 848598615}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 48
   m_WholeNumbers: 0
-  m_Value: 0.721
+  m_Value: 0.703
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2263,8 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c8f794d1343fb4d864c0b97d49bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressSlider: {fileID: 1508508748}
-  InitialReference: {fileID: 603373557}
+  StatIndex: 1
 --- !u!114 &1508508748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,8 +2933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c8f794d1343fb4d864c0b97d49bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressSlider: {fileID: 1910352942}
-  InitialReference: {fileID: 597264273}
+  StatIndex: 3
 --- !u!114 &1910352942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2978,7 +2974,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 333584485}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 1000
   m_WholeNumbers: 0
   m_Value: 0.721
   m_OnValueChanged:

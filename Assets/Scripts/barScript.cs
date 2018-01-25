@@ -6,32 +6,40 @@ using UnityEngine.UI;
 public class barScript : MonoBehaviour {
 
 	private Slider progressSlider;
-	
-	[SerializeField]
-	private Stats InitialReference;
+	public int StatIndex;
 	Stats StatReference;
 	
 	float amount;
 
 	void Start()
 	{
+
+		
 		progressSlider=GetComponent<Slider>();
 	}
 	
 	void Update ()
 	{		
+		//Stats[] arr = FindObjectsOfType<Stats>();
 		Stats[] arr = FindObjectsOfType<Stats>();
-		
-		for(int i=0;i<arr.Length;i++)
+		for(int i = 0; i < arr.Length; i++)
 		{
-			if(arr[i].getStat()==InitialReference.getStat())
-			{
-				StatReference=arr[i];
+			if(StatIndex == arr[i].getStat())
+				StatReference = arr[i];
+		}
+
+			//if(arr[i].getStat()==InitialReference.getStat())
+				//StatReference=InitialReference;
 				amount=StatReference.getAmount();
 				progressSlider.value=amount;
-				Debug.Log(arr[i].getStat());
-				//Debug.Log(progressSlider.value); // nollställs hela tiden av okänd anlednin							
-			}
-		}
+				
+				Debug.Log(amount);
+				//Debug.Log("amount: "+arr[i].getAmount()+" stat: "+arr[i].getStat());
+				//Debug.Log();
+				//Debug.Log(arr[i].getStat());
+				//Debug.Log(progressSlider.value); // nollställs hela tiden av okänd anlednin	
+				//Debug.Log("getAmount "+InitialReference.getAmount());						
+			
+		
 	}
 }

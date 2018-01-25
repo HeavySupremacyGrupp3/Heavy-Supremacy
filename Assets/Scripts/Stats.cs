@@ -12,9 +12,14 @@ public abstract class Stats : MonoBehaviour {
 	//public GameObject SliderObject;
 	//public Slider progressSlider;
 
-	void Start ()
+	void Awake ()
 	{
-		DontDestroyOnLoad(gameObject);
+		 if (FindObjectsOfType<Stats>().Length > 5)
+            Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
+
+		//DontDestroyOnLoad(gameObject);
 		initialize();
 		//SliderObject=GameObject.Find("energySlider");
 		//progressSlider=SliderObject.GetComponent<Slider>();

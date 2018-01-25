@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class moneyStatScript : Stats {
 
+	public override void initialize()
+	{
+		thisStat=4;
+	}
+
+
 	void OnEnable() //events
 	{
 		produktScript.earnMoney +=addMoney;
