@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivateKey: 32
   CanExitCollider: 0
+  MyOutOfRangeDetector: {fileID: 114302584182009624}
 --- !u!212 &212349854156549986
 SpriteRenderer:
   m_ObjectHideFlags: 1

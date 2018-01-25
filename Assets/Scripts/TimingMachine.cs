@@ -9,6 +9,7 @@ public class TimingMachine : TimingSystem {
 	
 	public delegate void mittEvent();
 	public static event mittEvent productDetected;
+	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	
 	public override void SucceedTiming()
     {
@@ -28,12 +29,12 @@ public class TimingMachine : TimingSystem {
 	
 	void OnEnable()
 	{
-		machineOutOfRangeDetector.productToSpoilDetected += spoilProducts;
+		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
 	}
 	
 	void OnDisable()
 	{
-		machineOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
+		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
 	}
 	
 	public override void FailTiming()
@@ -56,20 +57,20 @@ public class TimingMachine : TimingSystem {
 			
 			timesChanged++;			
 		}		
-		
-		
-		timesChanged=0;
+				
+		//timesChanged=0;
 		productDetected();
 	}
 	
 	private void spoilProducts(GameObject ta)
 	{
+		Debug.Log("times changed "+timesChanged);
 		if(timesChanged==0)
 		{
 			target=ta;
 			produktScript sc=target.GetComponent<produktScript>();
 			sc.spoil();
 		}
-		//timesChanged=0;
+		timesChanged=0;
 	}
 }
