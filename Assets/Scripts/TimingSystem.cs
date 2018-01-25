@@ -31,6 +31,7 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void FailTiming()
     {
         Debug.Log("FAILED TIMING");
+		target = null;
     }
 
     public virtual void SucceedTiming()
