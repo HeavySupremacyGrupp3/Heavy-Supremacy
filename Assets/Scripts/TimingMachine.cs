@@ -56,8 +56,7 @@ public class TimingMachine : TimingSystem {
 				collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
 			
 			timesChanged++;			
-		}		
-				
+		}						
 		//timesChanged=0;
 		productDetected();
 	}
