@@ -22,7 +22,7 @@ public class TransformLooper : MonoBehaviour
 
     void Update()
     {
-        NewTravelator();
+        //NewTravelator();
         posTimer += Time.deltaTime * Speed;
         if (posTimer >= 1)
             posTimer = 0;

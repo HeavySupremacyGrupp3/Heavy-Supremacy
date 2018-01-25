@@ -248,6 +248,23 @@ Prefab:
       value: 
       objectReference: {fileID: 1247207232751396, guid: 52e61cd1aa1e3d04aa93441eec034e01,
         type: 2}
+    - target: {fileID: 114594650933985400, guid: 52e61cd1aa1e3d04aa93441eec034e01,
+        type: 2}
+      propertyPath: TargetPosition.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970063375354396, guid: 52e61cd1aa1e3d04aa93441eec034e01, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.155549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970063375354396, guid: 52e61cd1aa1e3d04aa93441eec034e01, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.0862901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970063375354396, guid: 52e61cd1aa1e3d04aa93441eec034e01, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.0862901
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52e61cd1aa1e3d04aa93441eec034e01, type: 2}
   m_IsPrefabParent: 0
@@ -474,9 +491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   machinesToSpawn:
-  - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
-  - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
-  - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
+  - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
+  - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
+  - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
   lerpTime: 1
 --- !u!4 &155887790
 Transform:
@@ -573,7 +590,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 197506065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.5, y: 187.5, z: 0}
+  m_LocalPosition: {x: 193, y: 154.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1040265526}
@@ -685,8 +702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5d924b0903aee488b7f20e5505ed6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  travelator: {fileID: 1247207232751396, guid: 52e61cd1aa1e3d04aa93441eec034e01, type: 2}
-  startPos: {x: 0, y: 0}
 --- !u!4 &299984969
 Transform:
   m_ObjectHideFlags: 0
@@ -1271,7 +1286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c8f794d1343fb4d864c0b97d49bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressSlider: {fileID: 1206704221}
   InitialReference: {fileID: 947916722}
 --- !u!1 &1311998305
 GameObject:

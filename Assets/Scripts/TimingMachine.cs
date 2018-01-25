@@ -26,6 +26,16 @@ public class TimingMachine : TimingSystem {
 		}		
     }
 	
+	void OnEnable()
+	{
+		machineOutOfRangeDetector.productToSpoilDetected += spoilProducts;
+	}
+	
+	void OnDisable()
+	{
+		machineOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
+	}
+	
 	public override void FailTiming()
     {
         base.FailTiming();
@@ -33,14 +43,30 @@ public class TimingMachine : TimingSystem {
 	
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		
+		produktScript sc=collision.GetComponent<produktScript>();
+		
+		if(timesChanged==0 && !sc.Spoiled)
+		{
+			base.SucceedTiming();			
+			sc.currentStage++;
+			
+			if(sc.currentStage<sc.Sprites.Length)
+				collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
+			
+			timesChanged++;			
+		}		
+		
+		
 		timesChanged=0;
 		productDetected();
 	}
 	
-	private void OnTriggerExit2D(Collider2D collision)
+	private void spoilProducts(GameObject ta)
 	{
 		if(timesChanged==0)
 		{
+			target=ta;
 			produktScript sc=target.GetComponent<produktScript>();
 			sc.spoil();
 		}
