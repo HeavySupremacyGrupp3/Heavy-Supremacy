@@ -494,7 +494,7 @@ MonoBehaviour:
   - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
   - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
   - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
-  lerpTime: 1
+  lerpTime: 0.5
 --- !u!4 &155887790
 Transform:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class MiniGameManager : MonoBehaviour {
 		{
 			stopCounter++;
 			//Debug.Log(stopCounter);
-			if(stopCounter==100)
+			if(stopCounter==50)
 			{
 				changeSpawnStopProducts();
 				stopCounter=0;
