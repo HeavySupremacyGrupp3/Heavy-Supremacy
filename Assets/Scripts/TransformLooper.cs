@@ -5,14 +5,13 @@ using UnityEngine;
 public class TransformLooper : MonoBehaviour
 {
 
+   
     public float Speed = 1;
     public Vector2 TargetPosition;
 
     private float posTimer = 0;
     private Vector2 startPos;
 
-    [SerializeField]
-    private GameObject travelator;
 
     private void Start()
     {
@@ -22,7 +21,7 @@ public class TransformLooper : MonoBehaviour
 
     void Update()
     {
-        //NewTravelator();
+
         posTimer += Time.deltaTime * Speed;
         if (posTimer >= 1)
             posTimer = 0;
@@ -30,12 +29,8 @@ public class TransformLooper : MonoBehaviour
         transform.localPosition = Vector2.Lerp(startPos, TargetPosition, posTimer);
     }
 
-    private void NewTravelator()
+    private void StopLerp()
     {
-        if (transform.position.x == 0)
-        {
-            travelator = Instantiate(travelator, new Vector3(startPos.x -19.43f, startPos.y), Quaternion.identity);
-            //-19.43
-        }
+
     }
 }
