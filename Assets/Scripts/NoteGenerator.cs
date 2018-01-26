@@ -61,7 +61,7 @@ public class NoteGenerator : MonoBehaviour
             {
                 clipVolume += Mathf.Abs(sample);
             }
-            clipVolume /= SampleDataLength; //Used for what?
+            //clipVolume /= SampleDataLength; //Used for what?
             //Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.

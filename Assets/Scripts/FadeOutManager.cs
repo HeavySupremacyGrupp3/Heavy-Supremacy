@@ -5,6 +5,7 @@ using System.Collections;
 public class FadeOutManager : MonoBehaviour {
 
     public Image fadeImage;
+    public float SpeedMultiplier = 1;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class FadeOutManager : MonoBehaviour {
         if (fadeAway)
         {
             // loop over 1 second 
-            for (float i = 0; i <= 1; i += Time.deltaTime)
+            for (float i = 0; i <= 1; i += Time.deltaTime * SpeedMultiplier)
             {
                 // alpha opaque
                 fadeImage.color = new Color(0, 0, 0, i);
@@ -39,7 +40,7 @@ public class FadeOutManager : MonoBehaviour {
         else
         {
             // loop over 1 second backwards
-            for (float i = 1; i >= 0; i -= Time.deltaTime)
+            for (float i = 1; i >= 0; i -= Time.deltaTime * SpeedMultiplier)
             {
                 // alpha transparent
                 fadeImage.color = new Color(0, 0, 0, i);
