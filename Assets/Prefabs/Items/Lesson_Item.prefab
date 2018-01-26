@@ -52,10 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcb998963ed9334cafa02e0d4cd6989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 0
-  Name: Lesson
+  Price: 1
   OneTimePurchase: 0
-  MetalIncrease: 100
+  Name: Lesson
+  Description: 
+  PracticeAngstMultiplierIncrease: 1
+  PracticeMetalMultiplierIncrease: 1
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1

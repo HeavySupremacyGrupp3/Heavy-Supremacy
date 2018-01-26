@@ -52,9 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12be6024941ae46be7ef6357fa2c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 50
-  Name: Guitarr
+  Price: 10
   OneTimePurchase: 1
+  Name: Guitarr
+  Description: Guitarr is broken, playing is hard. Double trouble bitches.
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -13,11 +13,12 @@ public class NoteGenerator : MonoBehaviour
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
     public float MusicStartDelay = 1;
     public float NoteGenerationStartDelay = 1;
-    public GameObject NotePrefab;
+    public GameObject[] NotePrefabs;
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
 
     public static int NoteMultiplier = 1;
+    public static int NumberOfUniqueNotes = 2;
 
     private float clipTime = 0;
     private float clipVolume;
@@ -67,7 +68,7 @@ public class NoteGenerator : MonoBehaviour
             //Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.
-            if (volumeTreshold <= 1 && clipVolume > 1)
+            if (volumeTreshold <= 1 && clipVolume > 1 || clipVolume < volumeTreshold && clipVolume > 1)
                 volumeTreshold = clipVolume;
 
             //If the tone is long, create only one note.
@@ -90,7 +91,7 @@ public class NoteGenerator : MonoBehaviour
     {
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            Instantiate(NotePrefab, transform.position, Quaternion.identity);
+            Instantiate(NotePrefabs[Random.Range(0, NumberOfUniqueNotes)], transform.position, Quaternion.identity);
         }
         noteSpawnTimer = 0;
     }
