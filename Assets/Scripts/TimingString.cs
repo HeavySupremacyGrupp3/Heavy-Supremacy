@@ -49,6 +49,9 @@ public class TimingString : TimingSystem
         GameObject angstPopup = Instantiate(AngstPopupPrefab, transform.position, Quaternion.identity) as GameObject;
         GameObject noteHitEffect = Instantiate(NoteHitEffect, transform.position, Quaternion.identity) as GameObject;
 
+        metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
+        angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
+
         Destroy(metalPopup, 2);
         Destroy(angstPopup, 2);
         Destroy(noteHitEffect, 5);
