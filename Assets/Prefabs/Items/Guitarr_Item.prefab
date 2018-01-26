@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12be6024941ae46be7ef6357fa2c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 0
+  Price: 50
   Name: Guitarr
   OneTimePurchase: 1
 --- !u!212 &212159010739407014

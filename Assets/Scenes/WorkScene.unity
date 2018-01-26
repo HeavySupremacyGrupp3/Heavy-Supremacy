@@ -1298,7 +1298,7 @@ GameObject:
   - component: {fileID: 947916721}
   - component: {fileID: 947916722}
   m_Layer: 0
-  m_Name: happinessObject
+  m_Name: angstObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2129,7 +2129,7 @@ GameObject:
   - component: {fileID: 1639035618}
   - component: {fileID: 1639035617}
   m_Layer: 5
-  m_Name: happinessText
+  m_Name: angstText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
