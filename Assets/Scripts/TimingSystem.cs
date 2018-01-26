@@ -6,6 +6,7 @@ public abstract class TimingSystem : MonoBehaviour
 {
 
     public KeyCode ActivateKey;
+    public bool CanComboKey;
     public bool CanExitCollider;
 
     protected GameObject target;
@@ -22,7 +23,10 @@ public abstract class TimingSystem : MonoBehaviour
         {
             FailTiming();
         }
-        else if (target != null)
+        else if (target != null && !target.name.Contains("_") && !Input.GetKey(KeyCode.Alpha1) && !Input.GetKey(KeyCode.Alpha2) && !Input.GetKey(KeyCode.Alpha3) || 
+                target.name.Contains("_1") && Input.GetKey(KeyCode.Alpha1) ||
+                target.name.Contains("_2") && Input.GetKey(KeyCode.Alpha2) ||
+                target.name.Contains("_3") && Input.GetKey(KeyCode.Alpha3))
         {
             SucceedTiming();
         }
@@ -31,7 +35,7 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void FailTiming()
     {
         Debug.Log("FAILED TIMING");
-		target = null;
+        target = null;
     }
 
     public virtual void SucceedTiming()

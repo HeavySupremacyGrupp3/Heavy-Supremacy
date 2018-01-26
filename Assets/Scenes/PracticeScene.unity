@@ -4284,7 +4284,11 @@ MonoBehaviour:
   UpdateInterval: 0.05
   MusicStartDelay: 1.8
   NoteGenerationStartDelay: 0
-  NotePrefab: {fileID: 1287834282934586, guid: 10285977811e1c74dbcdc1245cf582c5, type: 2}
+  NotePrefabs:
+  - {fileID: 1287834282934586, guid: 62c15f0befc3f384092e5ba83bd18205, type: 2}
+  - {fileID: 1287834282934586, guid: 10285977811e1c74dbcdc1245cf582c5, type: 2}
+  - {fileID: 1287834282934586, guid: f7536cbc78eedf24cac4d9dc07c66c59, type: 2}
+  - {fileID: 1287834282934586, guid: 84827def7f87585488200ca1297d43ff, type: 2}
   NoteSpawnMinInterval: 0.1
   EndGamePanel: {fileID: 768391000}
 --- !u!4 &769092750
@@ -4585,6 +4589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivateKey: 32
+  CanComboKey: 1
   CanExitCollider: 0
   ErrorSound: {fileID: 8300000, guid: 533f9c006bc50c040a2dbe8b18ed12d6, type: 3}
   AudioSource: {fileID: 824317877}

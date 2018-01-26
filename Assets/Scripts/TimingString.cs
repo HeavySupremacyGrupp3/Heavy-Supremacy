@@ -17,6 +17,9 @@ public class TimingString : TimingSystem
 
     public Animator StringAnimator;
 
+    public static float AngstMultiplier = 1;
+    public static float MetalMultiplier = 1;
+
     private angstStatScript AngstStatScript;
     private metalStatScript MetalStatScript;
 
@@ -42,8 +45,8 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
         Destroy(target);
-        AngstStatScript.addOrRemoveAmount(AngstRewardAmount);
-        MetalStatScript.addOrRemoveAmount(MetalRewardAmount);
+        AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
+        MetalStatScript.addOrRemoveAmount(MetalRewardAmount * MetalMultiplier);
 
         GameObject metalPopup = Instantiate(MetalPopupPrefab, transform.position, Quaternion.identity) as GameObject;
         GameObject angstPopup = Instantiate(AngstPopupPrefab, transform.position, Quaternion.identity) as GameObject;

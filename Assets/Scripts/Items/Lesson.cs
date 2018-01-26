@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Lesson : Item {
 
-    public float MetalIncrease;
+    public float PracticeAngstMultiplierIncrease;
+    public float PracticeMetalMultiplierIncrease;
 
     public override void ActivatePurchase()
     {
         base.ActivatePurchase();
         Debug.Log("PURCHASED LESSON!");
-        FindObjectOfType<metalStatScript>().addOrRemoveAmount(MetalIncrease);
+        TimingString.AngstMultiplier += PracticeAngstMultiplierIncrease;
+        TimingString.MetalMultiplier += PracticeMetalMultiplierIncrease;
     }
 }
