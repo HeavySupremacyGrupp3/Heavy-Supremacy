@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Object HUBScene;
-    public Object WorkScene;
-    public Object PracticeScene;
-    public Object GigScene;
     public FadeOutManager fadeScript;
 
     public delegate void mittEvent();
@@ -36,24 +32,24 @@ public class GameManager : MonoBehaviour
     public void LoadWork(float energyCost)
     {
         if (CheckEnergy(energyCost))
-            SceneManager.LoadScene(WorkScene.name);
+            SceneManager.LoadScene("WorkScene");
     }
 
     public void LoadPractice(float energyCost)
     {
         if (CheckEnergy(energyCost))
-            SceneManager.LoadScene(PracticeScene.name);
+            SceneManager.LoadScene("PracticeScene");
     }
 
     public void LoadGig(float energyCost)
     {
         if (CheckEnergy(energyCost))
-            SceneManager.LoadScene(GigScene.name);
+            SceneManager.LoadScene("GigScene");
     }
 
     public void LoadHUB()
     {
-        SceneManager.LoadScene(HUBScene.name);
+        SceneManager.LoadScene("HUBScene");
     }
 
     public void LoadSleep()
