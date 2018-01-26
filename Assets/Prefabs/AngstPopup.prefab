@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114361465333388622}
   - component: {fileID: 212966622069313212}
   m_Layer: 0
-  m_Name: HappinessPopup
+  m_Name: AngstPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

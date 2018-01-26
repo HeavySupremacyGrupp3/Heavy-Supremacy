@@ -142,8 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   gmScript: {fileID: 0}
-  HUBScene: {fileID: 102900000, guid: 7886df58fe784294cb22bfc0bdeea97d, type: 3}
-  WorkScene: {fileID: 102900000, guid: 1832576ab196277489a980f4c2ef2153, type: 3}
   ProduktPrefab: {fileID: 1852084873410506, guid: 0a866ee52ebbf9f4480a3acba519471f,
     type: 2}
 --- !u!4 &1237345
@@ -941,7 +939,7 @@ GameObject:
   - component: {fileID: 947916721}
   - component: {fileID: 947916722}
   m_Layer: 0
-  m_Name: happinessObject
+  m_Name: angstObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1556,7 +1554,7 @@ GameObject:
   - component: {fileID: 1639035618}
   - component: {fileID: 1639035617}
   m_Layer: 5
-  m_Name: happinessText
+  m_Name: angstText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1591,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0943f32f9c56b0940a0494e38c216aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Happiness: 0
+  Angst: 0
 --- !u!114 &1639035618
 MonoBehaviour:
   m_ObjectHideFlags: 0
