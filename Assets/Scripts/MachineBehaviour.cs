@@ -34,6 +34,9 @@ public class MachineBehaviour : MonoBehaviour {
     private bool lerpMachine3 = false;
     private float lerpTimer3 = 0f;
 
+    [Range(0, 10)]
+    public int spacing;
+
     [SerializeField]
     private float lerpTime = 2f;
 
@@ -42,9 +45,9 @@ public class MachineBehaviour : MonoBehaviour {
     void Start()
     {
         //Instantiate three machines at their positions
-        machine1 = Instantiate(machinesToSpawn[0], new Vector3(-3.5f, 5.8f), Quaternion.identity);
+        machine1 = Instantiate(machinesToSpawn[0], new Vector3(-3.5f - spacing, 5.8f), Quaternion.identity);
         machine2 = Instantiate(machinesToSpawn[1], new Vector3(0.1f, 5.8f), Quaternion.identity);
-        machine3 = Instantiate(machinesToSpawn[2], new Vector3(3.5f, 5.8f), Quaternion.identity);
+        machine3 = Instantiate(machinesToSpawn[2], new Vector3(3.5f + spacing, 5.8f), Quaternion.identity);
 
         //Set start and end position that will lerp
         startPosition1 = machine1.transform.position;

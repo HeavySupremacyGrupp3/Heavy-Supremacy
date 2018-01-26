@@ -549,6 +549,7 @@ MonoBehaviour:
   - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
   - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
   - {fileID: 1246929189199032, guid: 6eebf3c48ee5ba84ca32d98ade2f4a83, type: 2}
+  spacing: 4
   lerpTime: 0.5
 --- !u!4 &155887790
 Transform:
@@ -951,7 +952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 217351377}
   halfFadeImage: {fileID: 217351377}
-  SpeedMultiplier: 2
+  SpeedMultiplier: 3
 --- !u!4 &389896947
 Transform:
   m_ObjectHideFlags: 0
@@ -1058,7 +1059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &828706687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1124,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 828706686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalPosition: {x: 0, y: -115.19998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 217351375}
@@ -2699,7 +2700,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2079730800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -103.29999, y: -496.62012, z: 0}
+  m_LocalPosition: {x: -103.29999, y: -6.620117, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 828706690}
