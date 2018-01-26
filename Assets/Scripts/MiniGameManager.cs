@@ -8,9 +8,6 @@ public class MiniGameManager : MonoBehaviour {
     public bool gameOver;
     public GameManager gmScript; 
 	
-	public Object HUBScene;
-	public Object WorkScene;
-	
 	public GameObject ProduktPrefab;
 	private List<GameObject> produkter;
 	
@@ -97,13 +94,13 @@ public class MiniGameManager : MonoBehaviour {
 
     public void LoadHUB()
     {
-		SceneManager.LoadScene(HUBScene.name);
+		SceneManager.LoadScene("HUBScene");
         //gmScript.LoadHUB();
     }
 	
 	public void LoadWork()
     {
-		SceneManager.LoadScene(WorkScene.name);
+		SceneManager.LoadScene("WorkScene");
         //gmScript.LoadHUB();
     }
 
