@@ -17,9 +17,9 @@ public class ShopSystem : MonoBehaviour
         UpdateShopUI();
     }
 
-    public void MakePurchase(int index)
+    public void MakePurchase(string name)
     {
-        Item item = ShopInventory[index];
+        Item item = FindItemByName(name);
         if (moneyStatScript.getAmount() - item.Price >= 0)
         {
             moneyStatScript.addOrRemoveAmount(-item.Price);
@@ -32,6 +32,19 @@ public class ShopSystem : MonoBehaviour
         {
             Debug.Log("TOO POOR");
         }
+    }
+
+    Item FindItemByName(string name)
+    {
+        for (int i = 0; i < ShopInventory.Count; i++)
+        {
+            if (ShopInventory[i].Name == name)
+            {
+                return ShopInventory[i];
+            }
+        }
+
+        return null;
     }
 
     void UpdateShopUI()
