@@ -43,7 +43,7 @@ public class MiniGameManager : MonoBehaviour {
     void Start ()
 	{
         gmScript = GetComponent<GameManager>();
-		StatReference=GameObject.Find("happinessObject").GetComponent<angstStatScript>();
+		StatReference=GameObject.Find("angstObject").GetComponent<angstStatScript>();
 	}	
 	
 	void Update ()
@@ -104,5 +104,8 @@ public class MiniGameManager : MonoBehaviour {
         //gmScript.LoadHUB();
     }
 
-   
+   public void MenuIsClicked()
+    {
+        spawnStuff = false;
+    }
 }
