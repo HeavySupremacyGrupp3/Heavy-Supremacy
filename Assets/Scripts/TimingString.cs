@@ -7,22 +7,22 @@ public class TimingString : TimingSystem
     public AudioClip ErrorSound;
     public AudioSource AudioSource;
 
-    public float HappinessRewardAmount = 10;
+    public float AngstRewardAmount = -10;
     public float MetalRewardAmount = 15;
     public float Health = 0;
 
-    public GameObject HappinessPopupPrefab;
+    public GameObject AngstPopupPrefab;
     public GameObject MetalPopupPrefab;
     public GameObject NoteHitEffect;
 
     public Animator StringAnimator;
 
-    private happinessStatScript HappinessStatScript;
+    private angstStatScript AngstStatScript;
     private metalStatScript MetalStatScript;
 
     void Start()
     {
-        HappinessStatScript = FindObjectOfType<happinessStatScript>();
+        AngstStatScript = FindObjectOfType<angstStatScript>();
         MetalStatScript = FindObjectOfType<metalStatScript>();
     }
 
@@ -42,15 +42,15 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
         Destroy(target);
-        HappinessStatScript.addOrRemoveAmount(HappinessRewardAmount);
+        AngstStatScript.addOrRemoveAmount(AngstRewardAmount);
         MetalStatScript.addOrRemoveAmount(MetalRewardAmount);
 
         GameObject metalPopup = Instantiate(MetalPopupPrefab, transform.position, Quaternion.identity) as GameObject;
-        GameObject happinessPopup = Instantiate(HappinessPopupPrefab, transform.position, Quaternion.identity) as GameObject;
+        GameObject angstPopup = Instantiate(AngstPopupPrefab, transform.position, Quaternion.identity) as GameObject;
         GameObject noteHitEffect = Instantiate(NoteHitEffect, transform.position, Quaternion.identity) as GameObject;
 
         Destroy(metalPopup, 2);
-        Destroy(happinessPopup, 2);
+        Destroy(angstPopup, 2);
         Destroy(noteHitEffect, 5);
 
         StringAnimator.SetTrigger("StringStroked");

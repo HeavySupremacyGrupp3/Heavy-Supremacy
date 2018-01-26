@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class happinessStatScript : Stats 
+public class angstStatScript : Stats 
 {
 	public override void initialize()
 	{

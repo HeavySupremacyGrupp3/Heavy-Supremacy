@@ -11,7 +11,7 @@ public class MiniGameManager : MonoBehaviour {
 	public GameObject ProduktPrefab;
 	private List<GameObject> produkter;
 	
-	happinessStatScript StatReference;
+	angstStatScript StatReference;
 	
 	int updateCounter=0;
 	bool spawnStuff=true;
@@ -43,7 +43,7 @@ public class MiniGameManager : MonoBehaviour {
     void Start ()
 	{
         gmScript = GetComponent<GameManager>();
-		StatReference=GameObject.Find("happinessObject").GetComponent<happinessStatScript>();
+		StatReference=GameObject.Find("happinessObject").GetComponent<angstStatScript>();
 	}	
 	
 	void Update ()
