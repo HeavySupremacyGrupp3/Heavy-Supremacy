@@ -5,12 +5,15 @@ using System.Collections;
 public class FadeOutManager : MonoBehaviour {
 
     public Image fadeImage;
+    public Image halfFadeImage;
     public float SpeedMultiplier = 1;
 
     private void Start()
     {
         fadeImage.enabled = false;
         fadeImage.color = new Color(1, 1, 1, 0);
+        halfFadeImage.enabled = false;
+        halfFadeImage.color = new Color(1, 1, 1, 0);
     }
 
     public void FadeOut()
@@ -18,6 +21,12 @@ public class FadeOutManager : MonoBehaviour {
         //Debug.Log("Sleeping");
         fadeImage.enabled = true;
         StartCoroutine(FadeAway(true));
+    }
+
+    public void StartFade()
+    {
+        halfFadeImage.enabled = true;
+        StartCoroutine(Fade(true));
     }
  
     IEnumerator FadeAway(bool fadeAway)
@@ -56,5 +65,26 @@ public class FadeOutManager : MonoBehaviour {
 			fadeImage.enabled = false; 
             GetComponent<Image>().enabled=false;
         }
+    }
+
+
+    IEnumerator Fade(bool fade)
+    {
+
+        if (fade)
+        {
+            // loop over 1 second 
+            for (float i = 0; i <= 0.5; i += Time.deltaTime * SpeedMultiplier)
+            {
+                // alpha opaque
+                halfFadeImage.color = new Color(0, 0, 0, i);
+                yield return new WaitForSeconds(0.05f);
+
+                if (i >= 0.45)
+                    StartCoroutine(Fade(false));
+            }
+         
+        }
+
     }
 }
