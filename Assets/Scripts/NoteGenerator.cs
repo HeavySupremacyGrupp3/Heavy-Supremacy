@@ -17,6 +17,8 @@ public class NoteGenerator : MonoBehaviour
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
 
+    public static int NoteMultiplier = 1;
+
     private float clipTime = 0;
     private float clipVolume;
     private float lastClipVolume;
@@ -86,7 +88,10 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
-        Instantiate(NotePrefab, transform.position, Quaternion.identity);
+        for (int i = 0; i < NoteMultiplier; i++)
+        {
+            Instantiate(NotePrefab, transform.position, Quaternion.identity);
+        }
         noteSpawnTimer = 0;
     }
 

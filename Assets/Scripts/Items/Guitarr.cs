@@ -8,5 +8,6 @@ public class Guitarr : Item {
     {
         base.ActivatePurchase();
         Debug.Log("PURCHASED GUITARR!");
+        NoteGenerator.NoteMultiplier++;
     }
 }

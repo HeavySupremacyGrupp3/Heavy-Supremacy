@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     public Object PracticeScene;
     public Object GigScene;
     public FadeOutManager fadeScript;
-	
-	public delegate void mittEvent();
-	public static event mittEvent sleep;
+
+    public delegate void mittEvent();
+    public static event mittEvent sleep;
 
     void Start()
     {
@@ -33,19 +33,22 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadWork()
+    public void LoadWork(float energyCost)
     {
-        SceneManager.LoadScene(WorkScene.name);
+        if (CheckEnergy(energyCost))
+            SceneManager.LoadScene(WorkScene.name);
     }
 
-    public void LoadPractice()
+    public void LoadPractice(float energyCost)
     {
-        SceneManager.LoadScene(PracticeScene.name);
+        if (CheckEnergy(energyCost))
+            SceneManager.LoadScene(PracticeScene.name);
     }
 
-    public void LoadGig()
+    public void LoadGig(float energyCost)
     {
-        SceneManager.LoadScene(GigScene.name);
+        if (CheckEnergy(energyCost))
+            SceneManager.LoadScene(GigScene.name);
     }
 
     public void LoadHUB()
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
-		sleep();
+        sleep();
     }
 
     public void ToggleGameObject(GameObject target)
@@ -65,4 +68,14 @@ public class GameManager : MonoBehaviour
         target.SetActive(!target.active);
     }
 
+    bool CheckEnergy(float energyCost)
+    {
+        if (FindObjectOfType<energyStatScript>().getAmount() - energyCost >= 0)
+        {
+            FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
+            return true;
+        }
+        else
+            return false;
+    }
 }
