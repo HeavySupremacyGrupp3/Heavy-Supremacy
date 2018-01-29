@@ -8,20 +8,29 @@ public class ShopSystem : MonoBehaviour
     public static List<Item> MyInventory = new List<Item>();
     public List<Item> ShopInventory = new List<Item>();
     public List<Button> ShopButtons = new List<Button>();
+    public List<Text> PriceTexts = new List<Text>();
+
     public GameObject AreYouSurePanel;
     public Button YesButton;
     public Text ProductDescription;
+    public AudioClip ExpensivePurchaseSound;
+    public AudioClip RegularPurchaseSound;
+    public AudioClip CheapPurchaseSound;
+    public int ExpensiveTreshold = 50;
+    public int RegularTreshold = 25;
+    public int CheapTreshold = 1;
 
     private moneyStatScript moneyStatScript;
     private string itemToBePurchased;
 
-    void Start()
+    void OnEnable()
     {
         moneyStatScript = FindObjectOfType<moneyStatScript>();
         if (moneyStatScript.getAmount() == 0)
         {
             MyInventory.Clear();
         }
+        UpdatePriceTexts();
 
         UpdateShopUI();
     }
@@ -61,6 +70,7 @@ public class ShopSystem : MonoBehaviour
     public void MakePurchase()
     {
         Item item = FindItemByName(itemToBePurchased);
+        PlayPurchaseSound(item);
 
         moneyStatScript.addOrRemoveAmount(-item.Price);
         item.ActivatePurchase();
@@ -96,5 +106,24 @@ public class ShopSystem : MonoBehaviour
                 ShopButtons[i].GetComponent<Image>().color = Color.white;
             }
         }
+    }
+
+    void UpdatePriceTexts()
+    {
+        for (int i = 0; i < ShopInventory.Count; i++)
+        {
+            PriceTexts[i].text = "$" + ShopInventory[i].Price;
+        }
+    }
+
+    void PlayPurchaseSound(Item item)
+    {
+        //In order: cheap, regular, expensive.
+        if (item.Price <= CheapTreshold)
+            FindObjectOfType<AudioSource>().PlayOneShot(CheapPurchaseSound);
+        else if (item.Price <= RegularTreshold)
+            FindObjectOfType<AudioSource>().PlayOneShot(RegularPurchaseSound);
+        else
+            FindObjectOfType<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
     }
 }

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcb998963ed9334cafa02e0d4cd6989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 1
+  Price: 3
   OneTimePurchase: 0
   Name: Lesson
   Description: 

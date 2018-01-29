@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Guitarr : Item {
 
+    private void Start()
+    {
+        //base.Start();
+    }
+
     public override void ActivatePurchase()
     {
         base.ActivatePurchase();

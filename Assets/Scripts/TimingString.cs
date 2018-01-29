@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimingString : TimingSystem
 {
-    public AudioClip ErrorSound;
+    public AudioClip[] ErrorSounds;
     public AudioSource AudioSource;
 
     public float AngstRewardAmount = -10;
@@ -42,7 +42,7 @@ public class TimingString : TimingSystem
     {
         Destroy(Instantiate(MissPopupPrefab, transform.position, Quaternion.identity), 3);
         base.FailTiming();
-        AudioSource.PlayOneShot(ErrorSound);
+        AudioSource.PlayOneShot(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         StringAnimator.SetTrigger("StringStroked");
 
         Health--;
