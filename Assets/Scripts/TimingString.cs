@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimingString : TimingSystem
 {
@@ -25,12 +26,14 @@ public class TimingString : TimingSystem
     public float BadDistance;
 
     public Animator StringAnimator;
+    public Text StreakCounter;
 
     public static float AngstMultiplier = 1;
     public static float MetalMultiplier = 1;
 
     private angstStatScript AngstStatScript;
     private metalStatScript MetalStatScript;
+    private int streakCounter = 0;
 
     void Start()
     {
@@ -40,6 +43,9 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
+        streakCounter = 0;
+        StreakCounter.text = streakCounter.ToString();
+
         Destroy(Instantiate(MissPopupPrefab, transform.position, Quaternion.identity), 3);
         base.FailTiming();
         AudioSource.PlayOneShot(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
@@ -53,6 +59,9 @@ public class TimingString : TimingSystem
     public override void SucceedTiming()
     {
         base.SucceedTiming();
+
+        streakCounter++;
+        StreakCounter.text = streakCounter.ToString();
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), transform.position, Quaternion.identity), 3);
 
