@@ -46,7 +46,7 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval)
+        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
             SendNote();
         else if (!MusicAudioSource.isPlaying && Application.isFocused) //End game if song is over.
             EndGamePanel.SetActive(true);

@@ -10,8 +10,8 @@ public class TimingString : TimingSystem
 
     public float AngstRewardAmount = -10;
     public float MetalRewardAmount = 15;
-    public float Health = 0;
-
+    public int MaxHealth = 5;
+    public Slider HealthSlider;
     public GameObject AngstPopupPrefab;
     public GameObject MetalPopupPrefab;
     public GameObject NoteHitEffect;
@@ -27,6 +27,7 @@ public class TimingString : TimingSystem
 
     public Animator StringAnimator;
     public Text StreakCounter;
+    public Text HighestStreakCounter;
 
     public static float AngstMultiplier = 1;
     public static float MetalMultiplier = 1;
@@ -34,34 +35,36 @@ public class TimingString : TimingSystem
     private angstStatScript AngstStatScript;
     private metalStatScript MetalStatScript;
     private int streakCounter = 0;
+    private int streakHighScoreCounter = 0;
+    private int health;
 
     void Start()
     {
+        health = MaxHealth;
+        HealthSlider.maxValue = MaxHealth;
+
         AngstStatScript = FindObjectOfType<angstStatScript>();
         MetalStatScript = FindObjectOfType<metalStatScript>();
     }
 
     public override void FailTiming()
     {
-        streakCounter = 0;
-        StreakCounter.text = streakCounter.ToString();
-
         Destroy(Instantiate(MissPopupPrefab, transform.position, Quaternion.identity), 3);
         base.FailTiming();
+
+        AddOrRemoveHealth(-1);
+        UpdateStreakCounters(-streakCounter);
+
         AudioSource.PlayOneShot(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         StringAnimator.SetTrigger("StringStroked");
-
-        Health--;
-        if (Health == 0)
-            FindObjectOfType<GameManager>().LoadHUB();
     }
 
     public override void SucceedTiming()
     {
         base.SucceedTiming();
 
-        streakCounter++;
-        StreakCounter.text = streakCounter.ToString();
+        AddOrRemoveHealth(1);
+        UpdateStreakCounters(1);
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), transform.position, Quaternion.identity), 3);
 
@@ -99,6 +102,31 @@ public class TimingString : TimingSystem
             go = MissPopupPrefab;
 
         return go;
+    }
+
+    private void UpdateStreakCounters(int value)
+    {
+        streakCounter += value;
+
+        if (streakCounter > streakHighScoreCounter)
+        {
+            streakHighScoreCounter = streakCounter;
+            HighestStreakCounter.text = "Highest Streak: " + streakCounter.ToString();
+        }
+        StreakCounter.text = streakCounter.ToString();
+    }
+
+    private void AddOrRemoveHealth(int amount)
+    {
+        health += amount;
+
+        if (health > MaxHealth)
+            health = MaxHealth;
+        else if(health <= 0 && GigBackgroundManager.GigSession)
+            FindObjectOfType<NoteGenerator>().EndGamePanel.SetActive(true);
+
+        Debug.Log(health);
+        HealthSlider.value = MaxHealth - health;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
