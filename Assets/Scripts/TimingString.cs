@@ -52,7 +52,7 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        Destroy(Instantiate(MissPopupPrefab, transform.position, Quaternion.identity), 3);
+        Destroy(Instantiate(MissPopupPrefab, target.transform.position, Quaternion.identity), 3);
         base.FailTiming();
 
         AddOrRemoveHealth(-1);
@@ -69,15 +69,15 @@ public class TimingString : TimingSystem
         AddOrRemoveHealth(1);
         UpdateStreakCounters(1);
 
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), transform.position, Quaternion.identity), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(), target.transform.position, Quaternion.identity), 3);
 
         Destroy(target);
         AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
         MetalStatScript.addOrRemoveAmount(MetalRewardAmount * MetalMultiplier);
 
-        GameObject metalPopup = Instantiate(MetalPopupPrefab, transform.position, Quaternion.identity) as GameObject;
-        GameObject angstPopup = Instantiate(AngstPopupPrefab, transform.position, Quaternion.identity) as GameObject;
-        GameObject noteHitEffect = Instantiate(NoteHitEffect, transform.position, Quaternion.identity) as GameObject;
+        GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
+        GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
+        GameObject noteHitEffect = Instantiate(NoteHitEffect, target.transform.position, Quaternion.identity) as GameObject;
 
         metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
         angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
@@ -91,7 +91,10 @@ public class TimingString : TimingSystem
 
     private GameObject GetNoteAccuracyPrefab()
     {
-        float distance = Vector2.Distance(transform.position, target.transform.position);
+        float distance = transform.position.y - target.transform.position.y;
+        if (distance < 0)
+            distance *= -1;
+
         GameObject go = new GameObject();
 
         //Decending order: Perfect, Good, Bad, Miss.
