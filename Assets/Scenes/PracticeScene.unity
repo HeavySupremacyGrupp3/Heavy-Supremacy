@@ -4672,7 +4672,10 @@ MonoBehaviour:
   ActivateKey: 32
   CanComboKey: 1
   CanExitCollider: 0
-  ErrorSound: {fileID: 8300000, guid: 533f9c006bc50c040a2dbe8b18ed12d6, type: 3}
+  ErrorSounds:
+  - {fileID: 8300000, guid: df2972557f2a9ed4385216b128f61dbe, type: 3}
+  - {fileID: 8300000, guid: 5a41aedfd81d93c42ab47c8d9687e6f1, type: 3}
+  - {fileID: 8300000, guid: 190412cce390e52409761ff08997fe86, type: 3}
   AudioSource: {fileID: 824317877}
   AngstRewardAmount: -10
   MetalRewardAmount: 15
