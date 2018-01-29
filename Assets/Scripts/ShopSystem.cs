@@ -11,6 +11,12 @@ public class ShopSystem : MonoBehaviour
     public GameObject AreYouSurePanel;
     public Button YesButton;
     public Text ProductDescription;
+    public AudioClip ExpensivePurchaseSound;
+    public AudioClip RegularPurchaseSound;
+    public AudioClip CheapPurchaseSound;
+    public int ExpensiveTreshold = 50;
+    public int RegularTreshold = 25;
+    public int CheapTreshold = 1;
 
     private moneyStatScript moneyStatScript;
     private string itemToBePurchased;
@@ -61,6 +67,7 @@ public class ShopSystem : MonoBehaviour
     public void MakePurchase()
     {
         Item item = FindItemByName(itemToBePurchased);
+        PlayPurchaseSound(item);
 
         moneyStatScript.addOrRemoveAmount(-item.Price);
         item.ActivatePurchase();
@@ -96,5 +103,16 @@ public class ShopSystem : MonoBehaviour
                 ShopButtons[i].GetComponent<Image>().color = Color.white;
             }
         }
+    }
+
+    void PlayPurchaseSound(Item item)
+    {
+        //In order: cheap, regular, expensive.
+        if (item.Price <= CheapTreshold)
+            FindObjectOfType<AudioSource>().PlayOneShot(CheapPurchaseSound);
+        else if (item.Price <= RegularTreshold)
+            FindObjectOfType<AudioSource>().PlayOneShot(RegularPurchaseSound);
+        else if (item.Price <= ExpensiveTreshold)
+            FindObjectOfType<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
     }
 }

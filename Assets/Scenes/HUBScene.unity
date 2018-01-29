@@ -2683,6 +2683,14 @@ MonoBehaviour:
   AreYouSurePanel: {fileID: 521628383}
   YesButton: {fileID: 75545119}
   ProductDescription: {fileID: 904930858}
+  ExpensivePurchaseSound: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52,
+    type: 3}
+  RegularPurchaseSound: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff,
+    type: 3}
+  CheapPurchaseSound: {fileID: 8300000, guid: aad85b349b767e34cad60a36f3657b0d, type: 3}
+  ExpensiveTreshold: 50
+  RegularTreshold: 25
+  CheapTreshold: 1
 --- !u!114 &1107979481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3538,6 +3546,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1369002946}
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: b1eabb7ca47c7fd43a29cc3276e6d09f,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
