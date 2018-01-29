@@ -6,16 +6,21 @@ using UnityEngine.SceneManagement;
 public class MiniGameManager : MonoBehaviour {
 
     public bool gameOver;
-    public GameManager gmScript; 
-	
-	public GameObject ProduktPrefab;
-	private List<GameObject> produkter;
+    public GameManager gmScript;
+    public produktScript produktScript;
+
+    public GameObject produktPrefab;
+    private List<GameObject> produkter;
 	
 	angstStatScript StatReference;
 
-    public float productIntervall;
+    public Vector3 moveProduction;
+    public float productInterval;
 	float updateCounter=0;
 	bool spawnStuff=true;
+
+    public Sprite[] productSprites;
+    //private GameObject product;
 	
 	public delegate void mittEvent();
 	public static event mittEvent stopProducts;
@@ -44,8 +49,10 @@ public class MiniGameManager : MonoBehaviour {
     void Start ()
 	{
         gmScript = GetComponent<GameManager>();
-		StatReference=GameObject.Find("angstObject").GetComponent<angstStatScript>();
-	}	
+        produktScript = GetComponent<produktScript>();
+        StatReference =GameObject.Find("angstObject").GetComponent<angstStatScript>();
+
+    }	
 	
 	void Update ()
 	{
@@ -60,14 +67,20 @@ public class MiniGameManager : MonoBehaviour {
         if (spawnStuff)
         updateCounter += Time.deltaTime;
 
-		if(spawnStuff && updateCounter >= productIntervall) //updateCounter%100==99 and int
+		if(spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
-			updateCounter=0;
+
+            updateCounter =0;
 			StatReference.addOrRemoveAmount(0.05f);
-			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
-			//produkter.Add(nyProdukt);
-			
-		}
+
+            GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+            nyProdukt.GetComponent<SpriteRenderer>().sprite = productSprites[Random.Range(0, productSprites.Length)];
+          
+
+
+            //produkter.Add(nyProdukt);
+
+        }
 		
 		if(productsAreStopped)
 		{

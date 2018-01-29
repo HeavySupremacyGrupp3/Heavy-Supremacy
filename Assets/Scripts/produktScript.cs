@@ -11,8 +11,9 @@ public class produktScript : MonoBehaviour {
 	public Sprite spoilSprite;
 	public int currentStage=0;
 	public bool Spoiled=false;
-	
-	bool moving=true;
+
+
+    bool moving=true;
 	
 	void OnEnable()
 	{
@@ -51,4 +52,5 @@ public class produktScript : MonoBehaviour {
 	{
 		moving=!moving;
 	}
+
 }
