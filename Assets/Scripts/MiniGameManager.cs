@@ -12,8 +12,9 @@ public class MiniGameManager : MonoBehaviour {
 	private List<GameObject> produkter;
 	
 	angstStatScript StatReference;
-	
-	int updateCounter=0;
+
+    public float productIntervall;
+	float updateCounter=0;
 	bool spawnStuff=true;
 	
 	public delegate void mittEvent();
@@ -48,7 +49,7 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		/*
+        /*
 		if(Time.fixedTime%3==2)	
 		{
 			StatReference.addOrRemoveAmount(-20f);
@@ -56,10 +57,11 @@ public class MiniGameManager : MonoBehaviour {
 			produkter.Add(nyProdukt);		
 		}
 		*/
-		
-		updateCounter++;
-		if(spawnStuff && updateCounter%100==99)	
-		{
+        if (spawnStuff)
+        updateCounter += Time.deltaTime;
+
+		if(spawnStuff && updateCounter >= productIntervall) //updateCounter%100==99 and int
+        {
 			updateCounter=0;
 			StatReference.addOrRemoveAmount(0.05f);
 			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);

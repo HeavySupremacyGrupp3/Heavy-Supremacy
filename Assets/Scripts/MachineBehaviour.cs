@@ -9,6 +9,16 @@ public class MachineBehaviour : MonoBehaviour {
     //[SerializeField]
     //private List<GameObject> machines = new List<GameObject>();
 
+    [SerializeField]
+    private AudioClip armSFX1;
+    [SerializeField]
+    private AudioClip armSFX2;
+    [SerializeField]
+    private AudioClip armSFX3;
+
+    [SerializeField]
+    private AudioSource[] audioSources;
+
     private GameObject machine1;
     private GameObject machine2;
     private GameObject machine3;
@@ -58,6 +68,8 @@ public class MachineBehaviour : MonoBehaviour {
 
         startPosition3 = machine3.transform.position;
         endPosition3 = new Vector3(machine3.transform.position.x, 2.5f);
+
+        audioSources = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -155,18 +167,21 @@ public class MachineBehaviour : MonoBehaviour {
         {
             if (!lerpMachine1)
                 lerpMachine1 = true;
+            audioSources[0].PlayOneShot(armSFX1, 1);
         }
 
         if (Input.GetKeyDown("down") && lerpTimer2 <= 0)
         {
             if (!lerpMachine2)
                 lerpMachine2 = true;
+            audioSources[1].PlayOneShot(armSFX2, 1);
         }
 
         if (Input.GetKeyDown("right") && lerpTimer3 <= 0)
         {
             if (!lerpMachine3)
                 lerpMachine3 = true;
+            audioSources[2].PlayOneShot(armSFX3, 1);
         }
 
         /* if (Input.GetKeyDown("down") && machine2.transform.position.y == 0f)
