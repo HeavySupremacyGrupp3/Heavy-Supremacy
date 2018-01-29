@@ -7,6 +7,11 @@ public class Lesson : Item {
     public float PracticeAngstMultiplierIncrease;
     public float PracticeMetalMultiplierIncrease;
 
+    private void Start()
+    {
+        //base.Start();
+    }
+
     public override void ActivatePurchase()
     {
         base.ActivatePurchase();

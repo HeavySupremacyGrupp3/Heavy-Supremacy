@@ -8,6 +8,8 @@ public class ShopSystem : MonoBehaviour
     public static List<Item> MyInventory = new List<Item>();
     public List<Item> ShopInventory = new List<Item>();
     public List<Button> ShopButtons = new List<Button>();
+    public List<Text> PriceTexts = new List<Text>();
+
     public GameObject AreYouSurePanel;
     public Button YesButton;
     public Text ProductDescription;
@@ -21,13 +23,14 @@ public class ShopSystem : MonoBehaviour
     private moneyStatScript moneyStatScript;
     private string itemToBePurchased;
 
-    void Start()
+    void OnEnable()
     {
         moneyStatScript = FindObjectOfType<moneyStatScript>();
         if (moneyStatScript.getAmount() == 0)
         {
             MyInventory.Clear();
         }
+        UpdatePriceTexts();
 
         UpdateShopUI();
     }
@@ -105,6 +108,14 @@ public class ShopSystem : MonoBehaviour
         }
     }
 
+    void UpdatePriceTexts()
+    {
+        for (int i = 0; i < ShopInventory.Count; i++)
+        {
+            PriceTexts[i].text = "$" + ShopInventory[i].Price;
+        }
+    }
+
     void PlayPurchaseSound(Item item)
     {
         //In order: cheap, regular, expensive.
@@ -112,7 +123,7 @@ public class ShopSystem : MonoBehaviour
             FindObjectOfType<AudioSource>().PlayOneShot(CheapPurchaseSound);
         else if (item.Price <= RegularTreshold)
             FindObjectOfType<AudioSource>().PlayOneShot(RegularPurchaseSound);
-        else if (item.Price <= ExpensiveTreshold)
+        else
             FindObjectOfType<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
     }
 }
