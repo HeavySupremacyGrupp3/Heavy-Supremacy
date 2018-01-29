@@ -18,7 +18,7 @@ public class NoteGenerator : MonoBehaviour
     public GameObject EndGamePanel;
 
     public static int NoteMultiplier = 1;
-    public static int NumberOfUniqueNotes = 2;
+    public static int NumberOfUniqueNotes = 1;
 
     private float clipTime = 0;
     private float clipVolume;

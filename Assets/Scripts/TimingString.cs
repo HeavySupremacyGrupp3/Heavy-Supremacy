@@ -15,6 +15,15 @@ public class TimingString : TimingSystem
     public GameObject MetalPopupPrefab;
     public GameObject NoteHitEffect;
 
+    public GameObject PerfectPopupPrefab;
+    public GameObject GoodPopupPrefab;
+    public GameObject BadPopupPrefab;
+    public GameObject MissPopupPrefab;
+
+    public float PerfectDistance;
+    public float GoodDistance;
+    public float BadDistance;
+
     public Animator StringAnimator;
 
     public static float AngstMultiplier = 1;
@@ -31,9 +40,9 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
+        Destroy(Instantiate(MissPopupPrefab, transform.position, Quaternion.identity), 3);
         base.FailTiming();
         AudioSource.PlayOneShot(ErrorSound);
-
         StringAnimator.SetTrigger("StringStroked");
 
         Health--;
@@ -44,6 +53,9 @@ public class TimingString : TimingSystem
     public override void SucceedTiming()
     {
         base.SucceedTiming();
+
+        Destroy(Instantiate(GetNoteAccuracyPrefab(), transform.position, Quaternion.identity), 3);
+
         Destroy(target);
         AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
         MetalStatScript.addOrRemoveAmount(MetalRewardAmount * MetalMultiplier);
@@ -60,6 +72,24 @@ public class TimingString : TimingSystem
         Destroy(noteHitEffect, 5);
 
         StringAnimator.SetTrigger("StringStroked");
+    }
+
+    private GameObject GetNoteAccuracyPrefab()
+    {
+        float distance = Vector2.Distance(transform.position, target.transform.position);
+        GameObject go = new GameObject();
+
+        //Decending order: Perfect, Good, Bad, Miss.
+        if (distance <= PerfectDistance)
+            go = PerfectPopupPrefab;
+        else if (distance <= GoodDistance)
+            go = GoodPopupPrefab;
+        else if (distance <= BadDistance)
+            go = BadPopupPrefab;
+        else
+            go = MissPopupPrefab;
+
+        return go;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
