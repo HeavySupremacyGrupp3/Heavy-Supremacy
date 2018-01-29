@@ -34,6 +34,7 @@ public class TimingString : TimingSystem
 
     private angstStatScript AngstStatScript;
     private metalStatScript MetalStatScript;
+
     private int streakCounter = 0;
     private int streakHighScoreCounter = 0;
     private int health;
@@ -42,6 +43,8 @@ public class TimingString : TimingSystem
     {
         health = MaxHealth;
         HealthSlider.maxValue = MaxHealth;
+        if (!GigBackgroundManager.GigSession)
+            HealthSlider.gameObject.SetActive(false);
 
         AngstStatScript = FindObjectOfType<angstStatScript>();
         MetalStatScript = FindObjectOfType<metalStatScript>();
