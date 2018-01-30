@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TransformLooper : MonoBehaviour
 {
-
-   
     public float Speed = 1;
     public Vector2 TargetPosition;
 
