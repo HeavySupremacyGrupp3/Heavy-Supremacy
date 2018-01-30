@@ -13,12 +13,15 @@ public class NoteGenerator : MonoBehaviour
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
     public float MusicStartDelay = 1;
     public float NoteGenerationStartDelay = 1;
+
     public GameObject[] NotePrefabs;
+    public float[] NoteSpawnXOffset;
+
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
 
     public static int NoteMultiplier = 1;
-    public static int NumberOfUniqueNotes = 1;
+    public static int NumberOfUniqueNotes = 4;
 
     private float clipTime = 0;
     private float clipVolume;
@@ -46,7 +49,7 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval)
+        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
             SendNote();
         else if (!MusicAudioSource.isPlaying && Application.isFocused) //End game if song is over.
             EndGamePanel.SetActive(true);
@@ -91,7 +94,8 @@ public class NoteGenerator : MonoBehaviour
     {
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            Instantiate(NotePrefabs[Random.Range(0, NumberOfUniqueNotes)], transform.position, Quaternion.identity);
+            int noteIndex = Random.Range(0, NumberOfUniqueNotes);
+            Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
         }
         noteSpawnTimer = 0;
     }

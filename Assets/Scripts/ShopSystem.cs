@@ -9,6 +9,7 @@ public class ShopSystem : MonoBehaviour
     public List<Item> ShopInventory = new List<Item>();
     public List<Button> ShopButtons = new List<Button>();
     public List<Text> PriceTexts = new List<Text>();
+    public List<Text> NameTexts = new List<Text>();
 
     public GameObject AreYouSurePanel;
     public Button YesButton;
@@ -30,7 +31,6 @@ public class ShopSystem : MonoBehaviour
         {
             MyInventory.Clear();
         }
-        UpdatePriceTexts();
 
         UpdateShopUI();
     }
@@ -95,6 +95,21 @@ public class ShopSystem : MonoBehaviour
 
     void UpdateShopUI()
     {
+        UpdateShopPriceTexts();
+        UpdateShopSprites();
+        UpdateShopNameTexts();
+    }
+
+    void UpdateShopPriceTexts()
+    {
+        for (int i = 0; i < ShopInventory.Count; i++)
+        {
+            PriceTexts[i].text = "$" + ShopInventory[i].Price;
+        }
+    }
+
+    void UpdateShopSprites()
+    {
         for (int i = 0; i < ShopButtons.Count; i++)
         {
             if (ShopInventory[i].OneTimePurchase && MyInventory.Contains(ShopInventory[i]) || FindObjectOfType<moneyStatScript>().getAmount() - ShopInventory[i].Price < 0)
@@ -108,11 +123,11 @@ public class ShopSystem : MonoBehaviour
         }
     }
 
-    void UpdatePriceTexts()
+    void UpdateShopNameTexts()
     {
         for (int i = 0; i < ShopInventory.Count; i++)
         {
-            PriceTexts[i].text = "$" + ShopInventory[i].Price;
+            NameTexts[i].text = ShopInventory[i].Name;
         }
     }
 

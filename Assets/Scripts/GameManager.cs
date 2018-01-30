@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
         fadeScript = GetComponent<FadeOutManager>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
+    }
+
     void Initialize()
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
@@ -44,11 +50,14 @@ public class GameManager : MonoBehaviour
     public void LoadGig(float energyCost)
     {
         if (CheckEnergy(energyCost))
-            SceneManager.LoadScene("GigScene");
+        {
+            GigBackgroundManager.GigSession = true;
+            SceneManager.LoadScene("PracticeScene");
+        }
     }
-
     public void LoadHUB()
     {
+        GigBackgroundManager.GigSession = false;
         SceneManager.LoadScene("HUBScene");
     }
 
