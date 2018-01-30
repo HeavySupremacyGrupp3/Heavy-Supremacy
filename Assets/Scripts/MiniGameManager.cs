@@ -28,8 +28,9 @@ public class MiniGameManager : MonoBehaviour {
 	bool productsAreStopped=false;
 	
 	int stopCounter=0;
-	
-	void OnEnable()
+
+
+    void OnEnable()
 	{
 		TimingMachine.productDetected +=changeSpawnStopProducts;
 	}
@@ -73,13 +74,15 @@ public class MiniGameManager : MonoBehaviour {
             updateCounter =0;
 			StatReference.addOrRemoveAmount(0.05f);
 
+            //Add new gameobject with a random sprite
             GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-            nyProdukt.GetComponent<SpriteRenderer>().sprite = productSprites[Random.Range(0, productSprites.Length)];
-          
+            int rng = Random.Range(0, productSprites.Length);
+            nyProdukt.GetComponent<produktScript>().type = rng;
+            SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
+            sr.sprite = productSprites[rng];
 
 
             //produkter.Add(nyProdukt);
-
         }
 		
 		if(productsAreStopped)
@@ -94,6 +97,42 @@ public class MiniGameManager : MonoBehaviour {
 		}
 		//Debug.Log(updateCounter);
 	}
+
+    public void Collided(GameObject productObject)
+    {
+        produktScript newProduct = productObject.GetComponent<produktScript>();
+        SpriteRenderer sr = productObject.GetComponent<SpriteRenderer>();
+        int type = newProduct.GetComponent<produktScript>().type;
+
+        switch (type)
+        {
+            case 0:
+                type++;
+                sr.sprite = productSprites[type];
+                break;
+            case 1:
+                type++;
+                sr.sprite = productSprites[type];
+                break;
+            case 2:
+                type++;
+                sr.sprite = productSprites[type];
+                break;
+            case 3:
+                type++;
+                sr.sprite = productSprites[type];
+                break;
+            case 4:
+                break;
+        }
+
+        newProduct.type = type;
+    }
+
+    public void ChangeProduct()
+    {
+        
+    }
 
     public void GameOver()
     {

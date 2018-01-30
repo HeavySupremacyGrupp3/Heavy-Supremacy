@@ -20,8 +20,8 @@ public class TimingMachine : TimingSystem {
 			base.SucceedTiming();			
 			sc.currentStage++;
 			
-			if(sc.currentStage<sc.Sprites.Length)
-				target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
+			//if(sc.currentStage<sc.Sprites.Length)
+				//target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
 			
 			timesChanged++;			
 		}		
@@ -46,14 +46,16 @@ public class TimingMachine : TimingSystem {
 	{
 		
 		produktScript sc=collision.GetComponent<produktScript>();
-		
-		if(timesChanged==0 && !sc.Spoiled)
+        //MiniGameManager mgm = target.GetComponent<MiniGameManager>();
+
+        if (timesChanged==0 && !sc.Spoiled)
 		{
-			base.SucceedTiming();			
-			sc.currentStage++;
+			//base.SucceedTiming();
+          
+			//sc.currentStage++;
 			
-			if(sc.currentStage<sc.Sprites.Length)
-				collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
+			//if(sc.currentStage<sc.Sprites.Length)
+				//collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
 			
 			timesChanged++;			
 		}						
@@ -63,7 +65,7 @@ public class TimingMachine : TimingSystem {
 	
 	private void spoilProducts(GameObject ta)
 	{
-		Debug.Log("times changed "+timesChanged);
+		//Debug.Log("times changed "+timesChanged);
 		if(timesChanged==0)
 		{
 			target=ta;

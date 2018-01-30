@@ -12,6 +12,10 @@ public class produktScript : MonoBehaviour {
 	public int currentStage=0;
 	public bool Spoiled=false;
 
+    public int type = 0;
+
+    public MiniGameManager mgm;
+
 
     bool moving=true;
 	
@@ -24,8 +28,14 @@ public class produktScript : MonoBehaviour {
 	{
 		MiniGameManager.stopProducts -=stopAndGo;
 	}
-	
-	void Update ()
+
+    private void Start()
+    {
+        MiniGameManager mgm = GetComponent<MiniGameManager>();
+        
+    }
+
+    void Update ()
 	{
 		if(moving)
 			transform.Translate(Vector3.right * 3f*Time.deltaTime);
@@ -40,7 +50,13 @@ public class produktScript : MonoBehaviour {
 			
 			Destroy(gameObject);
 		}
-	}
+        if (other.gameObject.tag == "Maskin")
+        {
+            mgm = FindObjectOfType<MiniGameManager>();
+            mgm.Collided(gameObject);
+        }
+
+    }
 	
 	public void spoil()
 	{
@@ -50,7 +66,7 @@ public class produktScript : MonoBehaviour {
 	
 	void stopAndGo()
 	{
-		moving=!moving;
+        moving =!moving;
 	}
 
 }
