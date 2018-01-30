@@ -5,7 +5,10 @@ using UnityEngine;
 public abstract class TimingSystem : MonoBehaviour
 {
 
-    public KeyCode ActivateKey;
+    public KeyCode ActivasionKey1;
+    public KeyCode ActivasionKey2;
+    public KeyCode ActivasionKey3;
+
     public bool CanComboKey;
     public bool CanExitCollider;
 
@@ -13,7 +16,7 @@ public abstract class TimingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(ActivateKey))
+        if (Input.GetKeyDown(ActivasionKey1) || Input.GetKeyDown(ActivasionKey2) || Input.GetKeyDown(ActivasionKey3))
             ActivateMechanic();
     }
 
@@ -23,12 +26,14 @@ public abstract class TimingSystem : MonoBehaviour
         {
             FailTiming();
         }
-        else if (target != null && !target.name.Contains("_") && !Input.GetKey(KeyCode.Alpha1) && !Input.GetKey(KeyCode.Alpha2) && !Input.GetKey(KeyCode.Alpha3) || 
-                target.name.Contains("_1") && Input.GetKey(KeyCode.Alpha1) ||
-                target.name.Contains("_2") && Input.GetKey(KeyCode.Alpha2) ||
-                target.name.Contains("_3") && Input.GetKey(KeyCode.Alpha3))
+        else if (target != null)
         {
-            SucceedTiming();
+            if (target.name.Contains("_1") && Input.GetKey(ActivasionKey1) ||
+                target.name.Contains("_2") && Input.GetKey(ActivasionKey2) ||
+                target.name.Contains("_3") && Input.GetKey(ActivasionKey3))
+            {
+                SucceedTiming();
+            }
         }
     }
 

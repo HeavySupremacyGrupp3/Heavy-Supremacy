@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4cd4358c92161cc4ca5daf3f0f927b8b
+timeCreated: 1517306945
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Metal-Up-Your-Ear
+  fontNames:
+  - Metal-Up-Your-Ear
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

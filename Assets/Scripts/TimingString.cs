@@ -52,7 +52,7 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        Destroy(Instantiate(MissPopupPrefab, target.transform.position, Quaternion.identity), 3);
+        Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
         base.FailTiming();
 
         AddOrRemoveHealth(-1);
@@ -69,7 +69,7 @@ public class TimingString : TimingSystem
         AddOrRemoveHealth(1);
         UpdateStreakCounters(1);
 
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), target.transform.position, Quaternion.identity), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
         Destroy(target);
         AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
