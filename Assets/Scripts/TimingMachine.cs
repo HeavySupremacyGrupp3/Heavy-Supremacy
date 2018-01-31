@@ -10,6 +10,7 @@ public class TimingMachine : TimingSystem {
 	public delegate void mittEvent();
 	public static event mittEvent productDetected;
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
+	public int myType;
 	
 	public override void SucceedTiming()
     {
@@ -42,7 +43,32 @@ public class TimingMachine : TimingSystem {
         base.FailTiming();
     }
 	
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision) //OnTriggerEnter2D nummer 2
+	{
+		produktScript sc=collision.GetComponent<produktScript>();
+		
+		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
+		if(myType<sc.type)
+		{
+			Debug.Log("Produkten behöver inte förvandlas.");
+		}
+		
+		if(myType==sc.type)
+		{
+			Debug.Log("Jag förvandlar.");
+			sc.type++;
+			collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.type];
+		}
+		
+		if(myType>sc.type)
+		{
+			Debug.Log("Hit kan man flytta förstörelse.");
+		}
+		
+		productDetected();
+	}
+	
+	private void old2DCollider(Collider2D collision)
 	{
 		
 		produktScript sc=collision.GetComponent<produktScript>();
@@ -66,10 +92,11 @@ public class TimingMachine : TimingSystem {
 	private void spoilProducts(GameObject ta)
 	{
 		//Debug.Log("times changed "+timesChanged);
-		if(timesChanged==0)
-		{
-			target=ta;
-			produktScript sc=target.GetComponent<produktScript>();
+		target=ta;
+		produktScript sc=target.GetComponent<produktScript>();
+		
+		if(myType==sc.type)
+		{		
 			sc.spoil();
 		}
 		timesChanged=0;

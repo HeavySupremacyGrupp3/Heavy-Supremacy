@@ -50,11 +50,11 @@ public class produktScript : MonoBehaviour {
 			
 			Destroy(gameObject);
 		}
-        if (other.gameObject.tag == "Maskin")
-        {
-            mgm = FindObjectOfType<MiniGameManager>();
-            mgm.Collided(gameObject);
-        }
+        //if (other.gameObject.tag == "Maskin")
+        //{
+         //   mgm = FindObjectOfType<MiniGameManager>();
+           // mgm.Collided(gameObject);
+        //}
 
     }
 	

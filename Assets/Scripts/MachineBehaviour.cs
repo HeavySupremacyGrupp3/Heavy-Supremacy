@@ -68,6 +68,11 @@ public class MachineBehaviour : MonoBehaviour {
         machine2 = Instantiate(machinesToSpawn[1], new Vector3(0.1f, 5.8f), Quaternion.identity);
         machine3 = Instantiate(machinesToSpawn[2], new Vector3(3.5f + spacing, 5.8f), Quaternion.identity);
 
+        machine1.GetComponent<MachineProperties>().machineType = 0;
+        machine2.GetComponent<MachineProperties>().machineType = 1;
+        machine3.GetComponent<MachineProperties>().machineType = 2;
+
+
         //Set start and end position that will lerp
         startPosition1 = machine1.transform.position;
         endPosition1 = new Vector3(machine1.transform.position.x, 2.5f);
@@ -174,22 +179,23 @@ public class MachineBehaviour : MonoBehaviour {
         //  Älskar dig <3
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && lerpTimer1 <= 0)
-            lerpMachine1 = OnMachineMove(leftButton, leftSprite, lerpMachine1, 0);
+            lerpMachine1 = OnMachineMove(leftButton, leftSprite, audioSources[0], lerpMachine1, 0);
 
         if (Input.GetKeyDown("down") && lerpTimer2 <= 0)
-            lerpMachine2 = OnMachineMove(downButton, downSprite, lerpMachine2, 1);
+            lerpMachine2 = OnMachineMove(downButton, downSprite, audioSources[2], lerpMachine2, 1);
 
         if (Input.GetKeyDown("right") && lerpTimer3 <= 0)
-            lerpMachine3 = OnMachineMove(rightButton, rightSprite, lerpMachine3, 2);
+            lerpMachine3 = OnMachineMove(rightButton, rightSprite, audioSources[0], lerpMachine3, 2);
     }
 
-    private bool OnMachineMove(GameObject button, Sprite sprite, bool lerpMachine, int index)
+    private bool OnMachineMove(GameObject button, Sprite sprite, AudioSource audiosource, bool lerpMachine, int index)
     {
         SpriteRenderer sr = button.GetComponent<SpriteRenderer>();
         Sprite oldSprite = sr.sprite;
         sr.sprite = sprite;
 
-        audioSources[0].Play();
+        audiosource = audioSources[index];
+        audioSources[index].Play();
         StartCoroutine(ButtonTimer(sr, oldSprite));
 
         if (!lerpMachine)
@@ -202,5 +208,10 @@ public class MachineBehaviour : MonoBehaviour {
     {
         yield return new WaitForSeconds(buttonTime);
         sr.sprite = buttonSprite;
+    }
+
+    public void PlayAudio()
+    {
+        
     }
 }

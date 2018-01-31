@@ -22,7 +22,11 @@ GameObject:
   - component: {fileID: 212349854156549986}
   - component: {fileID: 61038926168620634}
   - component: {fileID: 114417116501683472}
+<<<<<<< HEAD
   - component: {fileID: 95224856508950790}
+=======
+  - component: {fileID: 114144775278850270}
+>>>>>>> 6358d9d7e2f0e574c736697cbb5d094ab9331dd1
   m_Layer: 0
   m_Name: maskinPrefab
   m_TagString: Maskin
@@ -124,14 +128,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 15}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!95 &95224856508950790
 Animator:
   serializedVersion: 3
+=======
+--- !u!114 &114144775278850270
+MonoBehaviour:
+>>>>>>> 6358d9d7e2f0e574c736697cbb5d094ab9331dd1
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246929189199032}
   m_Enabled: 1
+<<<<<<< HEAD
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -141,6 +151,13 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+=======
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3300fecb12b789a4ba9e9a3fd19201bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineType: 0
+>>>>>>> 6358d9d7e2f0e574c736697cbb5d094ab9331dd1
 --- !u!114 &114302584182009624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +186,7 @@ MonoBehaviour:
   CanComboKey: 0
   CanExitCollider: 0
   MyOutOfRangeDetector: {fileID: 114302584182009624}
+  myType: 0
 --- !u!212 &212349854156549986
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1232,6 +1232,11 @@ Prefab:
       propertyPath: m_Name
       value: Button_Down
       objectReference: {fileID: 0}
+    - target: {fileID: 212721208027687258, guid: 462eab9b5bb59a54ca3da4d0d7c9226c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 462eab9b5bb59a54ca3da4d0d7c9226c, type: 2}
   m_IsPrefabParent: 0
@@ -1277,6 +1282,11 @@ Prefab:
     - target: {fileID: 1819767340212650, guid: 30cc6ac0b54760643a3ad1842df0a909, type: 2}
       propertyPath: m_Name
       value: Button_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 212566520601384702, guid: 30cc6ac0b54760643a3ad1842df0a909,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30cc6ac0b54760643a3ad1842df0a909, type: 2}
@@ -2728,6 +2738,11 @@ Prefab:
     - target: {fileID: 1797548056240828, guid: 2c8e871dbd09eaf488b97273a2e4d2d8, type: 2}
       propertyPath: m_Name
       value: Button_Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 212854040101557174, guid: 2c8e871dbd09eaf488b97273a2e4d2d8,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c8e871dbd09eaf488b97273a2e4d2d8, type: 2}
