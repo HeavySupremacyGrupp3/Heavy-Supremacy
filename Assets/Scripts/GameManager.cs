@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public FadeOutManager fadeScript;
+    public DayTracker dayTrack;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
+        dayTrack = GetComponent<DayTracker>();
     }
 
     private void Update()
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
         dayTrack = FindObjectOfType<DayTracker>();
+        dayTrack.IncreaseDay();
         sleep();
     }
 
