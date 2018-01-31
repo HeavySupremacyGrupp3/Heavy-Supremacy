@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212349854156549986}
   - component: {fileID: 61038926168620634}
   - component: {fileID: 114417116501683472}
+  - component: {fileID: 114144775278850270}
   m_Layer: 0
   m_Name: maskinPrefab
   m_TagString: Maskin
@@ -123,6 +124,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 15}
   m_EdgeRadius: 0
+--- !u!114 &114144775278850270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246929189199032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3300fecb12b789a4ba9e9a3fd19201bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineType: 0
 --- !u!114 &114302584182009624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,9 +158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bbe80e6b5ce664e8b34eae72ff0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivateKey: 32
+  ActivasionKey1: 0
+  ActivasionKey2: 0
+  ActivasionKey3: 0
+  CanComboKey: 0
   CanExitCollider: 0
   MyOutOfRangeDetector: {fileID: 114302584182009624}
+  myType: 0
 --- !u!212 &212349854156549986
 SpriteRenderer:
   m_ObjectHideFlags: 1

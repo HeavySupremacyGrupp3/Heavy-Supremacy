@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
+        dayTrack = FindObjectOfType<DayTracker>();
         sleep();
     }
 
