@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public FadeOutManager fadeScript;
-    public DayTracker dayTrack;
+    public int day = 1;
+    public int week = 1;
+    private TextMesh t;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -15,13 +17,15 @@ public class GameManager : MonoBehaviour
     {
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
-        dayTrack = GetComponent<DayTracker>();
+        t = GetComponent<TextMesh>();
+        t.text = "Approximately week: ";
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.F))
         FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
+        t.text = "Approximately week: " + week;
     }
 
     void Initialize()
@@ -67,9 +71,22 @@ public class GameManager : MonoBehaviour
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
-        dayTrack = FindObjectOfType<DayTracker>();
-        dayTrack.IncreaseDay();
+        IncreaseDay();
         sleep();
+    }
+
+    public void IncreaseDay()
+    {
+        day++;
+        IncreaseWeek();
+    }
+
+    public void IncreaseWeek()
+    {
+        if (day % 7 == 0)
+        {
+            week++;
+        }
     }
 
     public void ToggleGameObject(GameObject target)

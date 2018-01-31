@@ -1082,7 +1082,7 @@ Prefab:
     - target: {fileID: 224590166490054426, guid: 44a82d2e1bdd96e48bea16c8656513b4,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -69.5625
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224591039760177296, guid: 44a82d2e1bdd96e48bea16c8656513b4,
         type: 2}
@@ -1143,7 +1143,7 @@ Prefab:
     - target: {fileID: 224590166490054426, guid: 44a82d2e1bdd96e48bea16c8656513b4,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.3000002
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 224590166490054426, guid: 44a82d2e1bdd96e48bea16c8656513b4,
         type: 2}
@@ -1685,7 +1685,7 @@ Prefab:
     - target: {fileID: 224382309283915852, guid: 6cbd23b2864e50c4cae5bfdbf60977b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -54.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224943916242593068, guid: 6cbd23b2864e50c4cae5bfdbf60977b0,
         type: 2}
@@ -1714,7 +1714,7 @@ Prefab:
     - target: {fileID: 224382309283915852, guid: 6cbd23b2864e50c4cae5bfdbf60977b0,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999981
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 224382309283915852, guid: 6cbd23b2864e50c4cae5bfdbf60977b0,
         type: 2}
@@ -3012,7 +3012,7 @@ Prefab:
     - target: {fileID: 224185955126255756, guid: 71fe5f756d84dae4a84b870f5b6dc2a6,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -59.925
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4794535622601558, guid: 71fe5f756d84dae4a84b870f5b6dc2a6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3039,7 +3039,7 @@ Prefab:
     - target: {fileID: 224185955126255756, guid: 71fe5f756d84dae4a84b870f5b6dc2a6,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999981
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 224185955126255756, guid: 71fe5f756d84dae4a84b870f5b6dc2a6,
         type: 2}
@@ -4439,7 +4439,6 @@ GameObject:
   - component: {fileID: 1369002944}
   - component: {fileID: 1369002947}
   - component: {fileID: 1369002946}
-  - component: {fileID: 1369002948}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4459,7 +4458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeScript: {fileID: 0}
-  dayTrack: {fileID: 0}
+  day: 1
+  week: 1
 --- !u!4 &1369002945
 Transform:
   m_ObjectHideFlags: 0
@@ -4574,19 +4574,6 @@ MonoBehaviour:
   - {fileID: 1493606340}
   - {fileID: 1140999540}
   ClosePanelButton: {fileID: 1296953872}
---- !u!114 &1369002948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1369002943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee288adcb8e0a1468fdd28d440433b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  day: 1
-  week: 1
 --- !u!1 &1385744806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,7 +5162,7 @@ Prefab:
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -64.815
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4764803675931192, guid: 7f23cf55893ca2f4496fe635cffbb8e2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5202,7 +5189,7 @@ Prefab:
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999981
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
@@ -6177,8 +6164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee288adcb8e0a1468fdd28d440433b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  day: 1
-  week: 1
+  gm: {fileID: 0}
 --- !u!102 &1900271755
 TextMesh:
   serializedVersion: 3
