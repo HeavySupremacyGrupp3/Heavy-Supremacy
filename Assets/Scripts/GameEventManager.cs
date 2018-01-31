@@ -46,7 +46,7 @@ public class GameEventManager : MonoBehaviour
         TitleText.text = node.Title;
         DescriptionText.text = node.Text;
 
-        //choices.Clear();
+        choices.Clear();
         for (int i = 0; i < node.Choices.Count; i++)
         {
             Debug.Log(node.Choices.Count);

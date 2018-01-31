@@ -68,6 +68,11 @@ public class MachineBehaviour : MonoBehaviour {
         machine2 = Instantiate(machinesToSpawn[1], new Vector3(0.1f, 5.8f), Quaternion.identity);
         machine3 = Instantiate(machinesToSpawn[2], new Vector3(3.5f + spacing, 5.8f), Quaternion.identity);
 
+        machine1.GetComponent<MachineProperties>().machineType = 0;
+        machine2.GetComponent<MachineProperties>().machineType = 1;
+        machine3.GetComponent<MachineProperties>().machineType = 2;
+
+
         //Set start and end position that will lerp
         startPosition1 = machine1.transform.position;
         endPosition1 = new Vector3(machine1.transform.position.x, 2.5f);
