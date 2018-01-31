@@ -9,19 +9,26 @@ public class MachineBehaviour : MonoBehaviour {
     //[SerializeField]
     //private List<GameObject> machines = new List<GameObject>();
 
-    [SerializeField]
+    /*[SerializeField]
     private AudioClip armSFX1;
     [SerializeField]
     private AudioClip armSFX2;
     [SerializeField]
-    private AudioClip armSFX3;
+    private AudioClip armSFX3;*/
 
-    [SerializeField]
     private AudioSource[] audioSources;
 
     private GameObject machine1;
     private GameObject machine2;
     private GameObject machine3;
+    public GameObject leftButton;
+    public GameObject downButton;
+    public GameObject rightButton;
+
+    public Sprite leftSprite;
+    public Sprite downSprite;
+    public Sprite rightSprite;
+    private SpriteRenderer sr;
 
     private Vector2 startPosition1;
     private Vector2 endPosition1;
@@ -46,6 +53,8 @@ public class MachineBehaviour : MonoBehaviour {
 
     [Range(0, 10)]
     public int spacing;
+
+    public float buttonTime;
 
     [SerializeField]
     private float lerpTime = 2f;
@@ -161,73 +170,37 @@ public class MachineBehaviour : MonoBehaviour {
 
     private void MachineMovement()
     {
-        
+ 
+        //  Älskar dig <3
 
-        if (Input.GetKeyDown("left") && lerpTimer1 <= 0)
-        {
-            if (!lerpMachine1)
-                lerpMachine1 = true;
-            audioSources[0].PlayOneShot(armSFX1, 1);
-        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && lerpTimer1 <= 0)
+            lerpMachine1 = OnMachineMove(leftButton, leftSprite, lerpMachine1, 0);
 
         if (Input.GetKeyDown("down") && lerpTimer2 <= 0)
-        {
-            if (!lerpMachine2)
-                lerpMachine2 = true;
-            audioSources[1].PlayOneShot(armSFX2, 1);
-        }
+            lerpMachine2 = OnMachineMove(downButton, downSprite, lerpMachine2, 1);
 
         if (Input.GetKeyDown("right") && lerpTimer3 <= 0)
-        {
-            if (!lerpMachine3)
-                lerpMachine3 = true;
-            audioSources[2].PlayOneShot(armSFX3, 1);
-        }
+            lerpMachine3 = OnMachineMove(rightButton, rightSprite, lerpMachine3, 2);
+    }
 
-        /* if (Input.GetKeyDown("down") && machine2.transform.position.y == 0f)
-         {
-             Vector3 startPosition2 = new Vector3(machine2.transform.position.x, machine2.transform.position.y);
-             Vector3 endPosition2 = new Vector3(machine2.transform.position.x, -2F);
+    private bool OnMachineMove(GameObject button, Sprite sprite, bool lerpMachine, int index)
+    {
+        SpriteRenderer sr = button.GetComponent<SpriteRenderer>();
+        Sprite oldSprite = sr.sprite;
+        sr.sprite = sprite;
 
-             machine2.transform.position = Vector3.Lerp(startPosition2, endPosition2, i);
-         }
+        audioSources[0].Play();
+        StartCoroutine(ButtonTimer(sr, oldSprite));
 
-         if (Input.GetKeyDown("right") && machine3.transform.position.y == 0f)
-         {
-             Vector3 startPosition3 = new Vector3(machine3.transform.position.x, machine3.transform.position.y);
-             Vector3 endPosition3 = new Vector3(machine3.transform.position.x, -2F);
+        if (!lerpMachine)
+            return true;
+        else
+            return false;
+    }
 
-             machine3.transform.position = Vector3.Lerp(startPosition3, endPosition3, i);
-         }
-            */
-
-        //journeyLength = Vector3.Distance(tartPosition1, endPosition1);
-
-        /* if (Input.GetKeyDown("left") && machine1.transform.position.y = 0f)
-        {
-            Vector2 movement = new Vector2(0f, -0.2f * Time.deltaTime);
-            machine1.transform.Translate(movement * speed);
-        }
-
-        if (Input.GetKeyDown("down") && machine2.transform.position.y = 0f)
-        {
-            Vector2 movement = new Vector2(0f, -0.2f * Time.deltaTime);
-            machine2.transform.Translate(movement * speed);
-        }
-
-        if (Input.GetKeyDown("right") && machine3.transform.position.y = 0f)
-        {
-            Vector2 movement = new Vector2(0f, -0.2f * Time.deltaTime);
-            machine3.transform.Translate(movement * speed);
-        }
-
-        if (machine1.transform.position.y = -1f)
-        {
-            Vector2 movement = new Vector2(0f, 0.2f * Time.deltaTime);
-            machine1.transform.Translate(movement * speed);
-        }*/
-
-
-
+    private IEnumerator ButtonTimer(SpriteRenderer sr, Sprite buttonSprite)
+    {
+        yield return new WaitForSeconds(buttonTime);
+        sr.sprite = buttonSprite;
     }
 }
