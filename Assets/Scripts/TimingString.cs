@@ -52,7 +52,7 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        Destroy(Instantiate(MissPopupPrefab, target.transform.position, Quaternion.identity), 3);
+        Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
         base.FailTiming();
 
         AddOrRemoveHealth(-1);
@@ -69,21 +69,21 @@ public class TimingString : TimingSystem
         AddOrRemoveHealth(1);
         UpdateStreakCounters(1);
 
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), target.transform.position, Quaternion.identity), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
         Destroy(target);
         AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
         MetalStatScript.addOrRemoveAmount(MetalRewardAmount * MetalMultiplier);
 
-        GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
-        GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
+        //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
+        //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         GameObject noteHitEffect = Instantiate(NoteHitEffect, target.transform.position, Quaternion.identity) as GameObject;
 
-        metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
-        angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
+        //metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
+        //angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
 
-        Destroy(metalPopup, 2);
-        Destroy(angstPopup, 2);
+        //Destroy(metalPopup, 2);
+        //Destroy(angstPopup, 2);
         Destroy(noteHitEffect, 5);
 
         StringAnimator.SetTrigger("StringStroked");
