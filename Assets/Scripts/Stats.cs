@@ -6,7 +6,13 @@ using UnityEngine.UI;
 
 public abstract class Stats : MonoBehaviour {
 
-	protected float amount;
+	[SerializeField]
+	protected float amount;	
+	
+	[SerializeField]
+	protected float max;
+	static float min=0;
+	
 	protected int thisStat;
 	
 	//public GameObject SliderObject;
@@ -42,14 +48,28 @@ public abstract class Stats : MonoBehaviour {
 		amount=a;
 	}
 	
+	//amount can't be made to exceed max or min
 	public void addOrRemoveAmount(float a)
 	{
-		amount+=a;
+		if(amount+a<max && amount+a>min)
+		{
+			amount+=a;
+		}		
 	}
 
 	public float getAmount()
 	{
 		return amount;
+	}
+	
+	public float getMin()
+	{
+		return min;
+	}
+	
+	public float getMax()
+	{
+		return max;
 	}
 	
 	public int getStat()

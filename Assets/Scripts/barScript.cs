@@ -13,8 +13,6 @@ public class barScript : MonoBehaviour {
 
 	void Start()
 	{
-
-		
 		progressSlider=GetComponent<Slider>();
 	}
 	
@@ -31,6 +29,8 @@ public class barScript : MonoBehaviour {
 			//if(arr[i].getStat()==InitialReference.getStat())
 				//StatReference=InitialReference;
 				amount=StatReference.getAmount();
+				progressSlider.minValue=StatReference.getMin();
+				progressSlider.maxValue=StatReference.getMax();
 				progressSlider.value=amount;
 				
 				Debug.Log(amount);
