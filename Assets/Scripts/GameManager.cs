@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public FadeOutManager fadeScript;
-    public int day = 1;
-    public int week = 1;
+    public int day;
+    public int week;
     private TextMesh t;
 
     public delegate void mittEvent();
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         fadeScript = GetComponent<FadeOutManager>();
         t = GetComponent<TextMesh>();
         t.text = "Approximately week: ";
+        day = 1;
+        week = 1;
     }
 
     private void Update()

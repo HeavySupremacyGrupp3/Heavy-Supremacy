@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4101524458239466}
   - component: {fileID: 212127735005664600}
   - component: {fileID: 95258696703342944}
+  - component: {fileID: 114148203968474206}
   m_Layer: 0
   m_Name: Maskin2
   m_TagString: Untagged
@@ -118,6 +119,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114148203968474206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881247444237336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3300fecb12b789a4ba9e9a3fd19201bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineType: 0
 --- !u!212 &212011380481393032
 SpriteRenderer:
   m_ObjectHideFlags: 1

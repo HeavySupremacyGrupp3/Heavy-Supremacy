@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212102190296852698}
   - component: {fileID: 61819894868522292}
   - component: {fileID: 114034213965195218}
+  - component: {fileID: 114601013590464936}
   m_Layer: 0
   m_Name: maskinPrefab1
   m_TagString: Maskin
@@ -78,8 +79,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bbe80e6b5ce664e8b34eae72ff0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivateKey: 32
+  ActivasionKey1: 0
+  ActivasionKey2: 0
+  ActivasionKey3: 0
+  CanComboKey: 0
   CanExitCollider: 0
+  MyOutOfRangeDetector: {fileID: 0}
+  myType: 0
+--- !u!114 &114601013590464936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147418782498688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3300fecb12b789a4ba9e9a3fd19201bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineType: 0
 --- !u!212 &212102190296852698
 SpriteRenderer:
   m_ObjectHideFlags: 1

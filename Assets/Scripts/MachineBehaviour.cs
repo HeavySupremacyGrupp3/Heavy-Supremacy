@@ -28,7 +28,6 @@ public class MachineBehaviour : MonoBehaviour {
     public Sprite leftSprite;
     public Sprite downSprite;
     public Sprite rightSprite;
-    private SpriteRenderer sr;
 
     private Vector2 startPosition1;
     private Vector2 endPosition1;
@@ -179,24 +178,26 @@ public class MachineBehaviour : MonoBehaviour {
         //  Älskar dig <3
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && lerpTimer1 <= 0)
-            lerpMachine1 = OnMachineMove(leftButton, leftSprite, audioSources[0], lerpMachine1, 0);
+            lerpMachine1 = OnMachineMove(leftButton, leftSprite, lerpMachine1, 0);
 
         if (Input.GetKeyDown("down") && lerpTimer2 <= 0)
-            lerpMachine2 = OnMachineMove(downButton, downSprite, audioSources[2], lerpMachine2, 1);
+            lerpMachine2 = OnMachineMove(downButton, downSprite, lerpMachine2, 1);
 
         if (Input.GetKeyDown("right") && lerpTimer3 <= 0)
-            lerpMachine3 = OnMachineMove(rightButton, rightSprite, audioSources[0], lerpMachine3, 2);
+            lerpMachine3 = OnMachineMove(rightButton, rightSprite, lerpMachine3, 2);
     }
 
-    private bool OnMachineMove(GameObject button, Sprite sprite, AudioSource audiosource, bool lerpMachine, int index)
+    private bool OnMachineMove(GameObject button, Sprite sprite, bool lerpMachine, int index)
     {
+        Debug.Log("OnMachineMove(" + button.name + ", " + sprite.name + ", lerpMachine: " + lerpMachine + ", index: " + index + ")");
         SpriteRenderer sr = button.GetComponent<SpriteRenderer>();
         Sprite oldSprite = sr.sprite;
         sr.sprite = sprite;
 
-        audiosource = audioSources[index];
         audioSources[index].Play();
+        Debug.Log("ButtonTimer(" + sr.name + ", " + oldSprite.name + ")");
         StartCoroutine(ButtonTimer(sr, oldSprite));
+
 
         if (!lerpMachine)
             return true;
