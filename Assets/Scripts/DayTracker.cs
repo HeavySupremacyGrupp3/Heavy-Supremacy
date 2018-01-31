@@ -9,12 +9,22 @@ public class DayTracker : MonoBehaviour {
     public int week = 1;
     private TextMesh t;
 
+    public void Start()
+    {
+        t = GetComponent<TextMesh>();
+        t.text = "Approximately week: ";
+    }
+
+    public void Update()
+    {
+
+        t.text = "Approximately week: " + week;
+    }
 
     public void IncreaseDay()
     {
         day++;
         IncreaseWeek();
-        t.text = "Approximately week: " + week;
     }
 
     public void IncreaseWeek()
