@@ -30,12 +30,12 @@ public class TimingMachine : TimingSystem {
 	
 	void OnEnable()
 	{
-		//MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
+		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
 	}
 	
 	void OnDisable()
 	{
-		//MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
+		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
 	}
 	
 	public override void FailTiming()
@@ -56,6 +56,8 @@ public class TimingMachine : TimingSystem {
 		if(myType==sc.type)
 		{
 			Debug.Log("Jag förvandlar.");
+			sc.type++;
+			collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.type];
 		}
 		
 		if(myType>sc.type)
@@ -90,10 +92,11 @@ public class TimingMachine : TimingSystem {
 	private void spoilProducts(GameObject ta)
 	{
 		//Debug.Log("times changed "+timesChanged);
-		if(timesChanged==0)
-		{
-			target=ta;
-			produktScript sc=target.GetComponent<produktScript>();
+		target=ta;
+		produktScript sc=target.GetComponent<produktScript>();
+		
+		if(myType==sc.type)
+		{		
 			sc.spoil();
 		}
 		timesChanged=0;
