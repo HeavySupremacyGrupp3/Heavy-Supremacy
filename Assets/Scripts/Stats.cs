@@ -54,7 +54,17 @@ public abstract class Stats : MonoBehaviour {
 		if(amount+a<max && amount+a>min)
 		{
 			amount+=a;
-		}		
+		}	
+		
+		else if(amount+a>max)
+		{
+			amount=max;
+		}
+		
+		else if(amount+a<min)
+		{
+			amount=min;
+		}
 	}
 
 	public float getAmount()
