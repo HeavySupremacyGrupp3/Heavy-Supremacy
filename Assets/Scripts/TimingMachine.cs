@@ -92,11 +92,14 @@ public class TimingMachine : TimingSystem {
 	private void spoilProducts(GameObject ta)
 	{
 		//Debug.Log("times changed "+timesChanged);
+		
+		Debug.Log(ta);
 		targets[0]=ta;
 		produktScript sc=targets[0].GetComponent<produktScript>();
 		
 		if(myType==sc.type)
 		{		
+			Debug.Log("spoil me");
 			sc.spoil();
             targets.RemoveAt(0);
 		}
