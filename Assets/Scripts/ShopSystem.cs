@@ -37,7 +37,7 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKey(KeyCode.M))
             FindObjectOfType<moneyStatScript>().addMoney();
     }
 
@@ -135,10 +135,10 @@ public class ShopSystem : MonoBehaviour
     {
         //In order: cheap, regular, expensive.
         if (item.Price <= CheapTreshold)
-            FindObjectOfType<AudioSource>().PlayOneShot(CheapPurchaseSound);
+            FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(CheapPurchaseSound);
         else if (item.Price <= RegularTreshold)
-            FindObjectOfType<AudioSource>().PlayOneShot(RegularPurchaseSound);
+            FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(RegularPurchaseSound);
         else
-            FindObjectOfType<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
+            FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
     }
 }

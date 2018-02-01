@@ -12,7 +12,7 @@ public abstract class TimingSystem : MonoBehaviour
     public bool CanComboKey;
     public bool CanExitCollider;
 
-    protected GameObject target;
+    protected List<GameObject> targets = new List<GameObject>();
 
     void Update()
     {
@@ -22,25 +22,28 @@ public abstract class TimingSystem : MonoBehaviour
 
     void ActivateMechanic()
     {
-        if (target == null)
+        if (targets.Count == 0)
         {
             FailTiming();
         }
-        else if (target != null)
+        else if (targets.Count > 0)
         {
-            if (target.name.Contains("_1") && Input.GetKey(ActivasionKey1) ||
-                target.name.Contains("_2") && Input.GetKey(ActivasionKey2) ||
-                target.name.Contains("_3") && Input.GetKey(ActivasionKey3))
-            {
+            //Need multiple if-statements to handle simultanious notes.
+            if (targets[0].name.Contains("_1") && Input.GetKey(ActivasionKey1))
                 SucceedTiming();
-            }
+            if (targets[0].name.Contains("_2") && Input.GetKey(ActivasionKey2))
+                SucceedTiming();
+            if (targets[0].name.Contains("_3") && Input.GetKey(ActivasionKey3))
+                SucceedTiming();
         }
     }
 
     public virtual void FailTiming()
     {
         Debug.Log("FAILED TIMING");
-        target = null;
+        //targets = null;
+        if (targets.Count > 0)
+            targets.RemoveAt(0);
     }
 
     public virtual void SucceedTiming()
@@ -50,9 +53,9 @@ public abstract class TimingSystem : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "TimingObject")
+        if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
         {
-            target = collision.gameObject;
+            targets.Add(collision.gameObject);
         }
     }
 }

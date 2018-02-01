@@ -52,7 +52,7 @@ public class NoteGenerator : MonoBehaviour
         if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
             SendNote();
         else if (!MusicAudioSource.isPlaying && Application.isFocused) //End game if song is over.
-            EndGamePanel.SetActive(true);
+            EndGame();
     }
 
     bool CheckForNote()
@@ -67,7 +67,6 @@ public class NoteGenerator : MonoBehaviour
             {
                 clipVolume += Mathf.Abs(sample);
             }
-            //clipVolume /= SampleDataLength; //Used for what?
             //Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.
@@ -92,12 +91,27 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
+        int noteIndex = 0;
+        int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            int noteIndex = Random.Range(0, NumberOfUniqueNotes);
+            do
+            {
+                tempIndex = Random.Range(0, NumberOfUniqueNotes);
+            }
+            while (noteIndex == tempIndex);
+            noteIndex = tempIndex;
+
             Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
         }
         noteSpawnTimer = 0;
+    }
+
+    public void EndGame()
+    {
+        EndGamePanel.SetActive(true);
+        MusicAudioSource.Stop();
+        NoteGenerationAudioSource.Stop();
     }
 
     public void LoadHub()

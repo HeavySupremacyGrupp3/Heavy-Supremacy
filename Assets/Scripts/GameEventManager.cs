@@ -19,7 +19,6 @@ public class GameEventManager : MonoBehaviour
     private void Start()
     {
         LoadEvents();
-        TriggerEvent(nodes[0]);
     }
 
     void LoadEvents()
