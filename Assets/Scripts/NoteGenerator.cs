@@ -30,6 +30,7 @@ public class NoteGenerator : MonoBehaviour
     private float[] clipSampleData;
     private bool canSendNextNote = true;
     private float noteSpawnTimer = 0;
+    private int noteIndex = 0;
 
     void Start()
     {
@@ -91,7 +92,6 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
-        int noteIndex = 0;
         int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
@@ -112,6 +112,12 @@ public class NoteGenerator : MonoBehaviour
         EndGamePanel.SetActive(true);
         MusicAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
+
+        if (FindObjectOfType<fameStatScript>().getAmount() >= FindObjectOfType<fameStatScript>().getMax() && GigBackgroundManager.GigSession && FindObjectOfType<TimingString>().HealthSlider.value == 0)
+        {
+            GameManager.ToEndGame = true;
+            GameManager.EndGameTitleText = "You're famous and won the game!";
+        }
     }
 
     public void LoadHub()
@@ -122,5 +128,10 @@ public class NoteGenerator : MonoBehaviour
         //If you start the game in the Practice-scene.
         else
             SceneManager.LoadScene(0);
+    }
+
+    public static void Reset()
+    {
+        NoteMultiplier = 1;
     }
 }

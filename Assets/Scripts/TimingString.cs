@@ -146,4 +146,10 @@ public class TimingString : TimingSystem
             FailTiming();
         }
     }
+
+    public static void Reset()
+    {
+        MetalMultiplier = 1;
+        AngstMultiplier = 1;
+    }
 }

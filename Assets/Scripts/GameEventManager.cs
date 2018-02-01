@@ -73,6 +73,7 @@ public class GameEventManager : MonoBehaviour
         FindObjectOfType<moneyStatScript>().addOrRemoveAmount(float.Parse(node.CashBonus));
         FindObjectOfType<angstStatScript>().addOrRemoveAmount(float.Parse(node.AngstBonus));
         FindObjectOfType<fameStatScript>().addOrRemoveAmount(float.Parse(node.FameBonus));
+        FindObjectOfType<energyStatScript>().addOrRemoveAmount(float.Parse(node.EnergyBonus));
     }
 
     public void MakeChoice(int index)
