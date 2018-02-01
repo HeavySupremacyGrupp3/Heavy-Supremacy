@@ -209,11 +209,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
---- !u!1 &51712144 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1797548056240828, guid: 2c8e871dbd09eaf488b97273a2e4d2d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1334591664}
 --- !u!1 &94413767
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,14 +562,7 @@ MonoBehaviour:
   - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
   - {fileID: 1881247444237336, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
   - {fileID: 1984025146281826, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
-  leftButton: {fileID: 51712144}
-  downButton: {fileID: 1497986342}
-  rightButton: {fileID: 1663444212}
-  leftSprite: {fileID: 21300000, guid: dbcda0da0dce74b428c1af22618fcae7, type: 3}
-  downSprite: {fileID: 21300000, guid: cc84741461ef098418d6016e39ddedc7, type: 3}
-  rightSprite: {fileID: 21300000, guid: fdbb3b9bb9a258148b7eec4ff627eabc, type: 3}
   spacing: 3
-  buttonTime: 0.5
   lerpTime: 0.5
 --- !u!4 &155887790
 Transform:
@@ -645,7 +633,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -669,7 +657,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!82 &155887792
 AudioSource:
   m_ObjectHideFlags: 0
@@ -726,7 +714,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -750,7 +738,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!82 &155887793
 AudioSource:
   m_ObjectHideFlags: 0
@@ -807,7 +795,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -831,7 +819,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &197506065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,11 +2508,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460122972}
---- !u!1 &1497986342 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1782637916115924, guid: 462eab9b5bb59a54ca3da4d0d7c9226c,
-    type: 2}
-  m_PrefabInternal: {fileID: 356942958}
 --- !u!1 &1550498998
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,11 +2885,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1660011151}
---- !u!1 &1663444212 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1819767340212650, guid: 30cc6ac0b54760643a3ad1842df0a909,
-    type: 2}
-  m_PrefabInternal: {fileID: 378893628}
 --- !u!1 &1675684778
 GameObject:
   m_ObjectHideFlags: 0
