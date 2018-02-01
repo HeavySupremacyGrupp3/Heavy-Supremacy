@@ -95,6 +95,19 @@ public class MiniGameManager : MonoBehaviour {
 				stopCounter=0;
 			}
 		}
+		
+		//Debug.Log(updateCounter);
+		if(1<2)
+		{
+			stopCounter++;
+			//Debug.Log(stopCounter);
+			if(stopCounter==50)
+			{
+				changeSpawnStopProducts();
+				stopCounter=0;
+			}
+		}
+		
 		//Debug.Log(updateCounter);
 	}
 	

@@ -18,6 +18,7 @@ public class angstTextScript : MonoBehaviour {
 
 	void Update () 
 	{
+		//StatReference = FindObjectOfType<energyStatScript>();
 		Angst = StatReference.getAmount();
 		t.text = "Angst: " + Angst;
 	}

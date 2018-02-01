@@ -12,9 +12,13 @@ public class produktScript : MonoBehaviour {
 	public int currentStage=0;
 	public bool Spoiled=false;
 
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+
     public int type = 0;
 
     public MiniGameManager mgm;
+    private MachineBehaviour mb;
 
 
     bool moving=true;
@@ -32,6 +36,9 @@ public class produktScript : MonoBehaviour {
     private void Start()
     {
         MiniGameManager mgm = GetComponent<MiniGameManager>();
+        MachineBehaviour mb = GetComponent<MachineBehaviour>();
+        startPosition = transform.position;
+        endPosition = new Vector3(startPosition.x + mb.spacing, startPosition.y);
         
     }
 
@@ -39,7 +46,8 @@ public class produktScript : MonoBehaviour {
 	{
 		if(moving)
 			transform.Translate(Vector3.right * 3f*Time.deltaTime);
-	}
+       // StartCoroutine(Stop(moving));
+    }
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
 	{
@@ -67,6 +75,37 @@ public class produktScript : MonoBehaviour {
 	void stopAndGo()
 	{
         moving =!moving;
+
 	}
+
+   /* private void Stop()
+    {
+        if (transform.position.x >= endPosition.x && transform.position.x <= endPosition.x + 0.1)
+        {
+            for (float i = 0; i <= 2; i += Time.deltaTime)
+            {
+                Debug.Log("stopped");
+                moving = false;
+            }
+        }
+        Debug.Log("moves");
+        moving = true;
+    }*/
+    
+        //this is supposed to work and stop the producst and stuff but moving is weird...hehe...(omg!)
+    private IEnumerator Stop(bool moving)
+    {
+        if (moving)
+        {
+            Debug.Log("Started coroutine");
+            if (transform.position.x >= endPosition.x  && transform.position.x <= endPosition.x + 0.1)
+            {
+                Debug.Log("Reached stop.x");
+                moving = false;
+                yield return new WaitForSeconds(2f);
+                moving = true;
+            }
+        }
+    }
 
 }
