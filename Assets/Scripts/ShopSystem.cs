@@ -33,6 +33,7 @@ public class ShopSystem : MonoBehaviour
         }
 
         UpdateShopUI();
+        UpdateHUBEnvironment();
     }
 
     private void Update()
@@ -77,7 +78,7 @@ public class ShopSystem : MonoBehaviour
         MyInventory.Add(item);
 
         UpdateShopUI();
-
+        UpdateHUBEnvironment();
     }
 
     Item FindItemByName(string name)
@@ -140,5 +141,13 @@ public class ShopSystem : MonoBehaviour
             FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(RegularPurchaseSound);
         else
             FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
+    }
+
+    void UpdateHUBEnvironment()
+    {
+        foreach (Furniture f in MyInventory)
+        {
+            f.UpdateFurnitures();
+        }
     }
 }
