@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
- 
-public class FadeOutManager : MonoBehaviour {
+
+public class FadeOutManager : MonoBehaviour
+{
 
     public Image fadeImage;
     public Image halfFadeImage;
@@ -12,7 +13,8 @@ public class FadeOutManager : MonoBehaviour {
     {
         fadeImage.enabled = false;
         fadeImage.color = new Color(1, 1, 1, 0);
-        halfFadeImage.enabled = false;
+        if (halfFadeImage != null)
+            halfFadeImage.enabled = false;
         halfFadeImage.color = new Color(1, 1, 1, 0);
     }
 
@@ -28,10 +30,10 @@ public class FadeOutManager : MonoBehaviour {
         halfFadeImage.enabled = true;
         StartCoroutine(Fade(true));
     }
- 
+
     IEnumerator FadeAway(bool fadeAway)
     {
-        
+
         if (fadeAway)
         {
             // loop over 1 second 
@@ -39,13 +41,13 @@ public class FadeOutManager : MonoBehaviour {
             {
                 // alpha opaque
                 fadeImage.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds (0.05f);
-				
-				if(i>=0.95)
-                StartCoroutine(FadeAway(false));
+                yield return new WaitForSeconds(0.05f);
+
+                if (i >= 0.95)
+                    StartCoroutine(FadeAway(false));
             }
         }
-        
+
         else
         {
             // loop over 1 second backwards
@@ -57,13 +59,13 @@ public class FadeOutManager : MonoBehaviour {
 
                 if (i <= 0.01)
                 {
-					//Debug.Log("fade out test");
-					//fadeImage.enabled = false;  //This isn't working yet :c					
+                    //Debug.Log("fade out test");
+                    //fadeImage.enabled = false;  //This isn't working yet :c					
                 }
-              
+
             }
-			fadeImage.enabled = false; 
-            GetComponent<Image>().enabled=false;
+            fadeImage.enabled = false;
+            GetComponent<Image>().enabled = false;
         }
     }
 
@@ -83,7 +85,7 @@ public class FadeOutManager : MonoBehaviour {
                 if (i >= 0.45)
                     StartCoroutine(Fade(false));
             }
-         
+
         }
 
     }
