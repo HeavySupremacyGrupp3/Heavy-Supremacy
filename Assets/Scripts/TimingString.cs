@@ -25,6 +25,9 @@ public class TimingString : TimingSystem
     public float GoodDistance;
     public float BadDistance;
 
+    public int RequiredStreaksForHealth = 10;
+    public int HealthGainedPerStreak = 5;
+
     public Animator StringAnimator;
     public Text StreakCounter;
     public Text HighestStreakCounter;
@@ -67,8 +70,10 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
 
-        AddOrRemoveHealth(1);
         UpdateStreakCounters(1);
+
+        if (streakCounter % RequiredStreaksForHealth == 0)
+            AddOrRemoveHealth(HealthGainedPerStreak);
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
