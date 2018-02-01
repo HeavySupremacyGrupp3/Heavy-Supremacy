@@ -388,6 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e16bc21617a794190eda173ff2bbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amount: 0
+  max: 0
 --- !u!114 &311167214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5fd5fd12462be468a5eef38c225f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amount: 0
+  max: 0
 --- !u!4 &311167215
 Transform:
   m_ObjectHideFlags: 0
@@ -863,9 +867,9 @@ GameObject:
   - component: {fileID: 768391001}
   - component: {fileID: 768391003}
   - component: {fileID: 768391002}
+  - component: {fileID: 768391006}
   - component: {fileID: 768391005}
   - component: {fileID: 768391004}
-  - component: {fileID: 768391006}
   m_Layer: 5
   m_Name: EndGame_Panel
   m_TagString: Untagged

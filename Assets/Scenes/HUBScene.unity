@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 0
-  max: 100
+  max: 10000
 --- !u!4 &804460039
 Transform:
   m_ObjectHideFlags: 0
@@ -3124,7 +3124,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1033969079}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 823, y: -438, z: 0}
+  m_LocalPosition: {x: -683, y: 70, z: 0}
   m_LocalScale: {x: 0.114450514, y: 0.11445046, z: 0.11445046}
   m_Children:
   - {fileID: 1552598624}
@@ -3133,7 +3133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 823, y: -438}
+  m_AnchoredPosition: {x: -683, y: 70}
   m_SizeDelta: {x: 1726, y: 1637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033969081
@@ -4460,6 +4460,7 @@ MonoBehaviour:
   fadeScript: {fileID: 0}
   day: 1
   week: 1
+  WeekText: {fileID: 1900271755}
 --- !u!4 &1369002945
 Transform:
   m_ObjectHideFlags: 0
