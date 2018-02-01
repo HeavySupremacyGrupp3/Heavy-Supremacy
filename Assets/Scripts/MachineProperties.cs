@@ -18,7 +18,11 @@ public class MachineProperties : MonoBehaviour {
 
     private bool reverseLerp = false;
     private bool lerpMachine = false;
+    private bool impact = false;
     private float lerpTimer = 0f;
+
+    [SerializeField]
+    private Animator animator;
 
     public float buttonTime = 0.5f;
 
@@ -31,6 +35,7 @@ public class MachineProperties : MonoBehaviour {
     void Start()
     {
         button = GameObject.Find(buttonName);
+        animator = GetComponent<Animator>();
 
         //Set start and end position that will lerp
         startPosition = transform.position;
@@ -40,6 +45,7 @@ public class MachineProperties : MonoBehaviour {
     void Update()
     {
         MachineMovement();
+        animator.SetBool("impact", impact);
 
         //When called in MachineMovement, start the lerps
         if (lerpMachine)
@@ -49,17 +55,23 @@ public class MachineProperties : MonoBehaviour {
             {
                 lerpTimer += Time.deltaTime / lerpTime;
 
+                impact = true;
                 transform.position = Vector3.Lerp(startPosition, endPosition, lerpTimer);
 
                 if (lerpTimer >= 1)
                     reverseLerp = true;
+
             }
             else
             {
                 lerpTimer -= Time.deltaTime / lerpTime;
 
                 if (lerpTimer <= 0)
+                {
                     lerpMachine = false;
+                    impact = false;
+                }
+
 
                 transform.position = Vector3.Lerp(startPosition, endPosition, lerpTimer);
 
