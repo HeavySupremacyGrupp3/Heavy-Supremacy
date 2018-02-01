@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Guitarr : Item {
+public class Guitar : Item {
 
     private void Start()
     {
@@ -12,7 +12,7 @@ public class Guitarr : Item {
     public override void ActivatePurchase()
     {
         base.ActivatePurchase();
-        Debug.Log("PURCHASED GUITARR!");
+        Debug.Log("PURCHASED GUITAR!");
         NoteGenerator.NoteMultiplier++;
     }
 }

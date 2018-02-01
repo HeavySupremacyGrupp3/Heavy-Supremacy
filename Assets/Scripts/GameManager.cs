@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public FadeOutManager fadeScript;
-    public int day;
-    public int week;
-    private TextMesh t;
+    public int day = 1;
+    public int week = 1;
+    public TextMesh WeekText;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -17,17 +17,15 @@ public class GameManager : MonoBehaviour
     {
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
-        t = GetComponent<TextMesh>();
-        t.text = "Approximately week: ";
-        day = 1;
-        week = 1;
+        //WeekText = GetComponent<TextMesh>();
+        WeekText.text = "Approximately week: ";
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
-        t.text = "Approximately week: " + week;
+        if(Input.GetKeyDown(KeyCode.F))
+        FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
+        WeekText.text = "Approximately week: " + week;
     }
 
     void Initialize()
@@ -52,7 +50,10 @@ public class GameManager : MonoBehaviour
     public void LoadPractice(float energyCost)
     {
         if (CheckEnergy(energyCost))
+        {
+            GigBackgroundManager.GigSession = false;
             SceneManager.LoadScene("PracticeScene");
+        }
     }
 
     public void LoadGig(float energyCost)

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212159010739407014}
   - component: {fileID: 114166510789418356}
   m_Layer: 0
-  m_Name: Guitarr_Item
+  m_Name: Guitar_Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Price: 1000
   OneTimePurchase: 1
-  Name: Guitarr
-  Description: Guitarr is broken, playing is hard. Double trouble bitches.
+  Name: Guitar
+  Description: Guitar is broken, playing is hard. Double trouble bitches.
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1
