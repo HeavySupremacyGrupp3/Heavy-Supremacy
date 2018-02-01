@@ -45,7 +45,7 @@ public class TimingString : TimingSystem
         HealthSlider.maxValue = MaxHealth;
         if (!GigBackgroundManager.GigSession)
             HealthSlider.gameObject.SetActive(false);
-
+        
         AngstStatScript = FindObjectOfType<angstStatScript>();
         MetalStatScript = FindObjectOfType<metalStatScript>();
     }
