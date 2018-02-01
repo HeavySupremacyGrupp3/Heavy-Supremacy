@@ -33,7 +33,7 @@ public class barScript : MonoBehaviour {
 				progressSlider.maxValue=StatReference.getMax();
 				progressSlider.value=amount;
 				
-				Debug.Log(amount);
+				//Debug.Log(amount);
 				//Debug.Log("amount: "+arr[i].getAmount()+" stat: "+arr[i].getStat());
 				//Debug.Log();
 				//Debug.Log(arr[i].getStat());

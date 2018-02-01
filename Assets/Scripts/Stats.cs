@@ -8,7 +8,8 @@ public abstract class Stats : MonoBehaviour {
 
 	[SerializeField]
 	protected float amount;	
-	
+	private float startAmount;
+
 	[SerializeField]
 	protected float max;
 	static float min=0;
@@ -25,8 +26,10 @@ public abstract class Stats : MonoBehaviour {
         else
             DontDestroyOnLoad(gameObject);
 
-		//DontDestroyOnLoad(gameObject);
-		initialize();
+        startAmount = amount;
+
+        //DontDestroyOnLoad(gameObject);
+        initialize();
 		//SliderObject=GameObject.Find("energySlider");
 		//progressSlider=SliderObject.GetComponent<Slider>();
 		//amount=25.0f;
@@ -56,16 +59,21 @@ public abstract class Stats : MonoBehaviour {
 			amount+=a;
 		}	
 		
-		else if(amount+a>max)
+		else if(amount+a>=max)
 		{
 			amount=max;
 		}
 		
-		else if(amount+a<min)
+		else if(amount+a<=min)
 		{
 			amount=min;
 		}
 	}
+
+    public void ResetAmount()
+    {
+        amount = startAmount;
+    }
 
 	public float getAmount()
 	{

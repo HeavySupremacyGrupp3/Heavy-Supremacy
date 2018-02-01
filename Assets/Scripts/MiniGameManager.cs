@@ -71,8 +71,8 @@ public class MiniGameManager : MonoBehaviour {
 		if(spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
 
-            updateCounter =0;
-			StatReference.addOrRemoveAmount(0.05f);
+            updateCounter = 0;
+			//StatReference.addOrRemoveAmount(5f);
 
             //Add new gameobject with a random sprite
             GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
@@ -97,7 +97,13 @@ public class MiniGameManager : MonoBehaviour {
 		}
 		//Debug.Log(updateCounter);
 	}
+	
+	public void QuitWork()
+	{
+		StatReference.addOrRemoveAmount(15f);
+	}
 
+	//se timingMachine
     public void Collided(GameObject productObject)
     {
         produktScript newProduct = productObject.GetComponent<produktScript>();
@@ -148,6 +154,7 @@ public class MiniGameManager : MonoBehaviour {
 
     public void LoadHUB()
     {
+		QuitWork();
 		SceneManager.LoadScene("HUBScene");
         //gmScript.LoadHUB();
     }

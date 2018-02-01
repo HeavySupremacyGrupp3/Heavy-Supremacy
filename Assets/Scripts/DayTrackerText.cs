@@ -18,8 +18,7 @@ public class DayTrackerText : MonoBehaviour {
 
     public void Update()
     {
-        gm = FindObjectOfType<GameManager>();
-        t.text = "Approximately week: " + gm.week;
+        t.text = "Approximately week: " + GameManager.week;
     }
 
 }
