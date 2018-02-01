@@ -4,5 +4,97 @@ using UnityEngine;
 
 public class MachineProperties : MonoBehaviour {
 
-    public int machineType;
+    public int type = 0;
+
+    [SerializeField]
+    private string buttonName;
+    private GameObject button;
+
+    [SerializeField]
+    private Sprite buttonPressedSprite;
+
+    private Vector2 startPosition;
+    private Vector2 endPosition;
+
+    private bool reverseLerp = false;
+    private bool lerpMachine = false;
+    private float lerpTimer = 0f;
+
+    public float buttonTime = 0.5f;
+
+    [SerializeField]
+    private KeyCode key;
+
+    [SerializeField]
+    private float lerpTime = 0.5f;
+
+    void Start()
+    {
+        button = GameObject.Find(buttonName);
+
+        //Set start and end position that will lerp
+        startPosition = transform.position;
+        endPosition = new Vector3(transform.position.x, 2.5f);
+    }
+
+    void Update()
+    {
+        MachineMovement();
+
+        //When called in MachineMovement, start the lerps
+        if (lerpMachine)
+        {
+
+            if (lerpTimer <= 1f && !reverseLerp)
+            {
+                lerpTimer += Time.deltaTime / lerpTime;
+
+                transform.position = Vector3.Lerp(startPosition, endPosition, lerpTimer);
+
+                if (lerpTimer >= 1)
+                    reverseLerp = true;
+            }
+            else
+            {
+                lerpTimer -= Time.deltaTime / lerpTime;
+
+                if (lerpTimer <= 0)
+                    lerpMachine = false;
+
+                transform.position = Vector3.Lerp(startPosition, endPosition, lerpTimer);
+
+                if (lerpTimer <= 0)
+                    reverseLerp = false;
+            }
+        }
+    }
+
+    private void MachineMovement()
+    {
+
+        //  Älskar dig <3
+
+        if (Input.GetKeyDown(key) && lerpTimer <= 0)
+            lerpMachine = OnMachineMove(button, buttonPressedSprite, lerpMachine, type);
+    }
+
+    private bool OnMachineMove(GameObject button, Sprite sprite, bool lerpMachine, int index)
+    {
+        SpriteRenderer sr = button.GetComponent<SpriteRenderer>();
+        Sprite oldSprite = sr.sprite;
+        sr.sprite = sprite;
+
+        StartCoroutine(ButtonTimer(sr, oldSprite));
+
+        if (!lerpMachine)
+            return true;
+        else
+            return false;
+    }
+
+    private IEnumerator ButtonTimer(SpriteRenderer sr, Sprite buttonSprite)
+    {
+        yield return new WaitForSeconds(buttonTime);
+        sr.sprite = buttonSprite;
+    }
 }

@@ -100,7 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3300fecb12b789a4ba9e9a3fd19201bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineType: 0
+  type: 0
+  buttonName: Button_Right
+  buttonPressedSprite: {fileID: 21300000, guid: fdbb3b9bb9a258148b7eec4ff627eabc,
+    type: 3}
+  buttonTime: 0.5
+  key: 275
+  lerpTime: 0.5
 --- !u!212 &212281286517010556
 SpriteRenderer:
   m_ObjectHideFlags: 1
