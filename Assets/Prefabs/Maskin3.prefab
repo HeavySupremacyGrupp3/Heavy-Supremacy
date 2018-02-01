@@ -37,7 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4513733968893070}
   - component: {fileID: 212947836845818518}
+  - component: {fileID: 61984248968015702}
   - component: {fileID: 114538909954461294}
+  - component: {fileID: 114857700170583890}
   m_Layer: 0
   m_Name: Maskin3
   m_TagString: Untagged
@@ -72,6 +74,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61984248968015702
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1984025146281826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -10}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 13.73, y: 11.28}
+    newSize: {x: 13.73, y: 11.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7, y: 11.28}
+  m_EdgeRadius: 0
 --- !u!95 &95212838930157136
 Animator:
   serializedVersion: 3
@@ -107,6 +134,24 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 275
   lerpTime: 0.5
+--- !u!114 &114857700170583890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1984025146281826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bbe80e6b5ce664e8b34eae72ff0c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivasionKey1: 0
+  ActivasionKey2: 0
+  ActivasionKey3: 0
+  CanComboKey: 0
+  CanExitCollider: 0
+  MyOutOfRangeDetector: {fileID: 0}
+  myType: 2
 --- !u!212 &212281286517010556
 SpriteRenderer:
   m_ObjectHideFlags: 1
