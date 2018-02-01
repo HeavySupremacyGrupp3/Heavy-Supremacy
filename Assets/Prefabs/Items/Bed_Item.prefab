@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9913c8a6d1318164da5e518168ac53df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 1
   Price: 10
   OneTimePurchase: 1
   Name: Bed

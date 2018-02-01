@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShopSystem : MonoBehaviour
 {
     public static List<Item> MyInventory = new List<Item>();
+    //public static List<Furniture> MyFurnitures = new List<Furniture>();
     public List<Item> ShopInventory = new List<Item>();
     public List<Button> ShopButtons = new List<Button>();
     private List<Text> PriceTexts = new List<Text>();
@@ -30,6 +31,7 @@ public class ShopSystem : MonoBehaviour
         if (moneyStatScript.getAmount() == 0)
         {
             MyInventory.Clear();
+            //MyFurnitures.Clear();
         }
 
         FetchShopUIElements();
@@ -93,7 +95,12 @@ public class ShopSystem : MonoBehaviour
 
         moneyStatScript.addOrRemoveAmount(-item.Price);
         item.ActivatePurchase();
-        MyInventory.Add(item);
+
+        //if (item.Type == Item.ItemType.Item)
+            MyInventory.Add(item);
+        //else if (item.Type == Item.ItemType.Furniture)
+        //    MyFurnitures.Add(item.gameObject.GetComponent<Furniture>());
+
 
         UpdateShopUI();
         UpdateHUBEnvironment();
@@ -161,11 +168,12 @@ public class ShopSystem : MonoBehaviour
             FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
     }
 
-    void UpdateHUBEnvironment()
+    public static void UpdateHUBEnvironment()
     {
-        foreach (Furniture f in MyInventory)
+        for (int i = 0; i < MyInventory.Count; i++)
         {
-            f.UpdateFurnitures();
+            if (MyInventory[i].Type == Item.ItemType.Furniture)
+                MyInventory[i].UpdateFurniture();
         }
     }
 }

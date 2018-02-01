@@ -10,7 +10,7 @@ public class Furniture : Item
     public string GameObjectToReplace;
     private Vector3 myTransform;
 
-    public void UpdateFurnitures()
+    public override void UpdateFurniture()
     {
         FindPosition();
         AddGameObject(FurnitureToInstantiate);

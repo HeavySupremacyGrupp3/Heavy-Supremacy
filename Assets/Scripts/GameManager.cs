@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Screen.SetResolution(1920, 1080, true);
+        ShopSystem.UpdateHUBEnvironment();
 
         if (ToEndGame)
             EndGame(EndGameTitleText);
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         ShopSystem.MyInventory.Clear();
+
         FindObjectOfType<metalStatScript>().ResetAmount();
         FindObjectOfType<moneyStatScript>().ResetAmount();
         FindObjectOfType<angstStatScript>().ResetAmount();
