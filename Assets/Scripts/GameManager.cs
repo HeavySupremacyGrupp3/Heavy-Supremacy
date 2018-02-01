@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public FadeOutManager fadeScript;
     public float Rent;
-    public int day = 1;
-    public int week = 1;
+    public static int day = 1;
+    public static int week = 1;
     public TextMesh WeekText;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
 
         NoteGenerator.Reset();
         TimingString.Reset();
+
+        day = 1;
+        week = 1;
 
         LoadHUB();
     }
