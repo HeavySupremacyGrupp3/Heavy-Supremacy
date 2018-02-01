@@ -4822,7 +4822,7 @@ MonoBehaviour:
   AudioSource: {fileID: 824317877}
   AngstRewardAmount: -10
   MetalRewardAmount: 15
-  MaxHealth: 5
+  MaxHealth: 15
   HealthSlider: {fileID: 1678987328}
   AngstPopupPrefab: {fileID: 1037883681889236, guid: 6262f128934fece44bd7d2a3cd54a6a1,
     type: 2}
@@ -4841,6 +4841,8 @@ MonoBehaviour:
   PerfectDistance: 0.5
   GoodDistance: 1
   BadDistance: 1.5
+  RequiredStreaksForHealth: 10
+  HealthGainedPerStreak: 5
   StringAnimator: {fileID: 1576011365}
   StreakCounter: {fileID: 578123371}
   HighestStreakCounter: {fileID: 903594609}

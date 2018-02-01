@@ -27,7 +27,7 @@ public class TransformLerp : MonoBehaviour
         {
             if (Reverse && posTimer >= 0)
                 posTimer -= Time.deltaTime * Speed;
-            else if(posTimer <= 1)
+            else if(posTimer <= 1 && !Reverse)
                 posTimer += Time.deltaTime * Speed;
 
             transform.localPosition = Vector2.Lerp(StartPosition, TargetPosition, posTimer);
