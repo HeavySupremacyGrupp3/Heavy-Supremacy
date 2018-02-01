@@ -14,7 +14,7 @@ public class TimingMachine : TimingSystem {
 	
 	public override void SucceedTiming()
     {
-		produktScript sc=target.GetComponent<produktScript>();
+		produktScript sc=targets[0].GetComponent<produktScript>();
 		
 		if(timesChanged==0 && !sc.Spoiled)
 		{
@@ -92,12 +92,13 @@ public class TimingMachine : TimingSystem {
 	private void spoilProducts(GameObject ta)
 	{
 		//Debug.Log("times changed "+timesChanged);
-		target=ta;
-		produktScript sc=target.GetComponent<produktScript>();
+		targets[0]=ta;
+		produktScript sc=targets[0].GetComponent<produktScript>();
 		
 		if(myType==sc.type)
 		{		
 			sc.spoil();
+            targets.RemoveAt(0);
 		}
 		timesChanged=0;
 	}

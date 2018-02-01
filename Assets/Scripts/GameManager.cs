@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public FadeOutManager fadeScript;
     public int day = 1;
     public int week = 1;
-    private TextMesh t;
+    public TextMesh WeekText;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -17,15 +17,15 @@ public class GameManager : MonoBehaviour
     {
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
-        t = GetComponent<TextMesh>();
-        t.text = "Approximately week: ";
+        //WeekText = GetComponent<TextMesh>();
+        WeekText.text = "Approximately week: ";
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.F))
         FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
-        t.text = "Approximately week: " + week;
+        WeekText.text = "Approximately week: " + week;
     }
 
     void Initialize()

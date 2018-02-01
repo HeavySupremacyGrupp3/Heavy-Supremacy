@@ -53,13 +53,14 @@ public class TimingString : TimingSystem
     public override void FailTiming()
     {
         Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
-        base.FailTiming();
 
         AddOrRemoveHealth(-1);
         UpdateStreakCounters(-streakCounter);
 
         AudioSource.PlayOneShot(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         StringAnimator.SetTrigger("StringStroked");
+
+        base.FailTiming();
     }
 
     public override void SucceedTiming()
@@ -71,13 +72,12 @@ public class TimingString : TimingSystem
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
-        Destroy(target);
         AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
         MetalStatScript.addOrRemoveAmount(MetalRewardAmount * MetalMultiplier);
 
         //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
-        GameObject noteHitEffect = Instantiate(NoteHitEffect, target.transform.position, Quaternion.identity) as GameObject;
+        GameObject noteHitEffect = Instantiate(NoteHitEffect, targets[0].transform.position, Quaternion.identity) as GameObject;
 
         //metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
         //angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
@@ -87,11 +87,15 @@ public class TimingString : TimingSystem
         Destroy(noteHitEffect, 5);
 
         StringAnimator.SetTrigger("StringStroked");
+
+        Destroy(targets[0]);
+        //This line is the cause of index-errors when hitting notes.
+        targets.RemoveAt(0);
     }
 
     private GameObject GetNoteAccuracyPrefab()
     {
-        float distance = transform.position.y - target.transform.position.y;
+        float distance = transform.position.y - targets[0].transform.position.y;
         if (distance < 0)
             distance *= -1;
 
@@ -128,9 +132,10 @@ public class TimingString : TimingSystem
 
         if (health > MaxHealth)
             health = MaxHealth;
-        else if(health <= 0 && GigBackgroundManager.GigSession)
-            FindObjectOfType<NoteGenerator>().EndGamePanel.SetActive(true);
-
+        else if (health <= 0 && GigBackgroundManager.GigSession)
+        {
+            FindObjectOfType<NoteGenerator>().EndGame();
+        }
         HealthSlider.value = MaxHealth - health;
     }
 
