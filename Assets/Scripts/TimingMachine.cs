@@ -50,7 +50,7 @@ public class TimingMachine : TimingSystem {
 		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
 		if(myType<sc.type)
 		{
-			Debug.Log("Produkten behöver inte förvandlas.");
+			//Debug.Log("Produkten behöver inte förvandlas.");
 		}
 		
 		if(myType==sc.type)
@@ -91,12 +91,11 @@ public class TimingMachine : TimingSystem {
 	
 	private void spoilProducts(GameObject ta)
 	{		
-		Debug.Log(ta);
 		produktScript sc=ta.GetComponent<produktScript>();
 		
 		if(myType==sc.type)
 		{		
-			Debug.Log("spoil me");
+			Debug.Log("typer: "+myType+" "+sc.type);
 			sc.spoil();
 		}
 		targets.RemoveAt(0);
