@@ -4366,14 +4366,6 @@ MonoBehaviour:
   - {fileID: 454117869}
   - {fileID: 1939845093}
   - {fileID: 1810839962}
-  PriceTexts:
-  - {fileID: 1159252076}
-  - {fileID: 100517050}
-  - {fileID: 1890448238}
-  NameTexts:
-  - {fileID: 1058555153}
-  - {fileID: 791814906}
-  - {fileID: 1568173732}
   AreYouSurePanel: {fileID: 521628383}
   YesButton: {fileID: 75545119}
   ProductDescription: {fileID: 904930858}

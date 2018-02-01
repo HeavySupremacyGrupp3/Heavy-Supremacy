@@ -8,8 +8,8 @@ public class ShopSystem : MonoBehaviour
     public static List<Item> MyInventory = new List<Item>();
     public List<Item> ShopInventory = new List<Item>();
     public List<Button> ShopButtons = new List<Button>();
-    public List<Text> PriceTexts = new List<Text>();
-    public List<Text> NameTexts = new List<Text>();
+    private List<Text> PriceTexts = new List<Text>();
+    private List<Text> NameTexts = new List<Text>();
 
     public GameObject AreYouSurePanel;
     public Button YesButton;
@@ -32,8 +32,26 @@ public class ShopSystem : MonoBehaviour
             MyInventory.Clear();
         }
 
+        FetchShopUIElements();
         UpdateShopUI();
         UpdateHUBEnvironment();
+    }
+
+    void FetchShopUIElements()
+    {
+
+        for (int i = 0; i < ShopButtons.Count; i++)
+        {
+            for (int j = 0; j < ShopButtons[i].transform.childCount; j++)
+            {
+                Debug.Log(ShopButtons[i].transform.childCount);
+                if (ShopButtons[i].transform.GetChild(j).name.Contains("Price"))
+                    PriceTexts.Add(ShopButtons[i].transform.GetChild(j).GetComponent<Text>());
+
+                if (ShopButtons[i].transform.GetChild(j).name.Contains("Name"))
+                    NameTexts.Add(ShopButtons[i].transform.GetChild(j).GetComponent<Text>());
+            }
+        }
     }
 
     private void Update()

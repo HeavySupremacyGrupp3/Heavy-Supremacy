@@ -14,8 +14,10 @@ public class FadeOutManager : MonoBehaviour
         fadeImage.enabled = false;
         fadeImage.color = new Color(1, 1, 1, 0);
         if (halfFadeImage != null)
+        {
             halfFadeImage.enabled = false;
-        halfFadeImage.color = new Color(1, 1, 1, 0);
+            halfFadeImage.color = new Color(1, 1, 1, 0);
+        }
     }
 
     public void FadeOut()
