@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour {
 
@@ -40,13 +39,7 @@ public class MusicManager : MonoBehaviour {
 
     }
 
-    /*[SerializeField]
-    private AudioClip music1;
-    [SerializeField]
-    private AudioClip music2;
-    [SerializeField]
-    private AudioClip music3;
-
+/*
     [SerializeField]
     private AudioSource[] audioSources;
     private float volume;
