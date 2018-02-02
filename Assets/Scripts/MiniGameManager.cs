@@ -69,10 +69,10 @@ public class MiniGameManager : MonoBehaviour {
         if (spawnStuff)
         updateCounter += Time.deltaTime;
 			
-		//if(spawnStuff && updateCounter+0.2>= productInterval)
-			//{
-				//Debug.Log("under maskin");
-			//}
+		if(updateCounter>= productInterval)
+		{
+			Debug.Log("under maskin");
+		}
 			
 		if(spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
