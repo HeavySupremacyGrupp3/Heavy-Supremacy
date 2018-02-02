@@ -28,16 +28,17 @@ public class MiniGameManager : MonoBehaviour {
 	bool productsAreStopped=false;
 	
 	int stopCounter=0;
+	int finishedProducts=0;
 
 
     void OnEnable()
 	{
-		//TimingMachine.productDetected +=changeSpawnStopProducts;
+		produktScript.earnMoney +=omaewashindeiru;
 	}
 	
 	void OnDisable()
 	{
-		//TimingMachine.productDetected -=changeSpawnStopProducts;
+		produktScript.earnMoney -=omaewashindeiru;
 	}
 	
 	void changeSpawnStopProducts()
@@ -46,14 +47,22 @@ public class MiniGameManager : MonoBehaviour {
 		productsAreStopped=!productsAreStopped;
 		stopProducts();
 	}
+	
+	void omaewashindeiru()
+	{
+		finishedProducts++;
+		
+		if(finishedProducts==5)
+		{
+			LoadHUB();
+		}
+	}
 
     void Start ()
 	{
         gmScript = GetComponent<GameManager>();
         produktScript = GetComponent<produktScript>();
         StatReference =GameObject.Find("angstObject").GetComponent<angstStatScript>();
-		//stopCounter=-90;
-
     }	
 	
 	void Update ()
@@ -68,11 +77,6 @@ public class MiniGameManager : MonoBehaviour {
 		*/
         if (spawnStuff)
         updateCounter += Time.deltaTime;
-			
-		//if(updateCounter>= productInterval)
-		//{
-			//Debug.Log("under maskin");
-		//}
 			
 		if(spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
@@ -98,15 +102,6 @@ public class MiniGameManager : MonoBehaviour {
 				stopCounter=0;
 			}
 		}
-		
-		//stopCounter++;
-		//if(stopCounter==120)
-		//{
-			//changeSpawnStopProducts();
-			//stopCounter=0;
-		//}
-		
-		//Debug.Log(updateCounter);
 	}
 	
 	public void QuitWork()

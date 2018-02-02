@@ -50,10 +50,10 @@ public class TimingMachine : TimingSystem {
 		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
 		if(myType<sc.type)
 		{
-			FindObjectOfType<MusicManager>().Play("Arm1Sound");
+			//FindObjectOfType<MusicManager>().Play("Arm1Sound");
 			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
 			sc.spoil();
-			targets.RemoveAt(0);
+			//targets.RemoveAt(0);
 			timesChanged=0;
 		}
 		
@@ -69,7 +69,13 @@ public class TimingMachine : TimingSystem {
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
 		
-		productDetected();
+		//productDetected();
+	}
+	
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		targets.RemoveAt(0);
+		Debug.Log(targets.Count);
 	}
 	
 	private void old2DCollider(Collider2D collision)
@@ -102,7 +108,7 @@ public class TimingMachine : TimingSystem {
 			//Debug.Log("typer: "+myType+" "+sc.type);
 			sc.spoil();
 		}
-		targets.RemoveAt(0);
+		//targets.RemoveAt(0);
 		timesChanged=0;
 	}
 }

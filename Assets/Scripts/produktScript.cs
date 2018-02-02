@@ -38,7 +38,7 @@ public class produktScript : MonoBehaviour {
         MiniGameManager mgm = GetComponent<MiniGameManager>();
         MachineBehaviour mb = GetComponent<MachineBehaviour>();
         startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x + mb.spacing, startPosition.y);
+        //endPosition = new Vector3(startPosition.x + mb.spacing, startPosition.y);
         
     }
 
