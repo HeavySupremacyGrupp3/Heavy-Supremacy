@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
 
     public static string EndGameTitleText;
     public static bool ToEndGame;
+    public static AudioClip StartSFXSound;
 
-    void Start()
+    void Awake()
     {
         Screen.SetResolution(1920, 1080, true);
         ShopSystem.UpdateHUBEnvironment();
@@ -32,12 +33,17 @@ public class GameManager : MonoBehaviour
         fadeScript = GetComponent<FadeOutManager>();
         //WeekText = GetComponent<TextMesh>();
         WeekText.text = "Approximately week: ";
+
+        //Needs to be removed if a minigame to HUB click sound is to be played.
+        StartSFXSound = null;
+
+        GameObject.Find("HUBMusic").GetComponent<AudioSource>().time = Random.Range(0, GameObject.Find("HUBMusic").GetComponent<AudioSource>().clip.length);
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
+        if (Input.GetKeyDown(KeyCode.F))
+            FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
         //WeekText.text = "Approximately week: " + week;
     }
 
@@ -45,8 +51,13 @@ public class GameManager : MonoBehaviour
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
             Destroy(FindObjectsOfType<GameManager>()[0].gameObject);
-        
-            DontDestroyOnLoad(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        TriggerStartSound();
     }
 
     public void Quit()
@@ -133,6 +144,19 @@ public class GameManager : MonoBehaviour
                 EndGame("You're Broke!");
             else
                 FindObjectOfType<moneyStatScript>().addOrRemoveAmount(-Rent);
+        }
+    }
+
+    public void AddSFXToStart(AudioClip audio)
+    {
+        StartSFXSound = audio;
+    }
+
+    void TriggerStartSound()
+    {
+        if (StartSFXSound != null && !GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().PlayOneShot(StartSFXSound);
         }
     }
 
