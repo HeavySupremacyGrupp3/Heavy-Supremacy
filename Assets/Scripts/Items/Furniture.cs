@@ -8,9 +8,9 @@ public class Furniture : Item
     public GameObject FurnitureToInstantiate;
     public string GameObjectToDestroy;
     public string GameObjectToReplace;
-    private Vector3 pos;
+    private Vector3 myTransform;
 
-    public void UpdateFurnitures()
+    public override void UpdateFurniture()
     {
         FindPosition();
         AddGameObject(FurnitureToInstantiate);
@@ -20,14 +20,17 @@ public class Furniture : Item
 
     void FindPosition()
     {
-        pos = Camera.main.ScreenToWorldPoint(transform.position);
+        RectTransform myRect = GetComponent<RectTransform>();
+        myTransform = new Vector3(myRect.position.x, myRect.position.y, 0);
+
+        myTransform = Camera.main.ViewportToScreenPoint(transform.position);
     }
 
     void AddGameObject(GameObject go)
     {
         if (go != null)
         {
-            GameObject goTemp = Instantiate(go, pos, Quaternion.Euler(pos), GameObject.Find("buttonCanvas").transform) as GameObject;
+            GameObject goTemp = Instantiate(go, GameObject.Find("buttonCanvas").transform, true) as GameObject;
             goTemp.name = go.name;
         }
     }
@@ -42,9 +45,13 @@ public class Furniture : Item
     {
         if (name != null)
         {
-            GameObject.Find(name).GetComponentInChildren<Image>().sprite = GetComponent<Image>().sprite;
-            GameObject.Find(name).transform.position = pos;
-            GameObject.Find(name).transform.rotation = Quaternion.Euler(pos);
+            Button goReplaceable = GameObject.Find(name).GetComponent<Button>();
+            goReplaceable.image.sprite = GetComponent<Image>().sprite;
+
+            goReplaceable.transform.localPosition = transform.position;
+            goReplaceable.transform.localRotation = transform.rotation;
+            goReplaceable.transform.localScale = transform.localScale;
+            goReplaceable.GetComponent<RectTransform>().sizeDelta = GetComponent<RectTransform>().sizeDelta;
         }
     }
 }
