@@ -1,10 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
 
-    [SerializeField]
+    public Sound[] sounds;
+
+     void Awake()
+    {
+        foreach (Sound s in sounds)
+        {
+            gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.loop = s.loop;
+        }
+    }
+
+    public void Play(string name)
+    {
+        Sound s = Array.Find(sounds, Sound => Sound.name == name);
+        s.source.Play();
+    }
+
+    /*[SerializeField]
     private AudioClip music1;
     [SerializeField]
     private AudioClip music2;
@@ -22,6 +42,7 @@ public class MusicManager : MonoBehaviour {
     }
 
     //Old solution
+
     /*
     public void PlayMusic(AudioClip audioClip, bool loop)
     {
@@ -46,21 +67,23 @@ public class MusicManager : MonoBehaviour {
          audioSources[index].loop = loop;
      }*/
 
-    public void StopMusic(AudioClip audioClip, int index)
+    /*
+public void StopMusic(AudioClip audioClip, int index)
 {
-    audioSources[index].clip = audioClip;
-    audioSources[index].Stop();
+audioSources[index].clip = audioClip;
+audioSources[index].Stop();
 }
 
-    public void PlayMusic(AudioClip audioClip, int index, bool loop)
-    {
-        // Index 0: Music, 1: Sound Effects, 2: Something else
-        audioSources[index].clip = audioClip;
-        audioSources[index].volume = volume;
-        audioSources[index].PlayOneShot(audioClip, volume);
-        audioSources[index].loop = !audioSources[index].loop;
-        audioSources[index].loop = loop;
+public void PlayMusic(AudioClip audioClip, int index, bool loop)
+{
+    // Index 0: Music, 1: Sound Effects, 2: Something else
+    audioSources[index].clip = audioClip;
+    audioSources[index].volume = volume;
+    audioSources[index].PlayOneShot(audioClip, volume);
+    audioSources[index].loop = !audioSources[index].loop;
+    audioSources[index].loop = loop;
 
-    }
+}
+}*/
 
 }
