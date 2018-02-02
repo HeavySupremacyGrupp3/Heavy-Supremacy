@@ -6,9 +6,19 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour {
 
     public Sound[] sounds;
+    public static MusicManager instance;
 
-     void Awake()
+    void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else { 
+            Destroy(gameObject);
+             return;
+        }
+
+            DontDestroyOnLoad(gameObject);
+
         foreach (Sound s in sounds)
         {
             gameObject.AddComponent<AudioSource>();

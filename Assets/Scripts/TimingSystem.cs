@@ -44,6 +44,7 @@ public abstract class TimingSystem : MonoBehaviour
         //targets = null;
         if (targets.Count > 0)
             targets.RemoveAt(0);
+        
     }
 
     public virtual void SucceedTiming()
@@ -56,6 +57,7 @@ public abstract class TimingSystem : MonoBehaviour
         if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
         {
             targets.Add(collision.gameObject);
+            
         }
     }
 }
