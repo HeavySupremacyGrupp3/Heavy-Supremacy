@@ -46,7 +46,6 @@ public class ShopSystem : MonoBehaviour
         {
             for (int j = 0; j < ShopButtons[i].transform.childCount; j++)
             {
-                Debug.Log(ShopButtons[i].transform.childCount);
                 if (ShopButtons[i].transform.GetChild(j).name.Contains("Price"))
                     PriceTexts.Add(ShopButtons[i].transform.GetChild(j).GetComponent<Text>());
 
