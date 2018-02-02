@@ -95,7 +95,7 @@ public class TimingMachine : TimingSystem {
 		
 		if(myType==sc.type)
 		{		
-			Debug.Log("typer: "+myType+" "+sc.type);
+			//Debug.Log("typer: "+myType+" "+sc.type);
 			sc.spoil();
 		}
 		targets.RemoveAt(0);
