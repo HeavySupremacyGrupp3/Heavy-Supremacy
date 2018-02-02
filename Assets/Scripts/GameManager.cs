@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public static string EndGameTitleText;
     public static bool ToEndGame;
     public static AudioClip StartSFXSound;
+	
+	private KeyCode key=KeyCode.Escape;
 
     void Awake()
     {
@@ -45,6 +47,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
             FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
         //WeekText.text = "Approximately week: " + week;
+		
+		if(Input.GetKeyDown(key))
+			Quit();
+		
     }
 
     void Initialize()
