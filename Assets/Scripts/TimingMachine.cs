@@ -50,6 +50,7 @@ public class TimingMachine : TimingSystem {
 		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
 		if(myType<sc.type)
 		{
+			FindObjectOfType<MusicManager>().Play("Arm1Sound");
 			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
 			sc.spoil();
 			targets.RemoveAt(0);
