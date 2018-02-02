@@ -36,7 +36,6 @@ public class ShopSystem : MonoBehaviour
 
         FetchShopUIElements();
         UpdateShopUI();
-        UpdateHUBEnvironment();
     }
 
     void FetchShopUIElements()

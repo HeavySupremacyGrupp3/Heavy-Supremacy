@@ -25,8 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Screen.SetResolution(1920, 1080, true);
-        ShopSystem.UpdateHUBEnvironment();
+        //Screen.SetResolution(1920, 1080, true);
 
         if (ToEndGame)
             EndGame(EndGameTitleText);
@@ -64,6 +63,9 @@ public class GameManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         TriggerStartSound();
+
+        if (level == 0)
+            ShopSystem.UpdateHUBEnvironment();
     }
 
     public void Quit()

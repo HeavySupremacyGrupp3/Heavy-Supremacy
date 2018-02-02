@@ -28,9 +28,9 @@ public class Furniture : Item
 
     void AddGameObject(GameObject go)
     {
-        if (go != null)
+        if (go != null && CheckForDuplicates())
         {
-            GameObject goTemp = Instantiate(go, GameObject.Find("buttonCanvas").transform, true) as GameObject;
+            GameObject goTemp = Instantiate(go, GameObject.Find("Furniture").transform, false) as GameObject;
             goTemp.name = go.name;
         }
     }
@@ -43,7 +43,7 @@ public class Furniture : Item
 
     void ReplaceSprite(string name)
     {
-        if (name != null)
+        if (name != null && name != "")
         {
             Button goReplaceable = GameObject.Find(name).GetComponent<Button>();
             goReplaceable.image.sprite = GetComponent<Image>().sprite;
@@ -53,5 +53,17 @@ public class Furniture : Item
             goReplaceable.transform.localScale = transform.localScale;
             goReplaceable.GetComponent<RectTransform>().sizeDelta = GetComponent<RectTransform>().sizeDelta;
         }
+    }
+
+    bool CheckForDuplicates()
+    {
+        Furniture[] furnitures = FindObjectsOfType<Furniture>();
+
+        foreach (Furniture f in furnitures)
+        {
+            if (f.Name == Name)
+                return false;
+        }
+        return true;
     }
 }
