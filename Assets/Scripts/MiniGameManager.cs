@@ -52,7 +52,7 @@ public class MiniGameManager : MonoBehaviour {
         gmScript = GetComponent<GameManager>();
         produktScript = GetComponent<produktScript>();
         StatReference =GameObject.Find("angstObject").GetComponent<angstStatScript>();
-		stopCounter=-90;
+		//stopCounter=-90;
 
     }	
 	
@@ -68,19 +68,26 @@ public class MiniGameManager : MonoBehaviour {
 		*/
         if (spawnStuff)
         updateCounter += Time.deltaTime;
-		
+			
+		//if(spawnStuff && updateCounter+0.2>= productInterval)
+			//{
+				//Debug.Log("under maskin");
+			//}
+			
 		if(spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
 
-            updateCounter = 0;
-
+            updateCounter=0;
             //Add new gameobject with a random sprite
-            GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+            GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);						
             int rng = Random.Range(0, productSprites.Length);
             nyProdukt.GetComponent<produktScript>().type = rng;
             SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
             sr.sprite = productSprites[rng];
-        }
+			changeSpawnStopProducts();
+			
+			
+        }	
 		
 		if(productsAreStopped)
 		{
@@ -92,12 +99,12 @@ public class MiniGameManager : MonoBehaviour {
 			}
 		}
 		
-		stopCounter++;
-		if(stopCounter==120)
-		{
-			changeSpawnStopProducts();
-			stopCounter=0;
-		}
+		//stopCounter++;
+		//if(stopCounter==120)
+		//{
+			//changeSpawnStopProducts();
+			//stopCounter=0;
+		//}
 		
 		//Debug.Log(updateCounter);
 	}
