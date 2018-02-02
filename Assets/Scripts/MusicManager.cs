@@ -32,6 +32,12 @@ public class MusicManager : MonoBehaviour {
     {
         Sound s = Array.Find(sounds, Sound => Sound.name == name);
         s.source.Play();
+        if (s == null)
+        {
+            Debug.LogWarning(name + "wasn't found");
+            return;
+        }
+
     }
 
     /*[SerializeField]
