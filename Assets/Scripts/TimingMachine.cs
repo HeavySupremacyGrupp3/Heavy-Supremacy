@@ -50,19 +50,22 @@ public class TimingMachine : TimingSystem {
 		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
 		if(myType<sc.type)
 		{
-			//Debug.Log("Produkten behöver inte förvandlas.");
+			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
+			sc.spoil();
+			targets.RemoveAt(0);
+			timesChanged=0;
 		}
 		
 		if(myType==sc.type)
 		{
-			Debug.Log("Jag förvandlar.");
+			//Debug.Log("Jag förvandlar.");
 			sc.type++;
 			collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.type];
 		}
 		
 		if(myType>sc.type)
 		{
-			Debug.Log("Hit kan man flytta förstörelse.");
+			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
 		
 		productDetected();
