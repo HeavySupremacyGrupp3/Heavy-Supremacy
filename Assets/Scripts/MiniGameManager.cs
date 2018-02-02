@@ -32,12 +32,12 @@ public class MiniGameManager : MonoBehaviour {
 
     void OnEnable()
 	{
-		TimingMachine.productDetected +=changeSpawnStopProducts;
+		//TimingMachine.productDetected +=changeSpawnStopProducts;
 	}
 	
 	void OnDisable()
 	{
-		TimingMachine.productDetected -=changeSpawnStopProducts;
+		//TimingMachine.productDetected -=changeSpawnStopProducts;
 	}
 	
 	void changeSpawnStopProducts()
