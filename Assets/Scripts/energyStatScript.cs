@@ -21,7 +21,7 @@ public class energyStatScript : Stats
 
 	public void addEnergy()
 	{
-		addOrRemoveAmount(4);
+		addOrRemoveAmount(max);
 		//amount += 50f;
 	}
 }
