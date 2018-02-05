@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ShopSystem : MonoBehaviour
 {
     public static List<Item> MyInventory = new List<Item>();
-    //public static List<Furniture> MyFurnitures = new List<Furniture>();
-    //[HideInInspector]
+    [HideInInspector]
     public List<Item> ShopInventory = new List<Item>();
-    //[HideInInspector]
+    [HideInInspector]
     public List<Button> ShopButtons = new List<Button>();
     private List<Text> PriceTexts = new List<Text>();
     private List<Text> NameTexts = new List<Text>();
@@ -40,20 +40,11 @@ public class ShopSystem : MonoBehaviour
 
     void FetchShopUIElements()
     {
-        //ShopButtons.RemoveAll(Button => Button == null);
-        //ShopInventory.RemoveAll(null);
+        ShopButtons.RemoveAll(Button => Button == null);
+        ShopInventory.RemoveAll(Item => Item == null);
+
         for (int i = 0; i < ShopButtons.Count; i++)
         {
-            //if (ShopButtons[i] == null)
-            //{
-            //    ShopButtons.RemoveAll(null);
-            //    ShopButtons.RemoveAt(i);
-            //    ShopInventory.RemoveAt(i);
-            //    Debug.Log(i);
-            //    if (i == ShopButtons.Count)
-            //        continue;
-            //}
-
             for (int j = 0; j < ShopButtons[i].transform.childCount; j++)
             {
                 if (ShopButtons[i].transform.GetChild(j).name.Contains("Price"))
@@ -99,6 +90,7 @@ public class ShopSystem : MonoBehaviour
             Debug.Log("TOO POOR");
         }
     }
+
     public void MakePurchase()
     {
         Item item = FindItemByName(itemToBePurchased);

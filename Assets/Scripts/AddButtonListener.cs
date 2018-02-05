@@ -13,5 +13,4 @@ public class AddButtonListener : MonoBehaviour {
     {
         GetComponent<Button>().onClick.AddListener(() => Shop.AtemptPurchase(Name));
     }
-
 }

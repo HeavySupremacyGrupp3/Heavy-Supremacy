@@ -130,7 +130,7 @@ public class CreateShopItem : EditorWindow
         //types[0] = typeof(string);
         //System.Reflection.MethodInfo targetInfo = UnityEvent.GetValidMethodInfo(Shop.GetComponent<ShopSystem>(), "AtemptPurchase", types);
         //UnityAction methodDelegate = System.Delegate.CreateDelegate(typeof(UnityAction), Shop.GetComponent<ShopSystem>(), targetInfo) as UnityAction;
-
+        //ItemButton.GetComponent<Button>().onClick += Shop.AtemptPurchase("TEST");
         //unityAction += CallAtemptPurchase();
         //UnityEventTools.AddPersistentListener(ItemButton.GetComponent<Button>().onClick, new UnityAction(() => Shop.AtemptPurchase("Guitar")));
     }
@@ -146,9 +146,11 @@ public class CreateShopItem : EditorWindow
     private void OnDestroy()
     {
         if (ItemButton.transform.parent == null)
+        {
             DestroyImmediate(ItemButton);
             DestroyImmediate(ItemPrefab);
             DestroyImmediate(PriceText);
             DestroyImmediate(NameText);
-    }
+        }
+    }   
 }
