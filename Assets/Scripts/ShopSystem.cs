@@ -7,9 +7,9 @@ public class ShopSystem : MonoBehaviour
 {
     public static List<Item> MyInventory = new List<Item>();
     //public static List<Furniture> MyFurnitures = new List<Furniture>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<Item> ShopInventory = new List<Item>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<Button> ShopButtons = new List<Button>();
     private List<Text> PriceTexts = new List<Text>();
     private List<Text> NameTexts = new List<Text>();
@@ -40,13 +40,19 @@ public class ShopSystem : MonoBehaviour
 
     void FetchShopUIElements()
     {
+        //ShopButtons.RemoveAll(Button => Button == null);
+        //ShopInventory.RemoveAll(null);
         for (int i = 0; i < ShopButtons.Count; i++)
         {
-            if (ShopButtons[i] == null)
-            {
-                ShopButtons.RemoveAt(i);
-                ShopInventory.RemoveAt(i);
-            }
+            //if (ShopButtons[i] == null)
+            //{
+            //    ShopButtons.RemoveAll(null);
+            //    ShopButtons.RemoveAt(i);
+            //    ShopInventory.RemoveAt(i);
+            //    Debug.Log(i);
+            //    if (i == ShopButtons.Count)
+            //        continue;
+            //}
 
             for (int j = 0; j < ShopButtons[i].transform.childCount; j++)
             {

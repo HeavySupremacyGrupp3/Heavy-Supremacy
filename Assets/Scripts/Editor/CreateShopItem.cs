@@ -54,6 +54,7 @@ public class CreateShopItem : EditorWindow
         if (Shop != null && BrowserWindow != null)
         {
             Furniture item = ItemPrefab.GetComponent<Furniture>();
+            EditorGUILayout.LabelField("");
             item.Name = EditorGUILayout.TextField("Name", item.Name);
             if (item.Name != null && item.Name != "")
             {
