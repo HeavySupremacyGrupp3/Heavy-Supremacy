@@ -13,27 +13,59 @@ public class GameEventManager : MonoBehaviour
     public GameObject[] ChoiceButtons;
     public GameObject ClosePanelButton;
 
+    [Range(0, 1)]
+    public float SpecialNodeChance = 0;
+
     private List<StoryNode> nodes = new List<StoryNode>();
     private List<StoryNode> choices = new List<StoryNode>();
 
+    private List<StoryNode> socialNodes = new List<StoryNode>();
+    private List<StoryNode> musicNodes = new List<StoryNode>();
+    private List<StoryNode> fameNodes = new List<StoryNode>();
+    private List<StoryNode> specialNodes = new List<StoryNode>();
+
+    [HideInInspector]
+    public enum nodeType { social, musical, fame, special }
+
     private void Start()
     {
-        LoadEvents();
+        LoadEvents("fil", nodes);
+        LoadEvents("socialNodes", socialNodes);
+        LoadEvents("musicNodes", musicNodes);
+        LoadEvents("fameNodes", fameNodes);
+        LoadEvents("specialNodes", specialNodes);
+
+        if (Random.Range(0f, 1f) <= SpecialNodeChance)
+            TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
     }
 
-    void LoadEvents()
+    void LoadEvents(string _fileName, List<StoryNode> _nodes)
     {
-        using (StreamReader s = new StreamReader("fil.txt"))
+        using (StreamReader s = new StreamReader(_fileName + ".txt"))
         {
             string line = s.ReadLine();
-            while(line != null)
+            while (line != null)
             {
                 StoryNode node = JsonConvert.DeserializeObject<StoryNode>(line);
-                nodes.Add(node);
+                _nodes.Add(node);
 
                 line = s.ReadLine();
             }
         }
+    }
+
+    public void TriggerEventFromPool(EventEnum eventEnum)
+    {
+        nodeType type = eventEnum.NodeType;
+
+        if (type == nodeType.fame)
+            TriggerEvent(fameNodes[Random.Range(0, fameNodes.Count)]);
+        else if (type == nodeType.musical)
+            TriggerEvent(musicNodes[Random.Range(0, musicNodes.Count)]);
+        else if (type == nodeType.special)
+            TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+        else if (type == nodeType.social)
+            TriggerEvent(socialNodes[Random.Range(0, socialNodes.Count)]);
     }
 
     public void TriggerEvent(StoryNode node)

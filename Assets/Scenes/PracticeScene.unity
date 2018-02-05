@@ -4826,8 +4826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35be371ca049f2d4ca7959b99120bdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Music: {fileID: 8300000, guid: 5f5f09a6343147243b6eb97a525143f9, type: 3}
-  NoteGenerationAudio: {fileID: 8300000, guid: 44833384f829e7348b2e1eae84203b74, type: 3}
+  Music: {fileID: 8300000, guid: f5df990d6c5c3b741a8f2dcdbb8f54d8, type: 3}
+  NoteGenerationAudio: {fileID: 8300000, guid: 71b8b4c52d0b95b4b9b26d35c8954ae6, type: 3}
   MusicAudioSource: {fileID: 769092748}
   NoteGenerationAudioSource: {fileID: 769092751}
   UpdateInterval: 0.05
