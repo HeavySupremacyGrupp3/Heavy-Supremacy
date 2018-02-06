@@ -69,7 +69,6 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
-		//Debug.Log("hundra hundar");
 		productDetected(""+myType);
 	}
 	

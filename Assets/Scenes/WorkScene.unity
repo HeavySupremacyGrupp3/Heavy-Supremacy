@@ -2952,17 +2952,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: 0
-    clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
+    clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}
   - name: 1
-    clip: {fileID: 8300000, guid: aad85b349b767e34cad60a36f3657b0d, type: 3}
+    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}
   - name: 2
-    clip: {fileID: 8300000, guid: 6bbbefc6acea6a940953e9c2c801754d, type: 3}
+    clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}
