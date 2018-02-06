@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 224112382961654974}
   - component: {fileID: 222346355379530762}
   - component: {fileID: 114119895988734270}
-  - component: {fileID: 114209326302901400}
   - component: {fileID: 114486361580252514}
+  - component: {fileID: 114209326302901400}
   m_Layer: 5
   m_Name: RecievedMessage_Image
   m_TagString: Untagged

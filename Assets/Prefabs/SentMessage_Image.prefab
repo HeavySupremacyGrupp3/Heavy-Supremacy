@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 87
-    m_Right: 63
-    m_Top: 66
-    m_Bottom: 70
+    m_Left: 85
+    m_Right: 59
+    m_Top: 69
+    m_Bottom: 73
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0

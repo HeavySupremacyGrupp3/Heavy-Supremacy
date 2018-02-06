@@ -10,15 +10,16 @@ public class GameEventManager : MonoBehaviour
 {
     public GameObject EventPanel;
     public Text TitleText, DescriptionText;
-    public GameObject[] ChoiceButtons;
+    public GameObject[] PanelChoiceButtons;
     public GameObject ClosePanelButton;
+    public GameObject[] SMSChoiceButtons;
 
     [Range(0, 1)]
     public float SpecialNodeChance = 0;
 
-    private List<StoryNode> nodes = new List<StoryNode>();
     private List<StoryNode> choices = new List<StoryNode>();
 
+    private List<StoryNode> messageNodes = new List<StoryNode>();
     private List<StoryNode> socialNodes = new List<StoryNode>();
     private List<StoryNode> musicNodes = new List<StoryNode>();
     private List<StoryNode> fameNodes = new List<StoryNode>();
@@ -29,7 +30,7 @@ public class GameEventManager : MonoBehaviour
 
     private void Start()
     {
-        LoadEvents("fil", nodes);
+        LoadEvents("messageNodes", messageNodes);
         LoadEvents("socialNodes", socialNodes);
         LoadEvents("musicNodes", musicNodes);
         LoadEvents("fameNodes", fameNodes);
@@ -53,6 +54,13 @@ public class GameEventManager : MonoBehaviour
                 line = s.ReadLine();
             }
         }
+    }
+
+    public void TriggerSMSEvent()
+    {
+        StoryNode node = messageNodes[Random.Range(0, messageNodes.Count)];
+
+
     }
 
     public void TriggerEventFromPool(EventEnum eventEnum)
@@ -84,13 +92,13 @@ public class GameEventManager : MonoBehaviour
             Debug.Log(node.Choices.Count);
 
             choices.Add(node.Choices[i]);
-            ChoiceButtons[i].SetActive(true);
-            ChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
+            PanelChoiceButtons[i].SetActive(true);
+            PanelChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
         }
 
         GiveRewards(node);
 
-        if (!ChoiceButtons[0].activeSelf)
+        if (!PanelChoiceButtons[0].activeSelf)
         {
             ClosePanelButton.SetActive(true);
         }
@@ -111,9 +119,9 @@ public class GameEventManager : MonoBehaviour
 
     public void MakeChoice(int index)
     {
-        for (int i = 0; i < ChoiceButtons.Length; i++)
+        for (int i = 0; i < PanelChoiceButtons.Length; i++)
         {
-            ChoiceButtons[i].SetActive(false);
+            PanelChoiceButtons[i].SetActive(false);
         }
 
         Debug.Log(choices.Count);
