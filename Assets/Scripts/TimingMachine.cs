@@ -13,6 +13,8 @@ public class TimingMachine : TimingSystem {
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	public int myType;
 	
+	public string SecondSound;
+	
 	public override void SucceedTiming()
     {
 		produktScript sc=targets[0].GetComponent<produktScript>();
@@ -54,6 +56,7 @@ public class TimingMachine : TimingSystem {
 			//FindObjectOfType<MusicManager>().Play("Arm1Sound");
 			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
 			sc.spoil();
+			productDetected("spoilLjud");
 			//targets.RemoveAt(0);
 			timesChanged=0;
 		}
@@ -69,7 +72,7 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
-		productDetected(""+myType);
+		productDetected(SecondSound);
 	}
 	
 	private void OnTriggerExit2D(Collider2D collision)

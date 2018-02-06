@@ -2952,17 +2952,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: 0
-    clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
+    clip: {fileID: 8300000, guid: ae48a363f1dcbe244867f6236ca02c5e, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}
   - name: 1
-    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+    clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}
   - name: 2
+    clip: {fileID: 8300000, guid: 63f43cfc65d82ae41b3fea6832f75ad4, type: 3}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: 3
+    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: 4
+    clip: {fileID: 8300000, guid: 190412cce390e52409761ff08997fe86, type: 3}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: 5
     clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: spoilLjud
+    clip: {fileID: 8300000, guid: 533f9c006bc50c040a2dbe8b18ed12d6, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}

@@ -31,6 +31,11 @@ public class MachineProperties : MonoBehaviour {
 
     [SerializeField]
     private float lerpTime = 0.5f;
+	
+	public delegate void musicEvent(string s);
+	public static event musicEvent moveSound;
+	
+	public string FirstSound;
 
     void Start()
     {
@@ -95,6 +100,7 @@ public class MachineProperties : MonoBehaviour {
         SpriteRenderer sr = button.GetComponent<SpriteRenderer>();
         Sprite oldSprite = sr.sprite;
         sr.sprite = sprite;
+		moveSound(FirstSound);
 
         StartCoroutine(ButtonTimer(sr, oldSprite));
 
