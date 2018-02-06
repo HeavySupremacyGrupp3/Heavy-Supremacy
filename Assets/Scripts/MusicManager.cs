@@ -12,12 +12,12 @@ public class MusicManager : MonoBehaviour {
 
 	void OnEnable()
 	{
-		//TimingMachine.productDetected+=disableMusic;
+		TimingMachine.productDetected+=disableMusic;
 	}
 	
 	void OnDisable()
 	{
-		//TimingMachine.productDetected-=disableMusic;
+		TimingMachine.productDetected-=disableMusic;
 	}
 	
 	
@@ -47,19 +47,20 @@ public class MusicManager : MonoBehaviour {
 		//audiosrc[1].Play(); //funkar fint
 		//testSound;
 		
-		disableMusic("tre");
+		//disableMusic("tre");
     }
 	
 	void Update()
 	{
 		//Play("gregert");
 		if(updateCounter%20==9)
-			disableMusic("tre");
+			//disableMusic("tre");
 		updateCounter++;
 	}
 	
 	public void disableMusic(string name)
 	{
+		Debug.Log("music to my ears");
 		for(int i=0;i<sounds.Length;i++)
 			if(sounds[i].name==name)
 				audiosrc[i].Play();
