@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 85
-    m_Right: 59
-    m_Top: 69
-    m_Bottom: 73
+    m_Left: 125
+    m_Right: 98
+    m_Top: 70
+    m_Bottom: 71
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
@@ -189,5 +189,5 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 246.39998, y: -165.18497}
-  m_SizeDelta: {x: 300, y: 243.7}
+  m_SizeDelta: {x: 710, y: 243.7}
   m_Pivot: {x: 0.5, y: 0.5}

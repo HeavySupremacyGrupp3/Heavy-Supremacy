@@ -1,4 +1,6 @@
-﻿Shader "Custom/DistortionShader"
+﻿/*© 2018 ARVID ENOCHSSON ALL RIGHTS RESERVED*/
+
+Shader "Custom/DistortionShader"
 {
 	Properties
 	{
@@ -73,7 +75,7 @@
 				_DirectionX = -cos(_Rotation * _PI / 180);
 
 				float2 distScroll = float2(_Time.x * _DirectionX, _Time.x * _DirectionY);
-				fixed2 dist = (tex2D(_DistTex, i.uv + distScroll * _Speed) - 0.5) * 2; //Konstants is for offsetting.
+				fixed2 dist = (tex2D(_DistTex, i.uv + distScroll * _Speed) - 0.5) * 2; //Constants is for offsetting.
 				fixed distMask = tex2D(_DistMask, i.uv)[0];
 				fixed4 maintex = _Color * tex2D(_MainTex, i.uv + dist * distMask * _DistMultiplier);
 
