@@ -18,7 +18,7 @@ public class GameEventManager : MonoBehaviour
     public GameObject SMSScrollContent;
 
     [Range(0, 1)]
-    public float SpecialNodeChance = 0;
+    public float SpecialNodeChance = 0, MessageNodeChance = 0;
 
     private List<StoryNode> choices = new List<StoryNode>();
 
@@ -40,9 +40,12 @@ public class GameEventManager : MonoBehaviour
         LoadEvents("specialNodes", specialNodes);
 
         if (Random.Range(0f, 1f) <= SpecialNodeChance)
-            TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
-
-        TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+        if (Random.Range(0f, 1f) <= MessageNodeChance)
+        {
+            ClearSMSPanel();
+            TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+        }
     }
 
     void LoadEvents(string _fileName, List<StoryNode> _nodes)
@@ -76,6 +79,7 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerSMSEvent(StoryNode node)
     {
+
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
         message.GetComponentInChildren<Text>().text = node.Text;
 

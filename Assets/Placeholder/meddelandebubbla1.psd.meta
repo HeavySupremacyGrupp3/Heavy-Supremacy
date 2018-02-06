@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 142331ec55d030845b1f59021d9fa224
-timeCreated: 1517926899
+guid: 2d0672177d0f4e74aa95f832e9ee998e
+timeCreated: 1517928644
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: SentMessage_Placeholder_0
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -46,7 +45,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 92, y: 76, z: 322, w: 72}
+  spriteBorder: {x: 25, y: 20, z: 165, w: 31}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -77,21 +76,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SentMessage_Placeholder_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 95, y: 93, z: 108, w: 108}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 
