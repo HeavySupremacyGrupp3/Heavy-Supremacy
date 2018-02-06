@@ -7,8 +7,9 @@ public class TimingMachine : TimingSystem {
 	int timesChanged=0;
 	int waitTimer=0;
 	
-	public delegate void mittEvent();
-	public static event mittEvent productDetected;
+	public delegate void musicEvent(string s);
+	public static event musicEvent productDetected;
+	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	public int myType;
 	
@@ -68,8 +69,7 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
-		
-		//productDetected();
+		productDetected(""+myType);
 	}
 	
 	private void OnTriggerExit2D(Collider2D collision)
@@ -96,7 +96,7 @@ public class TimingMachine : TimingSystem {
 			timesChanged++;			
 		}						
 		//timesChanged=0;
-		productDetected();
+		//productDetected();
 	}
 	
 	private void spoilProducts(GameObject ta)
