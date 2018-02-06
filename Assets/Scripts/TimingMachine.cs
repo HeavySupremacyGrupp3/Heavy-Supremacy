@@ -69,7 +69,7 @@ public class TimingMachine : TimingSystem {
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
 		
-		//productDetected();
+		productDetected();
 	}
 	
 	private void OnTriggerExit2D(Collider2D collision)

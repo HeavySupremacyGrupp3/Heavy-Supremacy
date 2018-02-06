@@ -341,7 +341,7 @@ Prefab:
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999981
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 828706686}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 295da1d488435d248b4ba67853257480, type: 3}
   m_Name: 
@@ -2409,7 +2409,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1282471320}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
@@ -2951,14 +2951,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Arm1Sound
-    clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
-    volume: 1
+  - name: ett
+    clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
+    volume: 0
     loop: 0
     source: {fileID: 0}
-  - name: Arm3Sound
-    clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
-    volume: 1
+  - name: tvo
+    clip: {fileID: 8300000, guid: 6bbbefc6acea6a940953e9c2c801754d, type: 3}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: tre
+    clip: {fileID: 8300000, guid: 6bbbefc6acea6a940953e9c2c801754d, type: 3}
+    volume: 0
     loop: 0
     source: {fileID: 0}
 --- !u!4 &1747300738
@@ -2996,7 +3001,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1813207699}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b853ad67c99f82d45ae6364b750b846d, type: 3}

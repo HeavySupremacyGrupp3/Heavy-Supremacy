@@ -5,32 +5,72 @@ using UnityEngine.Audio;
 public class MusicManager : MonoBehaviour {
 
     public Sound[] sounds;
+	//public Sound testSound;
     public static MusicManager instance;
+	int updateCounter=0;
+	AudioSource[] audiosrc;
 
-    void Awake()
+	void OnEnable()
+	{
+		//TimingMachine.productDetected+=disableMusic;
+	}
+	
+	void OnDisable()
+	{
+		//TimingMachine.productDetected-=disableMusic;
+	}
+	
+	
+    void Start()
     {
         if (instance == null)
             instance = this;
-        else { 
+        else 
+		{ 
             Destroy(gameObject);
              return;
         }
 
             DontDestroyOnLoad(gameObject);
 
-        foreach (Sound s in sounds)
+        for(int i=0;i<sounds.Length;i++) //foreach sound in Sounds
         {
-            gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.loop = s.loop;
+			//Debug.Log(sounds[i].name);
+            //gameObject.AddComponent<AudioSource>();
+			//s.source.clip = s.clip;
+			//s.source.volume = s.volume;
+            //s.source.loop = s.loop;
+			gameObject.AddComponent<AudioSource>().clip=sounds[i].clip;
         }
+		//gameObject.AddComponent<AudioSource>().clip=testSound.clip;
+		audiosrc=gameObject.GetComponents<AudioSource>();
+		//audiosrc[1].Play(); //funkar fint
+		//testSound;
+		
+		disableMusic("tre");
     }
+	
+	void Update()
+	{
+		//Play("gregert");
+		if(updateCounter%20==9)
+			disableMusic("tre");
+		updateCounter++;
+	}
+	
+	public void disableMusic(string name)
+	{
+		for(int i=0;i<sounds.Length;i++)
+			if(sounds[i].name==name)
+				audiosrc[i].Play();
+			else
+				Debug.LogWarning(name + "wasn't found");
+	}
 
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, Sound => Sound.name == name);
-        s.source.Play();
+        //s.source.Play();
         if (s == null)
         {
             Debug.LogWarning(name + "wasn't found");
