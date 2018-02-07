@@ -52,41 +52,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 0
-    clip: {fileID: 8300000, guid: ae48a363f1dcbe244867f6236ca02c5e, type: 3}
-    volume: 1
-    loop: 0
-    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+  - name: HUBMusic
+    clip: {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
+    volume: 0.235
+    loop: 1
+    mixer: {fileID: 243314491722251838, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: 1
-    clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
+  - name: HUBAmbience
+    clip: {fileID: 8300000, guid: 4ac77de9f3a55614fb2aa37e7c8c87d4, type: 3}
     volume: 1
-    loop: 0
-    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    loop: 1
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: 2
-    clip: {fileID: 8300000, guid: 63f43cfc65d82ae41b3fea6832f75ad4, type: 3}
+  - name: BedClick
+    clip: {fileID: 8300000, guid: 08800d883fd81f147a5cfd540d5b5727, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: 3
-    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+  - name: GigClick
+    clip: {fileID: 8300000, guid: c4428c3c93018ea41aaf1526d3cb34a1, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: 4
-    clip: {fileID: 8300000, guid: 190412cce390e52409761ff08997fe86, type: 3}
+  - name: BedHighlight
+    clip: {fileID: 8300000, guid: fdef9b2f2dbff364b8b39815967d4585, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: 5
-    clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
+  - name: DoorHighlight
+    clip: {fileID: 8300000, guid: ede563e8f79c445409449d5311a15259, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: spoilLjud
     clip: {fileID: 8300000, guid: 533f9c006bc50c040a2dbe8b18ed12d6, type: 3}
@@ -111,4 +111,88 @@ MonoBehaviour:
     volume: 1
     loop: 0
     mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: DoorExitHighlight
+    clip: {fileID: 8300000, guid: afa18d94678718c49944cae1323c7a80, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: DoorClick
+    clip: {fileID: 8300000, guid: 4004b272d8a9f8b41b719b8bad70d350, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: BedClick
+    clip: {fileID: 8300000, guid: 08800d883fd81f147a5cfd540d5b5727, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: MobilClick
+    clip: {fileID: 8300000, guid: 302dffd2e54aecc48af1499b6f346bbc, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: MapClick
+    clip: {fileID: 8300000, guid: 6d46de1eafcef1b41a9521abc7dee5d3, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: SMSClick
+    clip: {fileID: 8300000, guid: 74cff4d4d3ce710458340c4e748a02da, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopClick
+    clip: {fileID: 8300000, guid: 948c7a7d7b55b7f47bd5129c063aae0d, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopAmbience
+    clip: {fileID: 8300000, guid: bd74b4ba7e7ab8b44996c2fe60c1d4cf, type: 3}
+    volume: 1
+    loop: 1
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopClose
+    clip: {fileID: 8300000, guid: 93aea68ff214b6749af17b2c1dcb2b79, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopMouseClick
+    clip: {fileID: 8300000, guid: fc6c9f9858151bb4e929609172648630, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopCheapPurchase
+    clip: {fileID: 8300000, guid: aad85b349b767e34cad60a36f3657b0d, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopRegularPurchase
+    clip: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopExpensivePurchase
+    clip: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopHighlight
+    clip: {fileID: 8300000, guid: a2957cde56366014e996c0feac62d694, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
