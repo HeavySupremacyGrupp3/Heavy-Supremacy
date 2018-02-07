@@ -63,7 +63,7 @@ public class MiniGameManager : MonoBehaviour {
         gmScript = GetComponent<GameManager>();
         produktScript = GetComponent<produktScript>();
         StatReference =GameObject.Find("angstObject").GetComponent<angstStatScript>();
-        AudioManager.instance.Play("Atmosphere");
+        //AudioManager.instance.Play("Atmosphere"); //blir trött i huvet
     }	
 	
 	void Update ()

@@ -62,7 +62,7 @@ public class TimingMachine : TimingSystem {
 			timesChanged=0;
 		}
 		
-		if(myType==sc.type)
+		if(myType==sc.type && !sc.Spoiled)
 		{
 			//Debug.Log("Jag förvandlar.");
 			sc.type++;
