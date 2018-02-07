@@ -6843,9 +6843,9 @@ MonoBehaviour:
   - {fileID: 114166510789418356, guid: cb95c7dd09f309b4dbf5bdf530d63c75, type: 2}
   - {fileID: 114951376570324942, guid: 633421efc5e91df4e80e61eba75f8047, type: 2}
   - {fileID: 114230424636315098, guid: 6d3f2c76de9969c4dab35e7bc62f8baa, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114230424636315098, guid: 399d2522d0ef92e4991f3b92decb6b58, type: 2}
+  - {fileID: 114230424636315098, guid: 1a57a39c8bdf7e8469d17fcd8cd0559d, type: 2}
+  - {fileID: 114230424636315098, guid: cd4ce0646710bf84481c027007354aa1, type: 2}
   ShopButtons:
   - {fileID: 454117869}
   - {fileID: 1939845093}
