@@ -100,3 +100,15 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243683311350540586, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
+  - name: statmax
+    clip: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: statmin
+    clip: {fileID: 8300000, guid: 14d1a59c05be3d443a13f1221988deec, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
