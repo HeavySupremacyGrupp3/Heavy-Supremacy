@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 
         NoteGenerator.Reset();
         TimingString.Reset();
+        ToEndGame = false;
 
         day = 1;
         week = 1;

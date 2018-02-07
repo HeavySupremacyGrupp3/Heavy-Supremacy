@@ -13,9 +13,14 @@ public class GameEventManager : MonoBehaviour
     public GameObject[] PanelChoiceButtons;
     public GameObject ClosePanelButton;
     public GameObject[] SMSChoiceButtons;
+    public GameObject RecievedMessagePrefab;
+    public GameObject SentMessagePrefab;
+    public GameObject SMSScrollContent;
 
     [Range(0, 1)]
-    public float SpecialNodeChance = 0;
+    public float SpecialNodeChance = 0, MessageNodeChance = 0;
+
+    public float RecieveMessageDelay = 0.75f;
 
     private List<StoryNode> choices = new List<StoryNode>();
 
@@ -37,12 +42,16 @@ public class GameEventManager : MonoBehaviour
         LoadEvents("specialNodes", specialNodes);
 
         if (Random.Range(0f, 1f) <= SpecialNodeChance)
-            TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+            TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+        if (Random.Range(0f, 1f) <= MessageNodeChance)
+        {
+            ClearSMSPanel();
+            TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+        }
     }
 
     void LoadEvents(string _fileName, List<StoryNode> _nodes)
     {
-
         using (StreamReader s = new StreamReader(_fileName + ".txt"))
         {
             string line = s.ReadLine();
@@ -54,13 +63,6 @@ public class GameEventManager : MonoBehaviour
                 line = s.ReadLine();
             }
         }
-    }
-
-    public void TriggerSMSEvent()
-    {
-        StoryNode node = messageNodes[Random.Range(0, messageNodes.Count)];
-
-
     }
 
     public void TriggerEventFromPool(EventEnum eventEnum)
@@ -75,6 +77,32 @@ public class GameEventManager : MonoBehaviour
             TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
         else if (type == nodeType.social)
             TriggerEvent(socialNodes[Random.Range(0, socialNodes.Count)]);
+    }
+
+    public void TriggerSMSEvent(StoryNode node)
+    {
+        GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
+        message.GetComponentInChildren<Text>().text = node.Text;
+
+        choices.Clear();
+        for (int i = 0; i < node.Choices.Count; i++)
+        {
+            Debug.Log(node.Choices.Count);
+
+            choices.Add(node.Choices[i]);
+            SMSChoiceButtons[i].SetActive(true);
+            SMSChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
+        }
+
+        GiveRewards(node);
+    }
+
+    public void ClearSMSPanel()
+    {
+        for (int i = SMSScrollContent.transform.childCount; i > 0; i--)
+        {
+            Destroy(SMSScrollContent.transform.GetChild(i));
+        }
     }
 
     public void TriggerEvent(StoryNode node)
@@ -110,11 +138,16 @@ public class GameEventManager : MonoBehaviour
 
     void GiveRewards(StoryNode node)
     {
-        FindObjectOfType<metalStatScript>().addOrRemoveAmount(float.Parse(node.MetalBonus));
-        FindObjectOfType<moneyStatScript>().addOrRemoveAmount(float.Parse(node.CashBonus));
-        FindObjectOfType<angstStatScript>().addOrRemoveAmount(float.Parse(node.AngstBonus));
-        FindObjectOfType<fameStatScript>().addOrRemoveAmount(float.Parse(node.FameBonus));
-        FindObjectOfType<energyStatScript>().addOrRemoveAmount(float.Parse(node.EnergyBonus));
+        if (node.MetalBonus != null && node.MetalBonus != "")
+            FindObjectOfType<metalStatScript>().addOrRemoveAmount(float.Parse(node.MetalBonus));
+        if (node.CashBonus != null && node.CashBonus != "")
+            FindObjectOfType<moneyStatScript>().addOrRemoveAmount(float.Parse(node.CashBonus));
+        if (node.AngstBonus != null && node.AngstBonus != "")
+            FindObjectOfType<angstStatScript>().addOrRemoveAmount(float.Parse(node.AngstBonus));
+        if (node.FameBonus != null && node.FameBonus != "")
+            FindObjectOfType<fameStatScript>().addOrRemoveAmount(float.Parse(node.FameBonus));
+        if (node.EnergyBonus != null && node.EnergyBonus != "")
+            FindObjectOfType<energyStatScript>().addOrRemoveAmount(float.Parse(node.EnergyBonus));
     }
 
     public void MakeChoice(int index)
@@ -124,7 +157,26 @@ public class GameEventManager : MonoBehaviour
             PanelChoiceButtons[i].SetActive(false);
         }
 
-        Debug.Log(choices.Count);
         TriggerEvent(choices[index]);
+    }
+
+    public void MakeSMSChoice(int index)
+    {
+        for (int i = 0; i < SMSChoiceButtons.Length; i++)
+        {
+            SMSChoiceButtons[i].SetActive(false);
+        }
+
+        GameObject message = Instantiate(SentMessagePrefab, SMSScrollContent.transform, false);
+        message.GetComponentInChildren<Text>().text = choices[index].Title;
+
+        StartCoroutine(WaitForSMS(index));
+    }
+
+    IEnumerator WaitForSMS(int index)
+    {
+        yield return new WaitForSeconds(RecieveMessageDelay);
+
+        TriggerSMSEvent(choices[index]);
     }
 }

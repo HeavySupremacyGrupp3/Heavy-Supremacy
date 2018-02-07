@@ -139,7 +139,7 @@ public class TimingString : TimingSystem
             health = MaxHealth;
         else if (health <= 0 && GigBackgroundManager.GigSession)
         {
-            FindObjectOfType<NoteGenerator>().EndGame();
+            FindObjectOfType<NoteGenerator>().EndGame(false);
         }
         HealthSlider.value = MaxHealth - health;
     }

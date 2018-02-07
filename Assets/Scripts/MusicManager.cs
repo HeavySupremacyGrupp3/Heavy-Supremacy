@@ -62,11 +62,13 @@ public class MusicManager : MonoBehaviour {
 	void OnEnable()
 	{
 		TimingMachine.productDetected+=disableMusic;
+		MachineProperties.moveSound+=disableMusic;
 	}
 	
 	void OnDisable()
 	{
 		TimingMachine.productDetected-=disableMusic;
+		MachineProperties.moveSound-=disableMusic;
 	}
 	
 	

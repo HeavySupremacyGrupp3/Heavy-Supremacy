@@ -23,6 +23,9 @@ public class NoteGenerator : MonoBehaviour
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 3;
 
+    public AudioClip VictorySound;
+    public AudioClip DefeatSound;
+
     private float clipTime = 0;
     private float clipVolume;
     private float lastClipVolume;
@@ -52,8 +55,8 @@ public class NoteGenerator : MonoBehaviour
     {
         if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
             SendNote();
-        else if (!MusicAudioSource.isPlaying && Application.isFocused) //End game if song is over.
-            EndGame();
+        else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+            EndGame(true);
     }
 
     bool CheckForNote()
@@ -107,16 +110,25 @@ public class NoteGenerator : MonoBehaviour
         noteSpawnTimer = 0;
     }
 
-    public void EndGame()
+    public void EndGame(bool victory)
     {
         EndGamePanel.SetActive(true);
         MusicAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
-        if (FindObjectOfType<fameStatScript>().getAmount() >= FindObjectOfType<fameStatScript>().getMax() && GigBackgroundManager.GigSession && FindObjectOfType<TimingString>().HealthSlider.value == 0)
+        if (victory)
         {
-            GameManager.ToEndGame = true;
-            GameManager.EndGameTitleText = "You're famous and won the game!";
+            MusicAudioSource.PlayOneShot(VictorySound);
+
+            if (FindObjectOfType<fameStatScript>().getAmount() >= FindObjectOfType<fameStatScript>().getMax() && GigBackgroundManager.GigSession)
+            {
+                GameManager.ToEndGame = true;
+                GameManager.EndGameTitleText = "You're famous and won the game!";
+            }
+        }
+        else
+        {
+            MusicAudioSource.PlayOneShot(DefeatSound);
         }
     }
 

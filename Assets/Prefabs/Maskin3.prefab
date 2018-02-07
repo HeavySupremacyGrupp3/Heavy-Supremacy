@@ -209,6 +209,7 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 275
   lerpTime: 0.5
+  FirstSound: 4
 --- !u!114 &114857700170583890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +228,7 @@ MonoBehaviour:
   CanExitCollider: 0
   MyOutOfRangeDetector: {fileID: 114932074556588812}
   myType: 2
+  SecondSound: 5
 --- !u!114 &114932074556588812
 MonoBehaviour:
   m_ObjectHideFlags: 1

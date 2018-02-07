@@ -160,11 +160,11 @@ public class ShopSystem : MonoBehaviour
     {
         //In order: cheap, regular, expensive.
         if (item.Price <= CheapTreshold)
-            FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(CheapPurchaseSound);
+            GameObject.Find("HUBSFX").GetComponent<AudioSource>().PlayOneShot(CheapPurchaseSound);
         else if (item.Price <= RegularTreshold)
-            FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(RegularPurchaseSound);
+            GameObject.Find("HUBSFX").GetComponent<AudioSource>().PlayOneShot(RegularPurchaseSound);
         else
-            FindObjectOfType<GameManager>().GetComponent<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
+            GameObject.Find("HUBSFX").GetComponent<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
     }
 
     public static void UpdateHUBEnvironment()
