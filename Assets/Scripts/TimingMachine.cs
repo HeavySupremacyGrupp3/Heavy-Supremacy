@@ -7,8 +7,8 @@ public class TimingMachine : TimingSystem {
 	int timesChanged=0;
 	int waitTimer=0;
 	
-	public delegate void musicEvent(string s);
-	public static event musicEvent productDetected;
+	//public delegate void musicEvent(string s);
+	//public static event musicEvent productDetected;
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	public int myType;
@@ -56,7 +56,8 @@ public class TimingMachine : TimingSystem {
 			//FindObjectOfType<MusicManager>().Play("Arm1Sound");
 			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
 			sc.spoil();
-			productDetected("spoilLjud");
+			//productDetected("spoilLjud");
+			AudioManager.instance.Play("spoilLjud");
 			//targets.RemoveAt(0);
 			timesChanged=0;
 		}
@@ -72,7 +73,8 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
-		productDetected(SecondSound);
+		AudioManager.instance.Play(SecondSound);
+		//productDetected(SecondSound);
 	}
 	
 	private void OnTriggerExit2D(Collider2D collision)
