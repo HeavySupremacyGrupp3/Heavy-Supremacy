@@ -100,7 +100,8 @@ public class MachineProperties : MonoBehaviour {
         SpriteRenderer sr = button.GetComponent<SpriteRenderer>();
         Sprite oldSprite = sr.sprite;
         sr.sprite = sprite;
-		moveSound(FirstSound);
+		//moveSound(FirstSound);
+		AudioManager.instance.Play(FirstSound);
 
         StartCoroutine(ButtonTimer(sr, oldSprite));
 
