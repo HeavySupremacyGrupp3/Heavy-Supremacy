@@ -1,4 +1,53 @@
-﻿using System;
+﻿
+using System;
+using UnityEngine;
+using UnityEngine.Audio;
+
+public class AudioManager : MonoBehaviour
+{
+
+    public Sound[] sounds;
+    public static AudioManager instance;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.playOnAwake = false;
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.mixer;
+        }
+    }
+
+    public void Play(string name)
+    {
+        Sound s = Array.Find(sounds, Sound => Sound.name == name);
+        s.source.Play();
+        Debug.Log("Playing " + s.source.clip.name);
+        if (s == null)
+        {
+            Debug.LogWarning(name + "wasn't found");
+            return;
+        }
+    }
+}
+
+/* Old solution 2
+
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -41,6 +90,7 @@ public class MusicManager : MonoBehaviour {
 			//s.source.volume = s.volume;
             //s.source.loop = s.loop;
 			gameObject.AddComponent<AudioSource>().clip=sounds[i].clip;
+
         }
 		//gameObject.AddComponent<AudioSource>().clip=testSound.clip;
 		audiosrc=gameObject.GetComponents<AudioSource>();
@@ -117,7 +167,7 @@ public class MusicManager : MonoBehaviour {
          audioSources[index].loop = loop;
      }*/
 
-    /*
+/*
 public void StopMusic(AudioClip audioClip, int index)
 {
 audioSources[index].clip = audioClip;
@@ -126,14 +176,15 @@ audioSources[index].Stop();
 
 public void PlayMusic(AudioClip audioClip, int index, bool loop)
 {
-    // Index 0: Music, 1: Sound Effects, 2: Something else
-    audioSources[index].clip = audioClip;
-    audioSources[index].volume = volume;
-    audioSources[index].PlayOneShot(audioClip, volume);
-    audioSources[index].loop = !audioSources[index].loop;
-    audioSources[index].loop = loop;
+// Index 0: Music, 1: Sound Effects, 2: Something else
+audioSources[index].clip = audioClip;
+audioSources[index].volume = volume;
+audioSources[index].PlayOneShot(audioClip, volume);
+audioSources[index].loop = !audioSources[index].loop;
+audioSources[index].loop = loop;
 
 }
-}*/
+}
 
 }
+*/
