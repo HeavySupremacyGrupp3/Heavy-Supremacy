@@ -160,11 +160,11 @@ public class ShopSystem : MonoBehaviour
     {
         //In order: cheap, regular, expensive.
         if (item.Price <= CheapTreshold)
-            FindObjectOfType<AudioManager>().Play("ShopCheapPurchase");
+            AudioManager.instance.Play("ShopCheapPurchase");
         else if (item.Price <= RegularTreshold)
-            FindObjectOfType<AudioManager>().Play("ShopRegularPurchase");
+            AudioManager.instance.Play("ShopRegularPurchase");
         else
-            FindObjectOfType<AudioManager>().Play("ShopExpensivePurchase");
+            AudioManager.instance.Play("ShopExpensivePurchase");
     }
 
     public static void UpdateHUBEnvironment()

@@ -83,7 +83,7 @@ public class GameEventManager : MonoBehaviour
     {
         if (firstNode)
         {
-            FindObjectOfType<AudioManager>().Play("MobilNotification");
+            AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
         }
         Debug.Log(node.Title);

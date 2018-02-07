@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         //WeekText = GetComponent<TextMesh>();
         WeekText.text = "Approximately week: ";
 
-        AudioManager am = FindObjectOfType<AudioManager>();
+        AudioManager am = AudioManager.instance;
         am.Play("HUBMusic");
         Sound s = Array.Find(am.sounds, Sound => Sound.name == "HUBMusic");
         s.source.time = UnityEngine.Random.Range(0, s.clip.length);
@@ -170,8 +170,8 @@ public class GameManager : MonoBehaviour
 
     void StopHUBLoops()
     {
-        FindObjectOfType<AudioManager>().Stop("HUBAmbience");
-        FindObjectOfType<AudioManager>().Stop("HUBMusic");
+        AudioManager.instance.Stop("HUBAmbience");
+        AudioManager.instance.Stop("HUBMusic");
     }
 
     public void ToggleGameObject(GameObject target)
