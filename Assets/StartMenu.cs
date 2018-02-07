@@ -7,6 +7,7 @@ public class StartMenu : MonoBehaviour {
 
     public void LoadHUB()
     {
+        GameManager.RestartGame = true;
         SceneManager.LoadScene("HUBScene");
     }
 
