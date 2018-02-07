@@ -119,17 +119,16 @@ public class NoteGenerator : MonoBehaviour
         if (victory)
         {
             MusicAudioSource.PlayOneShot(VictorySound);
+
+            if (FindObjectOfType<fameStatScript>().getAmount() >= FindObjectOfType<fameStatScript>().getMax() && GigBackgroundManager.GigSession)
+            {
+                GameManager.ToEndGame = true;
+                GameManager.EndGameTitleText = "You're famous and won the game!";
+            }
         }
         else
         {
             MusicAudioSource.PlayOneShot(DefeatSound);
-        }
-
-
-        if (FindObjectOfType<fameStatScript>().getAmount() >= FindObjectOfType<fameStatScript>().getMax() && GigBackgroundManager.GigSession && FindObjectOfType<TimingString>().HealthSlider.value == 0)
-        {
-            GameManager.ToEndGame = true;
-            GameManager.EndGameTitleText = "You're famous and won the game!";
         }
     }
 
