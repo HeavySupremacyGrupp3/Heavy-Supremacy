@@ -44,6 +44,19 @@ public class AudioManager : MonoBehaviour
         Debug.Log("Playing: " + s.source.clip.name + " From: " + s.name);
         s.source.Play();
     }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, Sound => Sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning(name + "wasn't found");
+            return;
+        }
+        Debug.Log("Stopped: " + s.source.clip.name + " From: " + s.name);
+        s.source.Stop();
+    }
 }
 
 /* Old solution 2

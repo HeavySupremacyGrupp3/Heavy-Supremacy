@@ -172,3 +172,27 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
+  - name: ShopCheapPurchase
+    clip: {fileID: 8300000, guid: aad85b349b767e34cad60a36f3657b0d, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopRegularPurchase
+    clip: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopExpensivePurchase
+    clip: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: ShopHighlight
+    clip: {fileID: 8300000, guid: a2957cde56366014e996c0feac62d694, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}

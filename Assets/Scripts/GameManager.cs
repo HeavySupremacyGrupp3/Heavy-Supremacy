@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     public static string EndGameTitleText;
     public static bool ToEndGame;
-    public static AudioClip StartSFXSound;
 	
 	private KeyCode key=KeyCode.Escape;
 
@@ -35,9 +34,6 @@ public class GameManager : MonoBehaviour
         fadeScript = GetComponent<FadeOutManager>();
         //WeekText = GetComponent<TextMesh>();
         WeekText.text = "Approximately week: ";
-
-        //Needs to be removed if a minigame to HUB click sound is to be played.
-        StartSFXSound = null;
 
         AudioManager am = FindObjectOfType<AudioManager>();
         am.Play("HUBMusic");
@@ -68,8 +64,6 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        TriggerStartSound();
-
         if (level == 0)
             ShopSystem.UpdateHUBEnvironment();
     }
@@ -109,13 +103,17 @@ public class GameManager : MonoBehaviour
     public void LoadWork(float energyCost)
     {
         if (CheckEnergy(energyCost))
+        {
+            StopHUBLoops();
             SceneManager.LoadScene("WorkScene");
+        }
     }
 
     public void LoadPractice(float energyCost)
     {
         if (CheckEnergy(energyCost))
         {
+            StopHUBLoops();
             GigBackgroundManager.GigSession = false;
             SceneManager.LoadScene("PracticeScene");
         }
@@ -125,12 +123,14 @@ public class GameManager : MonoBehaviour
     {
         if (CheckEnergy(energyCost))
         {
+            StopHUBLoops();
             GigBackgroundManager.GigSession = true;
             SceneManager.LoadScene("PracticeScene");
         }
     }
     public void LoadHUB()
     {
+        StopHUBLoops();
         GigBackgroundManager.GigSession = false;
         SceneManager.LoadScene("HUBScene");
     }
@@ -162,17 +162,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddSFXToStart(AudioClip audio)
+    void StopHUBLoops()
     {
-        StartSFXSound = audio;
-    }
-
-    void TriggerStartSound()
-    {
-        if (StartSFXSound != null && !GetComponent<AudioSource>().isPlaying)
-        {
-            GetComponent<AudioSource>().PlayOneShot(StartSFXSound);
-        }
+        FindObjectOfType<AudioManager>().Stop("HUBAmbience");
+        FindObjectOfType<AudioManager>().Stop("HUBMusic");
     }
 
     public void ToggleGameObject(GameObject target)
