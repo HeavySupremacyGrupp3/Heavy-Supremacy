@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour {
 
+    private void Start()
+    {
+        AudioManager.instance.Play("HUBMusic");
+    }
+
     public void LoadHUB()
     {
         GameManager.RestartGame = true;
