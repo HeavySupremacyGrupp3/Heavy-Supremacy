@@ -196,3 +196,15 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
+  - name: MobilNotification
+    clip: {fileID: 8300000, guid: 2e27577f3245223489076307b47c458f, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: PracticeClick
+    clip: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
