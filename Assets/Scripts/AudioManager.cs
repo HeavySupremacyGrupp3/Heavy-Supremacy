@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -9,18 +9,10 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public static AudioManager instance;
 
+    public static List<string> SoundsForNextScene = new List<string>();
+
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -30,6 +22,14 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.outputAudioMixerGroup = s.mixer;
         }
+    }
+
+    void Start()
+    {
+        foreach (string s in SoundsForNextScene)
+            Play(s);
+
+        SoundsForNextScene.Clear();
     }
 
     public void Play(string name)
@@ -56,6 +56,11 @@ public class AudioManager : MonoBehaviour
         }
         Debug.Log("Stopped: " + s.source.clip.name + " From: " + s.name);
         s.source.Stop();
+    }
+
+    public void AddSoundForNextScene(string name)
+    {
+        SoundsForNextScene.Add(name);
     }
 }
 

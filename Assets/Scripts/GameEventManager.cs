@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public class GameEventManager : MonoBehaviour
 {
     public GameObject EventPanel;
-    public Text TitleText, DescriptionText;
+    public Text TitleText, DescriptionText, SenderNameTitle;
     public GameObject[] PanelChoiceButtons;
     public GameObject ClosePanelButton;
     public GameObject[] SMSChoiceButtons;
@@ -79,15 +79,21 @@ public class GameEventManager : MonoBehaviour
             TriggerEvent(socialNodes[Random.Range(0, socialNodes.Count)]);
     }
 
-    public void TriggerSMSEvent(StoryNode node)
+    public void TriggerSMSEvent(StoryNode node, bool firstNode = true)
     {
+        if (firstNode)
+        {
+            FindObjectOfType<AudioManager>().Play("MobilNotification");
+            SenderNameTitle.text = node.Title;
+        }
+        Debug.Log(node.Title);
+
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
         message.GetComponentInChildren<Text>().text = node.Text;
 
         choices.Clear();
         for (int i = 0; i < node.Choices.Count; i++)
         {
-            Debug.Log(node.Choices.Count);
 
             choices.Add(node.Choices[i]);
             SMSChoiceButtons[i].SetActive(true);
@@ -177,6 +183,6 @@ public class GameEventManager : MonoBehaviour
     {
         yield return new WaitForSeconds(RecieveMessageDelay);
 
-        TriggerSMSEvent(choices[index]);
+        TriggerSMSEvent(choices[index], false);
     }
 }
