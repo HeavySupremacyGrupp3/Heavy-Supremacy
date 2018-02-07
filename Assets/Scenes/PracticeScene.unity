@@ -1368,7 +1368,6 @@ GameObject:
   - component: {fileID: 768391001}
   - component: {fileID: 768391003}
   - component: {fileID: 768391002}
-  - component: {fileID: 768391006}
   - component: {fileID: 768391005}
   - component: {fileID: 768391004}
   m_Layer: 5
@@ -4806,87 +4805,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!82 &768391006
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 768391000}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243316748410803060, guid: 1cbf86622dcc45a4e89f41932eeda121,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 14d1a59c05be3d443a13f1221988deec, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &769092747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,7 +4837,7 @@ MonoBehaviour:
   MusicAudioSource: {fileID: 326710480}
   NoteGenerationAudioSource: {fileID: 1027093762}
   UpdateInterval: 0.05
-  MusicStartDelay: 1.8
+  MusicStartDelay: 1.6
   NoteGenerationStartDelay: 0
   NotePrefabs:
   - {fileID: 1287834282934586, guid: 10285977811e1c74dbcdc1245cf582c5, type: 2}
@@ -4932,6 +4850,8 @@ MonoBehaviour:
   - 3
   NoteSpawnMinInterval: 0.1
   EndGamePanel: {fileID: 768391000}
+  VictorySound: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
+  DefeatSound: {fileID: 8300000, guid: 14d1a59c05be3d443a13f1221988deec, type: 3}
 --- !u!4 &769092750
 Transform:
   m_ObjectHideFlags: 0

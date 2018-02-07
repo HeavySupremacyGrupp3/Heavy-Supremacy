@@ -20,6 +20,8 @@ public class GameEventManager : MonoBehaviour
     [Range(0, 1)]
     public float SpecialNodeChance = 0, MessageNodeChance = 0;
 
+    public float RecieveMessageDelay = 0.75f;
+
     private List<StoryNode> choices = new List<StoryNode>();
 
     private List<StoryNode> messageNodes = new List<StoryNode>();
@@ -79,23 +81,8 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerSMSEvent(StoryNode node)
     {
-
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
         message.GetComponentInChildren<Text>().text = node.Text;
-
-        //RectTransform lastMessage = SMSScrollContent.transform.GetChild(SMSScrollContent.transform.childCount - 1).GetComponent<RectTransform>();
-        //Rect currentRect = message.GetComponent<RectTransform>().rect;
-
-        ////Resize content transform.
-        //RectTransform scrollRect = SMSScrollContent.GetComponent<RectTransform>();
-        //scrollRect.rect.Set(0, 0, 0, 10);
-
-        ////Position the message.
-        //Vector3 newPos = lastMessage.rect.position;
-
-        //if (SMSScrollContent.transform.childCount > 1)
-        //    currentRect.position.Set(newPos.x, newPos.y + lastMessage.rect.height * 0.5f + currentRect.height * 0.5f);
-        //Debug.Log(currentRect.height);
 
         choices.Clear();
         for (int i = 0; i < node.Choices.Count; i++)
@@ -183,11 +170,12 @@ public class GameEventManager : MonoBehaviour
         GameObject message = Instantiate(SentMessagePrefab, SMSScrollContent.transform, false);
         message.GetComponentInChildren<Text>().text = choices[index].Title;
 
-        //Transform lastMessage = SMSScrollContent.transform.GetChild(SMSScrollContent.transform.childCount - 1);
-        //Vector3 lastDeltaSize = Camera.main.ScreenToWorldPoint(lastMessage.GetComponent<RectTransform>().sizeDelta);
-        //Vector3 currentDeltaSize = Camera.main.ScreenToWorldPoint(message.GetComponent<RectTransform>().sizeDelta);
-        //if (SMSScrollContent.transform.childCount > 1)
-        //    message.transform.position = lastMessage.position + new Vector3(0, lastDeltaSize.y * 0.5f + currentDeltaSize.y * 0.1f, 0);
+        StartCoroutine(WaitForSMS(index));
+    }
+
+    IEnumerator WaitForSMS(int index)
+    {
+        yield return new WaitForSeconds(RecieveMessageDelay);
 
         TriggerSMSEvent(choices[index]);
     }

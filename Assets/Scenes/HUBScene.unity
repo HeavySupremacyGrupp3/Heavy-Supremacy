@@ -1320,7 +1320,7 @@ RectTransform:
   m_Children:
   - {fileID: 2106012632}
   m_Father: {fileID: 760844919}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1820,7 +1820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &420850589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1901,7 +1901,7 @@ RectTransform:
   m_GameObject: {fileID: 431888403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -409, y: 464, z: 0}
-  m_LocalScale: {x: 1.8876914, y: 1.887692, z: 1.887692}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_Children:
   - {fileID: 1957341055}
   m_Father: {fileID: 950369944}
@@ -1946,7 +1946,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 431888406}
   m_OnClick:
     m_PersistentCalls:
@@ -4073,8 +4073,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669896170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -102, y: 461, z: 0}
-  m_LocalScale: {x: 1.8875403, y: 1.8875409, z: 1.8875409}
+  m_LocalPosition: {x: -102, y: 464, z: 0}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_Children:
   - {fileID: 332094553}
   m_Father: {fileID: 950369944}
@@ -4082,7 +4082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -102, y: 461}
+  m_AnchoredPosition: {x: -102, y: 464}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &669896172
@@ -4119,7 +4119,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 669896173}
   m_OnClick:
     m_PersistentCalls:
@@ -4397,10 +4397,10 @@ RectTransform:
   - {fileID: 1192368762}
   - {fileID: 815389138}
   - {fileID: 1107979479}
-  - {fileID: 1712131799}
   - {fileID: 2024703107}
   - {fileID: 296828750}
   - {fileID: 950528251}
+  - {fileID: 1712131799}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5686,7 +5686,7 @@ RectTransform:
   - {fileID: 1140999541}
   - {fileID: 1296953873}
   m_Father: {fileID: 760844919}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8557,7 +8557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1348386529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8780,6 +8780,7 @@ MonoBehaviour:
   SMSScrollContent: {fileID: 1847638973}
   SpecialNodeChance: 0
   MessageNodeChance: 1
+  RecieveMessageDelay: 0.75
 --- !u!1 &1370658576
 GameObject:
   m_ObjectHideFlags: 0
@@ -10628,7 +10629,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 760844919}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12586,7 +12587,7 @@ RectTransform:
   - {fileID: 1370658577}
   - {fileID: 950369944}
   m_Father: {fileID: 760844919}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12601,7 +12602,8 @@ AudioSource:
   m_GameObject: {fileID: 2024703106}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 302dffd2e54aecc48af1499b6f346bbc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
