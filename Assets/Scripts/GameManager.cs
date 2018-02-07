@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +39,12 @@ public class GameManager : MonoBehaviour
         //Needs to be removed if a minigame to HUB click sound is to be played.
         StartSFXSound = null;
 
-        GameObject.Find("HUBMusic").GetComponent<AudioSource>().time = Random.Range(0, GameObject.Find("HUBMusic").GetComponent<AudioSource>().clip.length);
+        AudioManager am = FindObjectOfType<AudioManager>();
+        am.Play("HUBMusic");
+        Sound s = Array.Find(am.sounds, Sound => Sound.name == "HUBMusic");
+        s.source.time = UnityEngine.Random.Range(0, s.clip.length);
+
+        am.Play("HUBAmbience");
     }
 
     private void Update()
