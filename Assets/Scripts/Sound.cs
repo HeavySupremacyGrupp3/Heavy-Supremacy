@@ -8,10 +8,10 @@ public class Sound
     public string name;
     public AudioClip clip;
 
-    [Range (0.1f, 1f)]
-    public float volume;
+    [Range(0.1f, 1f)]
+    public float volume = 1;
 
-    public bool loop;
+    public bool loop = false;
 
     public AudioMixerGroup mixer;
 

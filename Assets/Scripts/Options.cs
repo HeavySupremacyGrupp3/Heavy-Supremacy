@@ -10,7 +10,7 @@ public class Options : MonoBehaviour {
 	public void SetVolume(float volume)
     {
 
-        am.SetFloat("MainVolume", volume);
+        am.SetFloat("MasterVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
