@@ -181,8 +181,12 @@ public class GameEventManager : MonoBehaviour
 
     IEnumerator WaitForSMS(int index)
     {
+        SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
         yield return new WaitForSeconds(RecieveMessageDelay);
 
         TriggerSMSEvent(choices[index], false);
+
+        yield return new WaitForEndOfFrame();
+        SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
     }
 }
