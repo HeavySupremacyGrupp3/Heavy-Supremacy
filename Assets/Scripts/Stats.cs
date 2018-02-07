@@ -61,6 +61,7 @@ public abstract class Stats : MonoBehaviour {
 		
 		else if(amount+a>=max)
 		{
+			AudioManager.instance.Play("statmax");
 			amount=max;
 		}
 		
