@@ -116,6 +116,9 @@ public class NoteGenerator : MonoBehaviour
         MusicAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
+        FindObjectOfType<metalStatScript>().addOrRemoveAmount(FindObjectOfType<TimingString>().Metal);
+        FindObjectOfType<angstStatScript>().addOrRemoveAmount(FindObjectOfType<TimingString>().Angst);
+
         if (victory)
         {
             MusicAudioSource.PlayOneShot(VictorySound);

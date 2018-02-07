@@ -10,6 +10,10 @@ public class TimingString : TimingSystem
 
     public float AngstRewardAmount = -10;
     public float MetalRewardAmount = 15;
+    [HideInInspector]
+    public float Angst = 0;
+    [HideInInspector]
+    public float Metal = 0;
     public int MaxHealth = 5;
     public Slider HealthSlider;
     public GameObject AngstPopupPrefab;
@@ -77,8 +81,8 @@ public class TimingString : TimingSystem
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
-        AngstStatScript.addOrRemoveAmount(AngstRewardAmount * AngstMultiplier);
-        MetalStatScript.addOrRemoveAmount(MetalRewardAmount * MetalMultiplier);
+        Angst += AngstRewardAmount * AngstMultiplier;
+        Metal += MetalRewardAmount * MetalMultiplier;
 
         //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;

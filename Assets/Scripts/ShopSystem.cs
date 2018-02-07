@@ -7,9 +7,9 @@ using UnityEngine.Events;
 public class ShopSystem : MonoBehaviour
 {
     public static List<Item> MyInventory = new List<Item>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<Item> ShopInventory = new List<Item>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<Button> ShopButtons = new List<Button>();
     private List<Text> PriceTexts = new List<Text>();
     private List<Text> NameTexts = new List<Text>();
@@ -61,7 +61,7 @@ public class ShopSystem : MonoBehaviour
     private void Update()
     {
         if (Input.GetKey(KeyCode.M))
-            FindObjectOfType<moneyStatScript>().addMoney();
+            FindObjectOfType<moneyStatScript>().addOrRemoveAmount(100);
     }
 
     public void AtemptPurchase(string name)
@@ -160,11 +160,11 @@ public class ShopSystem : MonoBehaviour
     {
         //In order: cheap, regular, expensive.
         if (item.Price <= CheapTreshold)
-            GameObject.Find("HUBSFX").GetComponent<AudioSource>().PlayOneShot(CheapPurchaseSound);
+            FindObjectOfType<AudioManager>().Play("ShopCheapPurchase");
         else if (item.Price <= RegularTreshold)
-            GameObject.Find("HUBSFX").GetComponent<AudioSource>().PlayOneShot(RegularPurchaseSound);
+            FindObjectOfType<AudioManager>().Play("ShopRegularPurchase");
         else
-            GameObject.Find("HUBSFX").GetComponent<AudioSource>().PlayOneShot(ExpensivePurchaseSound);
+            FindObjectOfType<AudioManager>().Play("ShopExpensivePurchase");
     }
 
     public static void UpdateHUBEnvironment()
