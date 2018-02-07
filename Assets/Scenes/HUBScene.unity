@@ -2248,7 +2248,7 @@ Prefab:
     - target: {fileID: 224590166490054426, guid: 44a82d2e1bdd96e48bea16c8656513b4,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.3
+      value: -0.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 224590166490054426, guid: 44a82d2e1bdd96e48bea16c8656513b4,
         type: 2}
@@ -3357,7 +3357,7 @@ Prefab:
     - target: {fileID: 224382309283915852, guid: 6cbd23b2864e50c4cae5bfdbf60977b0,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999999
+      value: -0.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 224382309283915852, guid: 6cbd23b2864e50c4cae5bfdbf60977b0,
         type: 2}
@@ -5932,7 +5932,7 @@ Prefab:
     - target: {fileID: 224185955126255756, guid: 71fe5f756d84dae4a84b870f5b6dc2a6,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999999
+      value: -0.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 224185955126255756, guid: 71fe5f756d84dae4a84b870f5b6dc2a6,
         type: 2}
@@ -6843,9 +6843,9 @@ MonoBehaviour:
   - {fileID: 114166510789418356, guid: cb95c7dd09f309b4dbf5bdf530d63c75, type: 2}
   - {fileID: 114951376570324942, guid: 633421efc5e91df4e80e61eba75f8047, type: 2}
   - {fileID: 114230424636315098, guid: 6d3f2c76de9969c4dab35e7bc62f8baa, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114230424636315098, guid: 399d2522d0ef92e4991f3b92decb6b58, type: 2}
+  - {fileID: 114230424636315098, guid: 1a57a39c8bdf7e8469d17fcd8cd0559d, type: 2}
+  - {fileID: 114230424636315098, guid: cd4ce0646710bf84481c027007354aa1, type: 2}
   ShopButtons:
   - {fileID: 454117869}
   - {fileID: 1939845093}
@@ -8673,7 +8673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeScript: {fileID: 0}
-  Rent: 100
+  Rent: 500
   WeekText: {fileID: 1900271755}
   EndGamePanel: {fileID: 1064664059}
   EndGameTitle: {fileID: 1191409622}
@@ -8723,7 +8723,7 @@ MonoBehaviour:
   SMSScrollContent: {fileID: 1847638973}
   SpecialNodeChance: 0
   MessageNodeChance: 1
-  RecieveMessageDelay: 0.4
+  RecieveMessageDelay: 1.5
 --- !u!1 &1370658576
 GameObject:
   m_ObjectHideFlags: 0
@@ -9977,7 +9977,7 @@ Prefab:
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.19999999
+      value: -0.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 224400425049237666, guid: 7f23cf55893ca2f4496fe635cffbb8e2,
         type: 2}
@@ -12421,7 +12421,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 770999416}
-        m_MethodName: AddSoundForNextScene
+        m_MethodName: Play
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
