@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class moneyStatScript : Stats {
+	
+	
+	public float difference;
 
 	public override void initialize()
 	{
@@ -22,7 +25,7 @@ public class moneyStatScript : Stats {
 
 	public void addMoney()
 	{
-		addOrRemoveAmount(50f);
+		addOrRemoveAmount(difference);
 		//amount += 50f;
 	}
 }
