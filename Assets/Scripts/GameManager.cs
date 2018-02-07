@@ -128,6 +128,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("PracticeScene");
         }
     }
+
+    public void LoadStart()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
     public void LoadHUB()
     {
         StopHUBLoops();
