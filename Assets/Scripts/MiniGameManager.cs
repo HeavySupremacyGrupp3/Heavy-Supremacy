@@ -97,13 +97,24 @@ public class MiniGameManager : MonoBehaviour {
 
             updateCounter=0;
             //Add new gameobject with a random sprite
-            GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);						
-            int rng = Random.Range(0, productSprites.Length);
-            nyProdukt.GetComponent<produktScript>().type = rng;
-            SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-            sr.sprite = productSprites[rng];
-			changeSpawnStopProducts();
-			
+            if (Random.value >= 0.9)
+            {
+                GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+                int rng = Random.Range(0, productSprites.Length);
+                nyProdukt.GetComponent<produktScript>().type = rng;
+                SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
+                sr.sprite = productSprites[rng];
+                changeSpawnStopProducts();
+            }
+            else  //Add new gameobject with a random sprite but not the full can
+            {
+                GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+                int rng = Random.Range(0, 2);
+                nyProdukt.GetComponent<produktScript>().type = rng;
+                SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
+                sr.sprite = productSprites[rng];
+                changeSpawnStopProducts();
+            }
 			
         }	
 		
