@@ -29,6 +29,8 @@ public class MiniGameManager : MonoBehaviour {
 	
 	int stopCounter=0;
 	int finishedProducts=0;
+	
+	public bool cantStopWontStop;
 
 
     void OnEnable()
@@ -52,7 +54,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		finishedProducts++;
 		
-		if(finishedProducts==5)
+		if(finishedProducts==5 && cantStopWontStop==false)
 		{
 			LoadHUB();
 		}

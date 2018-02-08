@@ -15,4 +15,14 @@ public class workTutorialManager : MonoBehaviour {
 		Debug.Log("AAAAAAAAARGHHH!");
         target.SetActive(!target.active);
     }
+	
+	void OnEnable()
+	{
+		tutProduktScript.unhideText+=ToggleGameObject;
+	}
+	
+	void OnDisable()
+	{
+		tutProduktScript.unhideText+=ToggleGameObject;
+	}
 }
