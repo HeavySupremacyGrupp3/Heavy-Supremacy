@@ -86,6 +86,9 @@ public class GameEventManager : MonoBehaviour
             AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
         }
+        if (node.Text == "" || node.Text == null)
+            return;
+
         Debug.Log(node.Title);
 
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
