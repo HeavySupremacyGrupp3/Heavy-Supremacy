@@ -21,6 +21,7 @@ public class GameEventManager : MonoBehaviour
     public float SpecialNodeChance = 0, MessageNodeChance = 0;
 
     public float RecieveMessageDelay = 0.75f;
+    public int SMSDayInterval = 1;
 
     private List<StoryNode> choices = new List<StoryNode>();
 
@@ -43,6 +44,7 @@ public class GameEventManager : MonoBehaviour
 
         if (Random.Range(0f, 1f) <= SpecialNodeChance)
             TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+
         if (Random.Range(0f, 1f) <= MessageNodeChance)
         {
             ClearSMSPanel();
@@ -65,6 +67,25 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public void CheckForStatEvents()
+    {
+        int[] statValues = new int[3];
+        statValues[0] = Mathf.RoundToInt(FindObjectOfType<metalStatScript>().getAmount());
+        statValues[1] = Mathf.RoundToInt(FindObjectOfType<fameStatScript>().getAmount());
+        statValues[2] = Mathf.RoundToInt(FindObjectOfType<angstStatScript>().getAmount());
+
+        if (GameManager.day % SMSDayInterval == 0)
+        {
+            Debug.Log(Mathf.Max(statValues));
+            if (Mathf.Max(statValues) == statValues[0])
+                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            else if (Mathf.Max(statValues) == statValues[1])
+                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            else if (Mathf.Max(statValues) == statValues[2])
+                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+        }
+    }
+
     public void TriggerEventFromPool(EventEnum eventEnum)
     {
         nodeType type = eventEnum.NodeType;
@@ -83,6 +104,7 @@ public class GameEventManager : MonoBehaviour
     {
         if (firstNode)
         {
+            ClearSMSPanel();
             AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
         }
@@ -108,9 +130,9 @@ public class GameEventManager : MonoBehaviour
 
     public void ClearSMSPanel()
     {
-        for (int i = SMSScrollContent.transform.childCount; i > 0; i--)
+        for (int i = SMSScrollContent.transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(SMSScrollContent.transform.GetChild(i));
+            Destroy(SMSScrollContent.transform.GetChild(i).gameObject);
         }
     }
 

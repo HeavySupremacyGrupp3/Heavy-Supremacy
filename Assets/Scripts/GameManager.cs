@@ -157,6 +157,7 @@ public class GameManager : MonoBehaviour
     {
         day++;
         IncreaseWeek();
+        FindObjectOfType<GameEventManager>().CheckForStatEvents();
     }
 
     public void IncreaseWeek()

@@ -5145,7 +5145,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SenderNameTitle
+  m_Text: Sender
 --- !u!222 &833514035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8722,7 +8722,7 @@ MonoBehaviour:
     type: 2}
   SMSScrollContent: {fileID: 1847638973}
   SpecialNodeChance: 0
-  MessageNodeChance: 1
+  MessageNodeChance: 0
   RecieveMessageDelay: 1.5
 --- !u!1 &1370658576
 GameObject:
