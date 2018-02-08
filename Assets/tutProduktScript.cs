@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class tutProduktScript : MonoBehaviour {
-	
-	public GameObject myPrecious;
-	
-	public delegate void tutEvent(GameObject t);
-	public static event tutEvent unhideText;
 
-	void OnMouseDown()
+	public bool moving=true;
+	
+	 void Update ()
 	{
-		unhideText(myPrecious);
-	}
+		if(moving)
+			transform.Translate(Vector3.right * 3f*Time.deltaTime);
+    }
+	
+	void OnTriggerEnter2D(Collider2D other) //kollisioner
+	{
+		if(other.gameObject.tag=="Box")
+		{		
+				Destroy(gameObject);
+		}
+    }
 }
 

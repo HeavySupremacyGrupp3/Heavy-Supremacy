@@ -18,11 +18,11 @@ public class workTutorialManager : MonoBehaviour {
 	
 	void OnEnable()
 	{
-		tutProduktScript.unhideText+=ToggleGameObject;
+		unhideTextScript.unhideText+=ToggleGameObject;
 	}
 	
 	void OnDisable()
 	{
-		tutProduktScript.unhideText+=ToggleGameObject;
+		unhideTextScript.unhideText+=ToggleGameObject;
 	}
 }
