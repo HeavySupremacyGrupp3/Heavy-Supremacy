@@ -10,6 +10,9 @@ public class TimingMachine : TimingSystem {
 	//public delegate void musicEvent(string s);
 	//public static event musicEvent productDetected;
 	
+	public delegate void tutorialEvent();
+	public static event tutorialEvent productHit;
+	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	public int myType;
 	
@@ -22,7 +25,7 @@ public class TimingMachine : TimingSystem {
 		if(timesChanged==0 && !sc.Spoiled)
 		{
 			base.SucceedTiming();			
-			sc.currentStage++;
+			//sc.currentStage++;
 			
 			//if(sc.currentStage<sc.Sprites.Length)
 				//target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
@@ -73,6 +76,8 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
+		
+		productHit();
 		AudioManager.instance.Play(SecondSound);
 		//productDetected(SecondSound);
 	}

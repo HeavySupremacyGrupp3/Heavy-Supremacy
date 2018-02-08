@@ -29,8 +29,12 @@ public class MiniGameManager : MonoBehaviour {
 	
 	int stopCounter=0;
 	int finishedProducts=0;
+		int toiletCounter=0;
+	public int unlockedTypes;
 	
 	public bool cantStopWontStop;
+	public bool stayUntilCompleted;
+	public bool spawnFlaskor;
 
     [SerializeField]
     private float angstTick = 1f;
@@ -42,18 +46,47 @@ public class MiniGameManager : MonoBehaviour {
     void OnEnable()
 	{
 		produktScript.earnMoney +=omaewashindeiru;
+		TimingMachine.productHit += toiletClogger;
 	}
 	
 	void OnDisable()
 	{
 		produktScript.earnMoney -=omaewashindeiru;
+		TimingMachine.productHit -= toiletClogger;
+	}
+	
+	void toiletClogger()
+	{
+		toiletCounter++;
+		Debug.Log("toilet clogger "+toiletCounter);
+		if(toiletCounter==unlockedTypes)
+		{
+			changeSpawnStopProducts();
+			toiletCounter=0;
+		}
 	}
 	
 	void changeSpawnStopProducts()
 	{
 		spawnStuff=!spawnStuff;
-		productsAreStopped=!productsAreStopped;
+		if(!stayUntilCompleted)
+			productsAreStopped=!productsAreStopped;
 		stopProducts();
+	}
+	
+	public void spawnMetallklump()
+	{
+		updateCounter=0;
+		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);	
+		//changeSpawnStopProducts();
+	}
+	
+	public void spawnTomFlaska()
+	{
+		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+		nyProdukt.GetComponent<produktScript>().type = 1;
+        SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
+        sr.sprite = productSprites[1];
 	}
 	
 	void omaewashindeiru()
@@ -84,6 +117,12 @@ public class MiniGameManager : MonoBehaviour {
 			produkter.Add(nyProdukt);		
 		}
 		*/
+		
+		if(spawnFlaskor && updateCounter >= productInterval)
+		{
+			updateCounter=0;
+			spawnTomFlaska();
+		}
      
         angst += Time.deltaTime / angstTick;
         StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));
@@ -92,8 +131,19 @@ public class MiniGameManager : MonoBehaviour {
         if (spawnStuff)
         updateCounter += Time.deltaTime;
 			
-		if(spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
+		if(!spawnFlaskor && spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
+			//JULIA KOLLA HÄR VAD TYCKER DU?
+			/*int leastOf;
+			
+			if(productSprites.Length<unlockedTypes)
+				leastOf=productSprites.Length;
+			else
+				leastOf=unlockedTypes;
+			
+			Debug.Log("least of "+leastOf);
+            int rng = Random.Range(0, leastOf);
+			*/
 
             updateCounter=0;
             //Add new gameobject with a random sprite
@@ -118,7 +168,7 @@ public class MiniGameManager : MonoBehaviour {
 			
         }	
 		
-		if(productsAreStopped)
+		if(!stayUntilCompleted && productsAreStopped)
 		{
 			stopCounter++;
 			if(stopCounter==50)
@@ -126,6 +176,11 @@ public class MiniGameManager : MonoBehaviour {
 				changeSpawnStopProducts();
 				stopCounter=0;
 			}
+		}
+		
+		if(stayUntilCompleted && productsAreStopped && !spawnFlaskor)
+		{
+			changeSpawnStopProducts();
 		}
 	}
 	
@@ -170,6 +225,21 @@ public class MiniGameManager : MonoBehaviour {
     {
         
     }
+	
+	public void changeStopRequirements()
+	{
+		stayUntilCompleted=!stayUntilCompleted;
+	}
+	
+	public void changeSpawnaFlaskor()
+	{
+		spawnFlaskor=!spawnFlaskor;
+	}
+	
+	public void setUnlockedTypes(int t)
+	{
+		unlockedTypes=t;
+	}
 
     public void GameOver()
     {

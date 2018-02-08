@@ -9,7 +9,7 @@ public class produktScript : MonoBehaviour {
 	
 	public Sprite[] Sprites;
 	public Sprite spoilSprite;
-	public int currentStage=0;
+	//public int currentStage=0;
 	public bool Spoiled=false;
 
     private Vector3 startPosition;
