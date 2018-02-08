@@ -83,9 +83,12 @@ public class GameEventManager : MonoBehaviour
     {
         if (firstNode)
         {
-            FindObjectOfType<AudioManager>().Play("MobilNotification");
+            AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
         }
+        if (node.Text == "" || node.Text == null)
+            return;
+
         Debug.Log(node.Title);
 
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
@@ -181,8 +184,12 @@ public class GameEventManager : MonoBehaviour
 
     IEnumerator WaitForSMS(int index)
     {
+        SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
         yield return new WaitForSeconds(RecieveMessageDelay);
 
         TriggerSMSEvent(choices[index], false);
+
+        yield return new WaitForEndOfFrame();
+        SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
     }
 }

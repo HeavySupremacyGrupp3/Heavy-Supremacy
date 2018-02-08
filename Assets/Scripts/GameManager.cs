@@ -20,22 +20,23 @@ public class GameManager : MonoBehaviour
 
     public static string EndGameTitleText;
     public static bool ToEndGame;
-	
+    public static bool RestartGame;
+
 	private KeyCode key=KeyCode.Escape;
 
     void Awake()
     {
-        //Screen.SetResolution(1920, 1080, true);
-
         if (ToEndGame)
             EndGame(EndGameTitleText);
+        if (RestartGame)
+            Restart();
 
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
         //WeekText = GetComponent<TextMesh>();
         WeekText.text = "Approximately week: ";
 
-        AudioManager am = FindObjectOfType<AudioManager>();
+        AudioManager am = AudioManager.instance;
         am.Play("HUBMusic");
         Sound s = Array.Find(am.sounds, Sound => Sound.name == "HUBMusic");
         s.source.time = UnityEngine.Random.Range(0, s.clip.length);
@@ -48,7 +49,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
             FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
         //WeekText.text = "Approximately week: " + week;
-		
+        if (Input.GetKeyDown(KeyCode.R))
+            Restart();
 		if(Input.GetKeyDown(key))
 			Quit();
 		
@@ -82,6 +84,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        RestartGame = false;
+
         ShopSystem.MyInventory.Clear();
 
         FindObjectOfType<metalStatScript>().ResetAmount();
@@ -128,6 +132,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("PracticeScene");
         }
     }
+
+    public void LoadStart()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
     public void LoadHUB()
     {
         StopHUBLoops();
@@ -164,8 +174,8 @@ public class GameManager : MonoBehaviour
 
     void StopHUBLoops()
     {
-        FindObjectOfType<AudioManager>().Stop("HUBAmbience");
-        FindObjectOfType<AudioManager>().Stop("HUBMusic");
+        AudioManager.instance.Stop("HUBAmbience");
+        AudioManager.instance.Stop("HUBMusic");
     }
 
     public void ToggleGameObject(GameObject target)

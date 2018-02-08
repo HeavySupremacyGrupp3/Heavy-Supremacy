@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -41,7 +43,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning(name + "wasn't found");
             return;
         }
-        Debug.Log("Playing: " + s.source.clip.name + " From: " + s.name);
+        //Debug.Log("Playing: " + s.source.clip.name + " From: " + s.name);
         s.source.Play();
     }
 
