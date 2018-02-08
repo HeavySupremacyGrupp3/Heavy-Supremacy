@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
         //WeekText.text = "Approximately week: " + week;
         if (Input.GetKeyDown(KeyCode.R))
             Restart();
-		if(Input.GetKeyDown(key))
-			Quit();
+		//if(Input.GetKeyDown(key))
+		//	Quit();
 		
     }
 

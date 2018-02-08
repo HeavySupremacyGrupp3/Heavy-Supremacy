@@ -54,7 +54,7 @@ public class GameEventManager : MonoBehaviour
 
     void LoadEvents(string _fileName, List<StoryNode> _nodes)
     {
-        using (StreamReader s = new StreamReader(_fileName + ".txt"))
+        using (StreamReader s = new StreamReader(Application.dataPath + "/Nodes/" + _fileName + ".txt"))
         {
             string line = s.ReadLine();
             while (line != null)

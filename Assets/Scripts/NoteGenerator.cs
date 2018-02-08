@@ -20,6 +20,7 @@ public class NoteGenerator : MonoBehaviour
 
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
+    public GameObject TutorialPanel;
     public Text FameText;
     public Text MoneyText;
     public Text AngstText;
@@ -28,6 +29,7 @@ public class NoteGenerator : MonoBehaviour
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 3;
     public static float NotesTotal = 0;
+    public static bool ShowTutorial = true;
 
     public AudioClip VictorySound;
     public AudioClip DefeatSound;
@@ -44,6 +46,12 @@ public class NoteGenerator : MonoBehaviour
     void Start()
     {
         Initialize();
+
+
+        if (ShowTutorial)
+            TutorialPanel.SetActive(true);
+        else if (!ShowTutorial)
+            TutorialPanel.SetActive(false);
 
         NotesTotal = 0;
     }
@@ -176,6 +184,11 @@ public class NoteGenerator : MonoBehaviour
         }
     }
 
+    public void SetTutorial(bool active)
+    {
+        ShowTutorial = active;
+    }
+
     public void LoadHub()
     {
         if (FindObjectOfType<GameManager>() != null)
@@ -189,5 +202,6 @@ public class NoteGenerator : MonoBehaviour
     public static void Reset()
     {
         NoteMultiplier = 1;
+        ShowTutorial = true;
     }
 }
