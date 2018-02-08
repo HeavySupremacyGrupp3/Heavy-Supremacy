@@ -12421,7 +12421,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 770999416}
-        m_MethodName: Play
+        m_MethodName: AddSoundForNextScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
