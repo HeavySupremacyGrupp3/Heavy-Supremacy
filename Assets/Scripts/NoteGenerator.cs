@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NoteGenerator : MonoBehaviour
 {
@@ -19,9 +20,14 @@ public class NoteGenerator : MonoBehaviour
 
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
+    public Text FameText;
+    public Text MoneyText;
+    public Text AngstText;
+    public Text MetalText;
 
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 3;
+    public static float NotesTotal = 0;
 
     public AudioClip VictorySound;
     public AudioClip DefeatSound;
@@ -38,6 +44,8 @@ public class NoteGenerator : MonoBehaviour
     void Start()
     {
         Initialize();
+
+        NotesTotal = 0;
     }
 
     void Initialize()
@@ -106,29 +114,60 @@ public class NoteGenerator : MonoBehaviour
             noteIndex = tempIndex;
 
             Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
+            NotesTotal++;
         }
         noteSpawnTimer = 0;
     }
 
-    public void EndGame(bool victory)
+    public void EndGame(bool victory = true)
     {
         EndGamePanel.SetActive(true);
         MusicAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
-        FindObjectOfType<metalStatScript>().addOrRemoveAmount(FindObjectOfType<TimingString>().Metal);
-        FindObjectOfType<angstStatScript>().addOrRemoveAmount(FindObjectOfType<TimingString>().Angst);
+        angstStatScript angst = FindObjectOfType<angstStatScript>();
+        metalStatScript metal = FindObjectOfType<metalStatScript>();
+        fameStatScript fame = FindObjectOfType<fameStatScript>();
+        moneyStatScript money = FindObjectOfType<moneyStatScript>();
+        float metalGained = 0;
+        float fameGained = 0;
+        float moneyGained = 0;
+        float angstGained = 0;
 
         FindObjectOfType<TimingString>().enabled = false;
 
+        //Practice always goes to victory.
         if (victory)
         {
             MusicAudioSource.PlayOneShot(VictorySound);
 
-            if (FindObjectOfType<fameStatScript>().getAmount() >= FindObjectOfType<fameStatScript>().getMax() && GigBackgroundManager.GigSession)
+            //Calculate rewards then apply them.
+            metalGained = 25 * (1 / (1 + (angst.getAmount() / 15))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter);
+            fameGained = 50 * (2 / (10 - (metal.getAmount() / 15)));
+            moneyGained = 3000 * (6 / (100 - fame.getAmount()));
+            angstGained = -25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter);
+
+            Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
+            MetalText.text = "Metal Gained: " + Mathf.RoundToInt(metalGained).ToString();
+            AngstText.text = "Angst Loss: " + Mathf.RoundToInt(angstGained).ToString();
+
+            metal.addOrRemoveAmount(metalGained);
+
+
+            if (GigBackgroundManager.GigSession)
             {
-                GameManager.ToEndGame = true;
-                GameManager.EndGameTitleText = "You're famous and won the game!";
+                FameText.text = "Fame Gained: " + Mathf.RoundToInt(fameGained).ToString();
+                MoneyText.text = "Money Gained: " + Mathf.RoundToInt(moneyGained).ToString();
+
+                fame.addOrRemoveAmount(fameGained);
+                money.addOrRemoveAmount(moneyGained);
+                angst.addOrRemoveAmount(angstGained);
+
+                if (fame.getAmount() >= fame.getMax())
+                {
+                    GameManager.ToEndGame = true;
+                    GameManager.EndGameTitleText = "You're famous and won the game!";
+                }
             }
         }
         else

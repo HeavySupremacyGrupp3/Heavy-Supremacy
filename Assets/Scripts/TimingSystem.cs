@@ -13,6 +13,14 @@ public abstract class TimingSystem : MonoBehaviour
     public bool CanExitCollider;
 
     protected List<GameObject> targets = new List<GameObject>();
+    private List<GameObject> blacklistedTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
+
+    public static float ActivatedMechanicAndMissedNotesCounter = 0;
+
+    private void Start()
+    {
+        ActivatedMechanicAndMissedNotesCounter = 0;
+    }
 
     void Update()
     {
@@ -22,11 +30,14 @@ public abstract class TimingSystem : MonoBehaviour
 
     void ActivateMechanic()
     {
+        ActivatedMechanicAndMissedNotesCounter++;
+
         if (targets.Count == 0)
         {
             FailTiming();
+            return;
         }
-        else if (targets.Count > 0)
+        else if (targets.Count > 0 && !blacklistedTargets.Contains(targets[0]))
         {
             //Need multiple if-statements to handle simultanious notes.
             if (targets[0].name.Contains("_1") && Input.GetKey(ActivasionKey1))
@@ -35,16 +46,21 @@ public abstract class TimingSystem : MonoBehaviour
                 SucceedTiming();
             if (targets[0].name.Contains("_3") && Input.GetKey(ActivasionKey3))
                 SucceedTiming();
+
+            return;
         }
     }
 
     public virtual void FailTiming()
     {
         Debug.Log("FAILED TIMING");
-        //targets = null;
+        ActivatedMechanicAndMissedNotesCounter++;
+
         if (targets.Count > 0)
+        {
+            blacklistedTargets.Add(targets[0]);
             targets.RemoveAt(0);
-        
+        }
     }
 
     public virtual void SucceedTiming()
@@ -54,10 +70,9 @@ public abstract class TimingSystem : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
+        if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject) && !blacklistedTargets.Contains(collision.gameObject))
         {
             targets.Add(collision.gameObject);
-            
         }
     }
 }

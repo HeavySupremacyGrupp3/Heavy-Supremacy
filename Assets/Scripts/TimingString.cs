@@ -8,12 +8,6 @@ public class TimingString : TimingSystem
     public string[] ErrorSounds;
     public AudioSource AudioSource;
 
-    public float AngstRewardAmount = -10;
-    public float MetalRewardAmount = 15;
-    [HideInInspector]
-    public float Angst = 0;
-    [HideInInspector]
-    public float Metal = 0;
     public int MaxHealth = 5;
     public Slider HealthSlider;
     public GameObject AngstPopupPrefab;
@@ -38,9 +32,7 @@ public class TimingString : TimingSystem
 
     public static float AngstMultiplier = 1;
     public static float MetalMultiplier = 1;
-
-    private angstStatScript AngstStatScript;
-    private metalStatScript MetalStatScript;
+    public static float NotesHit = 0;
 
     private int streakCounter = 0;
     private int streakHighScoreCounter = 0;
@@ -52,13 +44,14 @@ public class TimingString : TimingSystem
         HealthSlider.maxValue = MaxHealth;
         if (!GigBackgroundManager.GigSession)
             HealthSlider.gameObject.SetActive(false);
-        
-        AngstStatScript = FindObjectOfType<angstStatScript>();
-        MetalStatScript = FindObjectOfType<metalStatScript>();
+
+        NotesHit = 0;
     }
 
     public override void FailTiming()
     {
+        base.FailTiming();
+
         Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
         AddOrRemoveHealth(-1);
@@ -67,22 +60,19 @@ public class TimingString : TimingSystem
         AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         StringAnimator.SetTrigger("StringStroked");
 
-        base.FailTiming();
     }
 
     public override void SucceedTiming()
     {
         base.SucceedTiming();
 
+        NotesHit++;
         UpdateStreakCounters(1);
 
         if (streakCounter % RequiredStreaksForHealth == 0)
             AddOrRemoveHealth(HealthGainedPerStreak);
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
-
-        Angst += AngstRewardAmount * AngstMultiplier;
-        Metal += MetalRewardAmount * MetalMultiplier;
 
         //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
@@ -98,8 +88,9 @@ public class TimingString : TimingSystem
         StringAnimator.SetTrigger("StringStroked");
 
         Destroy(targets[0]);
+
         //This line is the cause of index-errors when hitting notes.
-        targets.RemoveAt(0);
+        targets.Clear();
     }
 
     private GameObject GetNoteAccuracyPrefab()
@@ -108,7 +99,7 @@ public class TimingString : TimingSystem
         if (distance < 0)
             distance *= -1;
 
-        GameObject go = new GameObject();
+        GameObject go;
 
         //Decending order: Perfect, Good, Bad, Miss.
         if (distance <= PerfectDistance)
@@ -141,6 +132,7 @@ public class TimingString : TimingSystem
 
         if (health > MaxHealth)
             health = MaxHealth;
+
         else if (health <= 0 && GigBackgroundManager.GigSession)
         {
             FindObjectOfType<NoteGenerator>().EndGame(false);
