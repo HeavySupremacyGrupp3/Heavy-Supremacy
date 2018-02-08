@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimingString : TimingSystem
 {
-    public AudioClip[] ErrorSounds;
+    public string[] ErrorSounds;
     public AudioSource AudioSource;
 
     public float AngstRewardAmount = -10;
@@ -64,7 +64,7 @@ public class TimingString : TimingSystem
         AddOrRemoveHealth(-1);
         UpdateStreakCounters(-streakCounter);
 
-        AudioSource.PlayOneShot(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
+        AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         StringAnimator.SetTrigger("StringStroked");
 
         base.FailTiming();
