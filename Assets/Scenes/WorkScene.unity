@@ -152,6 +152,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9142a6981ae375145b10d4d8c83d7c19, type: 3}
   - {fileID: 21300000, guid: 8b693afcaff6de64193ee9e5e56b501f, type: 3}
   - {fileID: 21300000, guid: 01cabb468f30c8744bdb90e02baa09d0, type: 3}
+  cantStopWontStop: 0
+  angstTick: 1
+  angstAmount: 1
 --- !u!4 &1237345
 Transform:
   m_ObjectHideFlags: 0

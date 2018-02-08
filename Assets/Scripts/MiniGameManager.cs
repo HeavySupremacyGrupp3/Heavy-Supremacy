@@ -32,6 +32,12 @@ public class MiniGameManager : MonoBehaviour {
 	
 	public bool cantStopWontStop;
 
+    [SerializeField]
+    private float angstTick = 1f;
+    [SerializeField]
+    private int angstAmount = 1;
+    private float angst = 0f;
+
 
     void OnEnable()
 	{
@@ -64,7 +70,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
         gmScript = GetComponent<GameManager>();
         produktScript = GetComponent<produktScript>();
-        StatReference =GameObject.Find("angstObject").GetComponent<angstStatScript>();
+        StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
         //AudioManager.instance.Play("Atmosphere"); //blir trött i huvet
     }	
 	
@@ -78,6 +84,11 @@ public class MiniGameManager : MonoBehaviour {
 			produkter.Add(nyProdukt);		
 		}
 		*/
+     
+        angst += Time.deltaTime / angstTick;
+        StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));
+
+
         if (spawnStuff)
         updateCounter += Time.deltaTime;
 			
@@ -178,4 +189,19 @@ public class MiniGameManager : MonoBehaviour {
     {
         spawnStuff = false;
     }
+
+    /*public IEnumerator AngstTick()
+    {
+        yield return new WaitForSeconds(angstTick);
+        for (float i = 0; i <= angstTick + 1; i += Time.deltaTime)
+        {
+            if (i >= angstTick)
+            {
+                StatReference.addOrRemoveAmount(angstAmount);
+            }
+            yield return new WaitForSeconds(angstTick);
+        }
+
+    }
+    */
 }
