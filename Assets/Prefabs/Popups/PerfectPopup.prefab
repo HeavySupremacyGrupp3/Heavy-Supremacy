@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4210393885444806}
   - component: {fileID: 23760520239168610}
   - component: {fileID: 102546509485796674}
+  - component: {fileID: 114548150920234352}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -139,8 +140,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationZ: 0
-  TransformX: 2
-  TransformY: 2
+  TransformX: 0
+  TransformY: 4
+--- !u!114 &114548150920234352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510562080866534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae14fd8b8b5b508408945ad132115340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionTime: 0.7
+  StartColor: {r: 0, g: 0.8352942, b: 1, a: 1}
+  EndColor: {r: 0, g: 0.8352942, b: 1, a: 0}
 --- !u!212 &212966219249308778
 SpriteRenderer:
   m_ObjectHideFlags: 1

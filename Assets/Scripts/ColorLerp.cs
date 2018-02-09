@@ -7,23 +7,35 @@ public class ColorLerp : MonoBehaviour
     public Color EndColor = Color.white;
 
     private SpriteRenderer spriteRenderer;
+    private TextMesh textMesh;
     private float timer;
+    private Color currentColor;
 
-	void Start ()
+    void Start()
     {
         timer = TransitionTime;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = StartColor;
-	}
-	
-	void Update ()
+        textMesh = GetComponent<TextMesh>();
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = StartColor;
+        else if (textMesh != null)
+            textMesh.color = StartColor;
+    }
+
+    void Update()
     {
         UpdateTransition();
-	}
+    }
 
     void UpdateTransition()
     {
         timer -= Time.deltaTime;
-        spriteRenderer.color = Color.Lerp(EndColor, StartColor, timer / TransitionTime);
+        currentColor = Color.Lerp(EndColor, StartColor, timer / TransitionTime);
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = currentColor;
+        if (textMesh != null)
+            textMesh.color = currentColor;
     }
 }
