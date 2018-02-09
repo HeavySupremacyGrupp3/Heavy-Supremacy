@@ -50,16 +50,35 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        base.FailTiming();
+        //Make sure not cannot fail if it has been hit.
+        if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
+        {
+            ClearHitTargetList();
+            return;
+        }
+        else
+        {
+            base.FailTiming();
 
-        Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
+            Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
-        AddOrRemoveHealth(-1);
-        UpdateStreakCounters(-streakCounter);
+            AddOrRemoveHealth(-1);
+            UpdateStreakCounters(-streakCounter);
 
-        AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
-        StringAnimator.SetTrigger("StringStroked");
+            AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
+            StringAnimator.SetTrigger("StringStroked");
 
+            ClearHitTargetList();
+        }
+    }
+
+    void ClearHitTargetList()
+    {
+        foreach (GameObject go in hitTargets)
+        {
+            Destroy(go);
+        }
+        hitTargets.Clear();
     }
 
     public override void SucceedTiming()
@@ -72,7 +91,7 @@ public class TimingString : TimingSystem
         if (streakCounter % RequiredStreaksForHealth == 0)
             AddOrRemoveHealth(HealthGainedPerStreak);
 
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
         //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
@@ -89,7 +108,6 @@ public class TimingString : TimingSystem
 
         Destroy(targets[0]);
 
-        //This line is the cause of index-errors when hitting notes.
         targets.Clear();
     }
 

@@ -45,13 +45,17 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
-        Initialize();
-
-
         if (ShowTutorial)
+        {
             TutorialPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
         else if (!ShowTutorial)
+        {
+            Initialize();
             TutorialPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
 
         NotesTotal = 0;
     }
@@ -69,10 +73,13 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
-            SendNote();
-        else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
-            EndGame(true);
+        if (!ShowTutorial)
+        {
+            if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
+                SendNote();
+            else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+                EndGame(true);
+        }
     }
 
     bool CheckForNote()
@@ -187,6 +194,14 @@ public class NoteGenerator : MonoBehaviour
     public void SetTutorial(bool active)
     {
         ShowTutorial = active;
+
+        if (active)
+            Time.timeScale = 0;
+        else if (!active)
+        {
+            Time.timeScale = 1;
+            Initialize();
+        }
     }
 
     public void LoadHub()
