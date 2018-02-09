@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: HUBMusic
-    clip: {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
+    clip: {fileID: 8300000, guid: 356c86059cb8a1143913dc187e0c6183, type: 3}
     volume: 0.235
     loop: 1
     mixer: {fileID: 243314491722251838, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
@@ -173,19 +173,19 @@ MonoBehaviour:
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: ShopCheapPurchase
-    clip: {fileID: 8300000, guid: aad85b349b767e34cad60a36f3657b0d, type: 3}
+    clip: {fileID: 8300000, guid: a55dabcd2920b4e47b422397e5b77582, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: ShopRegularPurchase
-    clip: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff, type: 3}
+    clip: {fileID: 8300000, guid: 2c9fec546a90eaa428e156ea1feabcd7, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: ShopExpensivePurchase
-    clip: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
+    clip: {fileID: 8300000, guid: dd31a3c1eac5fdf4fafb4fc61bb3c6f8, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
@@ -203,8 +203,32 @@ MonoBehaviour:
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeClick
-    clip: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: c4428c3c93018ea41aaf1526d3cb34a1, type: 3}
+    volume: 0.388
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 0
+    clip: {fileID: 8300000, guid: c4428c3c93018ea41aaf1526d3cb34a1, type: 3}
+    volume: 0.388
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 1
+    clip: {fileID: 8300000, guid: c4428c3c93018ea41aaf1526d3cb34a1, type: 3}
+    volume: 0.388
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 2
+    clip: {fileID: 8300000, guid: c4428c3c93018ea41aaf1526d3cb34a1, type: 3}
+    volume: 0.388
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 3
+    clip: {fileID: 8300000, guid: c4428c3c93018ea41aaf1526d3cb34a1, type: 3}
+    volume: 0.388
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
