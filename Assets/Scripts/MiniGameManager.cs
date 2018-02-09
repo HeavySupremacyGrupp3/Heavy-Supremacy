@@ -42,28 +42,44 @@ public class MiniGameManager : MonoBehaviour {
     private int angstAmount = 1;
     private float angst = 0f;
 
+	int productsSeen=0;
 
     void OnEnable()
 	{
 		produktScript.earnMoney +=omaewashindeiru;
 		TimingMachine.productHit += toiletClogger;
+		machineBelowDetectorScript.productBelowDetected += chickPeas;
 	}
 	
 	void OnDisable()
 	{
 		produktScript.earnMoney -=omaewashindeiru;
 		TimingMachine.productHit -= toiletClogger;
+		machineBelowDetectorScript.productBelowDetected -= chickPeas;
 	}
 	
 	void toiletClogger()
 	{
 		toiletCounter++;
-		Debug.Log("toilet clogger "+toiletCounter);
+		Debug.Log("toilet clogger "+toiletCounter+", goal "+unlockedTypes);
 		if(toiletCounter==unlockedTypes)
 		{
+			Debug.Log("Successfully unclogged!");
 			changeSpawnStopProducts();
+			//spawnStuff=!spawnStuff;
+		
+			//productsAreStopped=!productsAreStopped;
+			//stopProducts();
 			toiletCounter=0;
 		}
+	}
+	
+	void chickPeas()
+	{
+		 if(productsSeen>1)
+		 {
+			 changeSpawnStopProducts();
+		 }
 	}
 	
 	void changeSpawnStopProducts()
@@ -77,8 +93,8 @@ public class MiniGameManager : MonoBehaviour {
 	public void spawnMetallklump()
 	{
 		updateCounter=0;
-		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);	
-		//changeSpawnStopProducts();
+		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+		productsSeen++;
 	}
 	
 	public void spawnTomFlaska()
@@ -87,6 +103,7 @@ public class MiniGameManager : MonoBehaviour {
 		nyProdukt.GetComponent<produktScript>().type = 1;
         SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
         sr.sprite = productSprites[1];
+		productsSeen++;
 	}
 	
 	void omaewashindeiru()
@@ -108,16 +125,7 @@ public class MiniGameManager : MonoBehaviour {
     }	
 	
 	void Update ()
-	{
-        /*
-		if(Time.fixedTime%3==2)	
-		{
-			StatReference.addOrRemoveAmount(-20f);
-			GameObject nyProdukt = (GameObject)Instantiate (ProduktPrefab, transform.position, transform.rotation);
-			produkter.Add(nyProdukt);		
-		}
-		*/
-		
+	{		
 		if(spawnFlaskor && updateCounter >= productInterval)
 		{
 			updateCounter=0;
@@ -128,7 +136,7 @@ public class MiniGameManager : MonoBehaviour {
         StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));
 
 
-        if (spawnStuff)
+        if (spawnStuff) //&& !spawnFlaskor
         updateCounter += Time.deltaTime;
 			
 		if(!spawnFlaskor && spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
@@ -154,7 +162,7 @@ public class MiniGameManager : MonoBehaviour {
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
-                changeSpawnStopProducts();
+                //changeSpawnStopProducts();
             }
             else  //Add new gameobject with a random sprite but not the full can
             {
@@ -163,9 +171,11 @@ public class MiniGameManager : MonoBehaviour {
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
-                changeSpawnStopProducts();
+                //changeSpawnStopProducts();
             }
-			
+			productsSeen++;
+			if(productsSeen>1)
+				changeSpawnStopProducts();
         }	
 		
 		if(!stayUntilCompleted && productsAreStopped)
@@ -233,6 +243,8 @@ public class MiniGameManager : MonoBehaviour {
 	
 	public void changeSpawnaFlaskor()
 	{
+		//updateCounter=0;
+		//spawnFlaskorJustChanged=1;
 		spawnFlaskor=!spawnFlaskor;
 	}
 	

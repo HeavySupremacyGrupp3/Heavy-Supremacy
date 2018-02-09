@@ -14,6 +14,7 @@ public class TimingMachine : TimingSystem {
 	public static event tutorialEvent productHit;
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
+	public machineBelowDetectorScript myBelowDetector;
 	public int myType;
 	
 	public string SecondSound;
@@ -37,11 +38,24 @@ public class TimingMachine : TimingSystem {
 	void OnEnable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
+		//myBelowDetector.productBelowDetected += compareTypes;
 	}
 	
 	void OnDisable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
+		//myBelowDetector.productBelowDetected -= compareTypes;
+	}
+	
+	void compareTypes(GameObject t)
+	{
+		produktScript sc=t.GetComponent<produktScript>();
+		Debug.Log("Product below");
+		if(myType<sc.type)
+		{
+			Debug.Log("Product below hit");
+			//productHit();
+		}
 	}
 	
 	public override void FailTiming()
