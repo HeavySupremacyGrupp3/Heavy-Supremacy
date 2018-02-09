@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationZ: 0
-  TransformX: 2
-  TransformY: 2
+  TransformX: 3
+  TransformY: 3
 --- !u!212 &212050238482890992
 SpriteRenderer:
   m_ObjectHideFlags: 1

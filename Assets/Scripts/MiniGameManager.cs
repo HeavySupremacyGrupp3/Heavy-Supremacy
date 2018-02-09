@@ -110,7 +110,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		finishedProducts++;
 		
-		if(finishedProducts==5 && cantStopWontStop==false)
+		if(finishedProducts==10 && cantStopWontStop==false)
 		{
 			LoadHUB();
 		}
@@ -142,7 +142,7 @@ public class MiniGameManager : MonoBehaviour {
 		if(!spawnFlaskor && spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
 			//JULIA KOLLA HÄR VAD TYCKER DU?
-			int leastOf;
+			/*int leastOf;
 			
 			if(productSprites.Length<unlockedTypes)
 				leastOf=productSprites.Length;
@@ -151,14 +151,14 @@ public class MiniGameManager : MonoBehaviour {
 			
 			Debug.Log("least of "+leastOf);
             int rng = Random.Range(0, leastOf);
-			
+			*/
 
             updateCounter=0;
             //Add new gameobject with a random sprite
             if (Random.value >= 0.9)
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                rng = Random.Range(0, productSprites.Length);
+                int rng = Random.Range(0, productSprites.Length);
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
@@ -167,7 +167,7 @@ public class MiniGameManager : MonoBehaviour {
             else  //Add new gameobject with a random sprite but not the full can
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                rng = Random.Range(0, 2);
+                int rng = Random.Range(0, 2);
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
