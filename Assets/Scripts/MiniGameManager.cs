@@ -93,7 +93,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		finishedProducts++;
 		
-		if(finishedProducts==5 && cantStopWontStop==false)
+		if(finishedProducts==10 && cantStopWontStop==false)
 		{
 			LoadHUB();
 		}
