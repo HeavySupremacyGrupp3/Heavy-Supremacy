@@ -34,10 +34,10 @@ public class ColorLerp : MonoBehaviour
 
     void UpdateTransition()
     {
-        if (Reverse && timer >= 0)
-            timer -= Time.deltaTime;
-        else if (timer <= 1 && !Reverse)
+        if (Reverse&& timer <= 1)
             timer += Time.deltaTime;
+        else if (timer >= 0 && !Reverse)
+            timer -= Time.deltaTime;
 
         currentColor = Color.Lerp(EndColor, StartColor, timer / TransitionTime);
 
