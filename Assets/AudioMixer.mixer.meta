@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/AudioMixer.mixer.meta
 guid: f76aa254f9c65eb419b63bdf58a6b9b9
 timeCreated: 1518168452
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
-=======
-guid: e39a7e60b08db8a4aa743b50683652bb
-timeCreated: 1517343770
-licenseType: Free
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 24100000
->>>>>>> 338d7f0ae45e1f2f1fcc482bc795a2673af41186:Assets/AudioMixer.mixer.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

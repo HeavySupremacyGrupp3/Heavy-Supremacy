@@ -16,12 +16,6 @@ public class StartMenu : MonoBehaviour {
         SceneManager.LoadScene("HUBScene");
     }
 
-    public void LoadTutorial()
-    {
-        GameManager.RestartGame = true;
-        SceneManager.LoadScene("WorkTutorialScene");
-    }
-
     public void Quit()
     {
         Application.Quit();
