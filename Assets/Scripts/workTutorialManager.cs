@@ -41,6 +41,11 @@ public class workTutorialManager : MonoBehaviour {
 	bool spawnStuff=true;
 	bool productsAreStopped=false;
 	
+	public void ToggleScript(MonoBehaviour m)
+	{
+		m.enabled=!m.enabled;
+	}
+	
 	public void ToggleClassicWorkScrip()
 	{
 		//targetScript.SetActive(!targetScript.active);
