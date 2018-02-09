@@ -41,6 +41,8 @@ public class MiniGameManager : MonoBehaviour {
     [SerializeField]
     private int angstAmount = 1;
     private float angst = 0f;
+	
+	bool inTheNameOfTheLaw=false;
 
 	int productsSeen=0;
 
@@ -78,7 +80,9 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		 if(productsSeen>1)
 		 {
-			 changeSpawnStopProducts();
+			 Debug.Log("Chickpeas");
+			 inTheNameOfTheLaw=true;
+			 //changeSpawnStopProducts();
 		 }
 	}
 	
@@ -110,7 +114,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		finishedProducts++;
 		
-		if(finishedProducts==5 && cantStopWontStop==false)
+		if(finishedProducts==10 && cantStopWontStop==false)
 		{
 			LoadHUB();
 		}
@@ -174,8 +178,9 @@ public class MiniGameManager : MonoBehaviour {
                 //changeSpawnStopProducts();
             }
 			productsSeen++;
-			if(productsSeen>1)
+			if(productsSeen>1 && !inTheNameOfTheLaw)
 				changeSpawnStopProducts();
+			inTheNameOfTheLaw=false;
         }	
 		
 		if(!stayUntilCompleted && productsAreStopped)
