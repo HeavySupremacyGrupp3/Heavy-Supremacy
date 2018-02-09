@@ -153,9 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae14fd8b8b5b508408945ad132115340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionTime: 0.7
+  Speed: 1.5
   StartColor: {r: 0, g: 1, b: 0.21568629, a: 1}
   EndColor: {r: 0, g: 1, b: 0.21568629, a: 0}
+  Lerp: 1
+  Reverse: 0
 --- !u!212 &212192384922502746
 SpriteRenderer:
   m_ObjectHideFlags: 1

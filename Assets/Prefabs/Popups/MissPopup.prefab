@@ -139,9 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae14fd8b8b5b508408945ad132115340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionTime: 0.7
+  Speed: 1.5
   StartColor: {r: 1, g: 0, b: 0, a: 1}
   EndColor: {r: 1, g: 0, b: 0, a: 0}
+  Lerp: 1
+  Reverse: 0
 --- !u!114 &114921696521256940
 MonoBehaviour:
   m_ObjectHideFlags: 1
