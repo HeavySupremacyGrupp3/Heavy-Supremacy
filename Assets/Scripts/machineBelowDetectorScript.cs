@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class machineBelowDetectorScript : MonoBehaviour {
 	
-	public delegate void targetDetector();
+	public delegate void targetDetector(GameObject t);
 	public static event targetDetector productBelowDetected;
 	
 	public bool isActive;
@@ -20,7 +20,7 @@ public class machineBelowDetectorScript : MonoBehaviour {
 		if(isActive)
 		{
 			Debug.Log("Product below");
-			productBelowDetected();
+			productBelowDetected(collision);
 		}
 	}
 	
