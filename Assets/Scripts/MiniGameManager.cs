@@ -50,6 +50,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		produktScript.earnMoney +=omaewashindeiru;
 		TimingMachine.productHit += toiletClogger;
+		TimingMachine.productCompared += chickPeas; 
 		//machineBelowDetectorScript.productBelowDetected += chickPeas;
 	}
 	
@@ -57,6 +58,7 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		produktScript.earnMoney -=omaewashindeiru;
 		TimingMachine.productHit -= toiletClogger;
+		TimingMachine.productCompared -= chickPeas; 
 		//machineBelowDetectorScript.productBelowDetected -= chickPeas;
 	}
 	
@@ -64,25 +66,33 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		toiletCounter++;
 		Debug.Log("toilet clogger "+toiletCounter+", goal "+unlockedTypes);
+		
 		if(toiletCounter==unlockedTypes)
 		{
 			Debug.Log("Successfully unclogged!");
 			changeSpawnStopProducts();
-			//spawnStuff=!spawnStuff;
-		
-			//productsAreStopped=!productsAreStopped;
-			//stopProducts();
+			//inTheNameOfTheLaw=false;
 			toiletCounter=0;
 		}
 	}
 	
-	void chickPeas()
+	void chickPeas(bool b)
 	{
-		 if(productsSeen>1)
+		 if(productsSeen>1 && b==true)
 		 {
 			 Debug.Log("Chickpeas");
-			 inTheNameOfTheLaw=true;
+			 toiletCounter++;
+			 if(toiletCounter==unlockedTypes)
+			 {
+				 inTheNameOfTheLaw=false;
+				 toiletCounter=0;
+			 }
+			 //inTheNameOfTheLaw=!inTheNameOfTheLaw;
 			 //changeSpawnStopProducts();
+		 }
+		 else if(b==false)
+		 {
+			 inTheNameOfTheLaw=true;
 		 }
 	}
 	
@@ -195,9 +205,9 @@ public class MiniGameManager : MonoBehaviour {
                 //changeSpawnStopProducts();
             }
 			productsSeen++;
-			if(productsSeen>1 && !inTheNameOfTheLaw)
+			if(productsSeen>1 && inTheNameOfTheLaw)
 				changeSpawnStopProducts();
-			inTheNameOfTheLaw=false;
+			//inTheNameOfTheLaw=true;
         }	
 		
 		if(!stayUntilCompleted && productsAreStopped)

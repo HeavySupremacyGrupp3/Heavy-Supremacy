@@ -12,6 +12,8 @@ public class TimingMachine : TimingSystem {
 	
 	public delegate void tutorialEvent();
 	public static event tutorialEvent productHit;
+	public delegate void tutorialCompareEvent(bool b);
+	public static event tutorialCompareEvent productCompared;
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	public machineBelowDetectorScript myBelowDetector;
@@ -50,12 +52,14 @@ public class TimingMachine : TimingSystem {
 	void compareTypes(GameObject t)
 	{
 		produktScript sc=t.GetComponent<produktScript>();
-		Debug.Log("Product below");
 		if(myType<sc.type)
 		{
-			Debug.Log("Product below hit");
-			productHit();
+			Debug.Log("Product below can be turned into chickpeas.");
+			//productHit();
+			productCompared(true);
 		}
+		else
+			productCompared(false);
 	}
 	
 	public override void FailTiming()

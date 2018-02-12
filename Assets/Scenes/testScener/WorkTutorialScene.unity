@@ -346,7 +346,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1706463897}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &19951436
 BoxCollider2D:
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60b38a883498024ab018131ac888bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
 --- !u!1001 &80577714
 Prefab:
   m_ObjectHideFlags: 0
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60b38a883498024ab018131ac888bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
 --- !u!61 &1159467037
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4435,17 +4435,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 19951437}
-        m_MethodName: ToggleActive
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1408152189
@@ -4935,7 +4924,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1706463897}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660011151
 GameObject:
@@ -5392,8 +5381,8 @@ Transform:
   m_LocalPosition: {x: -6.5, y: 5.8, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
-  - {fileID: 19951435}
   - {fileID: 1602250920}
+  - {fileID: 19951435}
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5910,7 +5899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60b38a883498024ab018131ac888bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
 --- !u!61 &1868179980
 BoxCollider2D:
   m_ObjectHideFlags: 0
