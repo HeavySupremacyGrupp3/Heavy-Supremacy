@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: HUBMusic
-    clip: {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
-    volume: 0.235
+    clip: {fileID: 8300000, guid: 6138abca123a3bb45a2b90271d178944, type: 3}
+    volume: 1
     loop: 1
     mixer: {fileID: 243314491722251838, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4ac77de9f3a55614fb2aa37e7c8c87d4, type: 3}
     volume: 1
     loop: 1
-    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243055326977034710, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: BedClick
     clip: {fileID: 8300000, guid: 08800d883fd81f147a5cfd540d5b5727, type: 3}
@@ -90,7 +90,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: spoilLjud
     clip: {fileID: 8300000, guid: 533f9c006bc50c040a2dbe8b18ed12d6, type: 3}
-    volume: 1
+    volume: 0.289
     loop: 0
     mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
@@ -202,9 +202,39 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: PracticeClick
-    clip: {fileID: 8300000, guid: b1957a9539a050b4c83c3738decf9aff, type: 3}
+  - name: 1
+    clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 2
+    clip: {fileID: 8300000, guid: 63f43cfc65d82ae41b3fea6832f75ad4, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 3
+    clip: {fileID: 8300000, guid: bd52514586c2a9b4fa003e05a7e83448, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 4
+    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 5
+    clip: {fileID: 8300000, guid: 8892c8f688018c149a0b9ef23784927b, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: 0
+    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
