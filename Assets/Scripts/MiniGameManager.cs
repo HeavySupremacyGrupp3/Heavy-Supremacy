@@ -67,7 +67,7 @@ public class MiniGameManager : MonoBehaviour {
 		toiletCounter++;
 		Debug.Log("toilet clogger "+toiletCounter+", goal "+unlockedTypes);
 		
-		if(toiletCounter==unlockedTypes)
+		if(toiletCounter>=unlockedTypes)
 		{
 			Debug.Log("Successfully unclogged!");
 			changeSpawnStopProducts();
@@ -78,14 +78,19 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void chickPeas(bool b)
 	{
-		 if(productsSeen>1 && b==true)
+		 if(b==true) //productsSeen>1 && 
 		 {
 			 Debug.Log("Chickpeas");
 			 toiletCounter++;
-			 if(toiletCounter==unlockedTypes)
+			 if(toiletCounter>=unlockedTypes)
 			 {
 				 inTheNameOfTheLaw=false;
 				 toiletCounter=0;
+			 }
+			 
+			 else
+			 {
+				// inTheNameOfTheLaw=true;
 			 }
 			 //inTheNameOfTheLaw=!inTheNameOfTheLaw;
 			 //changeSpawnStopProducts();

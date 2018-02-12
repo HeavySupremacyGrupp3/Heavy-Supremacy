@@ -52,14 +52,16 @@ public class TimingMachine : TimingSystem {
 	void compareTypes(GameObject t)
 	{
 		produktScript sc=t.GetComponent<produktScript>();
-		if(myType<sc.type)
+		if(myType<sc.type && !sc.Spoiled)
 		{
 			Debug.Log("Product below can be turned into chickpeas.");
-			//productHit();
 			productCompared(true);
 		}
 		else
+		{
+			Debug.Log("NO CHICKPEAS!");
 			productCompared(false);
+		}
 	}
 	
 	public override void FailTiming()
