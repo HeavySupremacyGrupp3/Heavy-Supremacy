@@ -202,6 +202,12 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
+  - name: 0
+    clip: {fileID: 8300000, guid: 63f43cfc65d82ae41b3fea6832f75ad4, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
   - name: 1
     clip: {fileID: 8300000, guid: c579d02bcb346784bae2a831c2c2817b, type: 3}
     volume: 1
@@ -209,7 +215,7 @@ MonoBehaviour:
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: 2
-    clip: {fileID: 8300000, guid: 63f43cfc65d82ae41b3fea6832f75ad4, type: 3}
+    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
@@ -221,7 +227,7 @@ MonoBehaviour:
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: 4
-    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+    clip: {fileID: 8300000, guid: 63f43cfc65d82ae41b3fea6832f75ad4, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
@@ -232,9 +238,21 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: 0
-    clip: {fileID: 8300000, guid: 3df5c7acf244c8943b32c29f3362a61e, type: 3}
+  - name: PracticeError1
+    clip: {fileID: 8300000, guid: 5664b50140c2b3d41a81a39cf43353c9, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: PracticeError2
+    clip: {fileID: 8300000, guid: c4d9ef5f642fe61478dabd4c5f61ebb4, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: PracticeError3
+    clip: {fileID: 8300000, guid: 7efaf261a2855214bbfd85585b12ea57, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
