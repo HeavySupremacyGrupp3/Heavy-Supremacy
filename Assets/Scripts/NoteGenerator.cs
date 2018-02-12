@@ -45,13 +45,17 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
-        Initialize();
-
-
         if (ShowTutorial)
+        {
             TutorialPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
         else if (!ShowTutorial)
+        {
+            Initialize();
             TutorialPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
 
         NotesTotal = 0;
     }
@@ -69,10 +73,13 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
-            SendNote();
-        else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
-            EndGame(true);
+        if (!ShowTutorial)
+        {
+            if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
+                SendNote();
+            else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+                EndGame(true);
+        }
     }
 
     bool CheckForNote()
@@ -150,22 +157,22 @@ public class NoteGenerator : MonoBehaviour
             MusicAudioSource.PlayOneShot(VictorySound);
 
             //Calculate rewards then apply them.
-            metalGained = 25 * (1 / (1 + (angst.getAmount() / 15))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter);
-            fameGained = 50 * (2 / (10 - (metal.getAmount() / 15)));
-            moneyGained = 3000 * (6 / (100 - fame.getAmount()));
-            angstGained = -25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter);
+            metalGained = Mathf.CeilToInt(25 * (1 / (1 + (angst.getAmount() / 15))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
+            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))));
+            moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
+            angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
-            MetalText.text = "Metal Gained: " + Mathf.RoundToInt(metalGained).ToString();
-            AngstText.text = "Angst Loss: " + Mathf.RoundToInt(angstGained).ToString();
+            MetalText.text = "Metal Gained: " + metalGained.ToString();
+            AngstText.text = "Angst Loss: " + angstGained.ToString();
 
             metal.addOrRemoveAmount(metalGained);
 
 
             if (GigBackgroundManager.GigSession)
             {
-                FameText.text = "Fame Gained: " + Mathf.RoundToInt(fameGained).ToString();
-                MoneyText.text = "Money Gained: " + Mathf.RoundToInt(moneyGained).ToString();
+                FameText.text = "Fame Gained: " + fameGained.ToString();
+                MoneyText.text = "Money Gained: " + moneyGained.ToString();
 
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
@@ -187,6 +194,14 @@ public class NoteGenerator : MonoBehaviour
     public void SetTutorial(bool active)
     {
         ShowTutorial = active;
+
+        if (active)
+            Time.timeScale = 0;
+        else if (!active)
+        {
+            Time.timeScale = 1;
+            Initialize();
+        }
     }
 
     public void LoadHub()
