@@ -38,13 +38,13 @@ public class TimingMachine : TimingSystem {
 	void OnEnable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
-		//myBelowDetector.productBelowDetected += compareTypes;
+		myBelowDetector.productBelowDetected += compareTypes;
 	}
 	
 	void OnDisable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
-		//myBelowDetector.productBelowDetected -= compareTypes;
+		myBelowDetector.productBelowDetected -= compareTypes;
 	}
 	
 	void compareTypes(GameObject t)
@@ -54,7 +54,7 @@ public class TimingMachine : TimingSystem {
 		if(myType<sc.type)
 		{
 			Debug.Log("Product below hit");
-			//productHit();
+			productHit();
 		}
 	}
 	
