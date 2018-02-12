@@ -863,7 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Backgrounds:
   - {fileID: 21300000, guid: effb9ae3d6f17eb46b11918ef0aa64bd, type: 3}
-  - {fileID: 21300000, guid: 399f051026ceadb40b0310af3a83b512, type: 3}
+  - {fileID: 0}
   - {fileID: 21300000, guid: bdc87737a95fdf749bcd0b734fb4fff8, type: 3}
   FameRequirementLevels:
   - 0
@@ -1031,7 +1031,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578123369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 576, y: 357, z: 0}
+  m_LocalPosition: {x: 576.11414, y: 357, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 700506060}
@@ -1236,11 +1236,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.size
-      value: 29
-      objectReference: {fileID: 0}
     - target: {fileID: 4424243644251912, guid: 74543d1b2bd1cea4b8bc61d46874123a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.3610569
@@ -1273,69 +1268,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[26].name
-      value: PracticeError1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[26].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: df2972557f2a9ed4385216b128f61dbe, type: 3}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[26].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[26].mixer
-      value: 
-      objectReference: {fileID: 243753134884508132, guid: 1cbf86622dcc45a4e89f41932eeda121,
-        type: 2}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[27].name
-      value: PracticeError2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[27].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5a41aedfd81d93c42ab47c8d9687e6f1, type: 3}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[27].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[27].mixer
-      value: 
-      objectReference: {fileID: 243753134884508132, guid: 1cbf86622dcc45a4e89f41932eeda121,
-        type: 2}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[28].name
-      value: PracticeError3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[28].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 190412cce390e52409761ff08997fe86, type: 3}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[28].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
-        type: 2}
-      propertyPath: sounds.Array.data[28].mixer
-      value: 
-      objectReference: {fileID: 243753134884508132, guid: 1cbf86622dcc45a4e89f41932eeda121,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74543d1b2bd1cea4b8bc61d46874123a, type: 2}
   m_IsPrefabParent: 0
@@ -1532,7 +1464,7 @@ RectTransform:
   m_GameObject: {fileID: 700506056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
+  m_LocalScale: {x: 0.0092581585, y: 0.0092581585, z: 0.0092581585}
   m_Children:
   - {fileID: 411579710}
   - {fileID: 2111836784}
@@ -5564,7 +5496,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840082788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 380.87, z: 0}
+  m_LocalPosition: {x: 0, y: 380.9342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317663081}
@@ -6068,7 +6000,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1500150701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -303.9, z: 0}
+  m_LocalPosition: {x: 0, y: -303.9642, z: 0}
   m_LocalScale: {x: 2.6580513, y: 2.6580496, z: 2.6580496}
   m_Children:
   - {fileID: 190148872}
@@ -6571,7 +6503,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1678987326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -681, y: 455, z: 0}
+  m_LocalPosition: {x: -681.11414, y: 455.0642, z: 0}
   m_LocalScale: {x: 2.6436338, y: 2.6436346, z: 2.6436346}
   m_Children:
   - {fileID: 1154265504}
@@ -6657,7 +6589,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794643853}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -937.4004, y: -516.1001, z: 0}
+  m_LocalPosition: {x: -937.5145, y: -516.1643, z: 0}
   m_LocalScale: {x: 2.4443605, y: 2.4443617, z: 2.4443617}
   m_Children:
   - {fileID: 526886992}
@@ -10612,8 +10544,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2063553832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 467.5, y: 263, z: 0}
+  m_LocalScale: {x: 0.48697916, y: 0.48697916, z: 0.48697916}
   m_Children:
   - {fileID: 317663081}
   m_Father: {fileID: 0}
