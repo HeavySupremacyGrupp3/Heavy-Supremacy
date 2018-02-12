@@ -50,14 +50,14 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		produktScript.earnMoney +=omaewashindeiru;
 		TimingMachine.productHit += toiletClogger;
-		machineBelowDetectorScript.productBelowDetected += chickPeas;
+		//machineBelowDetectorScript.productBelowDetected += chickPeas;
 	}
 	
 	void OnDisable()
 	{
 		produktScript.earnMoney -=omaewashindeiru;
 		TimingMachine.productHit -= toiletClogger;
-		machineBelowDetectorScript.productBelowDetected -= chickPeas;
+		//machineBelowDetectorScript.productBelowDetected -= chickPeas;
 	}
 	
 	void toiletClogger()
@@ -159,7 +159,14 @@ public class MiniGameManager : MonoBehaviour {
 
             updateCounter=0;
             //Add new gameobject with a random sprite
-            if (Random.value >= 0.9)
+			
+			float metalChance=0.4f;
+			float burkChance=0.3f;
+			float mousseChance=0.2f;
+			float canChance=0.1f;
+			
+            
+			if (Random.value >= metalChance)
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
                 rng = Random.Range(0, productSprites.Length);
@@ -168,7 +175,17 @@ public class MiniGameManager : MonoBehaviour {
                 sr.sprite = productSprites[rng];
                 //changeSpawnStopProducts();
             }
-            else  //Add new gameobject with a random sprite but not the full can
+            else if(Random.value >= burkChance)  //Add new gameobject with a random sprite but not the full can
+            {
+                GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+                rng = Random.Range(0, 2);
+                nyProdukt.GetComponent<produktScript>().type = rng;
+                SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
+                sr.sprite = productSprites[rng];
+                //changeSpawnStopProducts();
+            }
+			
+			 else if(Random.value >= mousseChance)  //Add new gameobject with a random sprite but not the full can
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
                 rng = Random.Range(0, 2);
