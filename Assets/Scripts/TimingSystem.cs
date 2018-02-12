@@ -12,8 +12,8 @@ public abstract class TimingSystem : MonoBehaviour
     public bool CanComboKey;
     public bool CanExitCollider;
 
-    protected List<GameObject> targets = new List<GameObject>();
-    private List<GameObject> blacklistedTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
+    public List<GameObject> targets = new List<GameObject>();
+    public List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
 
     public static float ActivatedMechanicAndMissedNotesCounter = 0;
 
@@ -37,14 +37,15 @@ public abstract class TimingSystem : MonoBehaviour
             FailTiming();
             return;
         }
-        else if (targets.Count > 0 && !blacklistedTargets.Contains(targets[0]))
+        else if (targets.Count > 0)
         {
             //Need multiple if-statements to handle simultanious notes.
-            if (targets[0].name.Contains("_1") && Input.GetKey(ActivasionKey1))
+            //Need to check count at every state because SucceedTiming removes target in timingstring.
+            if (targets.Count > 0 && targets[0].name.Contains("_1") && Input.GetKey(ActivasionKey1))
                 SucceedTiming();
-            if (targets[0].name.Contains("_2") && Input.GetKey(ActivasionKey2))
+            if (targets.Count > 0 && targets[0].name.Contains("_2") && Input.GetKey(ActivasionKey2))
                 SucceedTiming();
-            if (targets[0].name.Contains("_3") && Input.GetKey(ActivasionKey3))
+            if (targets.Count > 0 && targets[0].name.Contains("_3") && Input.GetKey(ActivasionKey3))
                 SucceedTiming();
 
             return;
@@ -58,7 +59,6 @@ public abstract class TimingSystem : MonoBehaviour
 
         if (targets.Count > 0)
         {
-            blacklistedTargets.Add(targets[0]);
             targets.RemoveAt(0);
         }
     }
@@ -66,11 +66,12 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void SucceedTiming()
     {
         Debug.Log("SUCCEEDED TIMING");
+        hitTargets.AddRange(targets);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject) && !blacklistedTargets.Contains(collision.gameObject))
+        if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
         {
             targets.Add(collision.gameObject);
         }
