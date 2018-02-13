@@ -37,8 +37,7 @@ public class StatMouseTracker : MonoBehaviour
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x + 40, Input.mousePosition.y + 40));
 
-        Text.rectTransform.position = new Vector3(mousePos.x, mousePos.y, -0.01f);
-        //Text.rectTransform.localPosition = new Vector3(Text.rectTransform.position.x, Text.rectTransform.position.y, Text.rectTransform.position.z);
+        Text.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
     }
 
     public void SetStatString(string stat)
