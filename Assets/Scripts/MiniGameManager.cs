@@ -78,7 +78,7 @@ public class MiniGameManager : MonoBehaviour {
 	
 	void chickPeas(bool b)
 	{
-		 if(b==true) //productsSeen>1 && 
+		 if(productsSeen>=unlockedTypes && b==true) //productsSeen>1 && 
 		 {
 			 Debug.Log("Chickpeas");
 			 toiletCounter++;
@@ -176,41 +176,56 @@ public class MiniGameManager : MonoBehaviour {
             //Add new gameobject with a random sprite
 			
 			float metalChance=0.4f;
-			float burkChance=0.3f;
-			float mousseChance=0.2f;
-			float canChance=0.1f;
+			float burkChance=0.5f;
+			float mousseChance=0.6f;
+			float canChance=1.0f;
 			
             
-			if (Random.value >= metalChance)
+			if (Random.Range(0f,1f) <= metalChance)
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                rng = Random.Range(0, productSprites.Length);
+                //rng = Random.Range(0, productSprites.Length);
+				rng = 0;
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
                 //changeSpawnStopProducts();
             }
-            else if(Random.value >= burkChance)  //Add new gameobject with a random sprite but not the full can
+            else if(Random.Range(0f,1f) <= burkChance)  //Add new gameobject with a random sprite but not the full can
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                rng = Random.Range(0, 2);
+                //rng = Random.Range(0, 2);
+				rng=1;
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
                 //changeSpawnStopProducts();
             }
 			
-			 else if(Random.value >= mousseChance)  //Add new gameobject with a random sprite but not the full can
+			else if(Random.Range(0f,1f) <= mousseChance)  //Add new gameobject with a random sprite but not the full can
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                rng = Random.Range(0, 2);
+                //rng = Random.Range(0, 2);
+				rng=2;
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
                 sr.sprite = productSprites[rng];
                 //changeSpawnStopProducts();
             }
+			
+			else if(Random.Range(0f,1f) <= canChance)
+			{
+				GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+				rng=3;
+                nyProdukt.GetComponent<produktScript>().type = rng;
+                SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
+                sr.sprite = productSprites[rng];
+			}
+			
 			productsSeen++;
-			if(productsSeen>1 && inTheNameOfTheLaw)
+			Debug.Log(productsSeen);
+			
+			if(productsSeen>=unlockedTypes && inTheNameOfTheLaw)
 				changeSpawnStopProducts();
 			//inTheNameOfTheLaw=true;
         }	
