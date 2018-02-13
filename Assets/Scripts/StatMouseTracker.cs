@@ -28,17 +28,22 @@ public class StatMouseTracker : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Update()
+    private void Update()
+    {
+        UpdatePosition();
+    }
+
+    void UpdatePosition()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x + 40, Input.mousePosition.y + 40));
 
-        Text.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
+        Text.rectTransform.position = new Vector3(mousePos.x, mousePos.y, -0.01f);
         //Text.rectTransform.localPosition = new Vector3(Text.rectTransform.position.x, Text.rectTransform.position.y, Text.rectTransform.position.z);
     }
 
     public void SetStatString(string stat)
     {
-        Text.gameObject.SetActive(true);
+        UpdatePosition();
 
         if (stat == "metal")
         {
@@ -60,5 +65,7 @@ public class StatMouseTracker : MonoBehaviour
             Text.text = energy.getAmount().ToString();
             Text.color = EnergyColor;
         }
+
+        Text.gameObject.SetActive(true);
     }
 }
