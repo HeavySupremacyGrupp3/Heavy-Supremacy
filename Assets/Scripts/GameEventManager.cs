@@ -69,6 +69,7 @@ public class GameEventManager : MonoBehaviour
 
     public void CheckForStatEvents()
     {
+        //Currently take the highest stat and trigger a event based on the highest one.
         int[] statValues = new int[3];
         statValues[0] = Mathf.RoundToInt(FindObjectOfType<metalStatScript>().getAmount());
         statValues[1] = Mathf.RoundToInt(FindObjectOfType<fameStatScript>().getAmount());
@@ -88,16 +89,7 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEventFromPool(EventEnum eventEnum)
     {
-        nodeType type = eventEnum.NodeType;
-
-        if (type == nodeType.fame)
-            TriggerEvent(fameNodes[Random.Range(0, fameNodes.Count)]);
-        else if (type == nodeType.musical)
-            TriggerEvent(musicNodes[Random.Range(0, musicNodes.Count)]);
-        else if (type == nodeType.special)
-            TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
-        else if (type == nodeType.social)
-            TriggerEvent(socialNodes[Random.Range(0, socialNodes.Count)]);
+        TriggerEvent(eventEnum.Node);
     }
 
     public void TriggerSMSEvent(StoryNode node, bool firstNode = true)

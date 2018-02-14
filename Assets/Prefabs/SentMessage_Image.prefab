@@ -81,10 +81,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 19
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 184
-    m_Right: 38
+    m_Left: 175
+    m_Right: 27
     m_Top: 42
     m_Bottom: 26
   m_ChildAlignment: 4
@@ -170,7 +170,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -2.949997, y: 0.24999619}
-  m_SizeDelta: {x: 720.9, y: -143.10002}
+  m_SizeDelta: {x: 630.32, y: -143.10002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224711503437709582
 RectTransform:
