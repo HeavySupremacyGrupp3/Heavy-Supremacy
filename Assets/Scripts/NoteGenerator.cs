@@ -167,6 +167,7 @@ public class NoteGenerator : MonoBehaviour
             AngstText.text = "Angst Loss: " + angstGained.ToString();
 
             metal.addOrRemoveAmount(metalGained);
+            angst.addOrRemoveAmount(angstGained);
 
 
             if (GigBackgroundManager.GigSession)
@@ -176,7 +177,6 @@ public class NoteGenerator : MonoBehaviour
 
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
-                angst.addOrRemoveAmount(angstGained);
 
                 if (fame.getAmount() >= fame.getMax())
                 {
