@@ -25,16 +25,16 @@ public class GameEventManager : MonoBehaviour
 
     private List<StoryNode> choices = new List<StoryNode>();
 
-    private List<StoryNode> messageNodes = new List<StoryNode>();
-    private List<StoryNode> socialNodes = new List<StoryNode>();
-    private List<StoryNode> musicNodes = new List<StoryNode>();
-    private List<StoryNode> fameNodes = new List<StoryNode>();
-    private List<StoryNode> specialNodes = new List<StoryNode>();
+    public static List<StoryNode> messageNodes = new List<StoryNode>();
+    public static List<StoryNode> socialNodes = new List<StoryNode>();
+    public static List<StoryNode> musicNodes = new List<StoryNode>();
+    public static List<StoryNode> fameNodes = new List<StoryNode>();
+    public static List<StoryNode> specialNodes = new List<StoryNode>();
 
     [HideInInspector]
     public enum nodeType { social, musical, fame, special }
 
-    private void Start()
+    private void Awake()
     {
         LoadEvents("messageNodes", messageNodes);
         LoadEvents("socialNodes", socialNodes);
