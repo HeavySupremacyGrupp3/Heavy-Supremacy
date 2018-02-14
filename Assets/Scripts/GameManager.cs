@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
             FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
+        if (Input.GetKeyDown(KeyCode.A))
+            FindObjectOfType<angstStatScript>().addOrRemoveAmount(-10);
         //WeekText.text = "Approximately week: " + week;
         if (Input.GetKeyDown(KeyCode.R))
             Restart();

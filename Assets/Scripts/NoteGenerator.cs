@@ -25,9 +25,10 @@ public class NoteGenerator : MonoBehaviour
     public Text MoneyText;
     public Text AngstText;
     public Text MetalText;
+    public Slider ProgressionSlider;
 
     public static int NoteMultiplier = 1;
-    public static int NumberOfUniqueNotes = 3;
+    public static int NumberOfUniqueNotes = 2;
     public static float NotesTotal = 0;
     public static bool ShowTutorial = true;
 
@@ -47,6 +48,7 @@ public class NoteGenerator : MonoBehaviour
     {
         if (ShowTutorial)
         {
+            FindObjectOfType<TimingString>().enabled = false;
             TutorialPanel.SetActive(true);
             Time.timeScale = 0;
         }
@@ -62,6 +64,8 @@ public class NoteGenerator : MonoBehaviour
 
     void Initialize()
     {
+        FindObjectOfType<TimingString>().enabled = true;
+
         clipSampleData = new float[SampleDataLength];
 
         MusicAudioSource.clip = Music;
@@ -80,6 +84,8 @@ public class NoteGenerator : MonoBehaviour
             else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
                 EndGame(true);
         }
+
+        ProgressionSlider.value = MusicAudioSource.time / MusicAudioSource.clip.length;
     }
 
     bool CheckForNote()
@@ -121,11 +127,12 @@ public class NoteGenerator : MonoBehaviour
         int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            do
-            {
+            //Commented lines are to ensure unique notes every send.
+            //do
+            //{
                 tempIndex = Random.Range(0, NumberOfUniqueNotes);
-            }
-            while (noteIndex == tempIndex);
+            //}
+            //while (noteIndex == tempIndex);
             noteIndex = tempIndex;
 
             Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
@@ -167,6 +174,7 @@ public class NoteGenerator : MonoBehaviour
             AngstText.text = "Angst Loss: " + angstGained.ToString();
 
             metal.addOrRemoveAmount(metalGained);
+            angst.addOrRemoveAmount(angstGained);
 
 
             if (GigBackgroundManager.GigSession)
@@ -176,7 +184,6 @@ public class NoteGenerator : MonoBehaviour
 
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
-                angst.addOrRemoveAmount(angstGained);
 
                 if (fame.getAmount() >= fame.getMax())
                 {
@@ -196,7 +203,10 @@ public class NoteGenerator : MonoBehaviour
         ShowTutorial = active;
 
         if (active)
+        {
+            FindObjectOfType<TimingString>().enabled = false;
             Time.timeScale = 0;
+        }
         else if (!active)
         {
             Time.timeScale = 1;
@@ -206,6 +216,8 @@ public class NoteGenerator : MonoBehaviour
 
     public void LoadHub()
     {
+        Time.timeScale = 1;
+
         if (FindObjectOfType<GameManager>() != null)
             FindObjectOfType<GameManager>().LoadHUB();
 
@@ -217,6 +229,7 @@ public class NoteGenerator : MonoBehaviour
     public static void Reset()
     {
         NoteMultiplier = 1;
+        NumberOfUniqueNotes = 2;
         ShowTutorial = true;
     }
 }
