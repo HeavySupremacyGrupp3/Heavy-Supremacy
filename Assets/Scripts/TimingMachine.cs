@@ -52,6 +52,7 @@ public class TimingMachine : TimingSystem {
 	void compareTypes(GameObject t)
 	{
 		produktScript sc=t.GetComponent<produktScript>();
+		Debug.Log("Comparing... ");
 		if(myType<sc.type && !sc.Spoiled)
 		{
 			Debug.Log("Product below can be turned into chickpeas.");
