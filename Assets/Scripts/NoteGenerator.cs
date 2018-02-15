@@ -85,7 +85,8 @@ public class NoteGenerator : MonoBehaviour
                 EndGame(true);
         }
 
-        ProgressionSlider.value = MusicAudioSource.time / MusicAudioSource.clip.length;
+        if (MusicAudioSource.clip != null)
+            ProgressionSlider.value = MusicAudioSource.time / MusicAudioSource.clip.length;
     }
 
     bool CheckForNote()
@@ -130,7 +131,7 @@ public class NoteGenerator : MonoBehaviour
             //Commented lines are to ensure unique notes every send.
             //do
             //{
-                tempIndex = Random.Range(0, NumberOfUniqueNotes);
+            tempIndex = Random.Range(0, NumberOfUniqueNotes);
             //}
             //while (noteIndex == tempIndex);
             noteIndex = tempIndex;

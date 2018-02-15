@@ -12,6 +12,8 @@ public abstract class TimingSystem : MonoBehaviour
     public bool CanComboKey;
     public bool CanExitCollider;
 
+    private bool MechanicActive = false;
+
     protected List<GameObject> targets = new List<GameObject>();
     protected List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
 
@@ -65,7 +67,7 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void SucceedTiming()
     {
         Debug.Log("SUCCEEDED TIMING");
-        hitTargets.AddRange(targets);
+        hitTargets.Add(targets[0]);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

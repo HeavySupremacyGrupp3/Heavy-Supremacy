@@ -15,6 +15,12 @@ public class EventEnum : MonoBehaviour
 
     private void Start()
     {
+        RefreshEvent();
+        GameManager.sleep += RefreshEvent;
+    }
+
+    private void RefreshEvent()
+    {
         NodeType = (GameEventManager.nodeType)Random.Range(0, 3);
 
 
@@ -27,6 +33,10 @@ public class EventEnum : MonoBehaviour
 
         EnergyCost = float.Parse(Node.EnergyBonus);
         EnergyText.text = "Energy Cost: " + EnergyCost;
+    }
 
+    private void OnDestroy()
+    {
+        GameManager.sleep -= RefreshEvent;
     }
 }
