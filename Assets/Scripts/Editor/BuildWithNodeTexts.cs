@@ -22,6 +22,9 @@ public class BuildWithNodeTexts : Editor
 
             // Copy a file from the project folder to the build folder, alongside the built game.
             FileUtil.CopyFileOrDirectory("Assets/Nodes", path + "/" + name + "_Data" + "/Nodes");
+
+            path = path.Replace(@"/", @"\");   // explorer doesn't like front slashes
+            Process.Start("explorer.exe", "/select," + path);
         }
     }
 }
