@@ -13,6 +13,6 @@ public class Guitar : Item {
     {
         base.ActivatePurchase();
         Debug.Log("PURCHASED GUITAR!");
-        NoteGenerator.NoteMultiplier++;
+        NoteGenerator.NumberOfUniqueNotes++;
     }
 }
