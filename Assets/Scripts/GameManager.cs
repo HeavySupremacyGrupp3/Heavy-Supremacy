@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if (level == 0)
+        if (level == 1)
             ShopSystem.UpdateHUBEnvironment();
     }
 
