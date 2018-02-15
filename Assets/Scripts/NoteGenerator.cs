@@ -177,6 +177,8 @@ public class NoteGenerator : MonoBehaviour
             metal.addOrRemoveAmount(metalGained);
             angst.addOrRemoveAmount(angstGained);
 
+            if (moneyGained > money.getMax() || moneyGained < 0)
+                moneyGained = money.getMax();
 
             if (GigBackgroundManager.GigSession)
             {
