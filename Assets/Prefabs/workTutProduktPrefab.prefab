@@ -91,11 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 21300000, guid: 5084b9ffbc8da8744a13961d7ae5e1b9, type: 3}
+  - {fileID: 21300000, guid: d17f2d552c8610140a3beeb3a164144a, type: 3}
   - {fileID: 21300000, guid: 9142a6981ae375145b10d4d8c83d7c19, type: 3}
   - {fileID: 21300000, guid: 8b693afcaff6de64193ee9e5e56b501f, type: 3}
   - {fileID: 21300000, guid: 01cabb468f30c8744bdb90e02baa09d0, type: 3}
   spoilSprite: {fileID: 21300000, guid: 62e2a38784175e54a977d9f5380d8d0b, type: 3}
+  currentStage: 0
   Spoiled: 0
   type: 0
   mgm: {fileID: 0}
@@ -163,12 +164,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5084b9ffbc8da8744a13961d7ae5e1b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d17f2d552c8610140a3beeb3a164144a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.64, y: 2.63}
+  m_Size: {x: 1.65, y: 1.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

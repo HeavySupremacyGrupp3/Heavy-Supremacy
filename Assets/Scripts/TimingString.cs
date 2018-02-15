@@ -25,12 +25,10 @@ public class TimingString : TimingSystem
 
     public int RequiredStreaksForHealth = 10;
     public int HealthGainedPerStreak = 5;
-    public int RequiredStreaksForEffect = 10;
 
     public Animator StringAnimator;
     public Text StreakCounter;
     public Text HighestStreakCounter;
-    public GameObject StreakEffect;
 
     public static float AngstMultiplier = 1;
     public static float MetalMultiplier = 1;
@@ -52,35 +50,16 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        //Make sure note cannot fail if it has been hit.
-        if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
-        {
-            ClearHitTargetList();
-            return;
-        }
-        else
-        {
-            base.FailTiming();
+        base.FailTiming();
 
-            Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
+        Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
-            AddOrRemoveHealth(-1);
-            UpdateStreakCounter(-streakCounter);
-
-            ClearHitTargetList();
-        }
+        AddOrRemoveHealth(-1);
+        UpdateStreakCounters(-streakCounter);
 
         AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         StringAnimator.SetTrigger("StringStroked");
-    }
 
-    void ClearHitTargetList()
-    {
-        foreach (GameObject go in hitTargets)
-        {
-            Destroy(go);
-        }
-        hitTargets.Clear();
     }
 
     public override void SucceedTiming()
@@ -88,15 +67,12 @@ public class TimingString : TimingSystem
         base.SucceedTiming();
 
         NotesHit++;
-        UpdateStreakCounter(1);
+        UpdateStreakCounters(1);
 
         if (streakCounter % RequiredStreaksForHealth == 0)
             AddOrRemoveHealth(HealthGainedPerStreak);
 
-        if(streakCounter % RequiredStreaksForEffect == 0)
-            Destroy(Instantiate(StreakEffect), 3);
-
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x + 5, transform.position.y), Quaternion.identity), 3);
 
         //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
@@ -113,6 +89,7 @@ public class TimingString : TimingSystem
 
         Destroy(targets[0]);
 
+        //This line is the cause of index-errors when hitting notes.
         targets.Clear();
     }
 
@@ -137,7 +114,7 @@ public class TimingString : TimingSystem
         return go;
     }
 
-    private void UpdateStreakCounter(int value)
+    private void UpdateStreakCounters(int value)
     {
         streakCounter += value;
 

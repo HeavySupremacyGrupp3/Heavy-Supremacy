@@ -19,7 +19,7 @@ public class machineBelowDetectorScript : MonoBehaviour {
 	{
 		if(isActive)
 		{
-			//Debug.Log("Product below");
+			Debug.Log("Product below");
 			productBelowDetected(collision.gameObject);
 		}
 	}

@@ -25,10 +25,9 @@ public class NoteGenerator : MonoBehaviour
     public Text MoneyText;
     public Text AngstText;
     public Text MetalText;
-    public Slider ProgressionSlider;
 
     public static int NoteMultiplier = 1;
-    public static int NumberOfUniqueNotes = 2;
+    public static int NumberOfUniqueNotes = 3;
     public static float NotesTotal = 0;
     public static bool ShowTutorial = true;
 
@@ -46,26 +45,19 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
+        Initialize();
+
+
         if (ShowTutorial)
-        {
-            FindObjectOfType<TimingString>().enabled = false;
             TutorialPanel.SetActive(true);
-            Time.timeScale = 0;
-        }
         else if (!ShowTutorial)
-        {
-            Initialize();
             TutorialPanel.SetActive(false);
-            Time.timeScale = 1;
-        }
 
         NotesTotal = 0;
     }
 
     void Initialize()
     {
-        FindObjectOfType<TimingString>().enabled = true;
-
         clipSampleData = new float[SampleDataLength];
 
         MusicAudioSource.clip = Music;
@@ -77,16 +69,10 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!ShowTutorial)
-        {
-            if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
-                SendNote();
-            else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
-                EndGame(true);
-        }
-
-        if (MusicAudioSource.clip != null)
-            ProgressionSlider.value = MusicAudioSource.time / MusicAudioSource.clip.length;
+        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
+            SendNote();
+        else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+            EndGame(true);
     }
 
     bool CheckForNote()
@@ -128,12 +114,11 @@ public class NoteGenerator : MonoBehaviour
         int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            //Commented lines are to ensure unique notes every send.
-            //do
-            //{
-            tempIndex = Random.Range(0, NumberOfUniqueNotes);
-            //}
-            //while (noteIndex == tempIndex);
+            do
+            {
+                tempIndex = Random.Range(0, NumberOfUniqueNotes);
+            }
+            while (noteIndex == tempIndex);
             noteIndex = tempIndex;
 
             Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
@@ -165,28 +150,26 @@ public class NoteGenerator : MonoBehaviour
             MusicAudioSource.PlayOneShot(VictorySound);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(25 * (1 / (1 + (angst.getAmount() / 15))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
-            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))));
-            moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
+            metalGained = 25 * (1 / (1 + (angst.getAmount() / 15))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter);
+            fameGained = 50 * (2 / (10 - (metal.getAmount() / 15)));
+            moneyGained = 3000 * (6 / (100 - fame.getAmount()));
+            angstGained = -25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter);
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
-            MetalText.text = "Metal Gained: " + metalGained.ToString();
-            AngstText.text = "Angst Loss: " + angstGained.ToString();
+            MetalText.text = "Metal Gained: " + Mathf.RoundToInt(metalGained).ToString();
+            AngstText.text = "Angst Loss: " + Mathf.RoundToInt(angstGained).ToString();
 
             metal.addOrRemoveAmount(metalGained);
-            angst.addOrRemoveAmount(angstGained);
 
-            if (moneyGained > money.getMax() || moneyGained < 0)
-                moneyGained = money.getMax();
 
             if (GigBackgroundManager.GigSession)
             {
-                FameText.text = "Fame Gained: " + fameGained.ToString();
-                MoneyText.text = "Money Gained: " + moneyGained.ToString();
+                FameText.text = "Fame Gained: " + Mathf.RoundToInt(fameGained).ToString();
+                MoneyText.text = "Money Gained: " + Mathf.RoundToInt(moneyGained).ToString();
 
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
+                angst.addOrRemoveAmount(angstGained);
 
                 if (fame.getAmount() >= fame.getMax())
                 {
@@ -204,23 +187,10 @@ public class NoteGenerator : MonoBehaviour
     public void SetTutorial(bool active)
     {
         ShowTutorial = active;
-
-        if (active)
-        {
-            FindObjectOfType<TimingString>().enabled = false;
-            Time.timeScale = 0;
-        }
-        else if (!active)
-        {
-            Time.timeScale = 1;
-            Initialize();
-        }
     }
 
     public void LoadHub()
     {
-        Time.timeScale = 1;
-
         if (FindObjectOfType<GameManager>() != null)
             FindObjectOfType<GameManager>().LoadHUB();
 
@@ -232,7 +202,6 @@ public class NoteGenerator : MonoBehaviour
     public static void Reset()
     {
         NoteMultiplier = 1;
-        NumberOfUniqueNotes = 2;
         ShowTutorial = true;
     }
 }

@@ -62,15 +62,6 @@ public class ShopSystem : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.M))
             FindObjectOfType<moneyStatScript>().addOrRemoveAmount(100);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Check if the mouse was clicked over a UI element, if so, play click-sound.
-            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-            {
-                AudioManager.instance.Play("ShopMouseClick");
-            }
-        }
     }
 
     public void AtemptPurchase(string name)

@@ -19,7 +19,7 @@ public class MiniGameManager : MonoBehaviour {
 	float updateCounter=0;
 	bool spawnStuff=true;
 
-    //public Sprite[] produktScript.Sprites;
+    public Sprite[] productSprites;
     //private GameObject product;
 	
 	public delegate void mittEvent();
@@ -50,7 +50,6 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		produktScript.earnMoney +=omaewashindeiru;
 		TimingMachine.productHit += toiletClogger;
-		TimingMachine.productCompared += chickPeas; 
 		//machineBelowDetectorScript.productBelowDetected += chickPeas;
 	}
 	
@@ -58,7 +57,6 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		produktScript.earnMoney -=omaewashindeiru;
 		TimingMachine.productHit -= toiletClogger;
-		TimingMachine.productCompared -= chickPeas; 
 		//machineBelowDetectorScript.productBelowDetected -= chickPeas;
 	}
 	
@@ -66,39 +64,25 @@ public class MiniGameManager : MonoBehaviour {
 	{
 		toiletCounter++;
 		Debug.Log("toilet clogger "+toiletCounter+", goal "+unlockedTypes);
-		
-		if(toiletCounter>=unlockedTypes)
+		if(toiletCounter==unlockedTypes)
 		{
-			//Debug.Log("Successfully unclogged!");
+			Debug.Log("Successfully unclogged!");
 			changeSpawnStopProducts();
-			//inTheNameOfTheLaw=false;
+			//spawnStuff=!spawnStuff;
+		
+			//productsAreStopped=!productsAreStopped;
+			//stopProducts();
 			toiletCounter=0;
 		}
 	}
 	
-	void chickPeas(bool b)
+	void chickPeas()
 	{
-		Debug.Log("the receiving end");
-		 if(productsSeen>=unlockedTypes && b==true) //productsSeen>1 && 
+		 if(productsSeen>1)
 		 {
-			 //Debug.Log("Chickpeas");
-			 toiletCounter++;
-			 if(toiletCounter>=unlockedTypes)
-			 {
-				 inTheNameOfTheLaw=false;
-				 toiletCounter=0;
-			 }
-			 
-			 else
-			 {
-				// inTheNameOfTheLaw=true;
-			 }
-			 //inTheNameOfTheLaw=!inTheNameOfTheLaw;
-			 //changeSpawnStopProducts();
-		 }
-		 else if(b==false)
-		 {
+			 Debug.Log("Chickpeas");
 			 inTheNameOfTheLaw=true;
+			 //changeSpawnStopProducts();
 		 }
 	}
 	
@@ -122,7 +106,7 @@ public class MiniGameManager : MonoBehaviour {
 		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
 		nyProdukt.GetComponent<produktScript>().type = 1;
         SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-        sr.sprite = produktScript.Sprites[1];
+        sr.sprite = productSprites[1];
 		productsSeen++;
 	}
 	
@@ -139,7 +123,7 @@ public class MiniGameManager : MonoBehaviour {
     void Start ()
 	{
         gmScript = GetComponent<GameManager>();
-        //produktScript = GetComponent<produktScript>();
+        produktScript = GetComponent<produktScript>();
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
         //AudioManager.instance.Play("Atmosphere"); //blir trött i huvet
     }	
@@ -164,12 +148,12 @@ public class MiniGameManager : MonoBehaviour {
 			//JULIA KOLLA HÄR VAD TYCKER DU?
 			int leastOf;
 			
-			if(produktScript.Sprites.Length<unlockedTypes)
-				leastOf=produktScript.Sprites.Length;
+			if(productSprites.Length<unlockedTypes)
+				leastOf=productSprites.Length;
 			else
 				leastOf=unlockedTypes;
 			
-			//Debug.Log("least of "+leastOf);
+			Debug.Log("least of "+leastOf);
             int rng = Random.Range(0, leastOf);
 			
 
@@ -177,58 +161,43 @@ public class MiniGameManager : MonoBehaviour {
             //Add new gameobject with a random sprite
 			
 			float metalChance=0.4f;
-			float burkChance=0.5f;
-			float mousseChance=0.6f;
-			float canChance=1.0f;
+			float burkChance=0.3f;
+			float mousseChance=0.2f;
+			float canChance=0.1f;
 			
             
-			if (Random.Range(0f,1f) <= metalChance)
+			if (Random.value >= metalChance)
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                //rng = Random.Range(0, produktScript.Sprites.Length);
-				rng = 0;
+                rng = Random.Range(0, productSprites.Length);
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-                sr.sprite = produktScript.Sprites[rng];
+                sr.sprite = productSprites[rng];
                 //changeSpawnStopProducts();
             }
-            else if(Random.Range(0f,1f) <= burkChance)  //Add new gameobject with a random sprite but not the full can
+            else if(Random.value >= burkChance)  //Add new gameobject with a random sprite but not the full can
             {
                 GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                //rng = Random.Range(0, 2);
-				rng=1;
+                rng = Random.Range(0, 2);
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-                sr.sprite = produktScript.Sprites[rng];
-                //changeSpawnStopProducts();
-            }
-			
-			else if(Random.Range(0f,1f) <= mousseChance)  //Add new gameobject with a random sprite but not the full can
-            {
-                GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-                //rng = Random.Range(0, 2);
-				rng=2;
-                nyProdukt.GetComponent<produktScript>().type = rng;
-                SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-                sr.sprite = produktScript.Sprites[rng];
+                sr.sprite = productSprites[rng];
                 //changeSpawnStopProducts();
             }
 			
-			else if(Random.Range(0f,1f) <= canChance)
-			{
-				GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-				rng=3;
+			 else if(Random.value >= mousseChance)  //Add new gameobject with a random sprite but not the full can
+            {
+                GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+                rng = Random.Range(0, 2);
                 nyProdukt.GetComponent<produktScript>().type = rng;
                 SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-                sr.sprite = produktScript.Sprites[rng];
-			}
-			
+                sr.sprite = productSprites[rng];
+                //changeSpawnStopProducts();
+            }
 			productsSeen++;
-			//Debug.Log("Seen products: "+productsSeen);
-			
-			if(productsSeen>=unlockedTypes && inTheNameOfTheLaw)
+			if(productsSeen>1 && !inTheNameOfTheLaw)
 				changeSpawnStopProducts();
-			//inTheNameOfTheLaw=true;
+			inTheNameOfTheLaw=false;
         }	
 		
 		if(!stayUntilCompleted && productsAreStopped)
@@ -263,19 +232,19 @@ public class MiniGameManager : MonoBehaviour {
         {
             case 0:
                 type++;
-                sr.sprite = produktScript.Sprites[type];
+                sr.sprite = productSprites[type];
                 break;
             case 1:
                 type++;
-                sr.sprite = produktScript.Sprites[type];
+                sr.sprite = productSprites[type];
                 break;
             case 2:
                 type++;
-                sr.sprite = produktScript.Sprites[type];
+                sr.sprite = productSprites[type];
                 break;
             case 3:
                 type++;
-                sr.sprite = produktScript.Sprites[type];
+                sr.sprite = productSprites[type];
                 break;
             case 4:
                 break;

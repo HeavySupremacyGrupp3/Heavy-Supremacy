@@ -25,16 +25,16 @@ public class GameEventManager : MonoBehaviour
 
     private List<StoryNode> choices = new List<StoryNode>();
 
-    public static List<StoryNode> messageNodes = new List<StoryNode>();
-    public static List<StoryNode> socialNodes = new List<StoryNode>();
-    public static List<StoryNode> musicNodes = new List<StoryNode>();
-    public static List<StoryNode> fameNodes = new List<StoryNode>();
-    public static List<StoryNode> specialNodes = new List<StoryNode>();
+    private List<StoryNode> messageNodes = new List<StoryNode>();
+    private List<StoryNode> socialNodes = new List<StoryNode>();
+    private List<StoryNode> musicNodes = new List<StoryNode>();
+    private List<StoryNode> fameNodes = new List<StoryNode>();
+    private List<StoryNode> specialNodes = new List<StoryNode>();
 
     [HideInInspector]
     public enum nodeType { social, musical, fame, special }
 
-    private void Awake()
+    private void Start()
     {
         LoadEvents("messageNodes", messageNodes);
         LoadEvents("socialNodes", socialNodes);
@@ -69,7 +69,6 @@ public class GameEventManager : MonoBehaviour
 
     public void CheckForStatEvents()
     {
-        //Currently take the highest stat and trigger a event based on the highest one.
         int[] statValues = new int[3];
         statValues[0] = Mathf.RoundToInt(FindObjectOfType<metalStatScript>().getAmount());
         statValues[1] = Mathf.RoundToInt(FindObjectOfType<fameStatScript>().getAmount());
@@ -89,7 +88,16 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEventFromPool(EventEnum eventEnum)
     {
-        TriggerEvent(eventEnum.Node);
+        nodeType type = eventEnum.NodeType;
+
+        if (type == nodeType.fame)
+            TriggerEvent(fameNodes[Random.Range(0, fameNodes.Count)]);
+        else if (type == nodeType.musical)
+            TriggerEvent(musicNodes[Random.Range(0, musicNodes.Count)]);
+        else if (type == nodeType.special)
+            TriggerEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+        else if (type == nodeType.social)
+            TriggerEvent(socialNodes[Random.Range(0, socialNodes.Count)]);
     }
 
     public void TriggerSMSEvent(StoryNode node, bool firstNode = true)

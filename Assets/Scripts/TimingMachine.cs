@@ -12,8 +12,6 @@ public class TimingMachine : TimingSystem {
 	
 	public delegate void tutorialEvent();
 	public static event tutorialEvent productHit;
-	public delegate void tutorialCompareEvent(bool b);
-	public static event tutorialCompareEvent productCompared;
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	public machineBelowDetectorScript myBelowDetector;
@@ -52,16 +50,11 @@ public class TimingMachine : TimingSystem {
 	void compareTypes(GameObject t)
 	{
 		produktScript sc=t.GetComponent<produktScript>();
-		Debug.Log("Comparing... ");
-		if(myType<sc.type && !sc.Spoiled)
+		Debug.Log("Product below");
+		if(myType<sc.type)
 		{
-			Debug.Log("Product below can be turned into chickpeas.");
-			productCompared(true);
-		}
-		else
-		{
-			Debug.Log("NO CHICKPEAS!");
-			productCompared(false);
+			Debug.Log("Product below hit");
+			productHit();
 		}
 	}
 	
@@ -77,9 +70,12 @@ public class TimingMachine : TimingSystem {
 		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
 		if(myType<sc.type)
 		{
+			//FindObjectOfType<MusicManager>().Play("Arm1Sound");
 			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
 			sc.spoil();
+			//productDetected("spoilLjud");
 			AudioManager.instance.Play("spoilLjud");
+			//targets.RemoveAt(0);
 			timesChanged=0;
 		}
 		
@@ -97,11 +93,13 @@ public class TimingMachine : TimingSystem {
 		
 		productHit();
 		AudioManager.instance.Play(SecondSound);
+		//productDetected(SecondSound);
 	}
 	
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		targets.RemoveAt(0);
+		Debug.Log(targets.Count);
 	}
 	
 	private void old2DCollider(Collider2D collision)
@@ -130,9 +128,11 @@ public class TimingMachine : TimingSystem {
 		produktScript sc=ta.GetComponent<produktScript>();
 		
 		if(myType==sc.type)
-		{
+		{		
+			//Debug.Log("typer: "+myType+" "+sc.type);
 			sc.spoil();
 		}
+		//targets.RemoveAt(0);
 		timesChanged=0;
 	}
 }
