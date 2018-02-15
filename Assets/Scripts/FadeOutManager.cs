@@ -8,6 +8,8 @@ public class FadeOutManager : MonoBehaviour
     public Image fadeImage;
     public Image halfFadeImage;
     public float SpeedMultiplier = 1;
+    public float FadeInSeconds = 1f;
+    private float TimeLeft = 0;
 
     private void Start()
     {
@@ -20,11 +22,11 @@ public class FadeOutManager : MonoBehaviour
         }
     }
 
-    public void FadeOut()
+    public void FadeOut(bool makeALoop = true)
     {
         //Debug.Log("Sleeping");
         fadeImage.enabled = true;
-        StartCoroutine(FadeAway(true));
+        StartCoroutine(FadeAway(true, makeALoop));
     }
 
     public void StartFade()
@@ -33,34 +35,47 @@ public class FadeOutManager : MonoBehaviour
         StartCoroutine(Fade(true));
     }
 
-    IEnumerator FadeAway(bool fadeAway)
+    IEnumerator FadeAway(bool fadeAway, bool makeALoop = true)
     {
+
+        TimeLeft = FadeInSeconds;
 
         if (fadeAway)
         {
             // loop over 1 second 
-            for (float i = 0; i <= 1; i += Time.deltaTime * SpeedMultiplier)
+            while ((TimeLeft -= Time.deltaTime) > 0)
+            //for (float i = 0; i <= 1; i += Time.deltaTime * SpeedMultiplier)
             {
                 // alpha opaque
-                fadeImage.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.05f);
+                fadeImage.color = new Color(0, 0, 0, 1-(TimeLeft/FadeInSeconds));
+                yield return null;
 
-                if (i >= 0.95)
+                if (TimeLeft <= 0.05f && makeALoop)
+                {
+                    Debug.Log(123142);
+                    fadeImage.color = new Color(0, 0, 0, 1);
                     StartCoroutine(FadeAway(false));
+                    break;
+                }
             }
         }
 
         else
         {
             // loop over 1 second backwards
-            for (float i = 1; i >= 0; i -= Time.deltaTime * SpeedMultiplier)
+            while ((TimeLeft -= Time.deltaTime) > 0)
+            //for (float i = 1; i > 0; i -= Time.deltaTime * SpeedMultiplier)
             {
                 // alpha transparent
-                fadeImage.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.05f);
+                fadeImage.color = new Color(0, 0, 0, TimeLeft/FadeInSeconds);
+                yield return null;
 
-                if (i <= 0.01)
+                if (TimeLeft <= 0.05f)
                 {
+                    fadeImage.color = new Color(0, 0, 0, 0);
+                    Debug.Log("GONE!");
+                    break;
+
                     //Debug.Log("fade out test");
                     //fadeImage.enabled = false;  //This isn't working yet :c					
                 }

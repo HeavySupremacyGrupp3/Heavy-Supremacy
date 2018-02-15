@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     public float Rent;
     public static int day = 1;
     public static int week = 1;
-    public TextMesh WeekText;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
+    public SceneTransitionScript SceneTransition;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
 
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
-        //WeekText = GetComponent<TextMesh>();
-        WeekText.text = "Approximately week: ";
 
         AudioManager am = AudioManager.instance;
         am.Play("HUBMusic");
@@ -111,7 +109,7 @@ public class GameManager : MonoBehaviour
         if (CheckEnergy(energyCost))
         {
             StopHUBLoops();
-            SceneManager.LoadScene("WorkScene");
+            SceneTransition.StartTransition("WorkScene");
         }
     }
 
@@ -121,7 +119,7 @@ public class GameManager : MonoBehaviour
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = false;
-            SceneManager.LoadScene("PracticeScene");
+            SceneTransition.StartTransition("PracticeScene");
         }
     }
 
