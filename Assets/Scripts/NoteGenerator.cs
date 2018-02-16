@@ -3,13 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class NoteGenerator : MonoBehaviour
 {
-    public AudioClip Music;
+    public int SongIndex = 0;
+
+    public AudioClip[] PracticeWithLeadSongs;
+    public AudioClip[] PracticeWithoutLeadSongs;
+    public AudioClip[] PracticeMIDISongs;
+
+    public AudioClip[] GigWithLeadSongs;
+    public AudioClip[] GigWithoutLeadSongs;
+    public AudioClip[] GigMIDISongs;
+
+    public AudioClip MusicWithLead;
+    public AudioClip MusicWithoutLead;
     public AudioClip NoteGenerationAudio;
-    public AudioSource MusicAudioSource;
+    public AudioSource MusicWithLeadAudioSource;
+    public AudioSource MusicWithoutLeadAudioSource;
     public AudioSource NoteGenerationAudioSource;
+
+    public AudioMixerGroup PracticeWithLeadMixer;
+    public AudioMixerGroup PracticeWithoutLeadMixer;
+    public AudioMixerGroup GigWithLeadMixer;
+    public AudioMixerGroup GigWithoutLeadMixer;
+
     public float UpdateInterval = 0.1f; //For optimizing performance.
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
     public float MusicStartDelay = 1;
@@ -68,8 +87,32 @@ public class NoteGenerator : MonoBehaviour
 
         clipSampleData = new float[SampleDataLength];
 
-        MusicAudioSource.clip = Music;
-        MusicAudioSource.PlayDelayed(MusicStartDelay);
+        //Assign audioclips.
+        if (!GigBackgroundManager.GigSession)
+        {
+            MusicWithLead = PracticeWithLeadSongs[SongIndex];
+            MusicWithoutLead = PracticeWithoutLeadSongs[SongIndex];
+            NoteGenerationAudio = PracticeMIDISongs[SongIndex];
+
+            MusicWithLeadAudioSource.outputAudioMixerGroup = PracticeWithLeadMixer;
+            MusicWithoutLeadAudioSource.outputAudioMixerGroup = PracticeWithoutLeadMixer;
+        }
+        else if (GigBackgroundManager.GigSession)
+        {
+            MusicWithLead = GigWithLeadSongs[SongIndex];
+            MusicWithoutLead = GigWithoutLeadSongs[SongIndex];
+            NoteGenerationAudio = GigMIDISongs[SongIndex];
+
+            MusicWithLeadAudioSource.outputAudioMixerGroup = GigWithLeadMixer;
+            MusicWithoutLeadAudioSource.outputAudioMixerGroup = GigWithoutLeadMixer;
+        }
+
+        //Play the music.
+        MusicWithLeadAudioSource.clip = MusicWithLead;
+        MusicWithLeadAudioSource.PlayDelayed(MusicStartDelay);
+
+        MusicWithoutLeadAudioSource.clip = MusicWithoutLead;
+        MusicWithoutLeadAudioSource.PlayDelayed(MusicStartDelay);
 
         NoteGenerationAudioSource.clip = NoteGenerationAudio;
         NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
@@ -81,12 +124,12 @@ public class NoteGenerator : MonoBehaviour
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
-            else if (!MusicAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
                 EndGame(true);
         }
 
-        if (MusicAudioSource.clip != null)
-            ProgressionSlider.value = MusicAudioSource.time / MusicAudioSource.clip.length;
+        if (MusicWithLeadAudioSource.clip != null)
+            ProgressionSlider.value = MusicWithLeadAudioSource.time / MusicWithLeadAudioSource.clip.length;
     }
 
     bool CheckForNote()
@@ -145,7 +188,7 @@ public class NoteGenerator : MonoBehaviour
     public void EndGame(bool victory = true)
     {
         EndGamePanel.SetActive(true);
-        MusicAudioSource.Stop();
+        MusicWithLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
         angstStatScript angst = FindObjectOfType<angstStatScript>();
@@ -162,7 +205,7 @@ public class NoteGenerator : MonoBehaviour
         //Practice always goes to victory.
         if (victory)
         {
-            MusicAudioSource.PlayOneShot(VictorySound);
+            MusicWithLeadAudioSource.PlayOneShot(VictorySound);
 
             //Calculate rewards then apply them.
             metalGained = Mathf.CeilToInt(25 * (1 / (1 + (angst.getAmount() / 15))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
@@ -197,7 +240,21 @@ public class NoteGenerator : MonoBehaviour
         }
         else
         {
-            MusicAudioSource.PlayOneShot(DefeatSound);
+            MusicWithLeadAudioSource.PlayOneShot(DefeatSound);
+        }
+    }
+
+    public void SwitchMusicSource(bool withLead)
+    {
+        if (withLead)
+        {
+            MusicWithLeadAudioSource.mute = true;
+            MusicWithoutLeadAudioSource.mute = false;
+        }
+        else
+        {
+            MusicWithLeadAudioSource.mute = false;
+            MusicWithoutLeadAudioSource.mute = true;
         }
     }
 

@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 326710481}
   - component: {fileID: 326710480}
   m_Layer: 0
-  m_Name: PracticeMusic
+  m_Name: MusicWithLead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -843,11 +843,121 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326710479}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.34740794, y: -8.095597, z: 90.06016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 504133746}
-  m_RootOrder: 0
+  m_Father: {fileID: 769092750}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &383403981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 383403983}
+  - component: {fileID: 383403982}
+  m_Layer: 0
+  m_Name: MusicWithoutLead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &383403982
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383403981}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243027547074401974, guid: 1cbf86622dcc45a4e89f41932eeda121,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 1
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &383403983
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383403981}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.34740794, y: -8.095597, z: 90.06016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 769092750}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &411579709
 GameObject:
@@ -962,8 +1072,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.34740794, y: -0.84559727, z: 90.11875}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 326710481}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5171,10 +5280,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35be371ca049f2d4ca7959b99120bdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Music: {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
+  SongIndex: 0
+  PracticeWithLeadSongs:
+  - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
+  PracticeWithoutLeadSongs:
+  - {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
+  PracticeMIDISongs:
+  - {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
+  GigWithLeadSongs:
+  - {fileID: 8300000, guid: 5f5f09a6343147243b6eb97a525143f9, type: 3}
+  GigWithoutLeadSongs:
+  - {fileID: 0}
+  GigMIDISongs:
+  - {fileID: 0}
+  MusicWithLead: {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
+  MusicWithoutLead: {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
   NoteGenerationAudio: {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
-  MusicAudioSource: {fileID: 326710480}
+  MusicWithLeadAudioSource: {fileID: 326710480}
+  MusicWithoutLeadAudioSource: {fileID: 383403982}
   NoteGenerationAudioSource: {fileID: 1027093762}
+  PracticeWithLeadMixer: {fileID: 243560389704560196, guid: 1cbf86622dcc45a4e89f41932eeda121,
+    type: 2}
+  PracticeWithoutLeadMixer: {fileID: 243027547074401974, guid: 1cbf86622dcc45a4e89f41932eeda121,
+    type: 2}
+  GigWithLeadMixer: {fileID: 243663429713049288, guid: 1cbf86622dcc45a4e89f41932eeda121,
+    type: 2}
+  GigWithoutLeadMixer: {fileID: 243424478782109490, guid: 1cbf86622dcc45a4e89f41932eeda121,
+    type: 2}
   UpdateInterval: 0.05
   MusicStartDelay: 1.8
   NoteGenerationStartDelay: 0
@@ -5207,6 +5339,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1027093763}
+  - {fileID: 326710481}
+  - {fileID: 383403983}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5424,6 +5558,7 @@ MonoBehaviour:
   HighestStreakCounter: {fileID: 903594609}
   StreakEffect: {fileID: 1973981534063776, guid: 61c2b9bba292be34db0c71833b6be22b,
     type: 2}
+  NoteGen: {fileID: 769092749}
 --- !u!61 &824317876
 BoxCollider2D:
   m_ObjectHideFlags: 0

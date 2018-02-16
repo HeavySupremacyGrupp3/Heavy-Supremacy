@@ -64,6 +64,11 @@ public class AudioManager : MonoBehaviour
     {
         SoundsForNextScene.Add(name);
     }
+
+    public Sound GetSound(string name)
+    {
+        return Array.Find(sounds, Sound => Sound.name == name);
+    }
 }
 
 /* Old solution 2
