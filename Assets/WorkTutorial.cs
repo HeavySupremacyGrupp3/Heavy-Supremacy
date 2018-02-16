@@ -7,10 +7,13 @@ public class WorkTutorial : MonoBehaviour
 {
     public GameObject[] TextSections;
     public string[] AnimationTriggers;
+    public KeyCode[] Buttons;
+
     private uint currentIndex = 0;
     private uint sections = 0;
     private Animator anim;
     private bool isAllowedClick = false;
+    private KeyCode nextButton;
 	void Start ()
     {
         anim = GetComponent<Animator>();
@@ -20,7 +23,7 @@ public class WorkTutorial : MonoBehaviour
 
     public void ClickedScreen()
     {
-        if (!isAllowedClick)
+        if (!isAllowedClick || !Input.GetKeyUp(nextButton))
             return;
 
         HideText();
@@ -29,9 +32,15 @@ public class WorkTutorial : MonoBehaviour
         isAllowedClick = false;
     }
 
+    private void Update()
+    {
+        ClickedScreen();
+    }
+
     public void AllowClick()
     {
         isAllowedClick = true;
+        nextButton = Buttons[currentIndex];
     }
 
     public void TriggerAnimation()
