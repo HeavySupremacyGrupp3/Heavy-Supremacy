@@ -58,9 +58,7 @@ public class WorkTutorial : MonoBehaviour
         TriggerAnimation();
         isAllowedClick = false;
 		
-		Debug.Log("Rock me like a hurricane "+currentIndex);
-		
-		if(currentIndex%HighlightInterval==0 && (B)<HighlightedObjects.Length)
+		if(currentIndex%HighlightInterval==0 && B<HighlightedObjects.Length)
 			highlightCurrentObject();
     }
 
