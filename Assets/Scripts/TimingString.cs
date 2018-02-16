@@ -32,6 +32,8 @@ public class TimingString : TimingSystem
     public Text HighestStreakCounter;
     public GameObject StreakEffect;
 
+    public NoteGenerator NoteGen;
+
     public static float AngstMultiplier = 1;
     public static float MetalMultiplier = 1;
     public static float NotesHit = 0;
@@ -62,6 +64,7 @@ public class TimingString : TimingSystem
         {
             base.FailTiming();
 
+            NoteGen.SwitchMusicSource(true);
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
@@ -86,6 +89,8 @@ public class TimingString : TimingSystem
     public override void SucceedTiming()
     {
         base.SucceedTiming();
+
+        NoteGen.SwitchMusicSource(false);
 
         NotesHit++;
         UpdateStreakCounter(1);
