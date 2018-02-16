@@ -5658,7 +5658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 10000
-  difference: 0
+  difference: 8
 --- !u!4 &804460039
 Transform:
   m_ObjectHideFlags: 0
