@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Backgrounds:
-  - {fileID: 21300000, guid: effb9ae3d6f17eb46b11918ef0aa64bd, type: 3}
+  - {fileID: 21300000, guid: b4cb154fda920294c8db0a0c8a4fdd43, type: 3}
   - {fileID: 21300000, guid: 33c8973d9a1a3d047a59551a99bd3b2e, type: 3}
   - {fileID: 21300000, guid: bdc87737a95fdf749bcd0b734fb4fff8, type: 3}
   FameRequirementLevels:
