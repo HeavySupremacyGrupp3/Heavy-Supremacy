@@ -7,9 +7,6 @@ public class TimingMachine : TimingSystem {
 	int timesChanged=0;
 	int waitTimer=0;
 	
-	//public delegate void musicEvent(string s);
-	//public static event musicEvent productDetected;
-	
 	public delegate void tutorialEvent();
 	public static event tutorialEvent productHit;
 	public delegate void tutorialCompareEvent(bool b);
@@ -27,12 +24,7 @@ public class TimingMachine : TimingSystem {
 		
 		if(timesChanged==0 && !sc.Spoiled)
 		{
-			base.SucceedTiming();			
-			//sc.currentStage++;
-			
-			//if(sc.currentStage<sc.Sprites.Length)
-				//target.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
-			
+			base.SucceedTiming();
 			timesChanged++;			
 		}		
     }
@@ -74,7 +66,6 @@ public class TimingMachine : TimingSystem {
 	{
 		produktScript sc=collision.GetComponent<produktScript>();
 		
-		//Debug.Log("Jag tar emot produkter av typ: "+myType+" och förvandlar dom till: "+(myType+1));
 		if(myType<sc.type)
 		{
 			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
