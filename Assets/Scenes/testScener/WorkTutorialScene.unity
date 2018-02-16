@@ -6061,6 +6061,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 114444483239814530, guid: 2af6a11191abb0046bf82f548cf56689,
+        type: 2}
+      propertyPath: HighlightInterval
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2af6a11191abb0046bf82f548cf56689, type: 2}
   m_IsPrefabParent: 0
