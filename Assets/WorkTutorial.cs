@@ -33,19 +33,21 @@ public class WorkTutorial : MonoBehaviour
 		Component[] spritedChildren;
 		if(currentIndex>0)		
 		{
-			HighlightedObjects[A].GetComponent<SpriteRenderer>().sortingOrder=1;
-			spritedChildren = HighlightedObjects[A].GetComponentsInChildren<SpriteRenderer>();		
-			
-			foreach (SpriteRenderer spriteRenderer in spritedChildren)
-				spriteRenderer.sortingOrder=1;	
+			changeOrderInLayerForObject(HighlightedObjects[A], 1);
 		}	
 		
-		HighlightedObjects[B].GetComponent<SpriteRenderer>().sortingOrder=200;
-		spritedChildren = HighlightedObjects[B].GetComponentsInChildren<SpriteRenderer>();			
+		changeOrderInLayerForObject(HighlightedObjects[B], 200);	
+	}
+	
+	//g = object to have it's order in layer changed, o = the new order in layer for said object
+	void changeOrderInLayerForObject(GameObject g, int o)
+	{
+		g.GetComponent<SpriteRenderer>().sortingOrder=o;		
+		Component[] spritedChildren;
+		spritedChildren = g.GetComponentsInChildren<SpriteRenderer>();			
 			
 		foreach (SpriteRenderer spriteRenderer in spritedChildren)
-			spriteRenderer.sortingOrder=200;	
-		
+			spriteRenderer.sortingOrder=o;
 	}
 
     public void ClickedScreen()
