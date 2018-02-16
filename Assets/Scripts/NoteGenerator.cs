@@ -214,8 +214,8 @@ public class NoteGenerator : MonoBehaviour
             angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
-            MetalText.text = "Metal Gained: " + metalGained.ToString();
-            AngstText.text = "Angst Loss: " + angstGained.ToString();
+            MetalText.text = "" + metalGained.ToString();
+            AngstText.text = "" + angstGained.ToString();
 
             metal.addOrRemoveAmount(metalGained);
             angst.addOrRemoveAmount(angstGained);
@@ -225,8 +225,8 @@ public class NoteGenerator : MonoBehaviour
 
             if (GigBackgroundManager.GigSession)
             {
-                FameText.text = "Fame Gained: " + fameGained.ToString();
-                MoneyText.text = "Money Gained: " + moneyGained.ToString();
+                FameText.text = "" + fameGained.ToString();
+                MoneyText.text = "" + moneyGained.ToString();
 
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);

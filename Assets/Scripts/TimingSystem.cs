@@ -32,8 +32,7 @@ public abstract class TimingSystem : MonoBehaviour
 
     void ActivateMechanic()
     {
-        ActivatedMechanicAndMissedNotesCounter++;
-
+        Debug.Log(ActivatedMechanicAndMissedNotesCounter);
         if (targets.Count == 0)
         {
             FailTiming();
@@ -67,6 +66,8 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void SucceedTiming()
     {
         Debug.Log("SUCCEEDED TIMING");
+        ActivatedMechanicAndMissedNotesCounter++;
+
         hitTargets.Add(targets[0]);
     }
 
