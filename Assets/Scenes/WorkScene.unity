@@ -152,6 +152,11 @@ MonoBehaviour:
   cantStopWontStop: 0
   stayUntilCompleted: 0
   spawnFlaskor: 0
+  productChanse:
+  - 0.79
+  - 0.72
+  - 0
+  - 0
   angstTick: 1
   angstAmount: 1
 --- !u!4 &1237345
