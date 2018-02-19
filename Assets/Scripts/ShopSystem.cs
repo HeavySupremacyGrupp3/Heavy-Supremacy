@@ -138,7 +138,7 @@ public class ShopSystem : MonoBehaviour
     {
         for (int i = 0; i < ShopInventory.Count; i++)
         {
-            PriceTexts[i].text = "$" + ShopInventory[i].Price;
+            PriceTexts[i].text = "" + ShopInventory[i].Price;
         }
     }
 

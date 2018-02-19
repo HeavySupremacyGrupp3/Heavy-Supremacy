@@ -18,7 +18,7 @@ public class DayTrackerText : MonoBehaviour {
 
     public void Update()
     {
-        t.text = "Week: " + GameManager.week;
+        t.text = "Week: " + GameManager.week + "  Day: " + GameManager.day;
     }
 
 }
