@@ -162,9 +162,10 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseWeek()
     {
-        if (day % 7 == 0)
+        if (day % 8 == 0)
         {
             week++;
+            day = 1;
 
             if ((FindObjectOfType<moneyStatScript>().getAmount() - Rent) < 0)
                 EndGame("You're Broke!");
