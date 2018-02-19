@@ -66,8 +66,16 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        if (level == 0)
+            Destroy(gameObject);
+
         if (level == 1)
+        {
+            Time.timeScale = 1;
+            PauseMenu.paused = false;
+
             ShopSystem.UpdateHUBEnvironment();
+        }
     }
 
     public void Quit()
