@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: AlphaDistortion_003
+  m_Name: CalenderDistortion_004
   m_Shader: {fileID: 4800000, guid: 95c5d9781bf3a8d4e99a02466fd403e3, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -35,11 +35,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistMask:
-        m_Texture: {fileID: 2800000, guid: f0fd838b6de4b6846875b0cdcaf10c25, type: 3}
+        m_Texture: {fileID: 2800000, guid: 85625bc00b28dee4cb585fb090f4e431, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: 7bbcd7b41ce49214d850c6d647b64ca0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -51,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ff487084829baca4a8517ee50b35acf9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 75d2bedd50aee024c8d415d09f86fc41, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -74,7 +74,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 1
     - _DetailNormalMapScale: 1
-    - _DistMultiplier: 0.0055
+    - _DistMultiplier: 0.0302
     - _DistXSpeed: -2.6
     - _DistYSpeed: 2.7
     - _DstBlend: 0
@@ -91,12 +91,12 @@ Material:
     - _OverlayScrollSpeed: 80
     - _OverlayScrollX: 7.5
     - _Parallax: 0.02
-    - _Rotation: 90
+    - _Rotation: 40
     - _ScrollSpeedX: 0
     - _ScrollSpeedY: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 9.17
+    - _Speed: 8.58
     - _SrcBlend: 1
     - _TexBlend: 1
     - _UVSec: 0
