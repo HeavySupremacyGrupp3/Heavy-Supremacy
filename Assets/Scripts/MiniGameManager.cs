@@ -186,7 +186,7 @@ public class MiniGameManager : MonoBehaviour {
             bool hasSpawned = false;
             for (int i = 1; i < productChanse.Length; i++)
             {
-                if (Random.value < productChanse[i])
+                if (Random.value < productChanse[i] && hasSpawned == false)
                 {
                     SpawnProduct(i);
                     hasSpawned = true;
