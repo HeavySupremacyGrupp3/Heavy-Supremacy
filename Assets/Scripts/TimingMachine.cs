@@ -13,7 +13,7 @@ public class TimingMachine : TimingSystem {
 	public static event tutorialCompareEvent productCompared;
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
-	public machineBelowDetectorScript myBelowDetector;
+	//public machineBelowDetectorScript myBelowDetector;
 	public int myType;
 	
 	public string SecondSound;
@@ -32,13 +32,13 @@ public class TimingMachine : TimingSystem {
 	void OnEnable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
-		myBelowDetector.productBelowDetected += compareTypes;
+		//myBelowDetector.productBelowDetected += compareTypes;
 	}
 	
 	void OnDisable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
-		myBelowDetector.productBelowDetected -= compareTypes;
+		//myBelowDetector.productBelowDetected -= compareTypes;
 	}
 	
 	void compareTypes(GameObject t)

@@ -167,7 +167,7 @@ public class MiniGameManager : MonoBehaviour {
 		if(!spawnFlaskor && spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
 			//JULIA KOLLA HÄR VAD TYCKER DU?
-			int leastOf;
+			/*int leastOf;
 			
 			if(produktScript.Sprites.Length<unlockedTypes)
 				leastOf=produktScript.Sprites.Length;
@@ -176,6 +176,7 @@ public class MiniGameManager : MonoBehaviour {
 			
 			//Debug.Log("least of "+leastOf);
             int rng = Random.Range(0, leastOf);
+			*/
 			
 
             updateCounter=0;
@@ -198,7 +199,7 @@ public class MiniGameManager : MonoBehaviour {
             productsSeen++;
 			//Debug.Log("Seen products: "+productsSeen);
 			
-			if(productsSeen>=unlockedTypes && inTheNameOfTheLaw)
+			if(productsSeen>=unlockedTypes && productsSeen>1) // && inTheNameOfTheLaw
 				changeSpawnStopProducts();
 			//inTheNameOfTheLaw=true;
         }	
