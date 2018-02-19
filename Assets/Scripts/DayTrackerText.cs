@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class DayTrackerText : MonoBehaviour {
 
     public GameManager gm;
-    private TextMesh t;
+    private Text t;
 
     public void Start()
     {
-        t = GetComponent<TextMesh>();
+        t = GetComponent<Text>();
         gm = GetComponent<GameManager>();
-        t.text = "Approximately week: ";
+        t.text = "Week: ";
         
     }
 
     public void Update()
     {
-        t.text = "Approximately week: " + GameManager.week;
+        t.text = "Week: " + GameManager.week;
     }
 
 }

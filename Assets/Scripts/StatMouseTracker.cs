@@ -43,27 +43,31 @@ public class StatMouseTracker : MonoBehaviour
     public void SetStatString(string stat)
     {
         UpdatePosition();
+        float amount = 0;
 
         if (stat == "metal")
         {
-            Text.text = metal.getAmount().ToString();
+            amount = metal.getAmount();
             Text.color = MetalColor;
         }
         else if (stat == "fame")
         {
-            Text.text = fame.getAmount().ToString();
+            amount = fame.getAmount();
             Text.color = FameColor;
         }
         else if (stat == "angst")
         {
-            Text.text = angst.getAmount().ToString();
+            amount = angst.getAmount();
             Text.color = AngstColor;
         }
         else if (stat == "energy")
         {
-            Text.text = energy.getAmount().ToString();
+            amount = energy.getAmount();
             Text.color = EnergyColor;
         }
+
+        amount = Mathf.RoundToInt(amount);
+        Text.text = amount.ToString();
 
         Text.gameObject.SetActive(true);
     }

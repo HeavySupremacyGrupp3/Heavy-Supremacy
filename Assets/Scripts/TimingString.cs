@@ -25,10 +25,14 @@ public class TimingString : TimingSystem
 
     public int RequiredStreaksForHealth = 10;
     public int HealthGainedPerStreak = 5;
+    public int RequiredStreaksForEffect = 10;
 
     public Animator StringAnimator;
     public Text StreakCounter;
     public Text HighestStreakCounter;
+    public GameObject StreakEffect;
+
+    public NoteGenerator NoteGen;
 
     public static float AngstMultiplier = 1;
     public static float MetalMultiplier = 1;
@@ -50,7 +54,7 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        //Make sure not cannot fail if it has been hit.
+        //Make sure note cannot fail if it has been hit.
         if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
         {
             ClearHitTargetList();
@@ -60,10 +64,11 @@ public class TimingString : TimingSystem
         {
             base.FailTiming();
 
+            NoteGen.SwitchMusicSource(true);
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
-            UpdateStreakCounters(-streakCounter);
+            UpdateStreakCounter(-streakCounter);
 
             ClearHitTargetList();
         }
@@ -85,11 +90,16 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
 
+        NoteGen.SwitchMusicSource(false);
+
         NotesHit++;
-        UpdateStreakCounters(1);
+        UpdateStreakCounter(1);
 
         if (streakCounter % RequiredStreaksForHealth == 0)
             AddOrRemoveHealth(HealthGainedPerStreak);
+
+        if(streakCounter % RequiredStreaksForEffect == 0)
+            Destroy(Instantiate(StreakEffect), 3);
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
@@ -108,7 +118,6 @@ public class TimingString : TimingSystem
 
         Destroy(targets[0]);
 
-        //This line is the cause of index-errors when hitting notes.
         targets.Clear();
     }
 
@@ -133,7 +142,7 @@ public class TimingString : TimingSystem
         return go;
     }
 
-    private void UpdateStreakCounters(int value)
+    private void UpdateStreakCounter(int value)
     {
         streakCounter += value;
 

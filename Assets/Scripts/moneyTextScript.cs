@@ -19,6 +19,6 @@ public class moneyTextScript : MonoBehaviour {
 	void Update () 
 	{
 		Money = StatReference.getAmount();
-		t.text = "Money: " + Money;
+		t.text = "" + Money;
 	}
 }

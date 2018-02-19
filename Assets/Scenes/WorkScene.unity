@@ -1698,6 +1698,7 @@ MonoBehaviour:
   fadeImage: {fileID: 217351377}
   halfFadeImage: {fileID: 217351377}
   SpeedMultiplier: 3
+  FadeInSeconds: 1
 --- !u!4 &389896947
 Transform:
   m_ObjectHideFlags: 0
@@ -2549,7 +2550,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4abfc5f32825ca6478fdf8603de3d1b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c942ee162a50b4141874c7c0c4e84af4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

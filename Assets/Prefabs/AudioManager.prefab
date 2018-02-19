@@ -155,7 +155,7 @@ MonoBehaviour:
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: ShopAmbience
-    clip: {fileID: 8300000, guid: bd74b4ba7e7ab8b44996c2fe60c1d4cf, type: 3}
+    clip: {fileID: 8300000, guid: 03423965ba9fa354283390bf31d2e48f, type: 3}
     volume: 1
     loop: 1
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
