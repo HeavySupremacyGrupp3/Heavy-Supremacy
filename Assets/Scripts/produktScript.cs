@@ -20,17 +20,6 @@ public class produktScript : MonoBehaviour {
     public MiniGameManager mgm;
     private MachineBehaviour mb;
 
-    [Header("Produsct's starting position")]
-    [SerializeField]
-    private Vector3 metalPosition;
-    [SerializeField]
-    private Vector3 emptyPosition;
-    [SerializeField]
-    private Vector3 moussePosition;
-    [SerializeField]
-    private Vector3 fullPosition;
-
-
     bool moving=true;
 	
 	void OnEnable()
