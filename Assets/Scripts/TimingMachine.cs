@@ -17,7 +17,11 @@ public class TimingMachine : TimingSystem {
 	public int myType;
 	
 	public string SecondSound;
-	
+
+    void Start()
+    {
+
+    }
 	public override void SucceedTiming()
     {
 		produktScript sc=targets[0].GetComponent<produktScript>();
@@ -25,8 +29,8 @@ public class TimingMachine : TimingSystem {
 		if(timesChanged==0 && !sc.Spoiled)
 		{
 			base.SucceedTiming();
-			timesChanged++;			
-		}		
+			timesChanged++;
+        }		
     }
 	
 	void OnEnable()

@@ -45,21 +45,6 @@ public class produktScript : MonoBehaviour {
 
     private void Start()
     {
-        switch (type)
-        {
-            case 0:
-                transform.Translate(metalPosition);
-                break;
-            case 1:
-                transform.Translate(emptyPosition);
-                break;
-            case 2:
-                transform.Translate(moussePosition);
-                break;
-            case 3:
-                transform.Translate(fullPosition);
-                break;
-        }
 
         MiniGameManager mgm = GetComponent<MiniGameManager>();
         MachineBehaviour mb = GetComponent<MachineBehaviour>();

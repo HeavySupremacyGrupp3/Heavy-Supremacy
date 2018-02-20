@@ -23,10 +23,21 @@ public class TutorialMenuScript : MonoBehaviour {
 	
 	public void LoadPracticeTutorial()
 	{
+		//NoteGenerator.showGigTutorial=true;
+		NoteGenerator.ShowPracticeTutorial=true;
+		SceneTransition.StartTransition("PracticeScene");
+	}
+	
+	public void LoadGigTutorial()
+	{
+		//NoteGenerator.showPracticeTutorial=false;
+		NoteGenerator.ShowGigTutorial=true;
+		SceneTransition.StartTransition("PracticeScene");
 	}
 	
 	public void LoadWork()
     {
 		SceneTransition.StartTransition("WorkScene");
+		Debug.Log("Loading work - regular");
     }
 }
