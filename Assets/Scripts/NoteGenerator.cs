@@ -76,11 +76,11 @@ public class NoteGenerator : MonoBehaviour
             SetTutorial(false);
         }
 
-        NotesTotal = 0;
     }
 
     void Initialize()
     {
+        NotesTotal = 0;
         clipSampleData = new float[SampleDataLength];
 
         //Assign audioclips.
@@ -264,13 +264,13 @@ public class NoteGenerator : MonoBehaviour
 
     public void SetTutorial(bool active)
     {
-        if (!GigBackgroundManager.GigSession && ShowPracticeTutorial)
+        if (!GigBackgroundManager.GigSession)
         {
             Debug.Log("TUTORIAL PRACTICE");
             ShowPracticeTutorial = active;
             PracticeTutorialPanel.SetActive(active);
         }
-        if(GigBackgroundManager.GigSession && ShowGigTutorial)
+        if(GigBackgroundManager.GigSession)
         {
             Debug.Log("TUTORIAL GIG");
             ShowGigTutorial = active;
@@ -286,6 +286,7 @@ public class NoteGenerator : MonoBehaviour
         {
             FindObjectOfType<TimingString>().enabled = true;
             Time.timeScale = 1;
+
             Initialize();
         }
 
