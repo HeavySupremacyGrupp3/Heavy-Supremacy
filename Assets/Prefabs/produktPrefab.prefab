@@ -99,9 +99,9 @@ MonoBehaviour:
   type: 0
   mgm: {fileID: 0}
   metalPosition: {x: 0, y: 0, z: 0}
-  emptyPosition: {x: 0, y: 0.8, z: 0}
-  moussePosition: {x: 0, y: 0.8, z: 0}
-  fullPosition: {x: 0, y: 0.8, z: 0}
+  emptyPosition: {x: 0, y: 0, z: 0}
+  moussePosition: {x: 0, y: 0, z: 0}
+  fullPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212444202765457944
 SpriteRenderer:
   m_ObjectHideFlags: 1
