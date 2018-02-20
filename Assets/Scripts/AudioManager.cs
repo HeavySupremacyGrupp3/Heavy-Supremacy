@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning(name + "wasn't found");
             return;
         }
-        Debug.Log("Stopped: " + s.source.clip.name + " From: " + s.name);
+        //Debug.Log("Stopped: " + s.source.clip.name + " From: " + s.name);
         s.source.Stop();
     }
 

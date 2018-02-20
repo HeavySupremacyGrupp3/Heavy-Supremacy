@@ -80,6 +80,8 @@ public class NoteGenerator : MonoBehaviour
 
     void Initialize()
     {
+        Debug.Log("INITIALIZE");
+
         NotesTotal = 0;
         clipSampleData = new float[SampleDataLength];
 
@@ -266,31 +268,37 @@ public class NoteGenerator : MonoBehaviour
     {
         if (!GigBackgroundManager.GigSession)
         {
-            Debug.Log("TUTORIAL PRACTICE");
             ShowPracticeTutorial = active;
             PracticeTutorialPanel.SetActive(active);
         }
-        if(GigBackgroundManager.GigSession)
+        if (GigBackgroundManager.GigSession)
         {
-            Debug.Log("TUTORIAL GIG");
             ShowGigTutorial = active;
             GigTutorialPanel.SetActive(active);
         }
 
         if (active)
         {
+            NoteGenerationAudioSource.Pause();
+            MusicWithLeadAudioSource.Pause();
+            MusicWithoutLeadAudioSource.Pause();
+
             FindObjectOfType<TimingString>().enabled = false;
             Time.timeScale = 0;
         }
         else if (!active)
         {
+            NoteGenerationAudioSource.UnPause();
+            MusicWithLeadAudioSource.UnPause();
+            MusicWithoutLeadAudioSource.UnPause();
+
             FindObjectOfType<TimingString>().enabled = true;
             Time.timeScale = 1;
 
-            Initialize();
+            if (!NoteGenerationAudioSource.isPlaying)
+                Initialize();
         }
 
-        Debug.Log(Time.timeScale);
     }
 
     public void LoadHub()
