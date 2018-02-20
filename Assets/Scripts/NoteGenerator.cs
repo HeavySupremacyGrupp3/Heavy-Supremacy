@@ -40,6 +40,7 @@ public class NoteGenerator : MonoBehaviour
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
     public GameObject TutorialPanel;
+    public GameObject GigTutorialPanel;
     public Text FameText;
     public Text MoneyText;
     public Text AngstText;
@@ -49,7 +50,8 @@ public class NoteGenerator : MonoBehaviour
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 2;
     public static float NotesTotal = 0;
-    public static bool ShowTutorial = true;
+    public static bool ShowPracticeTutorial = true;
+    public static bool ShowGigTutorial = true;
 
     public AudioClip VictorySound;
     public AudioClip DefeatSound;
@@ -65,13 +67,13 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
-        if (ShowTutorial)
+        if (ShowPracticeTutorial || ShowGigTutorial)
         {
             FindObjectOfType<TimingString>().enabled = false;
             TutorialPanel.SetActive(true);
             Time.timeScale = 0;
         }
-        else if (!ShowTutorial)
+        else if (!ShowPracticeTutorial || !ShowGigTutorial)
         {
             Initialize();
             TutorialPanel.SetActive(false);
@@ -120,7 +122,7 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!ShowTutorial)
+        if (!ShowPracticeTutorial)
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
@@ -260,7 +262,16 @@ public class NoteGenerator : MonoBehaviour
 
     public void SetTutorial(bool active)
     {
-        ShowTutorial = active;
+        if (!GigBackgroundManager.GigSession)
+        {
+            ShowPracticeTutorial = active;
+            TutorialPanel.SetActive(active);
+        }
+        else
+        {
+            ShowGigTutorial = active;
+            GigTutorialPanel.SetActive(active);
+        }
 
         if (active)
         {
@@ -290,6 +301,6 @@ public class NoteGenerator : MonoBehaviour
     {
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
-        ShowTutorial = true;
+        ShowPracticeTutorial = true;
     }
 }
