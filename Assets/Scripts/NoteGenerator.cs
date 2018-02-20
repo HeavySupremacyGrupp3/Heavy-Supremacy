@@ -17,9 +17,9 @@ public class NoteGenerator : MonoBehaviour
     public AudioClip[] GigWithoutLeadSongs;
     public AudioClip[] GigMIDISongs;
 
-    public AudioClip MusicWithLead;
-    public AudioClip MusicWithoutLead;
-    public AudioClip NoteGenerationAudio;
+    private AudioClip MusicWithLead;
+    private AudioClip MusicWithoutLead;
+    private AudioClip NoteGenerationAudio;
     public AudioSource MusicWithLeadAudioSource;
     public AudioSource MusicWithoutLeadAudioSource;
     public AudioSource NoteGenerationAudioSource;
@@ -39,7 +39,7 @@ public class NoteGenerator : MonoBehaviour
 
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
-    public GameObject TutorialPanel;
+    public GameObject PracticeTutorialPanel;
     public GameObject GigTutorialPanel;
     public Text FameText;
     public Text MoneyText;
@@ -69,15 +69,11 @@ public class NoteGenerator : MonoBehaviour
     {
         if (ShowPracticeTutorial || ShowGigTutorial)
         {
-            FindObjectOfType<TimingString>().enabled = false;
-            TutorialPanel.SetActive(true);
-            Time.timeScale = 0;
+            SetTutorial(true);
         }
         else if (!ShowPracticeTutorial || !ShowGigTutorial)
         {
-            Initialize();
-            TutorialPanel.SetActive(false);
-            Time.timeScale = 1;
+            SetTutorial(false);
         }
 
         NotesTotal = 0;
@@ -85,8 +81,6 @@ public class NoteGenerator : MonoBehaviour
 
     void Initialize()
     {
-        FindObjectOfType<TimingString>().enabled = true;
-
         clipSampleData = new float[SampleDataLength];
 
         //Assign audioclips.
@@ -122,7 +116,7 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!ShowPracticeTutorial)
+        if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) || !ShowGigTutorial)
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
@@ -189,6 +183,8 @@ public class NoteGenerator : MonoBehaviour
 
     public void EndGame(bool victory = true)
     {
+        Debug.Log("ENDED GAME");
+
         EndGamePanel.SetActive(true);
         MusicWithLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
@@ -215,15 +211,21 @@ public class NoteGenerator : MonoBehaviour
             moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
             angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
 
+            if (moneyGained > money.getMax() || moneyGained < 0)
+                moneyGained = money.getMax();
+            if (fameGained > fame.getMax() || fameGained < 0)
+                fameGained = fame.getMax();
+            if (metalGained > metal.getMax() || metalGained < 0)
+                metalGained = metal.getMax();
+            //if (angstGained > angst.getMax() || angstGained < 0)
+            //    angstGained = angst.getMax();
+
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
             MetalText.text = "" + metalGained.ToString();
             AngstText.text = "" + angstGained.ToString();
 
             metal.addOrRemoveAmount(metalGained);
             angst.addOrRemoveAmount(angstGained);
-
-            if (moneyGained > money.getMax() || moneyGained < 0)
-                moneyGained = money.getMax();
 
             if (GigBackgroundManager.GigSession)
             {
@@ -262,13 +264,15 @@ public class NoteGenerator : MonoBehaviour
 
     public void SetTutorial(bool active)
     {
-        if (!GigBackgroundManager.GigSession)
+        if (!GigBackgroundManager.GigSession && ShowPracticeTutorial)
         {
+            Debug.Log("TUTORIAL PRACTICE");
             ShowPracticeTutorial = active;
-            TutorialPanel.SetActive(active);
+            PracticeTutorialPanel.SetActive(active);
         }
-        else
+        if(GigBackgroundManager.GigSession && ShowGigTutorial)
         {
+            Debug.Log("TUTORIAL GIG");
             ShowGigTutorial = active;
             GigTutorialPanel.SetActive(active);
         }
@@ -280,9 +284,12 @@ public class NoteGenerator : MonoBehaviour
         }
         else if (!active)
         {
+            FindObjectOfType<TimingString>().enabled = true;
             Time.timeScale = 1;
             Initialize();
         }
+
+        Debug.Log(Time.timeScale);
     }
 
     public void LoadHub()
@@ -302,5 +309,6 @@ public class NoteGenerator : MonoBehaviour
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
         ShowPracticeTutorial = true;
+        ShowGigTutorial = true;
     }
 }
