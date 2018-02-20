@@ -18,6 +18,7 @@ public class SceneTransitionScript : MonoBehaviour {
     {
         FadeOutManager fadeOut = FindObjectOfType<FadeOutManager>();
         fadeOut.FadeInSeconds = FadeInSeconds;
+		Time.timeScale = 1;
 
         fadeOut.FadeOut(false);
 

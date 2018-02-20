@@ -143,7 +143,8 @@ public class MiniGameManager : MonoBehaviour {
 
     void Start ()
 	{
-        gmScript = GetComponent<GameManager>();
+        //gmScript = GetComponent<GameManager>();
+		gmScript = FindObjectOfType<GameManager>();
         //produktScript = GetComponent<produktScript>();
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
         //AudioManager.instance.Play("Atmosphere"); //blir trött i huvet
@@ -293,10 +294,15 @@ public class MiniGameManager : MonoBehaviour {
 
     public void LoadHUB()
     {
-		QuitWork();
+		//QuitWork();
 		SceneManager.LoadScene("HUBScene");
         //gmScript.LoadHUB();
     }
+	
+	public void LoadTutorial()
+	{
+		SceneManager.LoadScene("WorkTutorialScene");
+	}
 	
 	public void LoadWork()
     {
