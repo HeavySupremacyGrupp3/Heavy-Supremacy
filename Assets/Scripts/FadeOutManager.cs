@@ -52,7 +52,6 @@ public class FadeOutManager : MonoBehaviour
 
                 if (TimeLeft <= 0.05f && makeALoop)
                 {
-                    Debug.Log(123142);
                     fadeImage.color = new Color(0, 0, 0, 1);
                     StartCoroutine(FadeAway(false));
                     break;
@@ -73,7 +72,7 @@ public class FadeOutManager : MonoBehaviour
                 if (TimeLeft <= 0.05f)
                 {
                     fadeImage.color = new Color(0, 0, 0, 0);
-                    Debug.Log("GONE!");
+
                     break;
 
                     //Debug.Log("fade out test");

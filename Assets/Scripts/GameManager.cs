@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
 	private KeyCode key=KeyCode.Escape;
 
-    void Awake()
+    void Start()
     {
         if (ToEndGame)
             EndGame(EndGameTitleText);
