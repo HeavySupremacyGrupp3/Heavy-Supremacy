@@ -38,5 +38,6 @@ public class TutorialMenuScript : MonoBehaviour {
 	public void LoadWork()
     {
 		SceneTransition.StartTransition("WorkScene");
+		Debug.Log("Loading work - regular");
     }
 }
