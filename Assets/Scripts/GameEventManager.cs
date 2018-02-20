@@ -77,7 +77,7 @@ public class GameEventManager : MonoBehaviour
 
         if (GameManager.day % SMSDayInterval == 0)
         {
-            Debug.Log(Mathf.Max(statValues));
+            //TODO: Replace statValues[0,1,2] with different Nodelists accordingly.
             if (Mathf.Max(statValues) == statValues[0])
                 TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
             else if (Mathf.Max(statValues) == statValues[1])
