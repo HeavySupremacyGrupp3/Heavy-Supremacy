@@ -66,8 +66,16 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        if (level == 0)
+            Destroy(gameObject);
+
         if (level == 1)
+        {
+            Time.timeScale = 1;
+            PauseMenu.paused = false;
+
             ShopSystem.UpdateHUBEnvironment();
+        }
     }
 
     public void Quit()
@@ -162,9 +170,10 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseWeek()
     {
-        if (day % 7 == 0)
+        if (day % 8 == 0)
         {
             week++;
+            day = 1;
 
             if ((FindObjectOfType<moneyStatScript>().getAmount() - Rent) < 0)
                 EndGame("You're Broke!");

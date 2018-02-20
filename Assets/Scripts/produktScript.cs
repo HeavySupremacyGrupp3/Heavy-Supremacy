@@ -20,6 +20,16 @@ public class produktScript : MonoBehaviour {
     public MiniGameManager mgm;
     private MachineBehaviour mb;
 
+    [Header("Produsct's starting position")]
+    [SerializeField]
+    private Vector3 metalPosition;
+    [SerializeField]
+    private Vector3 emptyPosition;
+    [SerializeField]
+    private Vector3 moussePosition;
+    [SerializeField]
+    private Vector3 fullPosition;
+
 
     bool moving=true;
 	
@@ -35,6 +45,22 @@ public class produktScript : MonoBehaviour {
 
     private void Start()
     {
+        switch (type)
+        {
+            case 0:
+                transform.Translate(metalPosition);
+                break;
+            case 1:
+                transform.Translate(emptyPosition);
+                break;
+            case 2:
+                transform.Translate(moussePosition);
+                break;
+            case 3:
+                transform.Translate(fullPosition);
+                break;
+        }
+
         MiniGameManager mgm = GetComponent<MiniGameManager>();
         MachineBehaviour mb = GetComponent<MachineBehaviour>();
         startPosition = transform.position;
@@ -46,7 +72,9 @@ public class produktScript : MonoBehaviour {
 	{
 		if(moving)
 			transform.Translate(Vector3.right * 3f*Time.deltaTime);
-       // StartCoroutine(Stop(moving));
+        // StartCoroutine(Stop(moving));
+
+    
     }
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner

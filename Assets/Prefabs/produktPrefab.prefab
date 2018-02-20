@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1387553542603298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.582408, y: -0.2140441, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -91,13 +91,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprites:
   - {fileID: 21300000, guid: 5084b9ffbc8da8744a13961d7ae5e1b9, type: 3}
-  - {fileID: 21300000, guid: 9142a6981ae375145b10d4d8c83d7c19, type: 3}
-  - {fileID: 21300000, guid: 8b693afcaff6de64193ee9e5e56b501f, type: 3}
-  - {fileID: 21300000, guid: 01cabb468f30c8744bdb90e02baa09d0, type: 3}
+  - {fileID: 21300000, guid: 46041e49124be2845ae4e98545ef4842, type: 3}
+  - {fileID: 21300000, guid: 52f4687e76fa1104fa53b143e468b8ce, type: 3}
+  - {fileID: 21300000, guid: 88b68a47df54c2342b7810ef1f887d2a, type: 3}
   spoilSprite: {fileID: 21300000, guid: 62e2a38784175e54a977d9f5380d8d0b, type: 3}
   Spoiled: 0
   type: 0
   mgm: {fileID: 0}
+  metalPosition: {x: 0, y: 0, z: 0}
+  emptyPosition: {x: 0, y: 0.8, z: 0}
+  moussePosition: {x: 0, y: 0.8, z: 0}
+  fullPosition: {x: 0, y: 0.8, z: 0}
 --- !u!212 &212444202765457944
 SpriteRenderer:
   m_ObjectHideFlags: 1
