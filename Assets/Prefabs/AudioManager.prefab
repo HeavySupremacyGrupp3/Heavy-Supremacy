@@ -102,13 +102,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: statmax
     clip: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
-    volume: 1
+    volume: 0.19
     loop: 0
     mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: statmin
     clip: {fileID: 8300000, guid: 14d1a59c05be3d443a13f1221988deec, type: 3}
-    volume: 1
+    volume: 0.215
     loop: 0
     mixer: {fileID: 243878493974940422, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
@@ -239,20 +239,74 @@ MonoBehaviour:
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError1
-    clip: {fileID: 8300000, guid: 5664b50140c2b3d41a81a39cf43353c9, type: 3}
+    clip: {fileID: 8300000, guid: 0f830b42fe8208a4abd8086da5d3c42e, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError2
-    clip: {fileID: 8300000, guid: c4d9ef5f642fe61478dabd4c5f61ebb4, type: 3}
+    clip: {fileID: 8300000, guid: efadedfb8432d2a409728205aa160600, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError3
-    clip: {fileID: 8300000, guid: 7efaf261a2855214bbfd85585b12ea57, type: 3}
+    clip: {fileID: 8300000, guid: a9602b8b7dd402e49bead2eab4527d1b, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: StatsHighlight1
+    clip: {fileID: 8300000, guid: ac79d7ae1c3b3c74a8b7ff8c28b6f421, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: StatsHighlight2
+    clip: {fileID: 8300000, guid: ba596d51a278080479284738ba486931, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: StatsHighlight3
+    clip: {fileID: 8300000, guid: f4cefc101f6e75441926504cea22277b, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: StatsHighlight4
+    clip: {fileID: 8300000, guid: 61f927dcab7c51e4c8d98e046a4e834b, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: PracticeError4
+    clip: {fileID: 8300000, guid: a24bcf90e15b64a478bc9b85f3ebd5e8, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: MessageRecieved
+    clip: {fileID: 8300000, guid: b9b2fe092a65294499f37eb3a794e478, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: MapEventHighlight
+    clip: {fileID: 8300000, guid: 0dd74b9abe6c34447a7bc364fbb68af5, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: MapEventClick
+    clip: {fileID: 8300000, guid: 8cbaf6d342315224f857d3914f27ced5, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: MapEventClick
+    clip: {fileID: 8300000, guid: 8cbaf6d342315224f857d3914f27ced5, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}

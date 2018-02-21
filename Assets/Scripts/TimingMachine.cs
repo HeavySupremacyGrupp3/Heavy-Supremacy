@@ -81,6 +81,7 @@ public class TimingMachine : TimingSystem {
 		if(myType==sc.type && !sc.Spoiled)
 		{
 			//Debug.Log("Jag förvandlar.");
+			AudioManager.instance.Play("Machine"+myType+"Hit");
 			sc.type++;
 			collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.type];
 		}
