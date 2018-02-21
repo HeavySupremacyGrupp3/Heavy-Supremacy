@@ -46,7 +46,10 @@ public class MiniGameManager : MonoBehaviour {
     [SerializeField]
     private int angstAmount = 1;
     private float angst = 0f;
-	
+
+    [HideInInspector]
+    public List<GameObject> productList;
+
 	bool inTheNameOfTheLaw=false;
 
 	int productsSeen=0;
@@ -115,21 +118,21 @@ public class MiniGameManager : MonoBehaviour {
 		//  stopProducts();
 	}
 	
-	public void spawnMetallklump()
+	/*public void spawnMetallklump()
 	{
 		updateCounter=0;
 		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
 		productsSeen++;
-	}
+	}*/
 	
-	public void spawnTomFlaska()
+	/*public void spawnTomFlaska()
 	{
 		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
 		nyProdukt.GetComponent<produktScript>().type = 1;
         SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
         sr.sprite = produktScript.Sprites[1];
 		productsSeen++;
-	}
+	}*/
 	
 	void omaewashindeiru()
 	{
@@ -147,7 +150,7 @@ public class MiniGameManager : MonoBehaviour {
 		gmScript = FindObjectOfType<GameManager>();
         //produktScript = GetComponent<produktScript>();
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
-        //AudioManager.instance.Play("Atmosphere"); //blir trött i huvet
+        productList = new List<GameObject>();   //Skapar en lista 
     }	
 	
 	void Update ()
@@ -155,7 +158,7 @@ public class MiniGameManager : MonoBehaviour {
 		if(spawnFlaskor && updateCounter >= productInterval)
 		{
 			updateCounter=0;
-			spawnTomFlaska();
+			//spawnTomFlaska();
 		}
      
         angst += Time.deltaTime / angstTick;
@@ -167,34 +170,21 @@ public class MiniGameManager : MonoBehaviour {
 			
 		if(!spawnFlaskor && spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
-			//JULIA KOLLA HÄR VAD TYCKER DU?
-			/*int leastOf;
-			
-			if(produktScript.Sprites.Length<unlockedTypes)
-				leastOf=produktScript.Sprites.Length;
-			else
-				leastOf=unlockedTypes;
-			
-			//Debug.Log("least of "+leastOf);
-            int rng = Random.Range(0, leastOf);
-			*/
-			
 
             updateCounter=0;
-            //Add new gameobject with a random sprite
 			
 
             bool hasSpawned = false;
-            for (int i = 1; i < productChanse.Length; i++)
+            for (int i = 1; i < productChanse.Length; i++)    //Går igenom varje produkttyps chans att spawna från en lista
             {
-                if (Random.value < productChanse[i] && hasSpawned == false)
+                if (Random.value < productChanse[i] && hasSpawned == false)   //Om ett tal mellan 0-1 är mindre än produktchansen (sätts i inspektorn) och om inget annat har spawnat
                 {
-                    SpawnProduct(i);
-                    hasSpawned = true;
+                    SpawnProduct(i);                  //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
+                    hasSpawned = true;                //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
                 }
             }
-            if (!hasSpawned)
-                SpawnProduct(0);
+            if (!hasSpawned)    
+                SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
 
 
             productsSeen++;
@@ -318,26 +308,18 @@ public class MiniGameManager : MonoBehaviour {
 
     public void SpawnProduct(int rng)
     {
-        GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
+        GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);  //Instantierar en produktprefab på en plats i rymden
         //rng = Random.Range(0, produktScript.Sprites.Length);
-        nyProdukt.GetComponent<produktScript>().type = rng;
-        SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-        sr.sprite = produktScript.Sprites[rng];
+        nyProdukt.GetComponent<produktScript>().type = rng;                               //Produktscriptet på produkten har variabeln "type" som sätts efter den int som skickas med
+        SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();                     //hämtar den instantierade produktens spriterenderer
+        sr.sprite = produktScript.Sprites[rng];                                           //Sätter spriten på produkten till samma som typen på produktskriptet
+        productList.Add(nyProdukt);                                                   //Lägger till instantierad produkt i listan
     }
 
-
-    /*public IEnumerator AngstTick()
+    public void RemoveFromList()
     {
-        yield return new WaitForSeconds(angstTick);
-        for (float i = 0; i <= angstTick + 1; i += Time.deltaTime)
-        {
-            if (i >= angstTick)
-            {
-                StatReference.addOrRemoveAmount(angstAmount);
-            }
-            yield return new WaitForSeconds(angstTick);
-        }
-
+        productList.RemoveAt(0);
     }
-    */
+
+
 }

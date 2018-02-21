@@ -18,13 +18,14 @@ public class produktScript : MonoBehaviour {
     public int type = 0;
 
     private MachineBehaviour mb;
+    private MiniGameManager mgm;
 
     bool moving=true;
     bool waiting = false;
-    bool isDoneMoving = false;
+    bool reachedCheckpoint = false;
 
-    private GameObject[] checkpoints;
-    int checkpointIndex = 0;
+    private Transform checkpoint;
+    private List<GameObject> productList;
 	
 	void OnEnable()
 	{
@@ -39,24 +40,33 @@ public class produktScript : MonoBehaviour {
     private void Start()
     {
         mb = GameObject.Find("MachineBehaviour").GetComponent<MachineBehaviour>();
+        mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
         startPosition = transform.position;
         endPosition = new Vector3(startPosition.x + mb.spacing / 2f, startPosition.y);
-        checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
-        checkpointIndex = checkpoints.Length - 1;
+        checkpoint = mb.checkpoint;               //Hämtar checkpoints från MachineBehavior
+        productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager
     }
 
     void Update ()
 	{
-        if (transform.position.x < checkpoints[checkpointIndex].transform.position.x || isDoneMoving)
+        if (transform.position.x < checkpoint.transform.position.x  && !waiting || reachedCheckpoint && !waiting) 
         {
             transform.Translate(Vector3.right * 3f * Time.deltaTime);
         }
         else if (!waiting)
         {
-            //transform.position = endPosition;
-            StartCoroutine(StartMovingAfter(2f));
-            waiting = true;
+            foreach (GameObject product in productList)
+            {
+                product.GetComponent<produktScript>().Wait();
+            }
+            StartCoroutine(StartMovingAfterCheckpoint(2f));
         }
+    }
+
+    public void Wait()
+    {
+        waiting = true;
+        StartCoroutine(StartMovingAfter(2f));
     }
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
@@ -67,6 +77,7 @@ public class produktScript : MonoBehaviour {
 				earnMoney();
 			
 			Destroy(gameObject);
+            mgm.RemoveFromList();
 		}
         //if (other.gameObject.tag == "Maskin")
         //{
@@ -88,31 +99,16 @@ public class produktScript : MonoBehaviour {
 
 	}
 
-   /* private void Stop()
-    {
-        if (transform.position.x >= endPosition.x && transform.position.x <= endPosition.x + 0.1)
-        {
-            for (float i = 0; i <= 2; i += Time.deltaTime)
-            {
-                Debug.Log("stopped");
-                moving = false;
-            }
-        }
-        Debug.Log("moves");
-        moving = true;
-    }*/
-    
-        //this is supposed to work and stop the producst and stuff but moving is weird...hehe...(omg!)
     private IEnumerator StartMovingAfter(float time)
     {
         yield return new WaitForSeconds(time);
-        if (checkpointIndex > 0)
-            checkpointIndex--;
-        else
-            isDoneMoving = true;
         waiting = false;
-        //startPosition = transform.position;
-        //endPosition = new Vector3(startPosition.x + mb.spacing / 2f, startPosition.y);
+    }
+
+    private IEnumerator StartMovingAfterCheckpoint(float time)
+    {
+        yield return new WaitForSeconds(time);
+        reachedCheckpoint = true;
     }
 
 }

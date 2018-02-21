@@ -23,8 +23,8 @@ public class MachineBehaviour : MonoBehaviour {
     [Range(0, 10)]
     public int spacing;
 
-    [SerializeField]
-    private float lerpTime = 2f;
+
+    public Transform checkpoint;
 
     void Start()
     {
