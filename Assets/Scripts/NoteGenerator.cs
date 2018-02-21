@@ -247,14 +247,6 @@ public class NoteGenerator : MonoBehaviour
         else
         {
             MusicWithLeadAudioSource.PlayOneShot(DefeatSound);
-
-            if (GigBackgroundManager.GigSession)
-            {
-                fame.addOrRemoveAmount(-10);
-                metal.addOrRemoveAmount(-20);
-                angst.addOrRemoveAmount(20);
-                money.addOrRemoveAmount(150);
-            }
         }
     }
 

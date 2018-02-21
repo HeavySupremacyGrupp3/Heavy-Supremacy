@@ -7,7 +7,6 @@ TagManager:
   - Maskin
   - Box
   - TimingObject
-  - Checkpoint
   layers:
   - Default
   - TransparentFX
