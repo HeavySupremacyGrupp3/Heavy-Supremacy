@@ -17,15 +17,10 @@ public class produktScript : MonoBehaviour {
 
     public int type = 0;
 
+    public MiniGameManager mgm;
     private MachineBehaviour mb;
-    private MiniGameManager mgm;
 
     bool moving=true;
-    bool waiting = false;
-    bool reachedCheckpoint = false;
-
-    private Transform checkpoint;
-    private List<GameObject> productList;
 	
 	void OnEnable()
 	{
@@ -39,34 +34,21 @@ public class produktScript : MonoBehaviour {
 
     private void Start()
     {
-        mb = GameObject.Find("MachineBehaviour").GetComponent<MachineBehaviour>();
-        mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
+
+        MiniGameManager mgm = GetComponent<MiniGameManager>();
+        MachineBehaviour mb = GetComponent<MachineBehaviour>();
         startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x + mb.spacing / 2f, startPosition.y);
-        checkpoint = mb.checkpoint;               //Hämtar checkpoints från MachineBehavior
-        productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager
+        //endPosition = new Vector3(startPosition.x + mb.spacing, startPosition.y);
+        
     }
 
     void Update ()
 	{
-        if (transform.position.x < checkpoint.transform.position.x  && !waiting || reachedCheckpoint && !waiting) 
-        {
-            transform.Translate(Vector3.right * 3f * Time.deltaTime);
-        }
-        else if (!waiting)
-        {
-            foreach (GameObject product in productList)
-            {
-                product.GetComponent<produktScript>().Wait();
-            }
-            StartCoroutine(StartMovingAfterCheckpoint(2f));
-        }
-    }
+		if(moving)
+			transform.Translate(Vector3.right * 3f*Time.deltaTime);
+        // StartCoroutine(Stop(moving));
 
-    public void Wait()
-    {
-        waiting = true;
-        StartCoroutine(StartMovingAfter(2f));
+    
     }
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
@@ -77,7 +59,6 @@ public class produktScript : MonoBehaviour {
 				earnMoney();
 			
 			Destroy(gameObject);
-            mgm.RemoveFromList();
 		}
         //if (other.gameObject.tag == "Maskin")
         //{
@@ -99,16 +80,34 @@ public class produktScript : MonoBehaviour {
 
 	}
 
-    private IEnumerator StartMovingAfter(float time)
+   /* private void Stop()
     {
-        yield return new WaitForSeconds(time);
-        waiting = false;
-    }
-
-    private IEnumerator StartMovingAfterCheckpoint(float time)
+        if (transform.position.x >= endPosition.x && transform.position.x <= endPosition.x + 0.1)
+        {
+            for (float i = 0; i <= 2; i += Time.deltaTime)
+            {
+                Debug.Log("stopped");
+                moving = false;
+            }
+        }
+        Debug.Log("moves");
+        moving = true;
+    }*/
+    
+        //this is supposed to work and stop the producst and stuff but moving is weird...hehe...(omg!)
+    private IEnumerator Stop(bool moving)
     {
-        yield return new WaitForSeconds(time);
-        reachedCheckpoint = true;
+        if (moving)
+        {
+            Debug.Log("Started coroutine");
+            if (transform.position.x >= endPosition.x  && transform.position.x <= endPosition.x + 0.1)
+            {
+                Debug.Log("Reached stop.x");
+                moving = false;
+                yield return new WaitForSeconds(2f);
+                moving = true;
+            }
+        }
     }
 
 }

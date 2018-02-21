@@ -90,14 +90,14 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
-		
+		Debug.Log("maskin "+myType);
 		productHit();
 		AudioManager.instance.Play(SecondSound);
 	}
 	
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		targets.RemoveAt(0);
+		//targets.RemoveAt(0);
 	}
 	
 	private void old2DCollider(Collider2D collision)
