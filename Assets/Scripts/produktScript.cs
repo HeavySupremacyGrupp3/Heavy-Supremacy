@@ -17,10 +17,14 @@ public class produktScript : MonoBehaviour {
 
     public int type = 0;
 
-    public MiniGameManager mgm;
     private MachineBehaviour mb;
 
     bool moving=true;
+    bool waiting = false;
+    bool isDoneMoving = false;
+
+    private GameObject[] checkpoints;
+    int checkpointIndex = 0;
 	
 	void OnEnable()
 	{
@@ -34,21 +38,25 @@ public class produktScript : MonoBehaviour {
 
     private void Start()
     {
-
-        MiniGameManager mgm = GetComponent<MiniGameManager>();
-        MachineBehaviour mb = GetComponent<MachineBehaviour>();
+        mb = GameObject.Find("MachineBehaviour").GetComponent<MachineBehaviour>();
         startPosition = transform.position;
-        //endPosition = new Vector3(startPosition.x + mb.spacing, startPosition.y);
-        
+        endPosition = new Vector3(startPosition.x + mb.spacing / 2f, startPosition.y);
+        checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
+        checkpointIndex = checkpoints.Length - 1;
     }
 
     void Update ()
 	{
-		if(moving)
-			transform.Translate(Vector3.right * 3f*Time.deltaTime);
-        // StartCoroutine(Stop(moving));
-
-    
+        if (transform.position.x < checkpoints[checkpointIndex].transform.position.x || isDoneMoving)
+        {
+            transform.Translate(Vector3.right * 3f * Time.deltaTime);
+        }
+        else if (!waiting)
+        {
+            //transform.position = endPosition;
+            StartCoroutine(StartMovingAfter(2f));
+            waiting = true;
+        }
     }
 	
 	void OnTriggerEnter2D(Collider2D other) //kollisioner
@@ -95,19 +103,16 @@ public class produktScript : MonoBehaviour {
     }*/
     
         //this is supposed to work and stop the producst and stuff but moving is weird...hehe...(omg!)
-    private IEnumerator Stop(bool moving)
+    private IEnumerator StartMovingAfter(float time)
     {
-        if (moving)
-        {
-            Debug.Log("Started coroutine");
-            if (transform.position.x >= endPosition.x  && transform.position.x <= endPosition.x + 0.1)
-            {
-                Debug.Log("Reached stop.x");
-                moving = false;
-                yield return new WaitForSeconds(2f);
-                moving = true;
-            }
-        }
+        yield return new WaitForSeconds(time);
+        if (checkpointIndex > 0)
+            checkpointIndex--;
+        else
+            isDoneMoving = true;
+        waiting = false;
+        //startPosition = transform.position;
+        //endPosition = new Vector3(startPosition.x + mb.spacing / 2f, startPosition.y);
     }
 
 }
