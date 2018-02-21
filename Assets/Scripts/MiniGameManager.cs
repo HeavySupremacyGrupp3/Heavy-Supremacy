@@ -55,6 +55,9 @@ public class MiniGameManager : MonoBehaviour
 
     int productsSeen = 0;
 
+    [SerializeField]
+    private GameObject resultScreen;
+
     void OnEnable()
     {
         produktScript.earnMoney += omaewashindeiru;
@@ -139,9 +142,10 @@ public class MiniGameManager : MonoBehaviour
     {
         finishedProducts++;
 
-        if (finishedProducts == 10 && cantStopWontStop == false)
+        if (finishedProducts == 20 && cantStopWontStop == false)
         {
-            LoadHUB();
+            resultScreen.SetActive(true);
+            //LoadHUB(); We want to show the resultscreen, not load hub c;
         }
     }
 
