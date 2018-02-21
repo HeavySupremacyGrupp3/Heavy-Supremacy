@@ -146,8 +146,8 @@ MonoBehaviour:
     type: 2}
   produktPrefab: {fileID: 1387553542603298, guid: 0a866ee52ebbf9f4480a3acba519471f,
     type: 2}
-  moveProduction: {x: -15, y: -0.5, z: 0}
-  productInterval: 1.9
+  moveProduction: {x: -15, y: -3, z: 0}
+  productInterval: 2.2
   unlockedTypes: 0
   cantStopWontStop: 0
   stayUntilCompleted: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   - 0
   angstTick: 2
   angstAmount: 1
+  productList: []
 --- !u!4 &1237345
 Transform:
   m_ObjectHideFlags: 0
@@ -2035,7 +2036,7 @@ GameObject:
   - component: {fileID: 645679859}
   - component: {fileID: 645679860}
   m_Layer: 0
-  m_Name: Checkpoint1
+  m_Name: Checkpoint
   m_TagString: Checkpoint
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2048,7 +2049,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645679858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.98, y: -0.7, z: -1.1213999}
+  m_LocalPosition: {x: -9.92, y: -0.7, z: -1.1213999}
   m_LocalScale: {x: 0.925, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2259,46 +2260,6 @@ MonoBehaviour:
   mgm: {fileID: 0}
   fadeScript: {fileID: 0}
   menu: {fileID: 828706686}
---- !u!1 &874888861
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 874888862}
-  - component: {fileID: 874888863}
-  m_Layer: 0
-  m_Name: Checkpoint1 (3)
-  m_TagString: Checkpoint
-  m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &874888862
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 874888861}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.66, y: 0.12, z: -1.1213999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &874888863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 874888861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebb727d3487b3f42a3481fce8c73a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &876866987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,46 +2864,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1170884406}
---- !u!1 &1255253147
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1255253148}
-  - component: {fileID: 1255253149}
-  m_Layer: 0
-  m_Name: Checkpoint1 (4)
-  m_TagString: Checkpoint
-  m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1255253148
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1255253147}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.34, y: -0.1, z: -1.1213999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1255253149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1255253147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebb727d3487b3f42a3481fce8c73a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1282471320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,91 +3737,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1624117525
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1624117526}
-  - component: {fileID: 1624117527}
-  m_Layer: 0
-  m_Name: Checkpoint1 (2)
-  m_TagString: Checkpoint
-  m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1624117526
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1624117525}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.56, y: -0.39, z: -1.1213999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 27
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1624117527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1624117525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebb727d3487b3f42a3481fce8c73a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1628263374 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224755267757318354, guid: 80022ef44fe1c1448a5fea4e18a37413,
     type: 2}
   m_PrefabInternal: {fileID: 1858666706}
---- !u!1 &1640947500
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1640947501}
-  - component: {fileID: 1640947502}
-  m_Layer: 0
-  m_Name: Checkpoint1 (1)
-  m_TagString: Checkpoint
-  m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1640947501
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1640947500}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.21, y: -0.39, z: -1.1213999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 26
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1640947502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1640947500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebb727d3487b3f42a3481fce8c73a36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1645241719
 GameObject:
   m_ObjectHideFlags: 0
