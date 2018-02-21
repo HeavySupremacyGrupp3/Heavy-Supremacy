@@ -1809,7 +1809,7 @@ MonoBehaviour:
   PracticeWithLeadSongs:
   - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
   PracticeWithoutLeadSongs:
-  - {fileID: 8300000, guid: 71931629d2350734d93865ee9f0a11d0, type: 3}
+  - {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
   PracticeMIDISongs:
   - {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
   GigWithLeadSongs:
@@ -2055,7 +2055,6 @@ MonoBehaviour:
   - PracticeError1
   - PracticeError2
   - PracticeError3
-  - PracticeError4
   AudioSource: {fileID: 824317877}
   MaxHealth: 15
   HealthSlider: {fileID: 1678987328}

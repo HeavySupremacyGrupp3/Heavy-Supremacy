@@ -286,7 +286,6 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-<<<<<<< HEAD
   - name: MessageRecieved
     clip: {fileID: 8300000, guid: b9b2fe092a65294499f37eb3a794e478, type: 3}
     volume: 1
@@ -311,5 +310,3 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-=======
->>>>>>> ae6e8173bbb670acdf74c934e0f2a1bf8108d734
