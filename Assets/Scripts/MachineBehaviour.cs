@@ -20,8 +20,7 @@ public class MachineBehaviour : MonoBehaviour {
     private GameObject machine2;
     private GameObject machine3;
 
-    [Range(0, 10)]
-    public int spacing;
+    public float spacing;
 
 
     public Transform checkpoint;

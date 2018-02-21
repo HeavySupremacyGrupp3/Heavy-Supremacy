@@ -146,8 +146,8 @@ MonoBehaviour:
     type: 2}
   produktPrefab: {fileID: 1387553542603298, guid: 0a866ee52ebbf9f4480a3acba519471f,
     type: 2}
-  moveProduction: {x: -13, y: -0.5, z: 0}
-  productInterval: 2
+  moveProduction: {x: -15, y: -0.5, z: 0}
+  productInterval: 1.9
   unlockedTypes: 0
   cantStopWontStop: 0
   stayUntilCompleted: 0
@@ -910,7 +910,7 @@ MonoBehaviour:
   - {fileID: 1147418782498688, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
   - {fileID: 1881247444237336, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
   - {fileID: 1984025146281826, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
-  spacing: 3
+  spacing: 6
   checkpoint: {fileID: 645679859}
 --- !u!4 &155887790
 Transform:
@@ -1885,8 +1885,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645679858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.6, y: -0.7, z: -1.1213999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9.98, y: -0.7, z: -1.1213999}
+  m_LocalScale: {x: 0.925, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 24
