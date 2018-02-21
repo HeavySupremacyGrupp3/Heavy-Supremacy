@@ -29,13 +29,13 @@ public class MachineBehaviour : MonoBehaviour {
     void Start()
     {
         //Instantiate three machines at their positions											y=5.8;
-        machine1 = Instantiate(machinesToSpawn[0], new Vector3(transform.position.x - spacing, 5.8f), Quaternion.identity);
-        machine2 = Instantiate(machinesToSpawn[1], new Vector3(transform.position.x, 5.8f), Quaternion.identity);
+        machine1 = Instantiate(machinesToSpawn[0], new Vector3(transform.position.x - spacing, 2.5f), Quaternion.identity);
+        machine2 = Instantiate(machinesToSpawn[1], new Vector3(transform.position.x, 2.5f), Quaternion.identity);
         machine3 = Instantiate(machinesToSpawn[2], new Vector3(transform.position.x + spacing, 5f), Quaternion.identity);
 																								//6.8
-        machine1.GetComponent<MachineProperties>().type = 0;
-        machine2.GetComponent<MachineProperties>().type = 1;
-        machine3.GetComponent<MachineProperties>().type = 2;
+        //machine1.GetComponent<MachineProperties>().type = 0;
+        //machine2.GetComponent<MachineProperties>().type = 1;
+        //machine3.GetComponent<MachineProperties>().type = 2;
 
         audioSources = GetComponents<AudioSource>();
     }
