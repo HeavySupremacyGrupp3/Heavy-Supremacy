@@ -29,9 +29,9 @@ public class MachineBehaviour : MonoBehaviour {
     void Start()
     {
         //Instantiate three machines at their positions
-        machine1 = Instantiate(machinesToSpawn[0], new Vector3(-3.5f - spacing, 5.8f), Quaternion.identity);
-        machine2 = Instantiate(machinesToSpawn[1], new Vector3(0.1f, 5.8f), Quaternion.identity);
-        machine3 = Instantiate(machinesToSpawn[2], new Vector3(3.5f + spacing, 6.8f), Quaternion.identity);
+        machine1 = Instantiate(machinesToSpawn[0], new Vector3(transform.position.x - spacing, 5.8f), Quaternion.identity);
+        machine2 = Instantiate(machinesToSpawn[1], new Vector3(transform.position.x, 5.8f), Quaternion.identity);
+        machine3 = Instantiate(machinesToSpawn[2], new Vector3(transform.position.x + spacing, 6.8f), Quaternion.identity);
 
         machine1.GetComponent<MachineProperties>().type = 0;
         machine2.GetComponent<MachineProperties>().type = 1;
