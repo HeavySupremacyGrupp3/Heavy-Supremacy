@@ -112,7 +112,7 @@ public class MiniGameManager : MonoBehaviour {
 		spawnStuff=!spawnStuff;
 		if(!stayUntilCompleted)
 			productsAreStopped=!productsAreStopped;
-		//  stopProducts();
+		stopProducts();
 	}
 	
 	public void spawnMetallklump()
