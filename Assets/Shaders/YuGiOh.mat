@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WaterFlow
+  m_Name: YuGiOh
   m_Shader: {fileID: 4800000, guid: deb86e4bc86863e47bca7c17da21b186, type: 3}
   m_ShaderKeywords: PIXELSNAP_ON
   m_LightmapFlags: 4
