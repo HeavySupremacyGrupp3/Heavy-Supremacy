@@ -41,7 +41,7 @@ public class TransformLooper : MonoBehaviour
         }
     }
 
-    private void StopLoop()
+    public void StopLoop()
     {
         looping = !looping;
     }

@@ -1650,17 +1650,6 @@ Prefab:
       propertyPath: m_Name
       value: Button_Down
       objectReference: {fileID: 0}
-    - target: {fileID: 212721208027687258, guid: 462eab9b5bb59a54ca3da4d0d7c9226c,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 212721208027687258, guid: 462eab9b5bb59a54ca3da4d0d7c9226c,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 41f9845e9b0c9b447bca09e33137f329,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 462eab9b5bb59a54ca3da4d0d7c9226c, type: 2}
   m_IsPrefabParent: 0
@@ -1974,23 +1963,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4545833127050752, guid: 30cc6ac0b54760643a3ad1842df0a909, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1819767340212650, guid: 30cc6ac0b54760643a3ad1842df0a909, type: 2}
       propertyPath: m_Name
       value: Button_Right
       objectReference: {fileID: 0}
-    - target: {fileID: 212566520601384702, guid: 30cc6ac0b54760643a3ad1842df0a909,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 212566520601384702, guid: 30cc6ac0b54760643a3ad1842df0a909,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 48ff44865994e044eb62011b3db0ca90,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30cc6ac0b54760643a3ad1842df0a909, type: 2}
   m_IsPrefabParent: 0
@@ -2036,7 +2014,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445823816
 GameObject:
@@ -5563,7 +5541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4281134580236536, guid: 0a866ee52ebbf9f4480a3acba519471f, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1387553542603298, guid: 0a866ee52ebbf9f4480a3acba519471f, type: 2}
       propertyPath: m_IsActive
@@ -5969,7 +5947,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4428227983244596, guid: 4d640df7062830e45a96c86a319a2f7d, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1434129715231626, guid: 4d640df7062830e45a96c86a319a2f7d, type: 2}
       propertyPath: m_IsActive
@@ -6490,7 +6468,7 @@ GameObject:
   - component: {fileID: 2131252341}
   - component: {fileID: 2131252340}
   m_Layer: 0
-  m_Name: Work_Rullband (2)
+  m_Name: Work_Rullband2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

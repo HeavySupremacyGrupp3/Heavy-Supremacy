@@ -50,24 +50,25 @@ public class produktScript : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < checkpoint.transform.position.x && !waiting || reachedCheckpoint && !waiting)
+        if (transform.position.x < checkpoint.transform.position.x && !waiting || reachedCheckpoint && !waiting) //Om produkten inte är framme vid checkpoint, rör på den. Eller om Den har gått förbi check. och inte är waiting
         {
-            transform.Translate(Vector3.right * 3f * Time.deltaTime);
+            transform.Translate(Vector3.right * 3f * Time.deltaTime);                      //Rör på produkten
         }
-        else if (!waiting)
+        else if (!waiting)                                                         
         {
-            foreach (GameObject product in productList)
+            foreach (GameObject product in productList)         //För varje produkt som är ute i scenen (som har lagts i listan i minigamemanager)
             {
-                product.GetComponent<produktScript>().Wait();
+                product.GetComponent<produktScript>().Wait();                  //Kör wait på varje produkt i scenen
             }
-            StartCoroutine(StartMovingAfterCheckpoint(2f));
+            StartCoroutine(StartMovingAfterCheckpoint(2f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
+
         }
     }
 
     public void Wait()
     {
         waiting = true;
-        StartCoroutine(StartMovingAfter(2f));
+        StartCoroutine(StartMovingAfter(2f));               //Kör igång coroutine som väntar 2 sekunder innan den sätter waiting till false (produkter kan röra sig igen)
     }
 
     void OnTriggerEnter2D(Collider2D other) //kollisioner
@@ -108,8 +109,16 @@ public class produktScript : MonoBehaviour
 
     private IEnumerator StartMovingAfterCheckpoint(float time)
     {
+        TransformLooper tl;                                                                 //Dålig lösning på att båda rullbanden ska stanna när produkterna gör det (kallas från nuvarande gameobject)
+        TransformLooper tl2;
+        tl = GameObject.Find("Work_Rullband").GetComponent<TransformLooper>();
+        tl2 = GameObject.Find("Work_Rullband2").GetComponent<TransformLooper>();
+        tl.StopLoop();
+        tl2.StopLoop();
         yield return new WaitForSeconds(time);
         reachedCheckpoint = true;
+        tl.StopLoop();
+        tl2.StopLoop();
     }
 
 }
