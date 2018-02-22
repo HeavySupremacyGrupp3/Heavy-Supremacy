@@ -21,7 +21,7 @@ public class EventEnum : MonoBehaviour
 
     private void RefreshEvent()
     {
-        NodeType = (GameEventManager.nodeType)Random.Range(0, 3);
+        NodeType = (GameEventManager.nodeType)Random.Range(0, 0);
 
 
         if (NodeType == GameEventManager.nodeType.fame)
