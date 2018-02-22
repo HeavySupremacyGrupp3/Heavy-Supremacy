@@ -181,7 +181,6 @@ MonoBehaviour:
   key: 276
   lerpTime: 0.5
   FirstSound: 0
-  lerpDistance: 3.3
 --- !u!114 &114670445592310160
 MonoBehaviour:
   m_ObjectHideFlags: 1
