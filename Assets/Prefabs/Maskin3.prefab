@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 212947836845818518}
   - component: {fileID: 95055170708575998}
   - component: {fileID: 114310260681184948}
+  - component: {fileID: 114255450425270102}
   m_Layer: 0
   m_Name: Maskin3
   m_TagString: Untagged
@@ -99,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1984025146281826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.540174, y: 5, z: 0}
+  m_LocalPosition: {x: 8.3, y: 3.7184937, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4398101164346222}
@@ -210,6 +211,17 @@ MonoBehaviour:
   MyOutOfRangeDetector: {fileID: 114932074556588812}
   myType: 2
   SecondSound: 5
+--- !u!114 &114255450425270102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1984025146281826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bbe7e8ba9075345945710a2d9604d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114310260681184948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,12 +235,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   buttonName: Button_Right
-  buttonPressedSprite: {fileID: 21300000, guid: fdbb3b9bb9a258148b7eec4ff627eabc,
+  buttonPressedSprite: {fileID: 21300000, guid: 2147415cddc629144ac6eed10b96c1d6,
     type: 3}
   animator: {fileID: 95212838930157136}
   buttonTime: 0.5
   key: 275
-  lerpTime: 0.5
+  lerpTime: 0.2
   lerpDistance: 1
   FirstSound: 4
 --- !u!114 &114767521321140186
@@ -340,7 +352,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 9349dc2207d660c4cb9545bb2cc743ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

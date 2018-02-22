@@ -72,7 +72,7 @@ public class produktScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) //kollisioner
     {
-        if (other.gameObject.tag == "Box")
+        if (other.gameObject.tag == "Box" && gameObject != null)
         {
             if (!Spoiled)
                 earnMoney();
