@@ -119,7 +119,7 @@ MonoBehaviour:
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: DoorClick
-    clip: {fileID: 8300000, guid: 4004b272d8a9f8b41b719b8bad70d350, type: 3}
+    clip: {fileID: 8300000, guid: 5560e9cd65a44fe4b9aac25092f43a77, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}

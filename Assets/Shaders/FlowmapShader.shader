@@ -2,11 +2,11 @@
 {
 	Properties
 	{
-		_MainTex("Sprite Texture", 2D) = "white" {}
+		_MainTex("Main Texture", 2D) = "white" {}
 		_Color("Tint", Color) = (1,1,1,1)
-		// Flow
 		_FlowMap("Flow Map", 2D) = "white" {}
 		_FlowSpeed("Flow Speed", float) = 0.05
+		_MaskTex("Mask Texture", 2D) = "white" {}
 	}
 
 	SubShader
@@ -61,6 +61,7 @@
 
 			sampler2D _MainTex;
 			sampler2D _FlowMap;
+			sampler2D _MaskTex;
 			float _FlowSpeed;
 
 			//Fragmentshader. Executes on each pixel on the image in the renderwindow.
