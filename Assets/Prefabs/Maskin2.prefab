@@ -37,8 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4234694840007842}
   - component: {fileID: 212410163562032894}
-  - component: {fileID: 111328629184401642}
-  - component: {fileID: 95863433448286682}
+  - component: {fileID: 95921344668833872}
   m_Layer: 0
   m_Name: work_machine2_muzzle-animate_this
   m_TagString: Untagged
@@ -175,7 +174,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95863433448286682
+--- !u!95 &95921344668833872
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -184,7 +183,7 @@ Animator:
   m_GameObject: {fileID: 1806662042068652}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9ba8fbc0f8c06240bb5223920323811, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -192,21 +191,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &111328629184401642
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1806662042068652}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 29bbcd51ea6c117449f240eb3efc6496, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 29bbcd51ea6c117449f240eb3efc6496, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114124187240275630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +229,7 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 274
   lerpTime: 0.5
-  lerpDistance: 0
+  lerpDistance: 1
   FirstSound: 2
 --- !u!114 &114466175303579840
 MonoBehaviour:
