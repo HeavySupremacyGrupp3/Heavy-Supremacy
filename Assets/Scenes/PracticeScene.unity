@@ -706,7 +706,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.95862055, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.95862055, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1809,13 +1809,13 @@ MonoBehaviour:
   PracticeWithLeadSongs:
   - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
   PracticeWithoutLeadSongs:
-  - {fileID: 8300000, guid: f5e9f8e1ae4d8c14792a2ba7fd0a1af8, type: 3}
+  - {fileID: 8300000, guid: 1a5939c9b54d0894bb4bca4f4a1f8a15, type: 3}
   PracticeMIDISongs:
   - {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
   GigWithLeadSongs:
-  - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
+  - {fileID: 8300000, guid: b88b8a6f7702a6145af6c66a3bc14700, type: 3}
   GigWithoutLeadSongs:
-  - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
+  - {fileID: 8300000, guid: b88b8a6f7702a6145af6c66a3bc14700, type: 3}
   GigMIDISongs:
   - {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
   MusicWithLeadAudioSource: {fileID: 326710480}
@@ -1851,6 +1851,7 @@ MonoBehaviour:
   ProgressionSlider: {fileID: 1264991478}
   VictorySound: {fileID: 8300000, guid: d9257b10154a7e24eae4aa379d70ba52, type: 3}
   DefeatSound: {fileID: 8300000, guid: 14d1a59c05be3d443a13f1221988deec, type: 3}
+  lerpSeconds: 0.1
 --- !u!4 &769092750
 Transform:
   m_ObjectHideFlags: 0

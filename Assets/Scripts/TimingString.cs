@@ -64,7 +64,7 @@ public class TimingString : TimingSystem
         {
             base.FailTiming();
 
-            NoteGen.SwitchMusicSource(true);
+            NoteGen.SwitchMusicSource(false);
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
@@ -90,7 +90,7 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
 
-        NoteGen.SwitchMusicSource(false);
+        NoteGen.SwitchMusicSource(true);
 
         NotesHit++;
         UpdateStreakCounter(1);

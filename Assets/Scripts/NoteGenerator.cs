@@ -65,6 +65,12 @@ public class NoteGenerator : MonoBehaviour
     private float noteSpawnTimer = 0;
     private int noteIndex = 0;
 
+    private bool useLeadAudioSource = true;
+    private bool lerpAudio = false;
+    private float lerpTimer = 0;
+    [SerializeField]
+    private float lerpSeconds = 0.25f;
+
     void Start()
     {
         if (ShowPracticeTutorial || ShowGigTutorial)
@@ -124,6 +130,11 @@ public class NoteGenerator : MonoBehaviour
                 SendNote();
             else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
                 EndGame(true);
+
+            if (lerpAudio)
+            {
+                LerpAudioSourceVolume();
+            }
         }
 
         if (MusicWithLeadAudioSource.clip != null)
@@ -260,16 +271,40 @@ public class NoteGenerator : MonoBehaviour
 
     public void SwitchMusicSource(bool withLead)
     {
+        lerpTimer = 0;
+
+        //Lerp audio if there has been a switch.
+        if (withLead != useLeadAudioSource)
+            lerpAudio = true;
+
         if (withLead)
         {
-            MusicWithLeadAudioSource.mute = true;
-            MusicWithoutLeadAudioSource.mute = false;
+            useLeadAudioSource = true;
         }
         else
         {
-            MusicWithLeadAudioSource.mute = false;
-            MusicWithoutLeadAudioSource.mute = true;
+            useLeadAudioSource = false;
         }
+
+    }
+
+    public void LerpAudioSourceVolume()
+    {
+        lerpTimer += Time.deltaTime / lerpSeconds;
+
+        if (useLeadAudioSource)
+        {
+            MusicWithLeadAudioSource.volume = Mathf.Lerp(0, 1, lerpTimer);
+            MusicWithoutLeadAudioSource.volume = Mathf.Lerp(1, 0, lerpTimer);
+        }
+        else if (!useLeadAudioSource)
+        {
+            MusicWithLeadAudioSource.volume = Mathf.Lerp(1, 0, lerpTimer);
+            MusicWithoutLeadAudioSource.volume = Mathf.Lerp(0, 1, lerpTimer);
+        }
+
+        if (lerpTimer >= 1)
+            lerpAudio = false;
     }
 
     public void SetTutorial(bool active)
