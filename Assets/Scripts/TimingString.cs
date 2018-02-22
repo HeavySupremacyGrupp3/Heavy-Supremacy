@@ -98,7 +98,10 @@ public class TimingString : TimingSystem
         UpdateStreakCounter(1);
 
         if (streakCounter % RequiredStreaksForHealth == 0)
+        {
             AddOrRemoveHealth(HealthGainedPerStreak);
+            AudioManager.instance.Play("StreakSound");
+        }
 
         if (streakCounter % RequiredStreaksForEffect == 0)
             Destroy(Instantiate(StreakEffect), 3);

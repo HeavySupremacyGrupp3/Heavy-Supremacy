@@ -100,6 +100,10 @@ public class GameEventManager : MonoBehaviour
             AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
         }
+        else
+        {
+            AudioManager.instance.Play("MessageRecieved");
+        }
         if (node.Text == "" || node.Text == null)
             return;
 
