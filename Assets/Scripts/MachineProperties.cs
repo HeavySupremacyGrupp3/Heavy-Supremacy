@@ -31,6 +31,8 @@ public class MachineProperties : MonoBehaviour {
 
     [SerializeField]
     private float lerpTime = 0.5f;
+    [SerializeField]
+    private float lerpDistance;
 	
 	public delegate void musicEvent(string s);
 	public static event musicEvent moveSound;
@@ -44,7 +46,7 @@ public class MachineProperties : MonoBehaviour {
 
         //Set start and end position that will lerp
         startPosition = transform.position;
-        endPosition = new Vector3(transform.position.x, transform.position.y - 2.5f);
+        endPosition = new Vector3(transform.position.x, transform.position.y - lerpDistance);
     }
 
     void Update()

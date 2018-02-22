@@ -229,6 +229,7 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 275
   lerpTime: 0.5
+  lerpDistance: 1
   FirstSound: 4
 --- !u!114 &114767521321140186
 MonoBehaviour:
@@ -249,6 +250,7 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 275
   lerpTime: 0.5
+  lerpDistance: 0
   FirstSound: 4
 --- !u!114 &114932074556588812
 MonoBehaviour:
