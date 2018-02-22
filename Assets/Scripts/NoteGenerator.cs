@@ -200,6 +200,7 @@ public class NoteGenerator : MonoBehaviour
 
         EndGamePanel.SetActive(true);
         MusicWithLeadAudioSource.Stop();
+        MusicWithoutLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
         angstStatScript angst = FindObjectOfType<angstStatScript>();

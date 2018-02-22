@@ -239,19 +239,19 @@ MonoBehaviour:
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError1
-    clip: {fileID: 8300000, guid: 0f830b42fe8208a4abd8086da5d3c42e, type: 3}
+    clip: {fileID: 8300000, guid: c1058236c25d479418dddfb097c1c104, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError2
-    clip: {fileID: 8300000, guid: efadedfb8432d2a409728205aa160600, type: 3}
+    clip: {fileID: 8300000, guid: d72f7b167e2144449a44db63d11ffd48, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError3
-    clip: {fileID: 8300000, guid: a9602b8b7dd402e49bead2eab4527d1b, type: 3}
+    clip: {fileID: 8300000, guid: 41107c931c4dc5342a9b1f9455c01a3e, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
@@ -281,7 +281,7 @@ MonoBehaviour:
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PracticeError4
-    clip: {fileID: 8300000, guid: a24bcf90e15b64a478bc9b85f3ebd5e8, type: 3}
+    clip: {fileID: 8300000, guid: 6bdbb37156f82e949a5723d6d22a0778, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
