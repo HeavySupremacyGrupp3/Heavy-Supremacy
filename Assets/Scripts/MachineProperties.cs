@@ -37,6 +37,9 @@ public class MachineProperties : MonoBehaviour {
 	
 	public string FirstSound;
 
+    [SerializeField]
+    private float lerpDistance;
+
     void Start()
     {
         button = GameObject.Find(buttonName);
@@ -44,7 +47,7 @@ public class MachineProperties : MonoBehaviour {
 
         //Set start and end position that will lerp
         startPosition = transform.position;
-        endPosition = new Vector3(transform.position.x, transform.position.y - 2.5f);
+        endPosition = new Vector3(transform.position.x, transform.position.y - lerpDistance);
     }
 
     void Update()
