@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 8b0195630f4aec34ebe3189931f1a8d9
 timeCreated: 1519305381
+=======
+guid: f6189e17be914774db387e11265cfa66
+timeCreated: 1519305346
+>>>>>>> 4746f2def2b4c7bd187d07feeb7bb1310c830c60
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -46,7 +51,11 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+<<<<<<< HEAD
   spritePixelsToUnits: 100
+=======
+  spritePixelsToUnits: 25
+>>>>>>> 4746f2def2b4c7bd187d07feeb7bb1310c830c60
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -65,11 +74,67 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
+=======
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline:
+    - - {x: 31.5, y: 281.5}
+      - {x: 28.5, y: 285.5}
+      - {x: -31.5, y: 285.5}
+      - {x: -36.5, y: 284.5}
+      - {x: -30.5, y: 193.5}
+      - {x: -20.5, y: -186.5}
+      - {x: -45.5, y: -241.5}
+      - {x: -82.5, y: -245.5}
+      - {x: -83.5, y: -248.5}
+      - {x: -83.5, y: -285.5}
+      - {x: 83.5, y: -285.5}
+      - {x: 83.5, y: -242.5}
+      - {x: 19.5, y: -223.5}
+    physicsShape:
+    - - {x: 83.5, y: -246.5}
+      - {x: 81.5, y: -244.5}
+      - {x: 44.5, y: -244.5}
+      - {x: 35.5, y: -230.5}
+      - {x: 18.5, y: -223.5}
+      - {x: 20.5, y: -142.5}
+      - {x: 21.5, y: -50.5}
+      - {x: 27.5, y: 225.5}
+      - {x: 28.5, y: 280.5}
+      - {x: 21.5, y: 285.5}
+      - {x: 0.5, y: 285.5}
+      - {x: -28.5, y: 283.5}
+      - {x: -31.5, y: 277.5}
+      - {x: -29.5, y: 234.5}
+      - {x: -28.5, y: 190.5}
+      - {x: -22.5, y: -66.5}
+      - {x: -20.5, y: -152.5}
+      - {x: -18.5, y: -224.5}
+      - {x: -32.5, y: -228.5}
+      - {x: -58.5, y: -248.5}
+      - {x: -82.5, y: -246.5}
+      - {x: -83.5, y: -271.5}
+      - {x: -83.5, y: -285.5}
+      - {x: 83.5, y: -285.5}
+      - {x: 83.5, y: -278.5}
+      - {x: 80.5, y: -270.5}
+>>>>>>> 4746f2def2b4c7bd187d07feeb7bb1310c830c60
   spritePackingTag: 
   userData: 
   assetBundleName: 
