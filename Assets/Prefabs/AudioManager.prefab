@@ -257,25 +257,25 @@ MonoBehaviour:
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight1
-    clip: {fileID: 8300000, guid: ac79d7ae1c3b3c74a8b7ff8c28b6f421, type: 3}
+    clip: {fileID: 8300000, guid: 288c5c11336a5fa47a0edf700486385c, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight2
-    clip: {fileID: 8300000, guid: ba596d51a278080479284738ba486931, type: 3}
+    clip: {fileID: 8300000, guid: f288dde67388bdb458ee5cf556e69631, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight3
-    clip: {fileID: 8300000, guid: f4cefc101f6e75441926504cea22277b, type: 3}
+    clip: {fileID: 8300000, guid: 720ccd3d1d2f0f2498ec0f2345836ecf, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight4
-    clip: {fileID: 8300000, guid: 61f927dcab7c51e4c8d98e046a4e834b, type: 3}
+    clip: {fileID: 8300000, guid: 0fd301f559b6a7a4eb91137ecc8ed0f4, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
@@ -287,25 +287,19 @@ MonoBehaviour:
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: MessageRecieved
-    clip: {fileID: 8300000, guid: b9b2fe092a65294499f37eb3a794e478, type: 3}
+    clip: {fileID: 8300000, guid: 9d488dcf8e8efe14181d3462fa04ab4b, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: MapEventHighlight
-    clip: {fileID: 8300000, guid: 0dd74b9abe6c34447a7bc364fbb68af5, type: 3}
+    clip: {fileID: 8300000, guid: ca6bde0c23bf45e48bf93c3f18cad09b, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: MapEventClick
-    clip: {fileID: 8300000, guid: 8cbaf6d342315224f857d3914f27ced5, type: 3}
-    volume: 1
-    loop: 0
-    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
-    source: {fileID: 0}
-  - name: MapEventClick
-    clip: {fileID: 8300000, guid: 8cbaf6d342315224f857d3914f27ced5, type: 3}
+    clip: {fileID: 8300000, guid: 7b85ea1180757b2448fc230e933e5973, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
