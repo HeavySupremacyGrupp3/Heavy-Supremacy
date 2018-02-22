@@ -151,6 +151,8 @@ public class MiniGameManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.Play("rullband");
+        AudioManager.instance.Play("hiss");
         //gmScript = GetComponent<GameManager>();
         gmScript = FindObjectOfType<GameManager>();
         //produktScript = GetComponent<produktScript>();
@@ -310,6 +312,10 @@ public class MiniGameManager : MonoBehaviour
         spawnStuff = false;
     }
 
+    public void LoadResultScreen()
+    {
+        resultScreen.SetActive(true);
+    }
 
     public void SpawnProduct(int rng)
     {
