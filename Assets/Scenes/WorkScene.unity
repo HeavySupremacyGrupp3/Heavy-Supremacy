@@ -666,6 +666,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &108832088 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1819767340212650, guid: 30cc6ac0b54760643a3ad1842df0a909,
+    type: 2}
+  m_PrefabInternal: {fileID: 378893628}
 --- !u!1 &122004290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2275,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 15.623309
       objectReference: {fileID: 0}
+    - target: {fileID: 114148203968474206, guid: 62c08a9bab482d54ab07f937d21f6bb6,
+        type: 2}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 1725222973}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
   m_IsPrefabParent: 0
@@ -3459,6 +3469,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 100
+--- !u!1 &1039071040 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1797548056240828, guid: 2c8e871dbd09eaf488b97273a2e4d2d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334591664}
 --- !u!1 &1040265525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3944,6 +3959,11 @@ Prefab:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114601013590464936, guid: 91f207e5349449b488b4558ed77fe3af,
+        type: 2}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 1039071040}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91f207e5349449b488b4558ed77fe3af, type: 2}
   m_IsPrefabParent: 0
@@ -5395,6 +5415,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1725222973 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1782637916115924, guid: 462eab9b5bb59a54ca3da4d0d7c9226c,
+    type: 2}
+  m_PrefabInternal: {fileID: 356942958}
 --- !u!1001 &1748961796
 Prefab:
   m_ObjectHideFlags: 0
@@ -6367,6 +6392,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114310260681184948, guid: 1d779c99a42b1814bb79b1901c6a5166,
+        type: 2}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 108832088}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
   m_IsPrefabParent: 0

@@ -7,7 +7,6 @@ public class MachineProperties : MonoBehaviour {
     public int type = 0;
 
     [SerializeField]
-    private string buttonName;
     private GameObject button;
 
     [SerializeField]
@@ -41,7 +40,6 @@ public class MachineProperties : MonoBehaviour {
 
     void Start()
     {
-        button = GameObject.Find(buttonName);
         animator = GetComponent<Animator>();
 
         //Set start and end position that will lerp
