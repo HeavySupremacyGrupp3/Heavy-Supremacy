@@ -23,7 +23,7 @@ public class produktScript : MonoBehaviour
     bool moving = true;
     bool waiting = false;
     bool reachedCheckpoint = false;
-
+    
     private Transform checkpoint;
 	public float spacing;
     private List<GameObject> productList;
@@ -45,6 +45,7 @@ public class produktScript : MonoBehaviour
         endPosition = new Vector3(startPosition.x + spacing / 2f, startPosition.y);
         checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MachineBehavior
         productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager
+
     }
 
     void Update()
@@ -59,6 +60,7 @@ public class produktScript : MonoBehaviour
             {
                 product.GetComponent<produktScript>().Wait();                  //Kör wait på varje produkt i scenen
             }
+            //mgm.changeSpawnaFlaskor();
             StartCoroutine(StartMovingAfterCheckpoint(2f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
 
         }
@@ -118,6 +120,7 @@ public class produktScript : MonoBehaviour
         reachedCheckpoint = true;
         tl.StopLoop();
         tl2.StopLoop();
+        //mgm.changeSpawnaFlaskor();
     }
 
 }
