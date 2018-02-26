@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -38,12 +39,18 @@ public class MiniGameManager : MonoBehaviour
     private int angstAmount = 1;
     private float angst = 0f;
 
+    [SerializeField]
+    private Text angstText;
+
     [HideInInspector]
     public List<GameObject> productList;
 	
 	public Transform checkpoint;
 
     int productsSeen = 0;
+
+    [SerializeField]
+    private int quitWorkAfterProducts;
 
     [SerializeField]
     private GameObject resultScreen;
@@ -64,6 +71,7 @@ public class MiniGameManager : MonoBehaviour
         AudioManager.instance.Play("hiss");
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
         productList = new List<GameObject>();   //Skapar en lista 
+        //angstText.text = "Shit"; 
     }
 
     void Update()
@@ -135,6 +143,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadResultScreen()
     {
+        angstText.text = "+" + Mathf.RoundToInt(angst) + " Angst";
         resultScreen.SetActive(true);
     }
 
@@ -152,7 +161,7 @@ public class MiniGameManager : MonoBehaviour
     {
         finishedProducts++;
 
-        if (finishedProducts == 20 && cantStopWontStop == false)
+        if (finishedProducts == quitWorkAfterProducts && cantStopWontStop == false)
         {
             resultScreen.SetActive(true);  
         }

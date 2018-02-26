@@ -50,8 +50,8 @@ public class MachineProperties : MonoBehaviour {
     void Update()
     {
         MachineMovement();
-        if (type > 1)
-            animator.SetBool("impact", impact);
+        //if (type > 1)
+          //  animator.SetBool("impact", impact);
 
         //When called in MachineMovement, start the lerps
         if (lerpMachine)
