@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1881247444237336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 3.19, z: 0}
+  m_LocalPosition: {x: 2.67, y: 3.8, z: 0}
   m_LocalScale: {x: 0.22744018, y: 0.22744018, z: 0.22744018}
   m_Children:
   - {fileID: 4502115049666700}
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.9299693, y: -15.03}
+  m_Offset: {x: -4.9299693, y: -11.2266655}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -229,7 +229,7 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 274
   lerpTime: 0.5
-  lerpDistance: 1
+  lerpDistance: 1.5
   FirstSound: 2
 --- !u!114 &114466175303579840
 MonoBehaviour:
