@@ -35,7 +35,7 @@ public class MiniGameManager : MonoBehaviour
 
     public bool cantStopWontStop;
     public bool stayUntilCompleted;
-    public bool spawnFlaskor;
+    public bool spawnFlaskor = true;
 
     [SerializeField]
     [Range(0, 1)]
@@ -114,29 +114,14 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-    void changeSpawnStopProducts()
+     public void changeSpawnStopProducts()
     {
         spawnStuff = !spawnStuff;
-        if (!stayUntilCompleted)
-            productsAreStopped = !productsAreStopped;
+       // if (!stayUntilCompleted)
+           // productsAreStopped = !productsAreStopped;
         //  stopProducts();
     }
 
-    /*public void spawnMetallklump()
-	{
-		updateCounter=0;
-		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-		productsSeen++;
-	}*/
-
-    /*public void spawnTomFlaska()
-	{
-		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-		nyProdukt.GetComponent<produktScript>().type = 1;
-        SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-        sr.sprite = produktScript.Sprites[1];
-		productsSeen++;
-	}*/
 
     void omaewashindeiru()
     {
@@ -255,11 +240,6 @@ public class MiniGameManager : MonoBehaviour
         newProduct.type = type;
     }
 
-    public void ChangeProduct()
-    {
-
-    }
-
     public void changeStopRequirements()
     {
         stayUntilCompleted = !stayUntilCompleted;
@@ -293,7 +273,6 @@ public class MiniGameManager : MonoBehaviour
     {
         //QuitWork();
         SceneManager.LoadScene("HUBScene");
-        //gmScript.LoadHUB();
     }
 
     public void LoadTutorial()
@@ -304,7 +283,6 @@ public class MiniGameManager : MonoBehaviour
     public void LoadWork()
     {
         SceneManager.LoadScene("WorkScene");
-        //gmScript.LoadHUB();
     }
 
     public void MenuIsClicked()
@@ -329,7 +307,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void RemoveFromList()
     {
-        productList.RemoveAt(0);
+        productList.RemoveAt(0);     //Tar bort första produkten i listan (Den som lades  till först är också produkten som når slutet av skärmen och ska tas bort först
     }
 
 

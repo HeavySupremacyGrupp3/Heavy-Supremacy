@@ -147,7 +147,7 @@ MonoBehaviour:
   produktPrefab: {fileID: 1387553542603298, guid: 0a866ee52ebbf9f4480a3acba519471f,
     type: 2}
   moveProduction: {x: -16, y: -3, z: 0}
-  productInterval: 1.6
+  productInterval: 0.5
   unlockedTypes: 0
   cantStopWontStop: 0
   stayUntilCompleted: 0
