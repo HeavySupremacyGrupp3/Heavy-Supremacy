@@ -7,7 +7,7 @@ public class StartMenu : MonoBehaviour {
 
     private void Start()
     {
-        AudioManager.instance.Play("HUBMusic");
+        AudioManager.instance.Play("IntroSound");
     }
 
     public void LoadHUB()

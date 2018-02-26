@@ -15,15 +15,25 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
 
-        foreach (Sound s in sounds)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.playOnAwake = false;
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.loop = s.loop;
-            s.source.outputAudioMixerGroup = s.mixer;
-        }
+        //foreach (Sound s in sounds)
+        //{
+        //    s.source = gameObject.AddComponent<AudioSource>();
+        //    s.source.playOnAwake = false;
+        //    s.source.clip = s.clip;
+        //    s.source.volume = s.volume;
+        //    s.source.loop = s.loop;
+        //    s.source.outputAudioMixerGroup = s.mixer;
+        //}
+    }
+
+    void CreateAudioSource(Sound s)
+    {
+        s.source = gameObject.AddComponent<AudioSource>();
+        s.source.playOnAwake = false;
+        s.source.clip = s.clip;
+        s.source.volume = s.volume;
+        s.source.loop = s.loop;
+        s.source.outputAudioMixerGroup = s.mixer;
     }
 
     void Start()
@@ -43,6 +53,11 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning(name + "wasn't found");
             return;
         }
+        if (s.source == null)
+        {
+            CreateAudioSource(s);
+        }
+
         //Debug.Log("Playing: " + s.source.clip.name + " From: " + s.name);
         s.source.Play();
     }
@@ -56,6 +71,11 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning(name + "wasn't found");
             return;
         }
+        if (s.source == null)
+        {
+            CreateAudioSource(s);
+        }
+
         //Debug.Log("Stopped: " + s.source.clip.name + " From: " + s.name);
         s.source.Stop();
     }

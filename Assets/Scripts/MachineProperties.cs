@@ -7,7 +7,6 @@ public class MachineProperties : MonoBehaviour {
     public int type = 0;
 
     [SerializeField]
-    private string buttonName;
     private GameObject button;
 
     [SerializeField]
@@ -31,6 +30,8 @@ public class MachineProperties : MonoBehaviour {
 
     [SerializeField]
     private float lerpTime = 0.5f;
+    [SerializeField]
+    private float lerpDistance;
 	
 	public delegate void musicEvent(string s);
 	public static event musicEvent moveSound;
@@ -39,18 +40,18 @@ public class MachineProperties : MonoBehaviour {
 
     void Start()
     {
-        button = GameObject.Find(buttonName);
         animator = GetComponent<Animator>();
 
         //Set start and end position that will lerp
         startPosition = transform.position;
-        endPosition = new Vector3(transform.position.x, transform.position.y - 2.5f);
+        endPosition = new Vector3(transform.position.x, transform.position.y - lerpDistance);
     }
 
     void Update()
     {
         MachineMovement();
-        animator.SetBool("impact", impact);
+        if (type > 1)
+            animator.SetBool("impact", impact);
 
         //When called in MachineMovement, start the lerps
         if (lerpMachine)

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ColorLerp : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ColorLerp : MonoBehaviour
     public Color EndColor = Color.white;
     public bool Lerp = true;
     public bool Reverse;
+    public float StartDelay = 0;
 
     private SpriteRenderer spriteRenderer;
     private TextMesh textMesh;
@@ -17,6 +19,9 @@ public class ColorLerp : MonoBehaviour
 
     void Start()
     {
+        if (!Lerp && StartDelay > 0)
+            StartCoroutine(StartLerp());
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         textMesh = GetComponent<TextMesh>();
         text = GetComponent<Text>();
@@ -27,6 +32,12 @@ public class ColorLerp : MonoBehaviour
             textMesh.color = StartColor;
         else if (text != null)
             text.color = StartColor;
+    }
+
+    IEnumerator StartLerp()
+    {
+        yield return new WaitForSeconds(StartDelay);
+        Lerp = true;
     }
 
     void Update()

@@ -8,8 +8,10 @@ public class TimingString : TimingSystem
     public string[] ErrorSounds;
     public AudioSource AudioSource;
 
-    public int MaxHealth = 5;
-    public Slider HealthSlider;
+    public float MaxHealth = 5;
+    public Image HealthImage;
+    public Sprite StandardHeart;
+    public Sprite BurningHeart;
     public GameObject AngstPopupPrefab;
     public GameObject MetalPopupPrefab;
     public GameObject NoteHitEffect;
@@ -40,14 +42,14 @@ public class TimingString : TimingSystem
 
     private int streakCounter = 0;
     private int streakHighScoreCounter = 0;
-    private int health;
+    private float health;
 
     void Start()
     {
         health = MaxHealth;
-        HealthSlider.maxValue = MaxHealth;
+        HealthImage.fillAmount = MaxHealth;
         if (!GigBackgroundManager.GigSession)
-            HealthSlider.gameObject.SetActive(false);
+            HealthImage.gameObject.SetActive(false);
 
         NotesHit = 0;
     }
@@ -64,7 +66,7 @@ public class TimingString : TimingSystem
         {
             base.FailTiming();
 
-            NoteGen.SwitchMusicSource(true);
+            NoteGen.SwitchMusicSource(false);
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
@@ -90,15 +92,18 @@ public class TimingString : TimingSystem
     {
         base.SucceedTiming();
 
-        NoteGen.SwitchMusicSource(false);
+        NoteGen.SwitchMusicSource(true);
 
         NotesHit++;
         UpdateStreakCounter(1);
 
         if (streakCounter % RequiredStreaksForHealth == 0)
+        {
             AddOrRemoveHealth(HealthGainedPerStreak);
+            AudioManager.instance.Play("StreakSound");
+        }
 
-        if(streakCounter % RequiredStreaksForEffect == 0)
+        if (streakCounter % RequiredStreaksForEffect == 0)
             Destroy(Instantiate(StreakEffect), 3);
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
@@ -158,14 +163,18 @@ public class TimingString : TimingSystem
     {
         health += amount;
 
-        if (health > MaxHealth)
-            health = MaxHealth;
+        HealthImage.sprite = StandardHeart;
 
+        if (health > MaxHealth)
+        {
+            health = MaxHealth;
+            HealthImage.sprite = BurningHeart;
+        }
         else if (health <= 0 && GigBackgroundManager.GigSession)
         {
             FindObjectOfType<NoteGenerator>().EndGame(false);
         }
-        HealthSlider.value = MaxHealth - health;
+        HealthImage.fillAmount = health / MaxHealth;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
