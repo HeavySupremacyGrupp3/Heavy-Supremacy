@@ -35,7 +35,7 @@ public class MiniGameManager : MonoBehaviour
 
     public bool cantStopWontStop;
     public bool stayUntilCompleted;
-    public bool spawnFlaskor = true;
+    public bool spawnFlaskor;
 
     [SerializeField]
     [Range(0, 1)]
@@ -117,8 +117,8 @@ public class MiniGameManager : MonoBehaviour
      public void changeSpawnStopProducts()
     {
         spawnStuff = !spawnStuff;
-       // if (!stayUntilCompleted)
-           // productsAreStopped = !productsAreStopped;
+        if (!stayUntilCompleted)
+            productsAreStopped = !productsAreStopped;
         //  stopProducts();
     }
 

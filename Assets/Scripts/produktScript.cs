@@ -24,8 +24,7 @@ public class produktScript : MonoBehaviour
     bool moving = true;
     bool waiting = false;
     bool reachedCheckpoint = false;
-    private bool spawnProducts;
-
+    
     private Transform checkpoint;
     private List<GameObject> productList;
 
