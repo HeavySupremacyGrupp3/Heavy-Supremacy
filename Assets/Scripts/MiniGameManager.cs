@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameManager : MonoBehaviour
 {
-
-    public bool gameOver;
     public produktScript produktScript;
 
     public GameObject produktPrefab;
@@ -60,33 +58,6 @@ public class MiniGameManager : MonoBehaviour
         produktScript.earnMoney -= omaewashindeiru;
     }
 
-<<<<<<< HEAD
-	//switches spawning on/off, stops/moves products
-    void changeSpawnStopProducts()
-=======
-     public void changeSpawnStopProducts()
->>>>>>> 96a5265beab5d8331db0d9832c8869b229908826
-    {
-        spawnStuff = !spawnStuff;
-        productsAreStopped = !productsAreStopped;
-        stopProducts();
-    }
-
-<<<<<<< HEAD
-	//counts products finished, and shows the result screen if products finished > set amount
-=======
-
->>>>>>> 96a5265beab5d8331db0d9832c8869b229908826
-    void omaewashindeiru()
-    {
-        finishedProducts++;
-
-        if (finishedProducts == 20 && cantStopWontStop == false)
-        {
-            resultScreen.SetActive(true);  //LoadHUB(); We want to show the resultscreen, not load hub c;
-        }
-    }
-
     void Start()
     {
         AudioManager.instance.Play("rullband");
@@ -115,8 +86,8 @@ public class MiniGameManager : MonoBehaviour
                     hasSpawned = true;                //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
                 }
             }
-            //if (spawnStuff) //!hasSpawned
-                //SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
+            if (!hasSpawned)
+                SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
 
 
             productsSeen++;
@@ -139,70 +110,6 @@ public class MiniGameManager : MonoBehaviour
     public void QuitWork()
     {
         StatReference.addOrRemoveAmount(15f);
-    }
-
-<<<<<<< HEAD
-=======
-    //se timingMachine
-    public void Collided(GameObject productObject)
-    {
-        produktScript newProduct = productObject.GetComponent<produktScript>();
-        SpriteRenderer sr = productObject.GetComponent<SpriteRenderer>();
-        int type = newProduct.GetComponent<produktScript>().type;
-
-        switch (type)
-        {
-            case 0:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 1:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 2:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 3:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 4:
-                break;
-        }
-
-        newProduct.type = type;
-    }
-
-    public void changeStopRequirements()
-    {
-        stayUntilCompleted = !stayUntilCompleted;
-    }
-
-    public void changeSpawnaFlaskor()
-    {
-        //updateCounter=0;
-        //spawnFlaskorJustChanged=1;
-        spawnFlaskor = !spawnFlaskor;
-    }
-
-    public void setUnlockedTypes(int t)
-    {
-        unlockedTypes = t;
-    }
-
->>>>>>> 96a5265beab5d8331db0d9832c8869b229908826
-    public void GameOver()
-    {
-        gameOver = true;
-        ReloadScene();
-    }
-
-    public void ReloadScene()
-    {
-        if (gameOver) //TODO: && Input.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadHUB()
@@ -231,6 +138,26 @@ public class MiniGameManager : MonoBehaviour
         resultScreen.SetActive(true);
     }
 
+    //switches spawning on/off, stops/moves products
+    void changeSpawnStopProducts()
+    {
+        spawnStuff = !spawnStuff;
+        productsAreStopped = !productsAreStopped;
+        stopProducts();
+    }
+
+
+    //counts products finished, and shows the result screen if products finished > set amount
+    void omaewashindeiru()
+    {
+        finishedProducts++;
+
+        if (finishedProducts == 20 && cantStopWontStop == false)
+        {
+            resultScreen.SetActive(true);  
+        }
+    }
+
     public void SpawnProduct(int rng)
     {
         GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);  //Instantierar en produktprefab på en plats i rymden
@@ -243,7 +170,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void RemoveFromList()
     {
-        productList.RemoveAt(0);     //Tar bort första produkten i listan (Den som lades  till först är också produkten som når slutet av skärmen och ska tas bort först
+        productList.RemoveAt(0);     //Tar bort första produkten i listan (Den som lades  till först är också produkten som når slutet av skärmen och ska tas bort först)
     }
 
 

@@ -75,8 +75,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: 4.2}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!114 &114977329509042684
 MonoBehaviour:
@@ -97,7 +97,6 @@ MonoBehaviour:
   spoilSprite: {fileID: 21300000, guid: 62e2a38784175e54a977d9f5380d8d0b, type: 3}
   Spoiled: 0
   type: 0
-  checkpoint: {fileID: 0}
   spacing: 0
 --- !u!212 &212444202765457944
 SpriteRenderer:

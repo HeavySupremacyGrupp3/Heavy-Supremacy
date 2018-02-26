@@ -61,7 +61,7 @@ public class produktScript : MonoBehaviour
                 product.GetComponent<produktScript>().Wait();                  //Kör wait på varje produkt i scenen
             }
             //mgm.changeSpawnaFlaskor();
-            StartCoroutine(StartMovingAfterCheckpoint(2f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
+            StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
 
         }
     }
@@ -69,7 +69,7 @@ public class produktScript : MonoBehaviour
     public void Wait()
     {
         waiting = true;
-        StartCoroutine(StartMovingAfter(2f));               //Kör igång coroutine som väntar 2 sekunder innan den sätter waiting till false (produkter kan röra sig igen)
+        StartCoroutine(StartMovingAfter(1f));               //Kör igång coroutine som väntar 2 sekunder innan den sätter waiting till false (produkter kan röra sig igen)
     }
 
     void OnTriggerEnter2D(Collider2D other) //kollisioner
