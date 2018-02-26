@@ -7,7 +7,6 @@ public class MiniGameManager : MonoBehaviour
 {
 
     public bool gameOver;
-    public GameManager gmScript;
     public produktScript produktScript;
 
     public GameObject produktPrefab;
@@ -20,9 +19,6 @@ public class MiniGameManager : MonoBehaviour
     float updateCounter = 0;
     bool spawnStuff = true;
 
-    //public Sprite[] produktScript.Sprites;
-    //private GameObject product;
-
     public delegate void mittEvent();
     public static event mittEvent stopProducts;
 
@@ -30,12 +26,8 @@ public class MiniGameManager : MonoBehaviour
 
     int stopCounter = 0;
     int finishedProducts = 0;
-    int toiletCounter = 0;
-    public int unlockedTypes;
 
     public bool cantStopWontStop;
-    public bool stayUntilCompleted;
-    public bool spawnFlaskor;
 
     [SerializeField]
     [Range(0, 1)]
@@ -50,8 +42,8 @@ public class MiniGameManager : MonoBehaviour
 
     [HideInInspector]
     public List<GameObject> productList;
-
-    bool inTheNameOfTheLaw = false;
+	
+	public Transform checkpoint;
 
     int productsSeen = 0;
 
@@ -61,91 +53,29 @@ public class MiniGameManager : MonoBehaviour
     void OnEnable()
     {
         produktScript.earnMoney += omaewashindeiru;
-        TimingMachine.productHit += toiletClogger;
-        TimingMachine.productCompared += chickPeas;
-        //machineBelowDetectorScript.productBelowDetected += chickPeas;
     }
 
     void OnDisable()
     {
         produktScript.earnMoney -= omaewashindeiru;
-        TimingMachine.productHit -= toiletClogger;
-        TimingMachine.productCompared -= chickPeas;
-        //machineBelowDetectorScript.productBelowDetected -= chickPeas;
     }
 
-    void toiletClogger()
-    {
-        toiletCounter++;
-        Debug.Log("toilet clogger " + toiletCounter + ", goal " + unlockedTypes);
-
-        if (toiletCounter >= unlockedTypes)
-        {
-            //Debug.Log("Successfully unclogged!");
-            changeSpawnStopProducts();
-            //inTheNameOfTheLaw=false;
-            toiletCounter = 0;
-        }
-    }
-
-    void chickPeas(bool b)
-    {
-        Debug.Log("the receiving end");
-        if (productsSeen >= unlockedTypes && b == true) //productsSeen>1 && 
-        {
-            //Debug.Log("Chickpeas");
-            toiletCounter++;
-            if (toiletCounter >= unlockedTypes)
-            {
-                inTheNameOfTheLaw = false;
-                toiletCounter = 0;
-            }
-
-            else
-            {
-                // inTheNameOfTheLaw=true;
-            }
-            //inTheNameOfTheLaw=!inTheNameOfTheLaw;
-            //changeSpawnStopProducts();
-        }
-        else if (b == false)
-        {
-            inTheNameOfTheLaw = true;
-        }
-    }
-
+	//switches spawning on/off, stops/moves products
     void changeSpawnStopProducts()
     {
         spawnStuff = !spawnStuff;
-        if (!stayUntilCompleted)
-            productsAreStopped = !productsAreStopped;
-        //  stopProducts();
+        productsAreStopped = !productsAreStopped;
+        stopProducts();
     }
 
-    /*public void spawnMetallklump()
-	{
-		updateCounter=0;
-		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-		productsSeen++;
-	}*/
-
-    /*public void spawnTomFlaska()
-	{
-		GameObject nyProdukt = Instantiate(produktPrefab, moveProduction, Quaternion.identity);
-		nyProdukt.GetComponent<produktScript>().type = 1;
-        SpriteRenderer sr = nyProdukt.GetComponent<SpriteRenderer>();
-        sr.sprite = produktScript.Sprites[1];
-		productsSeen++;
-	}*/
-
+	//counts products finished, and shows the result screen if products finished > set amount
     void omaewashindeiru()
     {
         finishedProducts++;
 
         if (finishedProducts == 20 && cantStopWontStop == false)
         {
-            resultScreen.SetActive(true);
-            //LoadHUB(); We want to show the resultscreen, not load hub c;
+            resultScreen.SetActive(true);  //LoadHUB(); We want to show the resultscreen, not load hub c;
         }
     }
 
@@ -153,33 +83,20 @@ public class MiniGameManager : MonoBehaviour
     {
         AudioManager.instance.Play("rullband");
         AudioManager.instance.Play("hiss");
-        //gmScript = GetComponent<GameManager>();
-        gmScript = FindObjectOfType<GameManager>();
-        //produktScript = GetComponent<produktScript>();
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
         productList = new List<GameObject>();   //Skapar en lista 
     }
 
     void Update()
     {
-        if (spawnFlaskor && updateCounter >= productInterval)
-        {
-            updateCounter = 0;
-            //spawnTomFlaska();
-        }
-
         angst += Time.deltaTime / angstTick;
         StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));
 
+        updateCounter += Time.deltaTime;
 
-        if (spawnStuff) //&& !spawnFlaskor
-            updateCounter += Time.deltaTime;
-
-        if (!spawnFlaskor && spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
+        if (spawnStuff && updateCounter >= productInterval) //updateCounter%100==99 and int
         {
-
             updateCounter = 0;
-
 
             bool hasSpawned = false;
             for (int i = 1; i < productChanse.Length; i++)    //Går igenom varje produkttyps chans att spawna från en lista
@@ -190,19 +107,17 @@ public class MiniGameManager : MonoBehaviour
                     hasSpawned = true;                //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
                 }
             }
-            if (!hasSpawned)
-                SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
+            //if (spawnStuff) //!hasSpawned
+                //SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
 
 
             productsSeen++;
-            //Debug.Log("Seen products: "+productsSeen);
 
-            if (productsSeen >= unlockedTypes && productsSeen > 1) // && inTheNameOfTheLaw
+            if (productsSeen > 1)
                 changeSpawnStopProducts();
-            //inTheNameOfTheLaw=true;
         }
 
-        if (!stayUntilCompleted && productsAreStopped)
+        if (productsAreStopped)
         {
             stopCounter++;
             if (stopCounter == 50)
@@ -211,70 +126,11 @@ public class MiniGameManager : MonoBehaviour
                 stopCounter = 0;
             }
         }
-
-        if (stayUntilCompleted && productsAreStopped && !spawnFlaskor)
-        {
-            changeSpawnStopProducts();
-        }
     }
 
     public void QuitWork()
     {
         StatReference.addOrRemoveAmount(15f);
-    }
-
-    //se timingMachine
-    public void Collided(GameObject productObject)
-    {
-        produktScript newProduct = productObject.GetComponent<produktScript>();
-        SpriteRenderer sr = productObject.GetComponent<SpriteRenderer>();
-        int type = newProduct.GetComponent<produktScript>().type;
-
-        switch (type)
-        {
-            case 0:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 1:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 2:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 3:
-                type++;
-                sr.sprite = produktScript.Sprites[type];
-                break;
-            case 4:
-                break;
-        }
-
-        newProduct.type = type;
-    }
-
-    public void ChangeProduct()
-    {
-
-    }
-
-    public void changeStopRequirements()
-    {
-        stayUntilCompleted = !stayUntilCompleted;
-    }
-
-    public void changeSpawnaFlaskor()
-    {
-        //updateCounter=0;
-        //spawnFlaskorJustChanged=1;
-        spawnFlaskor = !spawnFlaskor;
-    }
-
-    public void setUnlockedTypes(int t)
-    {
-        unlockedTypes = t;
     }
 
     public void GameOver()
@@ -293,7 +149,6 @@ public class MiniGameManager : MonoBehaviour
     {
         //QuitWork();
         SceneManager.LoadScene("HUBScene");
-        //gmScript.LoadHUB();
     }
 
     public void LoadTutorial()
@@ -304,7 +159,6 @@ public class MiniGameManager : MonoBehaviour
     public void LoadWork()
     {
         SceneManager.LoadScene("WorkScene");
-        //gmScript.LoadHUB();
     }
 
     public void MenuIsClicked()

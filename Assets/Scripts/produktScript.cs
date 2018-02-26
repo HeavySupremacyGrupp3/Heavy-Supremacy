@@ -18,7 +18,6 @@ public class produktScript : MonoBehaviour
 
     public int type = 0;
 
-    private MachineBehaviour mb;
     private MiniGameManager mgm;
 
     bool moving = true;
@@ -26,6 +25,7 @@ public class produktScript : MonoBehaviour
     bool reachedCheckpoint = false;
 
     private Transform checkpoint;
+	public float spacing;
     private List<GameObject> productList;
 
     void OnEnable()
@@ -40,11 +40,10 @@ public class produktScript : MonoBehaviour
 
     private void Start()
     {
-        mb = GameObject.Find("MachineBehaviour").GetComponent<MachineBehaviour>();
         mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
         startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x + mb.spacing / 2f, startPosition.y);
-        checkpoint = mb.checkpoint;               //Hämtar checkpoints från MachineBehavior
+        endPosition = new Vector3(startPosition.x + spacing / 2f, startPosition.y);
+        checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MachineBehavior
         productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager
     }
 
