@@ -124,6 +124,13 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            MusicWithLeadAudioSource.time = MusicWithLeadAudioSource.clip.length - 2;
+            MusicWithoutLeadAudioSource.time = MusicWithoutLeadAudioSource.clip.length - 2;
+            NoteGenerationAudioSource.time = NoteGenerationAudioSource.clip.length - 2;
+        }
+
         if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) || !ShowGigTutorial)
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
@@ -217,6 +224,8 @@ public class NoteGenerator : MonoBehaviour
         //Practice always goes to victory.
         if (victory)
         {
+            Debug.Log("VICTORY");
+
             MusicWithLeadAudioSource.PlayOneShot(VictorySound);
 
             //Calculate rewards then apply them.
@@ -258,6 +267,8 @@ public class NoteGenerator : MonoBehaviour
         }
         else
         {
+            Debug.Log("DEFEAT");
+
             MusicWithLeadAudioSource.PlayOneShot(DefeatSound);
 
             if (GigBackgroundManager.GigSession)
