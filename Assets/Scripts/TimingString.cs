@@ -42,6 +42,7 @@ public class TimingString : TimingSystem
 
     private int streakCounter = 0;
     private int streakHighScoreCounter = 0;
+    private int perfectCounter = 0;
     private float health;
 
     void Start()
@@ -70,7 +71,8 @@ public class TimingString : TimingSystem
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
-            UpdateStreakCounter(-streakCounter);
+            UpdateStreakCounters(-1000000);
+            perfectCounter = 0;
 
             ClearHitTargetList();
         }
@@ -95,16 +97,18 @@ public class TimingString : TimingSystem
         NoteGen.SwitchMusicSource(true);
 
         NotesHit++;
-        UpdateStreakCounter(1);
+        UpdateStreakCounters(1);
 
-        if (streakCounter % RequiredStreaksForHealth == 0)
+        if (streakCounter % RequiredStreaksForHealth == 0 && streakCounter > 0)
         {
             AddOrRemoveHealth(HealthGainedPerStreak);
-            AudioManager.instance.Play("StreakSound");
         }
 
-        if (streakCounter % RequiredStreaksForEffect == 0)
+        if (perfectCounter % RequiredStreaksForEffect == 0 && perfectCounter > 0)
+        {
             Destroy(Instantiate(StreakEffect), 3);
+            AudioManager.instance.Play("StreakSound");
+        }
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
@@ -123,7 +127,8 @@ public class TimingString : TimingSystem
 
         Destroy(targets[0]);
 
-        targets.Clear();
+        //if (!Input.anyKeyDown)
+            targets.Clear();
     }
 
     private GameObject GetNoteAccuracyPrefab()
@@ -147,9 +152,19 @@ public class TimingString : TimingSystem
         return go;
     }
 
-    private void UpdateStreakCounter(int value)
+    private void UpdateStreakCounters(int value)
     {
         streakCounter += value;
+
+        if (GetNoteAccuracyPrefab().name.Contains("Perfect"))
+            perfectCounter += value;
+        else
+            perfectCounter = 0;
+
+        if (streakCounter < 0)
+            streakCounter = 0;
+        if (perfectCounter < 0)
+            perfectCounter = 0;
 
         if (streakCounter > streakHighScoreCounter)
         {
