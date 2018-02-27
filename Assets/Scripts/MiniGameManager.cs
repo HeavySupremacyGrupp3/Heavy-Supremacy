@@ -37,10 +37,13 @@ public class MiniGameManager : MonoBehaviour
     private float angstTick = 1f;
     [SerializeField]
     private int angstAmount = 1;
-    private float angst = 0f;
+    private float angst;
 
     [SerializeField]
     private Text angstText;
+
+    [SerializeField]
+    private Text moneyText;
 
     [HideInInspector]
     public List<GameObject> productList;
@@ -48,6 +51,9 @@ public class MiniGameManager : MonoBehaviour
 	public Transform checkpoint;
 
     int productsSeen = 0;
+
+    private float addedMoney;
+    private moneyStatScript moneyStats;
 
     [SerializeField]
     private int quitWorkAfterProducts;
@@ -70,8 +76,8 @@ public class MiniGameManager : MonoBehaviour
         AudioManager.instance.Play("rullband");
         AudioManager.instance.Play("hiss");
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
+        moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
         productList = new List<GameObject>();   //Skapar en lista 
-        //angstText.text = "Shit"; 
     }
 
     void Update()
@@ -143,7 +149,9 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadResultScreen()
     {
+        Time.timeScale = 0;
         angstText.text = "+" + Mathf.RoundToInt(angst) + " Angst";
+        moneyText.text = "+" + addedMoney + " Money";
         resultScreen.SetActive(true);
     }
 
@@ -160,10 +168,11 @@ public class MiniGameManager : MonoBehaviour
     void omaewashindeiru()
     {
         finishedProducts++;
+        addedMoney += moneyStats.difference;
 
         if (finishedProducts == quitWorkAfterProducts && cantStopWontStop == false)
         {
-            resultScreen.SetActive(true);  
+            LoadResultScreen();
         }
     }
 

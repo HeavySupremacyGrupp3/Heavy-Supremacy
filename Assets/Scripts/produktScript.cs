@@ -45,7 +45,7 @@ public class produktScript : MonoBehaviour
         endPosition = new Vector3(startPosition.x + spacing / 2f, startPosition.y);
         checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MachineBehavior
         productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager
-
+        
     }
 
     void Update()
