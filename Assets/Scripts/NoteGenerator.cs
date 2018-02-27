@@ -49,6 +49,7 @@ public class NoteGenerator : MonoBehaviour
 
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 2;
+    public static float DoubleNoteChance = 0;
     public static float NotesTotal = 0;
     public static bool ShowPracticeTutorial = true;
     public static bool ShowGigTutorial = true;
@@ -131,7 +132,7 @@ public class NoteGenerator : MonoBehaviour
             NoteGenerationAudioSource.time = NoteGenerationAudioSource.clip.length - 2;
         }
 
-        if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) || !ShowGigTutorial)
+        if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) && !PracticeTutorialPanel.activeSelf || !ShowGigTutorial && !GigTutorialPanel.activeSelf)
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
@@ -184,20 +185,28 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
+        float doubleNoteRng = Random.Range(0f, 1f);
+        if (doubleNoteRng < DoubleNoteChance)
+            NoteMultiplier++;
+
         int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            //Commented lines are to ensure unique notes every send.
-            //do
-            //{
-            tempIndex = Random.Range(0, NumberOfUniqueNotes);
-            //}
-            //while (noteIndex == tempIndex);
+            //While-loop are to ensure unique notes every send.
+            do
+            {
+                tempIndex = Random.Range(0, NumberOfUniqueNotes);
+            }
+            while (noteIndex == tempIndex && doubleNoteRng < DoubleNoteChance);
             noteIndex = tempIndex;
 
             Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
             NotesTotal++;
         }
+
+        if (NoteMultiplier > 1)
+            NoteMultiplier = 1;
+
         noteSpawnTimer = 0;
     }
 
@@ -231,7 +240,7 @@ public class NoteGenerator : MonoBehaviour
             MusicWithLeadAudioSource.PlayOneShot(VictorySound);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(30 * (1 / (1 + (angst.getAmount() / 20))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
+            metalGained = Mathf.CeilToInt(30 * (1 / (1 + (angst.getAmount() / 20))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter)) * TimingString.MetalMultiplier;
             fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))));
             moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
             angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
@@ -357,7 +366,7 @@ public class NoteGenerator : MonoBehaviour
             FindObjectOfType<TimingString>().enabled = true;
             Time.timeScale = 1;
 
-            if (!NoteGenerationAudioSource.isPlaying)
+            if (!NoteGenerationAudioSource.isPlaying && NoteGenerationAudioSource.time <= 0)
                 Initialize();
         }
     }

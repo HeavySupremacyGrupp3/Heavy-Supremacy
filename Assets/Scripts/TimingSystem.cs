@@ -14,8 +14,8 @@ public abstract class TimingSystem : MonoBehaviour
 
     private bool MechanicActive = false;
 
-    protected List<GameObject> targets = new List<GameObject>();
-    protected List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
+    public List<GameObject> targets = new List<GameObject>();
+    public List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
 
     public static float ActivatedMechanicAndMissedNotesCounter = 0;
 

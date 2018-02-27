@@ -59,7 +59,6 @@ GameObject:
   - component: {fileID: 212947836845818518}
   - component: {fileID: 95055170708575998}
   - component: {fileID: 114310260681184948}
-  - component: {fileID: 114255450425270102}
   m_Layer: 0
   m_Name: Maskin3
   m_TagString: Untagged
@@ -203,25 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bbe80e6b5ce664e8b34eae72ff0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivasionKey1: 0
-  ActivasionKey2: 0
-  ActivasionKey3: 0
-  CanComboKey: 0
-  CanExitCollider: 0
   MyOutOfRangeDetector: {fileID: 114932074556588812}
-  myType: 2
   SecondSound: 5
---- !u!114 &114255450425270102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1984025146281826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bbe7e8ba9075345945710a2d9604d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114310260681184948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  buttonName: Button_Right
+  button: {fileID: 0}
   buttonPressedSprite: {fileID: 21300000, guid: 2147415cddc629144ac6eed10b96c1d6,
     type: 3}
   animator: {fileID: 95055170708575998}
@@ -255,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  buttonName: Button_Right
+  button: {fileID: 0}
   buttonPressedSprite: {fileID: 21300000, guid: fdbb3b9bb9a258148b7eec4ff627eabc,
     type: 3}
   animator: {fileID: 95212838930157136}
