@@ -90,7 +90,7 @@ public class TimingMachine : TimingSystem {
 		{
 			//Debug.Log("Hit kan man flytta förstörelse.");
 		}
-		Debug.Log("maskin "+myType);
+		//Debug.Log("maskin "+myType);
 		productHit();
 		AudioManager.instance.Play(SecondSound);
 	}
