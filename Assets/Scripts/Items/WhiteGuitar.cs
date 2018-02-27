@@ -5,6 +5,7 @@ using UnityEngine;
 public class WhiteGuitar : Item {
 
     public float DoubleNoteChance = 0.1f;
+    public float MetalMultiplierIncrease = 0.1f;
 
     private void Start()
     {
@@ -16,5 +17,6 @@ public class WhiteGuitar : Item {
         base.ActivatePurchase();
         Debug.Log("PURCHASED WHITE GUITAR!");
         NoteGenerator.DoubleNoteChance = DoubleNoteChance;
+        TimingString.MetalMultiplier += MetalMultiplierIncrease;
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Guitar : Item {
 
+    public float MetalMultiplierIncrease = 0.1f;
+
     private void Start()
     {
         //base.Start();
@@ -14,5 +16,6 @@ public class Guitar : Item {
         base.ActivatePurchase();
         Debug.Log("PURCHASED GUITAR!");
         NoteGenerator.NumberOfUniqueNotes++;
+        TimingString.MetalMultiplier += MetalMultiplierIncrease;
     }
 }

@@ -3654,9 +3654,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SongIndex: 0
   PracticeWithLeadSongs:
-  - {fileID: 8300000, guid: ad9d6fa9fbcec3b4e9765463de2c46d5, type: 3}
+  - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
   PracticeWithoutLeadSongs:
-  - {fileID: 8300000, guid: 95e801b6b043f9e4e8dd42ebfe2012a7, type: 3}
+  - {fileID: 8300000, guid: 1a5939c9b54d0894bb4bca4f4a1f8a15, type: 3}
   PracticeMIDISongs:
   - {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
   GigWithLeadSongs:

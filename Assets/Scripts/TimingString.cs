@@ -125,15 +125,20 @@ public class TimingString : TimingSystem
 
         StringAnimator.SetTrigger("StringStroked");
 
-        Destroy(targets[0]);
+        GameObject tempTarget = targets[0];
+        targets.Remove(tempTarget);
+        Destroy(tempTarget);
 
         //if (!Input.anyKeyDown)
-            targets.Clear();
+        //    targets.Clear();
     }
 
     private GameObject GetNoteAccuracyPrefab()
     {
-        float distance = transform.position.y - targets[0].transform.position.y;
+        if (targets.Count == 0)
+            return new GameObject();
+
+            float distance = transform.position.y - targets[0].transform.position.y;
         if (distance < 0)
             distance *= -1;
 
