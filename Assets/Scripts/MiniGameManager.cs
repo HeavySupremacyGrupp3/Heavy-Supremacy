@@ -38,6 +38,7 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField]
     private int angstAmount = 1;
     private float angst;
+    private float addedAngst = 0;
 
     [SerializeField]
     private Text angstText;
@@ -78,12 +79,14 @@ public class MiniGameManager : MonoBehaviour
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
         moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
         productList = new List<GameObject>();   //Skapar en lista 
+        angst = StatReference.getAmount();
     }
 
     void Update()
     {
-        angst += Time.deltaTime / angstTick;
-        StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));
+        angst += Time.deltaTime / angstTick;    //Gain x amount angst every x second (set in inspector)
+        addedAngst += Time.deltaTime / angstTick;  //Same but this only keeps track on how much you've gained, not the total amount of angst
+        StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));   //Set the amount stat to angst (angstAmount is x angst per second´in inspector)
 
         updateCounter += Time.deltaTime;
 
@@ -149,10 +152,10 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadResultScreen()
     {
-        Time.timeScale = 0;
-        angstText.text = "+" + Mathf.RoundToInt(angst) + " Angst";
-        moneyText.text = "+" + addedMoney + " Money";
-        resultScreen.SetActive(true);
+        Time.timeScale = 0;     //Pause the game/production
+        angstText.text = "+" + Mathf.RoundToInt(addedAngst) + " Angst";  //Show how much angst you've gained
+        moneyText.text = "+" + addedMoney + " Money";       //Show how much money you earned
+        resultScreen.SetActive(true);                          //activate the resultScreen
     }
 
     //switches spawning on/off, stops/moves products
@@ -168,11 +171,11 @@ public class MiniGameManager : MonoBehaviour
     void omaewashindeiru()
     {
         finishedProducts++;
-        addedMoney += moneyStats.difference;
+        addedMoney += moneyStats.difference; //When a product is finished, collect data on how much money you earned (difference)
 
         if (finishedProducts == quitWorkAfterProducts && cantStopWontStop == false)
         {
-            LoadResultScreen();
+            LoadResultScreen();         //Load resultScreen when the number of finished products has been achieved
         }
     }
 
