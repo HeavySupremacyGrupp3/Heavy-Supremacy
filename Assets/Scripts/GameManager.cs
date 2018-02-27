@@ -171,6 +171,19 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseWeek()
     {
+        if (day % 5 == 0)
+        {
+            FindObjectOfType<GameEventManager>().TriggerRentReminder();
+        }
+        if (day % 6 == 0)
+        {
+            FindObjectOfType<GameEventManager>().TriggerUpcomingGig();
+        }
+        if (day % 7 == 0)
+        {
+            FindObjectOfType<GameEventManager>().TriggerGig();
+        }
+
         if (day % 8 == 0)
         {
             week++;

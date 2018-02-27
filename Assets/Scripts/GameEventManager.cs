@@ -17,6 +17,10 @@ public class GameEventManager : MonoBehaviour
     public GameObject SentMessagePrefab;
     public GameObject SMSScrollContent;
 
+    public GameObject GigMessagePanel;
+    public GameObject GigUpcomingPanel;
+    public GameObject RentReminderPanel;
+
     [Range(0, 1)]
     public float SpecialNodeChance = 0, MessageNodeChance = 0;
 
@@ -209,5 +213,23 @@ public class GameEventManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
+    }
+
+    public void TriggerGig()
+    {
+        GigMessagePanel.SetActive(true);
+        GigMessagePanel.transform.parent.parent.gameObject.SetActive(true);
+    }
+
+    public void TriggerUpcomingGig()
+    {
+        GigUpcomingPanel.SetActive(true);
+        GigUpcomingPanel.transform.parent.parent.gameObject.SetActive(true);
+    }
+
+    public void TriggerRentReminder()
+    {
+        RentReminderPanel.SetActive(true);
+        RentReminderPanel.transform.parent.parent.gameObject.SetActive(true);
     }
 }
