@@ -43,7 +43,9 @@ public class EventEnum : MonoBehaviour
             GetComponent<Image>().sprite = SocialSprite;
         }
 
-        EnergyCost = float.Parse(Node.EnergyBonus);
+        if (Node.EnergyBonus != null && Node.EnergyBonus != "")
+            EnergyCost = float.Parse(Node.EnergyBonus);
+
         EnergyText.text = "Energy Cost: " + EnergyCost;
     }
 
