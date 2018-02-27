@@ -135,7 +135,7 @@ public class NoteGenerator : MonoBehaviour
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
-            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused) //End game if song is over and the game hasn't already ended.
                 EndGame(true);
 
             if (lerpAudio)
@@ -206,6 +206,8 @@ public class NoteGenerator : MonoBehaviour
         Debug.Log("ENDED GAME");
 
         EndGamePanel.SetActive(true);
+        FindObjectOfType<TimingString>().enabled = false;
+
         MusicWithLeadAudioSource.Stop();
         MusicWithoutLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
@@ -332,7 +334,12 @@ public class NoteGenerator : MonoBehaviour
             GigTutorialPanel.SetActive(active);
         }
 
-        if (active)
+        ToggleMusic(!active);
+    }
+
+    public void ToggleMusic(bool resume)
+    {
+        if (!resume)
         {
             NoteGenerationAudioSource.Pause();
             MusicWithLeadAudioSource.Pause();
@@ -341,7 +348,7 @@ public class NoteGenerator : MonoBehaviour
             FindObjectOfType<TimingString>().enabled = false;
             Time.timeScale = 0;
         }
-        else if (!active)
+        else if (resume)
         {
             NoteGenerationAudioSource.UnPause();
             MusicWithLeadAudioSource.UnPause();
@@ -353,7 +360,6 @@ public class NoteGenerator : MonoBehaviour
             if (!NoteGenerationAudioSource.isPlaying)
                 Initialize();
         }
-
     }
 
     public void LoadHub()

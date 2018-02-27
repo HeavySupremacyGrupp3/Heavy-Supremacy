@@ -12,6 +12,7 @@ public class EventEnum : MonoBehaviour
     public Text EnergyText;
 
     public GameEventManager.nodeType NodeType;
+    public Sprite FameSprite, MusicSprite, SocialSprite;
 
     private void Start()
     {
@@ -21,15 +22,26 @@ public class EventEnum : MonoBehaviour
 
     private void RefreshEvent()
     {
-        NodeType = (GameEventManager.nodeType)Random.Range(0, 0);
+        GetComponent<Button>().interactable = true;
+
+        NodeType = (GameEventManager.nodeType)Random.Range(0, 3);
 
 
         if (NodeType == GameEventManager.nodeType.fame)
+        {
             Node = GameEventManager.fameNodes[Random.Range(0, GameEventManager.fameNodes.Count)];
+            GetComponent<Image>().sprite = FameSprite;
+        }
         else if (NodeType == GameEventManager.nodeType.musical)
+        {
             Node = GameEventManager.musicNodes[Random.Range(0, GameEventManager.musicNodes.Count)];
+            GetComponent<Image>().sprite = MusicSprite;
+        }
         else if (NodeType == GameEventManager.nodeType.social)
+        {
             Node = GameEventManager.socialNodes[Random.Range(0, GameEventManager.socialNodes.Count)];
+            GetComponent<Image>().sprite = SocialSprite;
+        }
 
         EnergyCost = float.Parse(Node.EnergyBonus);
         EnergyText.text = "Energy Cost: " + EnergyCost;

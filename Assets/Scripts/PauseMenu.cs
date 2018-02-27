@@ -19,6 +19,9 @@ public class PauseMenu : MonoBehaviour {
 
     public void Pause()
     {
+        if (FindObjectOfType<NoteGenerator>())
+            FindObjectOfType<NoteGenerator>().ToggleMusic(false);
+
         pauseMenu.SetActive(true);
         paused = true;
         Time.timeScale = 0f;
