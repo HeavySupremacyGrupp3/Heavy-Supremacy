@@ -5,9 +5,15 @@ using UnityEngine;
 public class TimingMachine : MonoBehaviour {
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
-	public int myType;
+	private int myType;
 	
 	public string SecondSound;
+	
+	
+	void Start()
+	{
+		myType=GetComponent<MachineProperties>().type;
+	}
 	
 	void OnEnable()
 	{

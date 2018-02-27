@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MachineProperties : MonoBehaviour {
 
-    public int type = 0;
+    public int type;
 
     [SerializeField]
     private GameObject button;
