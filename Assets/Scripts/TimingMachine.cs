@@ -2,126 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimingMachine : TimingSystem {
-	
-	int timesChanged=0;
-	int waitTimer=0;
-	
-	public delegate void tutorialEvent();
-	public static event tutorialEvent productHit;
-	public delegate void tutorialCompareEvent(bool b);
-	public static event tutorialCompareEvent productCompared;
+public class TimingMachine : MonoBehaviour {
 	
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
-	//public machineBelowDetectorScript myBelowDetector;
 	public int myType;
 	
 	public string SecondSound;
-
-    void Start()
-    {
-
-    }
-	public override void SucceedTiming()
-    {
-		produktScript sc=targets[0].GetComponent<produktScript>();
-		
-		if(timesChanged==0 && !sc.Spoiled)
-		{
-			base.SucceedTiming();
-			timesChanged++;
-        }		
-    }
 	
 	void OnEnable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
-		//myBelowDetector.productBelowDetected += compareTypes;
 	}
 	
 	void OnDisable()
 	{
 		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
-		//myBelowDetector.productBelowDetected -= compareTypes;
 	}
-	
-	void compareTypes(GameObject t)
-	{
-		produktScript sc=t.GetComponent<produktScript>();
-		Debug.Log("Comparing... ");
-		if(myType<sc.type && !sc.Spoiled)
-		{
-			Debug.Log("Product below can be turned into chickpeas.");
-			productCompared(true);
-		}
-		else
-		{
-			Debug.Log("NO CHICKPEAS!");
-			productCompared(false);
-		}
-	}
-	
-	public override void FailTiming()
-    {
-        base.FailTiming();
-    }
 	
 	private void OnTriggerEnter2D(Collider2D collision) //OnTriggerEnter2D nummer 2
 	{
 		produktScript sc=collision.GetComponent<produktScript>();
 		
-		if(myType<sc.type)
+		if(myType<sc.type) // spoils the product if it is NOT in the correct stage
 		{
-			Debug.Log("Produkten behöver inte förvandlas. Skäms på dig!");
 			sc.spoil();
 			AudioManager.instance.Play("spoilLjud");
-			timesChanged=0;
 		}
 		
-		if(myType==sc.type && !sc.Spoiled)
+		if(myType==sc.type && !sc.Spoiled) // transform the products if it's in the correct stage
 		{
-			//Debug.Log("Jag förvandlar.");
 			AudioManager.instance.Play("Machine"+myType+"Hit");
 			sc.type++;
 			collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.type];
 		}
 		
-		if(myType>sc.type)
-		{
-			//Debug.Log("Hit kan man flytta förstörelse.");
-		}
-		//Debug.Log("maskin "+myType);
-		productHit();
-		AudioManager.instance.Play(SecondSound);
+		AudioManager.instance.Play(SecondSound); //plays if it hits something
 	}
 	
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		//targets.RemoveAt(0);
-	}
-	
-	private void old2DCollider(Collider2D collision)
-	{
-		
-		produktScript sc=collision.GetComponent<produktScript>();
-        //MiniGameManager mgm = target.GetComponent<MiniGameManager>();
-
-        if (timesChanged==0 && !sc.Spoiled)
-		{
-			//base.SucceedTiming();
-          
-			//sc.currentStage++;
-			
-			//if(sc.currentStage<sc.Sprites.Length)
-				//collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.currentStage];
-			
-			timesChanged++;			
-		}						
-		//timesChanged=0;
-		//productDetected();
-	}
-	
-	private void spoilProducts(GameObject ta)
+	private void spoilProducts(GameObject ta) // if the product passes the machine while in the wrong stage
 	{		
 		produktScript sc=ta.GetComponent<produktScript>();
 		
@@ -129,6 +47,5 @@ public class TimingMachine : TimingSystem {
 		{
 			sc.spoil();
 		}
-		timesChanged=0;
 	}
 }
