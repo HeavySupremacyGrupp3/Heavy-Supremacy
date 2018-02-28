@@ -18,9 +18,6 @@ public class MiniGameManager : MonoBehaviour
     float updateCounter = 0;
     bool spawnStuff = true;
 
-    //public delegate void mittEvent();
-    //public static event mittEvent stopProducts;
-
     bool productsAreStopped = false;
 
     int stopCounter = 0;
@@ -139,11 +136,6 @@ public class MiniGameManager : MonoBehaviour
         SceneManager.LoadScene("WorkScene");
     }
 
-    public void MenuIsClicked()
-    {
-        spawnStuff = false;
-    }
-
     public void LoadResultScreen()
     {
         Time.timeScale = 0;     //Pause the game/production
@@ -157,7 +149,6 @@ public class MiniGameManager : MonoBehaviour
     {
         spawnStuff = !spawnStuff;
         productsAreStopped = !productsAreStopped;
-        //stopProducts();
     }
 
     //counts products finished, and shows the result screen if products finished > set amount

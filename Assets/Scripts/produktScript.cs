@@ -83,16 +83,15 @@ public class produktScript : MonoBehaviour
 
     private IEnumerator StartMovingAfter(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time);  
         waiting = false;
     }
 
     private IEnumerator StartMovingAfterCheckpoint(float time)
     {
-        stopProducts();
+        stopProducts();         //Event som stoppar rullband och kugghjul
         yield return new WaitForSeconds(time);
         reachedCheckpoint = true;
-        stopProducts();
-        //mgm.changeSpawnaFlaskor();
+        stopProducts();    //Samma event startar det igen (efter 2 sekunder)
     }
 }
