@@ -124,14 +124,8 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-    public void QuitWork()
-    {
-        StatReference.addOrRemoveAmount(15f);
-    }
-
     public void LoadHUB()
     {
-        //QuitWork();
         SceneManager.LoadScene("HUBScene");
     }
 
@@ -165,7 +159,6 @@ public class MiniGameManager : MonoBehaviour
         productsAreStopped = !productsAreStopped;
         stopProducts();
     }
-
 
     //counts products finished, and shows the result screen if products finished > set amount
     void omaewashindeiru()
