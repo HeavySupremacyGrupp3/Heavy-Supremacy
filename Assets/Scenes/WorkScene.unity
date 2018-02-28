@@ -1568,6 +1568,11 @@ Prefab:
       propertyPath: FirstSound
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95258696703342944, guid: 62c08a9bab482d54ab07f937d21f6bb6,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
   m_IsPrefabParent: 0
@@ -4713,11 +4718,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1943765995 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 95212838930157136, guid: 1d779c99a42b1814bb79b1901c6a5166,
-    type: 2}
-  m_PrefabInternal: {fileID: 2068620727}
 --- !u!1001 &1960938669
 Prefab:
   m_ObjectHideFlags: 0
@@ -5175,72 +5175,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114310260681184948, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: button
-      value: 
-      objectReference: {fileID: 108832088}
-    - target: {fileID: 114310260681184948, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114767521321140186, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114767521321140186, guid: 1d779c99a42b1814bb79b1901c6a5166,
         type: 2}
       propertyPath: button
       value: 
       objectReference: {fileID: 108832088}
-    - target: {fileID: 114767521321140186, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: buttonPressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2147415cddc629144ac6eed10b96c1d6,
-        type: 3}
-    - target: {fileID: 114767521321140186, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1943765995}
-    - target: {fileID: 114767521321140186, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: lerpTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 95212838930157136, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: c4e11a822813c224ebe8af27e17da33f, type: 2}
-    - target: {fileID: 95055170708575998, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 95212838930157136, guid: 1d779c99a42b1814bb79b1901c6a5166,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114160764764194296, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 61511391007371618, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95055170708575998, guid: 1d779c99a42b1814bb79b1901c6a5166,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: c4e11a822813c224ebe8af27e17da33f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
   m_IsPrefabParent: 0
