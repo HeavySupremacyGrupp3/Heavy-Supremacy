@@ -40,6 +40,7 @@ AudioMixerController:
     - fda51fb8f92e44541afedc6baaf6e78a
     - b8c76e104d8379e409ec92d447442850
     - 835151adcc390fd468f1c96a8b965f60
+    - 6ca2e375a7b9d25419ae88cc03b7ee97
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -318,6 +319,7 @@ AudioMixerGroupController:
   - {fileID: 243027547074401974}
   - {fileID: 243663429713049288}
   - {fileID: 243424478782109490}
+  - {fileID: 243795297174653144}
   m_Volume: 032888bdf1729f544833eb4f9afe72ed
   m_Pitch: 7755f1a6e4469254e94d04a407c9c999
   m_Effects:
@@ -356,6 +358,23 @@ AudioMixerGroupController:
   m_Pitch: f2d7271da3444904587ce44397e67e4f
   m_Effects:
   - {fileID: 244443636397873672}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243795297174653144
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FabrikMusik
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 6ca2e375a7b9d25419ae88cc03b7ee97
+  m_Children: []
+  m_Volume: c9b6d1b23d98379478c0d9c5fc0acc99
+  m_Pitch: 2ff9dfedae1a9394fb917d8ccc052cd1
+  m_Effects:
+  - {fileID: 244739041893651072}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -525,6 +544,19 @@ AudioMixerEffectController:
   m_EffectID: 9246a64f3a4c6c845bae75e266a5286e
   m_EffectName: Attenuation
   m_MixLevel: 8304298c1c70dff41b8922f317de039a
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244739041893651072
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5d8d05748f5d736408f8772eb21febde
+  m_EffectName: Attenuation
+  m_MixLevel: 25899d6973b7fff49a1f258ba68a380d
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0

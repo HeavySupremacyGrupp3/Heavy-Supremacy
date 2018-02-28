@@ -7,7 +7,7 @@ public class TimingMachine : MonoBehaviour {
 	public machineOutOfRangeDetector MyOutOfRangeDetector;
 	private int myType;
 	
-	public string SecondSound;
+	//public string SecondSound;
 	
 	
 	void Start()
@@ -42,7 +42,7 @@ public class TimingMachine : MonoBehaviour {
 			collision.GetComponent<SpriteRenderer>().sprite=sc.Sprites[sc.type];
 		}
 		
-		AudioManager.instance.Play(SecondSound); //plays if it hits something
+		//AudioManager.instance.Play(SecondSound); //plays if it hits something
 	}
 	
 	private void spoilProducts(GameObject ta) // if the product passes the machine while in the wrong stage
