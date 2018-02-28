@@ -27,6 +27,9 @@ public class produktScript : MonoBehaviour
     Transform checkpoint;	
     List<GameObject> productList;
 
+    public delegate void Event();
+    public static event Event stopProducts;
+
     private void Start()
     {
         mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
@@ -44,6 +47,7 @@ public class produktScript : MonoBehaviour
         }
         else if (!waiting)                                                         
         {
+            
             foreach (GameObject product in productList)         //För varje produkt som är ute i scenen (som har lagts i listan i minigamemanager)
             {
                 product.GetComponent<produktScript>().Wait();                  //Kör wait på varje produkt i scenen
@@ -85,16 +89,10 @@ public class produktScript : MonoBehaviour
 
     private IEnumerator StartMovingAfterCheckpoint(float time)
     {
-        TransformLooper tl;         //Dålig lösning på att båda rullbanden ska stanna när produkterna gör det (kallas från nuvarande gameobject)
-        TransformLooper tl2;
-        tl = GameObject.Find("Work_Rullband").GetComponent<TransformLooper>();
-        tl2 = GameObject.Find("Work_Rullband2").GetComponent<TransformLooper>();
-        tl.StopLoop();
-        tl2.StopLoop();
+        stopProducts();
         yield return new WaitForSeconds(time);
         reachedCheckpoint = true;
-        tl.StopLoop();
-        tl2.StopLoop();
+        stopProducts();
         //mgm.changeSpawnaFlaskor();
     }
 }

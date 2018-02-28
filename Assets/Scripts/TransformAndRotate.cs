@@ -13,12 +13,12 @@ public class TransformAndRotate : MonoBehaviour {
 
     void OnEnable()
     {
-        MiniGameManager.stopProducts += StopRotation;
+        produktScript.stopProducts += StopRotation;
     }
 
     void OnDisable()
     {
-        MiniGameManager.stopProducts -= StopRotation;
+        produktScript.stopProducts -= StopRotation;
     }
 
     

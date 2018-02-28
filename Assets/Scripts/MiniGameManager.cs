@@ -18,8 +18,8 @@ public class MiniGameManager : MonoBehaviour
     float updateCounter = 0;
     bool spawnStuff = true;
 
-    public delegate void mittEvent();
-    public static event mittEvent stopProducts;
+    //public delegate void mittEvent();
+    //public static event mittEvent stopProducts;
 
     bool productsAreStopped = false;
 
@@ -157,7 +157,7 @@ public class MiniGameManager : MonoBehaviour
     {
         spawnStuff = !spawnStuff;
         productsAreStopped = !productsAreStopped;
-        stopProducts();
+        //stopProducts();
     }
 
     //counts products finished, and shows the result screen if products finished > set amount
