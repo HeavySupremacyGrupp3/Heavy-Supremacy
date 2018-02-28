@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675174535983878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09000045, y: -2.84, z: 0}
+  m_LocalPosition: {x: -0.09000045, y: -3.37, z: 0}
   m_LocalScale: {x: 0.3803446, y: 0.3803446, z: 0.3803446}
   m_Children: []
   m_Father: {fileID: 4513733968893070}
@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1984025146281826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.06, y: 3.7184937, z: 0}
+  m_LocalPosition: {x: 8.96, y: 4.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4398101164346222}
@@ -146,7 +146,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.89, y: 5.67}
+    oldSize: {x: 1.1125, y: 7.0875}
     newSize: {x: 0.89, y: 5.67}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   buttonTime: 0.5
   key: 275
   lerpTime: 0.2
-  lerpDistance: 1.5
+  lerpDistance: 0.5
 --- !u!114 &114932074556588812
 MonoBehaviour:
   m_ObjectHideFlags: 1
