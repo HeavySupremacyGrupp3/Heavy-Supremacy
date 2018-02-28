@@ -53,6 +53,7 @@ public class NoteGenerator : MonoBehaviour
     public static float NotesTotal = 0;
     public static bool ShowPracticeTutorial = true;
     public static bool ShowGigTutorial = true;
+    public static Queue<NoteMeta> NoteQueue = new Queue<NoteMeta>();
 
     public AudioClip VictorySound;
     public AudioClip DefeatSound;
@@ -189,6 +190,8 @@ public class NoteGenerator : MonoBehaviour
         if (doubleNoteRng < DoubleNoteChance)
             NoteMultiplier++;
 
+        List<GameObject> notes = new List<GameObject>();
+        List<KeyCode> keys = new List<KeyCode>();
         int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
@@ -200,9 +203,14 @@ public class NoteGenerator : MonoBehaviour
             while (noteIndex == tempIndex && doubleNoteRng < DoubleNoteChance);
             noteIndex = tempIndex;
 
-            Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
+            GameObject Note = Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity) as GameObject;
+            keys.Add((KeyCode)System.Convert.ToInt32(Note.name.Substring(Note.name.Length - 2)));
+            notes.Add(Note);
+            
             NotesTotal++;
         }
+
+        NoteQueue.Enqueue(new NoteMeta(keys.ToArray(), notes.ToArray()));
 
         if (NoteMultiplier > 1)
             NoteMultiplier = 1;
