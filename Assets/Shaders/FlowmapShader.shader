@@ -70,16 +70,18 @@
 				float3 flowDir = tex2D(_FlowMap, IN.texcoord) * 2.0f - 1.0f;
 				flowDir *= _FlowSpeed;
 
+				fixed distMask = tex2D(_MaskTex, IN.texcoord)[0];
+
 				float phase0 = frac(_Time[1] * 0.5f + 0.5f); //frac = returns 0.23 if 1.23 was the input. Likewise if input is 5.6 it returns 0.6.
 				float phase1 = frac(_Time[1] * 0.5f + 1.0f);
 
-				half3 tex0 = tex2D(_MainTex, IN.texcoord + flowDir.xy * phase0); //Half = half the precision of a float.
-				half3 tex1 = tex2D(_MainTex, IN.texcoord + flowDir.xy * phase1); //Render the maintexture twice and hide the one that will "jump back" at the end of the flow-loop. Phase0 and Phase1 are used for this method.
+				fixed4 tex0 = tex2D(_MainTex, IN.texcoord + flowDir.xy * phase0 * distMask); //Half = half the precision of a float.
+				fixed4 tex1 = tex2D(_MainTex, IN.texcoord + flowDir.xy * phase1 * distMask); //Render the maintexture twice and hide the one that will "jump back" at the end of the flow-loop. Phase0 and Phase1 are used for this method.
 
 				float flowLerp = abs((0.5f - phase0) / 0.5f); //Used to create a seamless loop between the two textures.
-				half3 finalColor = lerp(tex0, tex1, flowLerp); //Lerp between two textures depending on the third argument (flowLerp).
+				fixed4 finalColor = lerp(tex0, tex1, flowLerp); //Lerp between two textures depending on the third argument (flowLerp).
 
-				fixed4 c = float4(finalColor, 1.0f) * IN.color;
+				fixed4 c = float4(finalColor) * IN.color;
 				c.rgb *= c.a;
 				return c;
 			}
