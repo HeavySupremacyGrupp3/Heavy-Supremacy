@@ -36,7 +36,7 @@ public class MachineProperties : MonoBehaviour {
 	public delegate void musicEvent(string s);
 	public static event musicEvent moveSound;
 	
-	public string FirstSound;
+	//public string FirstSound;
 
     void Start()
     {
@@ -102,7 +102,7 @@ public class MachineProperties : MonoBehaviour {
         Sprite oldSprite = sr.sprite;
         sr.sprite = sprite;
 		//moveSound(FirstSound);
-		AudioManager.instance.Play(FirstSound);
+		AudioManager.instance.Play("Machine"+type+"Down");
 
         StartCoroutine(ButtonTimer(sr, oldSprite));
 
