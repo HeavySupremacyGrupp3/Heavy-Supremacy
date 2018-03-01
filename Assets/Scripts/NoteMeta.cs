@@ -6,6 +6,7 @@ public class NoteMeta
 {
     private Dictionary<KeyCode, GameObject> notes;
     private List<GameObject> noteObjects;
+    private int activations = 0;
 
     /// <summary>
     /// Create a note meta object
@@ -16,8 +17,7 @@ public class NoteMeta
     {
         if (_activationKeys.Length != _notes.Length)
         {
-            throw new System.ArgumentException("Arrays must be of equal length to create a dictionary.");
-            return;
+            throw new ArgumentException("Arrays must be of equal length to create a dictionary.");
         }
 
         notes = new Dictionary<KeyCode, GameObject>();
@@ -31,20 +31,27 @@ public class NoteMeta
 
     public bool IsNoteCleared(KeyCode key)
     {
+        activations++;
+
         if (notes.ContainsKey(key))
             notes.Remove(key);
 
-        if (notes.Count <= 0)
+        if (notes.Count == 0)
             return true;
 
         return false;
     }
 
-    public void DestroyNotes()
+    public bool CorrectAmountOfKeystrokes()
     {
-        foreach (GameObject note in noteObjects)
-        {
-            Destroy(note);
-        }
+        if (activations == noteObjects.Count)
+            return true;
+
+        return false;
+    }
+
+    public IEnumerable<GameObject> GetNotes()
+    {
+        return noteObjects;
     }
 }

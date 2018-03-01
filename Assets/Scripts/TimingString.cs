@@ -58,7 +58,7 @@ public class TimingString : TimingSystem
     public override void FailTiming()
     {
         //Make sure note cannot fail if it has been hit.
-        if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
+        /*if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
         {
             ClearHitTargetList();
             return;
@@ -77,24 +77,24 @@ public class TimingString : TimingSystem
             ClearHitTargetList();
         }
 
-        AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
+        AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);*/
         //StringAnimator.SetTrigger("StringStroked");
     }
 
     void ClearHitTargetList()
     {
-        foreach (GameObject go in hitTargets)
+        /*foreach (GameObject go in hitTargets)
         {
             Destroy(go);
         }
-        hitTargets.Clear();
+        hitTargets.Clear();*/
     }
 
     public override void SucceedTiming()
     {
         base.SucceedTiming();
 
-        NoteGen.SwitchMusicSource(true);
+        /*NoteGen.SwitchMusicSource(true);
 
         NotesHit++;
         UpdateStreakCounters(1);
@@ -130,7 +130,7 @@ public class TimingString : TimingSystem
         Destroy(tempTarget);
 
         //if (!Input.anyKeyDown)
-        //    targets.Clear();
+        //    targets.Clear();*/
     }
 
     private GameObject GetNoteAccuracyPrefab()
@@ -197,13 +197,13 @@ public class TimingString : TimingSystem
         HealthImage.fillAmount = health / MaxHealth;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (!CanExitCollider && collision.transform.position.y < transform.position.y - 0.5f)
         {
             FailTiming();
         }
-    }
+    }*/
 
     public static void Reset()
     {

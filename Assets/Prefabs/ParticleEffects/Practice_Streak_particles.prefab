@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Progress: 0
   StartColor: {r: 0.8235294, g: 1, b: 0.9926978, a: 0.234}
-  EndColor: {r: 1, g: 0, b: 0, a: 1}
+  EndColor: {r: 1, g: 0.68357, b: 0.11764705, a: 1}
   StartAmountOfParticles: 100
   EndAmountOfParticles: 200
 --- !u!198 &198811537017952898
@@ -118,7 +118,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2096426096
+  randomSeed: -58754373
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -566,7 +566,7 @@ ParticleSystem:
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
-    donutRadius: 2.0770164
+    donutRadius: 1.7622011
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
@@ -2731,7 +2731,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minVertexDistance: 0.2
-    textureMode: 2
+    textureMode: 0
     worldSpace: 0
     dieWithParticles: 0
     sizeAffectsWidth: 0

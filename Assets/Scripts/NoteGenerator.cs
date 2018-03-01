@@ -49,7 +49,7 @@ public class NoteGenerator : MonoBehaviour
 
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 2;
-    public static float DoubleNoteChance = 0;
+    public static float DoubleNoteChance = 0.5f;
     public static float NotesTotal = 0;
     public static bool ShowPracticeTutorial = true;
     public static bool ShowGigTutorial = true;
@@ -204,7 +204,7 @@ public class NoteGenerator : MonoBehaviour
             noteIndex = tempIndex;
 
             GameObject Note = Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity) as GameObject;
-            keys.Add((KeyCode)System.Convert.ToInt32(Note.name.Substring(Note.name.Length - 2)));
+            keys.Add((KeyCode)System.Convert.ToInt32(Note.name.Substring(Note.name.Length - 10, 3)));
             notes.Add(Note);
             
             NotesTotal++;
