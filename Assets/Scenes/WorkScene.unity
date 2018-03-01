@@ -146,7 +146,7 @@ MonoBehaviour:
     type: 2}
   moveProduction: {x: -16, y: -3, z: 0}
   productInterval: 2.2
-  cantStopWontStop: 1
+  cantStopWontStop: 0
   productChanse:
   - 0.79
   - 0.42
@@ -2812,7 +2812,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1040265525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -827, y: -414.875, z: 0}
+  m_LocalPosition: {x: -826.9999, y: -414.875, z: 0}
   m_LocalScale: {x: 1.7867191, y: 1.7867167, z: 1.7867167}
   m_Children:
   - {fileID: 1460122973}
@@ -2821,7 +2821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1817, y: 142}
+  m_AnchoredPosition: {x: -1816.9999, y: 142}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040265527
