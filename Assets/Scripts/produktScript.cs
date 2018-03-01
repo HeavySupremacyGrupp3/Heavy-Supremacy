@@ -30,9 +30,12 @@ public class produktScript : MonoBehaviour
     public delegate void Event();
     public static event Event stopProducts;
 
+    private moneyStatScript moneyStats;
+
     private void Start()
     {
         mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
+        moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
         startPosition = transform.position;
         endPosition = new Vector3(startPosition.x + spacing / 2f, startPosition.y);
         checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MinigameManager
@@ -67,8 +70,10 @@ public class produktScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Box" && gameObject != null)
         {
-            if (!Spoiled)
+            //if (!Spoiled)
                 earnMoney();
+            if(!Spoiled)
+                mgm.addedMoney += moneyStats.difference;
 
             Destroy(gameObject);
             mgm.RemoveFromList();

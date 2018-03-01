@@ -50,7 +50,8 @@ public class MiniGameManager : MonoBehaviour
 
     int productsSeen = 0;
 
-    private float addedMoney;
+    [HideInInspector]
+    public float addedMoney;
     private moneyStatScript moneyStats;
 
     [SerializeField]
@@ -155,7 +156,7 @@ public class MiniGameManager : MonoBehaviour
     void omaewashindeiru()
     {
         finishedProducts++;
-        addedMoney += moneyStats.difference; //When a product is finished, collect data on how much money you earned (difference)
+        //addedMoney += moneyStats.difference; //When a product is finished, collect data on how much money you earned (difference)
 
         if (finishedProducts == quitWorkAfterProducts && cantStopWontStop == false)
         {
