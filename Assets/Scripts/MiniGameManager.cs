@@ -140,8 +140,8 @@ public class MiniGameManager : MonoBehaviour
     public void LoadResultScreen()
     {
         Time.timeScale = 0;     //Pause the game/production
-        angstText.text = "+" + Mathf.RoundToInt(addedAngst) + " Angst";  //Show how much angst you've gained
-        moneyText.text = "+" + addedMoney + " Money";       //Show how much money you earned
+        angstText.text = "+" + Mathf.RoundToInt(addedAngst);  //Show how much angst you've gained
+        moneyText.text = "+" + addedMoney;       //Show how much money you earned
         resultScreen.SetActive(true);                          //activate the resultScreen
     }
 
