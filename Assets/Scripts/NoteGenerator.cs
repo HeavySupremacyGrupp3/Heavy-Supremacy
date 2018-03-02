@@ -54,8 +54,13 @@ public class NoteGenerator : MonoBehaviour
     public static bool ShowPracticeTutorial = true;
     public static bool ShowGigTutorial = true;
 
-    public AudioClip VictorySound;
+    public AudioClip VictorySoundHard;
+    public AudioClip VictorySoundMedium;
+    public AudioClip VictorySoundEasy;
     public AudioClip DefeatSound;
+
+    public Item HardGuitar;
+    public Item MediumGuitar;
 
     private float clipTime = 0;
     private float clipVolume;
@@ -65,6 +70,7 @@ public class NoteGenerator : MonoBehaviour
     private bool canSendNextNote = true;
     private float noteSpawnTimer = 0;
     private int noteIndex = 0;
+    public static List<NoteSet> NoteSets = new List<NoteSet>();
 
     private bool useLeadAudioSource = true;
     private bool lerpAudio = false;
@@ -164,15 +170,15 @@ public class NoteGenerator : MonoBehaviour
             //Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.
-            if (volumeTreshold <= 1 && clipVolume > 1 || clipVolume < volumeTreshold && clipVolume > 1)
-                volumeTreshold = clipVolume;
+            //if (volumeTreshold <= 1 && clipVolume > 1 || clipVolume < volumeTreshold && clipVolume > 1)
+            //    volumeTreshold = clipVolume;
 
             //If the tone is long, create only one note.
-            if (clipVolume >= lastClipVolume)
+            if (clipVolume > 0.1f)
                 canSendNextNote = true;
-            lastClipVolume = clipVolume;
+            //lastClipVolume = clipVolume;
 
-            if (clipVolume >= volumeTreshold && canSendNextNote)
+            if (clipVolume > 0.1f && canSendNextNote)
             {
                 clipVolume = 0f;
                 canSendNextNote = false;
@@ -185,6 +191,8 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
+        NoteSet noteSet = new NoteSet();
+
         float doubleNoteRng = Random.Range(0f, 1f);
         if (doubleNoteRng < DoubleNoteChance)
             NoteMultiplier++;
@@ -200,9 +208,11 @@ public class NoteGenerator : MonoBehaviour
             while (noteIndex == tempIndex && doubleNoteRng < DoubleNoteChance);
             noteIndex = tempIndex;
 
-            Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
+            
+            noteSet.Notes.Add(Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity));
             NotesTotal++;
         }
+        NoteSets.Add(noteSet);
 
         if (NoteMultiplier > 1)
             NoteMultiplier = 1;
@@ -237,13 +247,20 @@ public class NoteGenerator : MonoBehaviour
         {
             Debug.Log("VICTORY");
 
-            MusicWithLeadAudioSource.PlayOneShot(VictorySound);
+            //Victory sound, based on the most expensive guitar purchased.
+            SwitchMusicSource(true);
+            if (ShopSystem.MyInventory.Contains(HardGuitar))
+                MusicWithLeadAudioSource.PlayOneShot(VictorySoundHard);
+            else if (ShopSystem.MyInventory.Contains(MediumGuitar))
+                MusicWithLeadAudioSource.PlayOneShot(VictorySoundMedium);
+            else
+                MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(30 * (1 / (1 + (angst.getAmount() / 20))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter)) * TimingString.MetalMultiplier;
+            metalGained = Mathf.CeilToInt(25 * (1 / (1 + (angst.getAmount() / 20))) * (NotesTotal / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter))) * TimingString.MetalMultiplier;
             fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))));
             moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
+            angstGained = Mathf.CeilToInt(-25 * (NotesTotal / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter)));
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();
@@ -280,6 +297,7 @@ public class NoteGenerator : MonoBehaviour
         {
             Debug.Log("DEFEAT");
 
+            SwitchMusicSource(true);
             MusicWithLeadAudioSource.PlayOneShot(DefeatSound);
 
             if (GigBackgroundManager.GigSession)

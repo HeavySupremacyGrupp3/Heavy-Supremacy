@@ -41,11 +41,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  Price: 1000
+  Price: 3000
   OneTimePurchase: 1
   Name: WhiteGuitar
   Description: White Supremacy
   DoubleNoteChance: 0.1
+  MetalMultiplierIncrease: 0.1
 --- !u!114 &114910227604471364
 MonoBehaviour:
   m_ObjectHideFlags: 1

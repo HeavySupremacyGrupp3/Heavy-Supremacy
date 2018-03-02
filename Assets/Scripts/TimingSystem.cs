@@ -12,10 +12,10 @@ public abstract class TimingSystem : MonoBehaviour
     public bool CanComboKey;
     public bool CanExitCollider;
 
-    private bool MechanicActive = false;
+    protected bool TargetInRange = false;
 
     public List<GameObject> targets = new List<GameObject>();
-    public List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
+    //public List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
 
     public static float ActivatedMechanicAndMissedNotesCounter = 0;
 
@@ -32,48 +32,70 @@ public abstract class TimingSystem : MonoBehaviour
 
     void ActivateMechanic()
     {
-        Debug.Log(ActivatedMechanicAndMissedNotesCounter);
-        if (targets.Count == 0)
+        if (!TargetInRange)
         {
             FailTiming();
             return;
         }
-        else if (targets.Count > 0)
+        else if (TargetInRange)
         {
-            //Need multiple if-statements to handle simultanious notes.
-            if (targets.Count > 0 && targets[0].name.Contains("_1") && Input.GetKey(ActivasionKey1))
-                SucceedTiming();
-            if (targets.Count > 0 && targets[0].name.Contains("_2") && Input.GetKey(ActivasionKey2))
-                SucceedTiming();
-            if (targets.Count > 0 && targets[0].name.Contains("_3") && Input.GetKey(ActivasionKey3))
-                SucceedTiming();
+            List<string> keysPressed = new List<string>();
 
+            //Need multiple if-statements to handle simultanious notes.
+            if (TargetInRange && Input.GetKey(ActivasionKey1))
+            {
+                keysPressed.Add("_1");
+            }
+            if (TargetInRange && Input.GetKey(ActivasionKey2))
+            {
+                keysPressed.Add("_2");
+            }
+            if (TargetInRange && Input.GetKey(ActivasionKey3))
+            {
+                keysPressed.Add("_3");
+            }
+
+            if (NoteGenerator.NoteSets[0].CheckNotes(keysPressed))
+            {
+                foreach (GameObject note in NoteGenerator.NoteSets[0].Notes)
+                {
+                    SucceedTiming(note);
+                }
+                NoteGenerator.NoteSets.RemoveAt(0);
+
+            }
             return;
         }
     }
 
     public virtual void FailTiming()
     {
+        Debug.Log("FAILED TIMING!");
         ActivatedMechanicAndMissedNotesCounter++;
 
-        if (targets.Count > 0)
-        {
-            targets.RemoveAt(0);
-        }
+        TargetInRange = false;
     }
 
-    public virtual void SucceedTiming()
+    public virtual void SucceedTiming(GameObject note)
     {
+        Debug.Log("SUCCEEDED TIMING!");
         ActivatedMechanicAndMissedNotesCounter++;
 
-        hitTargets.Add(targets[0]);
+
+        //hitTargets.Add(targets[0]);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
-        {
-            targets.Add(collision.gameObject);
-        }
+        TargetInRange = true;
+
+        //if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
+        //{
+        //    targets.Add(collision.gameObject);
+        //}
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
     }
 }

@@ -33,6 +33,8 @@ public class TimingString : TimingSystem
     public Text StreakCounter;
     public Text HighestStreakCounter;
     public GameObject StreakEffect;
+    public Bloodshot BloodShotEffect;
+    public float MaxStreakEffectCounter;
 
     public NoteGenerator NoteGen;
 
@@ -40,9 +42,9 @@ public class TimingString : TimingSystem
     public static float MetalMultiplier = 1;
     public static float NotesHit = 0;
 
-    private int streakCounter = 0;
-    private int streakHighScoreCounter = 0;
-    private int perfectCounter = 0;
+    private float streakCounter = 0;
+    private float streakHighScoreCounter = 0;
+    private float perfectCounter = 0;
     private float health;
 
     void Start()
@@ -58,46 +60,46 @@ public class TimingString : TimingSystem
     public override void FailTiming()
     {
         //Make sure note cannot fail if it has been hit.
-        if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
-        {
-            ClearHitTargetList();
-            return;
-        }
-        else
-        {
+        //if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
+        //{
+        //    ClearHitTargetList();
+        //    return;
+        //}
+        //else
+        //{
             base.FailTiming();
 
             NoteGen.SwitchMusicSource(false);
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
-            UpdateStreakCounters(-1000000);
+            UpdateStreakCounters(-1000000, null);
             perfectCounter = 0;
 
-            ClearHitTargetList();
-        }
+        //    ClearHitTargetList();
+        //}
 
         AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         //StringAnimator.SetTrigger("StringStroked");
     }
 
-    void ClearHitTargetList()
-    {
-        foreach (GameObject go in hitTargets)
-        {
-            Destroy(go);
-        }
-        hitTargets.Clear();
-    }
+    //void ClearHitTargetList()
+    //{
+    //    foreach (GameObject go in hitTargets)
+    //    {
+    //        Destroy(go);
+    //    }
+    //    hitTargets.Clear();
+    //}
 
-    public override void SucceedTiming()
+    public override void SucceedTiming(GameObject note)
     {
-        base.SucceedTiming();
+        base.SucceedTiming(note);
 
         NoteGen.SwitchMusicSource(true);
 
         NotesHit++;
-        UpdateStreakCounters(1);
+        UpdateStreakCounters(1, note);
 
         if (streakCounter % RequiredStreaksForHealth == 0 && streakCounter > 0)
         {
@@ -110,11 +112,14 @@ public class TimingString : TimingSystem
             AudioManager.instance.Play("StreakSound");
         }
 
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(note), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
         //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
-        GameObject noteHitEffect = Instantiate(NoteHitEffect, targets[0].transform.position, Quaternion.identity) as GameObject;
+        GameObject noteHitEffect = Instantiate(NoteHitEffect, note.transform.position, Quaternion.identity) as GameObject;
+        Vector3 tempPos = noteHitEffect.transform.position;
+        tempPos.y = transform.position.y;
+        noteHitEffect.transform.position = tempPos;
 
         //metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
         //angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
@@ -125,20 +130,26 @@ public class TimingString : TimingSystem
 
         StringAnimator.SetTrigger("StringStroked");
 
-        GameObject tempTarget = targets[0];
-        targets.Remove(tempTarget);
+        note.name = "DEAD_NOTE";
+
+        GameObject tempTarget = note;
+        //targets.Remove(tempTarget);
         Destroy(tempTarget);
 
+
         //if (!Input.anyKeyDown)
-        //    targets.Clear();
+        targets.Clear();
+
+        TargetInRange = false;
+
     }
 
-    private GameObject GetNoteAccuracyPrefab()
+    private GameObject GetNoteAccuracyPrefab(GameObject note)
     {
-        if (targets.Count == 0)
+        if (!TargetInRange)
             return new GameObject();
 
-            float distance = transform.position.y - targets[0].transform.position.y;
+        float distance = transform.position.y - note.transform.position.y;
         if (distance < 0)
             distance *= -1;
 
@@ -157,11 +168,11 @@ public class TimingString : TimingSystem
         return go;
     }
 
-    private void UpdateStreakCounters(int value)
+    private void UpdateStreakCounters(int value, GameObject note)
     {
         streakCounter += value;
 
-        if (GetNoteAccuracyPrefab().name.Contains("Perfect"))
+        if (GetNoteAccuracyPrefab(note).name.Contains("Perfect"))
             perfectCounter += value;
         else
             perfectCounter = 0;
@@ -177,6 +188,9 @@ public class TimingString : TimingSystem
             HighestStreakCounter.text = "Highest Streak: " + streakCounter.ToString();
         }
         StreakCounter.text = streakCounter.ToString();
+
+        if (streakCounter >= 10 || streakCounter == 0)
+            BloodShotEffect.Progress = streakCounter / MaxStreakEffectCounter;
     }
 
     private void AddOrRemoveHealth(int amount)
@@ -199,9 +213,22 @@ public class TimingString : TimingSystem
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!CanExitCollider && collision.transform.position.y < transform.position.y - 0.5f)
+        if (collision.name != "DEAD_NOTE")
         {
             FailTiming();
+            if (NoteGenerator.NoteSets[0].Notes.Count == 1)
+            {
+                NoteGenerator.NoteSets.RemoveAt(0);
+            }
+            else
+            {
+                NoteGenerator.NoteSets[0].Notes.RemoveAt(0);
+            }
+        }
+
+        if (!CanExitCollider && collision.transform.position.y < transform.position.y - 0.5f)
+        {
+
         }
     }
 

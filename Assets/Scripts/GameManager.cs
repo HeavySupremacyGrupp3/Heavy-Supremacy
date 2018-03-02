@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
         //WeekText.text = "Approximately week: " + week;
         if (Input.GetKeyDown(KeyCode.R))
             Restart();
+        if (Input.GetKeyDown(KeyCode.G))
+            LoadGig(10);
 		//if(Input.GetKeyDown(key))
 		//	Quit();
 		
@@ -137,7 +139,7 @@ public class GameManager : MonoBehaviour
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
-            SceneManager.LoadScene("PracticeScene");
+            SceneTransition.StartTransition("PracticeScene");
         }
     }
 

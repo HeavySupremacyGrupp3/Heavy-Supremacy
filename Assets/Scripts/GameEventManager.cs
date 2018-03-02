@@ -27,6 +27,8 @@ public class GameEventManager : MonoBehaviour
     public float RecieveMessageDelay = 0.75f;
     public int SMSDayInterval = 1;
 
+    public Animator OpenPhoneController;
+
     private List<StoryNode> choices = new List<StoryNode>();
 
     public static List<StoryNode> messageNodes = new List<StoryNode>();
@@ -103,6 +105,8 @@ public class GameEventManager : MonoBehaviour
             ClearSMSPanel();
             AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
+
+            OpenPhoneController.SetTrigger("RecievedNotification");
         }
         else
         {

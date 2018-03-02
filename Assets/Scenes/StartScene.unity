@@ -211,7 +211,7 @@ RectTransform:
   m_GameObject: {fileID: 111209638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.50928926, y: 0.50928926, z: 0.50928926}
   m_Children: []
   m_Father: {fileID: 1754250436}
   m_RootOrder: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.010596896, g: 0.3602941, b: 0.25900248, a: 0}
+  m_Color: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -256,16 +256,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 68
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 68
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 2
   m_Text: TUTORIAL
 --- !u!222 &111209642
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0.75
-  StartColor: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 0}
-  EndColor: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 1}
+  StartColor: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 0}
+  EndColor: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 1}
   Lerp: 0
   Reverse: 0
   StartDelay: 3
@@ -662,7 +662,7 @@ RectTransform:
   m_GameObject: {fileID: 1111460745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.50928926, y: 0.50928926, z: 0.50928926}
   m_Children: []
   m_Father: {fileID: 965633263}
   m_RootOrder: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.010596896, g: 0.3602941, b: 0.25900248, a: 0}
+  m_Color: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -707,16 +707,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 68
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 68
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 2
   m_Text: QUIT
 --- !u!222 &1111460749
@@ -737,8 +737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0.75
-  StartColor: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 0}
-  EndColor: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 1}
+  StartColor: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 0}
+  EndColor: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 1}
   Lerp: 0
   Reverse: 0
   StartDelay: 3
@@ -4533,7 +4533,7 @@ RectTransform:
   m_GameObject: {fileID: 2021691155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.50928926, y: 0.50928926, z: 0.50928926}
   m_Children: []
   m_Father: {fileID: 2124814530}
   m_RootOrder: 0
@@ -4555,7 +4555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 0}
+  m_Color: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4564,16 +4564,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 68
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 68
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 2
   m_Text: START
 --- !u!222 &2021691158
@@ -4608,8 +4608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0.75
-  StartColor: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 0}
-  EndColor: {r: 0.04541523, g: 0.61764705, b: 0.4518971, a: 1}
+  StartColor: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 0}
+  EndColor: {r: 0.25951555, g: 0.7352941, b: 0.5816728, a: 1}
   Lerp: 0
   Reverse: 0
   StartDelay: 3
