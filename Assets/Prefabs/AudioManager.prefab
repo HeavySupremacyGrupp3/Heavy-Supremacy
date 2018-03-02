@@ -316,13 +316,13 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: bordslampaHUB1
+  - name: bordslampaHUBOn
     clip: {fileID: 8300000, guid: d5c0f32baa9dc774e9eed3fbbfba49b9, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: bordslampaHUB2
+  - name: bordslampaHUBOff
     clip: {fileID: 8300000, guid: cf80d52436bae764581403b7af41b8ea, type: 3}
     volume: 1
     loop: 0
@@ -351,4 +351,16 @@ MonoBehaviour:
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: IntroSound
+    clip: {fileID: 8300000, guid: 20e81dc0329b7d146aec35d0066c8e64, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: StreakSound
+    clip: {fileID: 8300000, guid: 5ccf7cddc55bd80438b5cd249c3bf777, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}

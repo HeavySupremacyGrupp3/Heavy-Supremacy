@@ -9,17 +9,9 @@ public class NoteGenerator : MonoBehaviour
 {
     public int SongIndex = 0;
 
-    public AudioClip[] PracticeWithLeadSongs;
-    public AudioClip[] PracticeWithoutLeadSongs;
-    public AudioClip[] PracticeMIDISongs;
+    public Song[] PracticeSongs;
+    public Song[] GigSongs;
 
-    public AudioClip[] GigWithLeadSongs;
-    public AudioClip[] GigWithoutLeadSongs;
-    public AudioClip[] GigMIDISongs;
-
-    private AudioClip MusicWithLead;
-    private AudioClip MusicWithoutLead;
-    private AudioClip NoteGenerationAudio;
     public AudioSource MusicWithLeadAudioSource;
     public AudioSource MusicWithoutLeadAudioSource;
     public AudioSource NoteGenerationAudioSource;
@@ -29,9 +21,7 @@ public class NoteGenerator : MonoBehaviour
     public AudioMixerGroup GigWithLeadMixer;
     public AudioMixerGroup GigWithoutLeadMixer;
 
-    public float UpdateInterval = 0.1f; //For optimizing performance.
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
-    public float MusicStartDelay = 1;
     public float NoteGenerationStartDelay = 1;
 
     public GameObject[] NotePrefabs;
@@ -66,6 +56,8 @@ public class NoteGenerator : MonoBehaviour
     private float clipVolume;
     private float lastClipVolume;
     private float volumeTreshold = 0.1f;
+    private float UpdateInterval = 0.1f; //For optimizing performance. And to not check same note twice, and at the same time update fast enough to not miss notes.
+    private float musicStartDelay = 1;
     private float[] clipSampleData;
     private bool canSendNextNote = true;
     private float noteSpawnTimer = 0;
@@ -77,6 +69,8 @@ public class NoteGenerator : MonoBehaviour
     private float lerpTimer = 0;
     [SerializeField]
     private float lerpSeconds = 0.25f;
+
+    private Song selectedSong;
 
     void Start()
     {
@@ -101,31 +95,30 @@ public class NoteGenerator : MonoBehaviour
         //Assign audioclips.
         if (!GigBackgroundManager.GigSession)
         {
-            MusicWithLead = PracticeWithLeadSongs[SongIndex];
-            MusicWithoutLead = PracticeWithoutLeadSongs[SongIndex];
-            NoteGenerationAudio = PracticeMIDISongs[SongIndex];
-
+            selectedSong = PracticeSongs[SongIndex];
+            
             MusicWithLeadAudioSource.outputAudioMixerGroup = PracticeWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = PracticeWithoutLeadMixer;
         }
         else if (GigBackgroundManager.GigSession)
         {
-            MusicWithLead = GigWithLeadSongs[SongIndex];
-            MusicWithoutLead = GigWithoutLeadSongs[SongIndex];
-            NoteGenerationAudio = GigMIDISongs[SongIndex];
+            selectedSong = GigSongs[SongIndex];
 
             MusicWithLeadAudioSource.outputAudioMixerGroup = GigWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = GigWithoutLeadMixer;
         }
+        UpdateInterval = selectedSong.GeneratorUpdateInterval;
+        volumeTreshold = selectedSong.MinimumVolumeTreshold;
+        musicStartDelay = selectedSong.MusicDelay;
 
         //Play the music.
-        MusicWithLeadAudioSource.clip = MusicWithLead;
-        MusicWithLeadAudioSource.PlayDelayed(MusicStartDelay);
+        MusicWithLeadAudioSource.clip = selectedSong.MusicWithLead;
+        MusicWithLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        MusicWithoutLeadAudioSource.clip = MusicWithoutLead;
-        MusicWithoutLeadAudioSource.PlayDelayed(MusicStartDelay);
+        MusicWithoutLeadAudioSource.clip = selectedSong.MusicWithoutLead;
+        MusicWithoutLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        NoteGenerationAudioSource.clip = NoteGenerationAudio;
+        NoteGenerationAudioSource.clip = selectedSong.MIDIMusic;
         NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
     }
 
@@ -174,11 +167,11 @@ public class NoteGenerator : MonoBehaviour
             //    volumeTreshold = clipVolume;
 
             //If the tone is long, create only one note.
-            if (clipVolume > 0.1f)
-                canSendNextNote = true;
+            //if (clipVolume >= lastClipVolume)
+            //    canSendNextNote = true;
             //lastClipVolume = clipVolume;
 
-            if (clipVolume > 0.1f && canSendNextNote)
+            if (clipVolume >= volumeTreshold)
             {
                 clipVolume = 0f;
                 canSendNextNote = false;
@@ -208,7 +201,7 @@ public class NoteGenerator : MonoBehaviour
             while (noteIndex == tempIndex && doubleNoteRng < DoubleNoteChance);
             noteIndex = tempIndex;
 
-            
+
             noteSet.Notes.Add(Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity));
             NotesTotal++;
         }
@@ -302,6 +295,11 @@ public class NoteGenerator : MonoBehaviour
 
             if (GigBackgroundManager.GigSession)
             {
+                FameText.text = "-10";
+                MetalText.text = "-20";
+                AngstText.text = "20";
+                MoneyText.text = "150";
+
                 fame.addOrRemoveAmount(-10);
                 metal.addOrRemoveAmount(-20);
                 angst.addOrRemoveAmount(20);

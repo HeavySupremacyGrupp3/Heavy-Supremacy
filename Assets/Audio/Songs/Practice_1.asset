@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9dda8bae53e384b9ac2d039aae14eb, type: 3}
+  m_Name: Practice_1
+  m_EditorClassIdentifier: 
+  MusicWithLead: {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
+  MusicWithoutLead: {fileID: 8300000, guid: 1a5939c9b54d0894bb4bca4f4a1f8a15, type: 3}
+  MIDIMusic: {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
+  GeneratorUpdateInterval: 0.2
+  MinimumVolumeTreshold: 0.1
+  MusicDelay: 2

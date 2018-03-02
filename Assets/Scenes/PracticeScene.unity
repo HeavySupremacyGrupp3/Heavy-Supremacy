@@ -3720,18 +3720,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SongIndex: 0
-  PracticeWithLeadSongs:
-  - {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
-  PracticeWithoutLeadSongs:
-  - {fileID: 8300000, guid: 1a5939c9b54d0894bb4bca4f4a1f8a15, type: 3}
-  PracticeMIDISongs:
-  - {fileID: 8300000, guid: c85aab8c8f4237342a6ba1051f2b9b78, type: 3}
-  GigWithLeadSongs:
-  - {fileID: 8300000, guid: ad9d6fa9fbcec3b4e9765463de2c46d5, type: 3}
-  GigWithoutLeadSongs:
-  - {fileID: 8300000, guid: 95e801b6b043f9e4e8dd42ebfe2012a7, type: 3}
-  GigMIDISongs:
-  - {fileID: 8300000, guid: 0b17e79e0c2e15147aa5410c4c3ec4e7, type: 3}
+  PracticeSongs:
+  - {fileID: 11400000, guid: 8cc930b21d64e1a4b8376265f247694b, type: 2}
+  GigSongs:
+  - {fileID: 11400000, guid: 1a0ce773c64091c4c95a284fdb05a6a5, type: 2}
   MusicWithLeadAudioSource: {fileID: 326710480}
   MusicWithoutLeadAudioSource: {fileID: 383403982}
   NoteGenerationAudioSource: {fileID: 1027093762}
@@ -3743,8 +3735,6 @@ MonoBehaviour:
     type: 2}
   GigWithoutLeadMixer: {fileID: 243424478782109490, guid: 1cbf86622dcc45a4e89f41932eeda121,
     type: 2}
-  UpdateInterval: 0.2
-  MusicStartDelay: 2
   NoteGenerationStartDelay: 0
   NotePrefabs:
   - {fileID: 1287834282934586, guid: 10285977811e1c74dbcdc1245cf582c5, type: 2}
