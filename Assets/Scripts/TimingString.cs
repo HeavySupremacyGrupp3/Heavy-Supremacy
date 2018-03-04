@@ -59,14 +59,6 @@ public class TimingString : TimingSystem
 
     public override void FailTiming()
     {
-        //Make sure note cannot fail if it has been hit.
-        //if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
-        //{
-        //    ClearHitTargetList();
-        //    return;
-        //}
-        //else
-        //{
             base.FailTiming();
 
             NoteGen.SwitchMusicSource(false);
@@ -76,21 +68,10 @@ public class TimingString : TimingSystem
             UpdateStreakCounters(-1000000, null);
             perfectCounter = 0;
 
-        //    ClearHitTargetList();
-        //}
 
         AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         //StringAnimator.SetTrigger("StringStroked");
     }
-
-    //void ClearHitTargetList()
-    //{
-    //    foreach (GameObject go in hitTargets)
-    //    {
-    //        Destroy(go);
-    //    }
-    //    hitTargets.Clear();
-    //}
 
     public override void SucceedTiming(GameObject note)
     {
@@ -106,7 +87,7 @@ public class TimingString : TimingSystem
             AddOrRemoveHealth(HealthGainedPerStreak);
         }
 
-        if (perfectCounter % RequiredStreaksForEffect == 0 && perfectCounter > 0)
+        if (GigBackgroundManager.GigSession && perfectCounter % RequiredStreaksForEffect == 0 && perfectCounter > 0)
         {
             Destroy(Instantiate(StreakEffect), 3);
             AudioManager.instance.Play("StreakSound");
@@ -133,12 +114,11 @@ public class TimingString : TimingSystem
         note.name = "DEAD_NOTE";
 
         GameObject tempTarget = note;
-        //targets.Remove(tempTarget);
-        Destroy(tempTarget);
+        note.GetComponent<BoxCollider2D>().enabled = false;
 
+        note.transform.GetComponentInChildren<CutoffLerp>().Lerp = true;
 
-        //if (!Input.anyKeyDown)
-        targets.Clear();
+        Destroy(tempTarget, 1);
 
         TargetInRange = false;
 
@@ -189,7 +169,7 @@ public class TimingString : TimingSystem
         }
         StreakCounter.text = streakCounter.ToString();
 
-        if (streakCounter >= 10 || streakCounter == 0)
+        if (GigBackgroundManager.GigSession && streakCounter >= 10 || streakCounter == 0)
             BloodShotEffect.Progress = streakCounter / MaxStreakEffectCounter;
     }
 
@@ -216,6 +196,7 @@ public class TimingString : TimingSystem
         if (collision.name != "DEAD_NOTE")
         {
             FailTiming();
+            //Remove notes in the set until there is only one left, then remove the whole set.
             if (NoteGenerator.NoteSets[0].Notes.Count == 1)
             {
                 NoteGenerator.NoteSets.RemoveAt(0);
@@ -224,11 +205,6 @@ public class TimingString : TimingSystem
             {
                 NoteGenerator.NoteSets[0].Notes.RemoveAt(0);
             }
-        }
-
-        if (!CanExitCollider && collision.transform.position.y < transform.position.y - 0.5f)
-        {
-
         }
     }
 

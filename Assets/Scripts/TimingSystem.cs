@@ -9,13 +9,7 @@ public abstract class TimingSystem : MonoBehaviour
     public KeyCode ActivasionKey2;
     public KeyCode ActivasionKey3;
 
-    public bool CanComboKey;
-    public bool CanExitCollider;
-
     protected bool TargetInRange = false;
-
-    public List<GameObject> targets = new List<GameObject>();
-    //public List<GameObject> hitTargets = new List<GameObject>(); //Shitty solution to simultanious "good and miss" appearances.
 
     public static float ActivatedMechanicAndMissedNotesCounter = 0;
 
@@ -80,22 +74,10 @@ public abstract class TimingSystem : MonoBehaviour
     {
         Debug.Log("SUCCEEDED TIMING!");
         ActivatedMechanicAndMissedNotesCounter++;
-
-
-        //hitTargets.Add(targets[0]);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         TargetInRange = true;
-
-        //if (collision.tag == "TimingObject" && !targets.Contains(collision.gameObject))
-        //{
-        //    targets.Add(collision.gameObject);
-        //}
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
     }
 }

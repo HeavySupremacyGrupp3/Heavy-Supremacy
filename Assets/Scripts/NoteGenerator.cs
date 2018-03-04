@@ -74,6 +74,8 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
+        NoteSets.Clear();
+
         if (ShowPracticeTutorial || ShowGigTutorial)
         {
             SetTutorial(true);
@@ -135,7 +137,7 @@ public class NoteGenerator : MonoBehaviour
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
-            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused) //End game if song is over and the game hasn't already ended.
+            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0) //End game if song is over and the game hasn't already ended.
                 EndGame(true);
 
             if (lerpAudio)
@@ -250,10 +252,10 @@ public class NoteGenerator : MonoBehaviour
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(25 * (1 / (1 + (angst.getAmount() / 20))) * (NotesTotal / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter))) * TimingString.MetalMultiplier;
-            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))));
+            metalGained = Mathf.CeilToInt(20 * (1 / (1 + (angst.getAmount() / 200))) * (NotesTotal / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter)))) * TimingString.MetalMultiplier;
+            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))) * (NotesTotal / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter)));
             moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-25 * (NotesTotal / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter)));
+            angstGained = Mathf.CeilToInt(-15 * (NotesTotal / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter))));
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();

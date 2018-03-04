@@ -16,12 +16,14 @@ public class EventEnum : MonoBehaviour
 
     private void Start()
     {
-        RefreshEvent();
         GameManager.sleep += RefreshEvent;
     }
 
     private void RefreshEvent()
     {
+        if (GetComponent<Button>().interactable)
+            return;
+
         GetComponent<Button>().interactable = true;
 
         NodeType = (GameEventManager.nodeType)Random.Range(0, 3);

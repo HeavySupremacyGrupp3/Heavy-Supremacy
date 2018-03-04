@@ -7,11 +7,6 @@ public class NoteSet : MonoBehaviour {
     public List<GameObject> Notes = new List<GameObject>();
     public bool Succeeded = false;
 
-	void Start ()
-    {
-		
-	}
-
     public bool CheckNotes(List<string> activasionKey)
     {
         if (activasionKey.Count != Notes.Count)
@@ -22,7 +17,7 @@ public class NoteSet : MonoBehaviour {
         {
             for (int j = 0; j < activasionKey.Count; j++)
             {
-                if (Notes[i].name.Contains(activasionKey[j]))
+                if (Notes[i] != null && Notes[i].name.Contains(activasionKey[j]))
                 {
                     correctKey = true;
                     break;
