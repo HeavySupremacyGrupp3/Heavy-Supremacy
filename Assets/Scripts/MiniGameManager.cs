@@ -93,12 +93,15 @@ public class MiniGameManager : MonoBehaviour
             updateCounter = 0;
 
             bool hasSpawned = false;
+            float rnd = Random.value;
+            float chance = 0f;
             for (int i = 1; i < productChanse.Length; i++)    //Går igenom varje produkttyps chans att spawna från en lista
             {
-                if (Random.value < productChanse[i] && hasSpawned == false)   //Om ett tal mellan 0-1 är mindre än produktchansen (sätts i inspektorn) och om inget annat har spawnat
+                chance += productChanse[i];                 // Exempel: 0+0.6 -> 0.6+0.2 -> 0.8+0.1 -> 0.9+0.1
+                if (rnd < chance && hasSpawned == false)   //Om ett tal mellan 0-1 är mindre än produktchansen (sätts i inspektorn) och om inget annat har spawnat
                 {
-                    SpawnProduct(i);                  //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
-                    hasSpawned = true;                //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
+                    SpawnProduct(i);                //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
+                    hasSpawned = true;                  //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
                 }
             }
             if (!hasSpawned)
