@@ -27,6 +27,8 @@ public class GameEventManager : MonoBehaviour
     public float RecieveMessageDelay = 0.75f;
     public int SMSDayInterval = 1;
 
+    public EventEnum[] MapEventPins;
+
     public Animator OpenPhoneController;
 
     private List<StoryNode> choices = new List<StoryNode>();
@@ -47,6 +49,12 @@ public class GameEventManager : MonoBehaviour
         LoadEvents("musicNodes", musicNodes);
         LoadEvents("fameNodes", fameNodes);
         LoadEvents("specialNodes", specialNodes);
+
+        //Fetch the mappins here because they start inactive.
+        foreach (EventEnum e in MapEventPins)
+        {
+            GameManager.sleep += e.RefreshEvent;
+        }
 
         if (Random.Range(0f, 1f) <= SpecialNodeChance)
             TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);

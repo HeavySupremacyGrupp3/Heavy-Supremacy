@@ -19,7 +19,7 @@ public class EventEnum : MonoBehaviour
         GameManager.sleep += RefreshEvent;
     }
 
-    private void RefreshEvent()
+    public void RefreshEvent()
     {
         if (GetComponent<Button>().interactable)
             return;

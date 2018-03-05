@@ -52,10 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12be6024941ae46be7ef6357fa2c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 1000
+  Type: 0
+  Price: 800
   OneTimePurchase: 1
   Name: Guitar
   Description: Guitar is broken, playing is hard. Double trouble bitches.
+  MetalMultiplierIncrease: 0.1
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1

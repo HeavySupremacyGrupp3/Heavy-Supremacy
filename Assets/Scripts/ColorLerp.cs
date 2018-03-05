@@ -14,6 +14,7 @@ public class ColorLerp : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private TextMesh textMesh;
     private Text text;
+    private Image image;
     private float timer = 1;
     private Color currentColor;
 
@@ -25,6 +26,7 @@ public class ColorLerp : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         textMesh = GetComponent<TextMesh>();
         text = GetComponent<Text>();
+        image = GetComponent<Image>();
 
         if (spriteRenderer != null)
             spriteRenderer.color = StartColor;
@@ -32,6 +34,8 @@ public class ColorLerp : MonoBehaviour
             textMesh.color = StartColor;
         else if (text != null)
             text.color = StartColor;
+        else if (image != null)
+            image.color = StartColor;
     }
 
     IEnumerator StartLerp()
@@ -61,6 +65,8 @@ public class ColorLerp : MonoBehaviour
             textMesh.color = currentColor;
         else if (text != null)
             text.color = currentColor;
+        else if (image != null)
+            image.color = currentColor;
     }
 
     public void ReverseLerp()

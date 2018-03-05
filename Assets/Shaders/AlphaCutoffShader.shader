@@ -32,7 +32,6 @@ pass
 					struct appdata_t
 					{
 						float4 vertex   : POSITION;
-						float4 color    : COLOR;
 						float2 texcoord : TEXCOORD0;
 					};
 

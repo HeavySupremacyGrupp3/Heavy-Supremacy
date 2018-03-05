@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
+    public Animator EnergyAnimator;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
     {
         if (CheckEnergy(energyCost))
         {
+            AudioManager.instance.Play("practiceClick");
             StopHUBLoops();
             GigBackgroundManager.GigSession = false;
             SceneTransition.StartTransition("PracticeScene");
@@ -137,6 +139,7 @@ public class GameManager : MonoBehaviour
     {
         if (CheckEnergy(energyCost))
         {
+            AudioManager.instance.Play("DoorClick");
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
             SceneTransition.StartTransition("PracticeScene");
@@ -217,6 +220,10 @@ public class GameManager : MonoBehaviour
             return true;
         }
         else
+        {
+            EnergyAnimator.SetTrigger("LerpEnergy");
+            AudioManager.instance.Play("LowEnergy");
             return false;
+        }
     }
 }

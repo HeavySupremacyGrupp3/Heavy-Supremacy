@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  Price: 3000
+  Price: 1200
   OneTimePurchase: 1
   Name: WhiteGuitar
   Description: White Supremacy

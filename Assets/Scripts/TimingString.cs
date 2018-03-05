@@ -44,7 +44,8 @@ public class TimingString : TimingSystem
     private float streakCounter = 0;
     private float streakHighScoreCounter = 0;
     private float perfectCounter = 0;
-    private float health;
+    [HideInInspector]
+    public float health;
 
     void Start()
     {
