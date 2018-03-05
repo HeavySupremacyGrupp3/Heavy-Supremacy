@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114034213965195218}
   - component: {fileID: 114601013590464936}
   - component: {fileID: 95435296052157086}
+  - component: {fileID: 114573154490136288}
   m_Layer: 0
   m_Name: Maskin1
   m_TagString: Maskin
@@ -67,9 +68,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147418782498688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.32, y: 5.2369514, z: 0.0028942889}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4288304268752442}
   m_Father: {fileID: 0}
@@ -134,7 +135,7 @@ Animator:
   m_GameObject: {fileID: 1147418782498688}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b55601049ac7fba409000e0bf1f9fbbb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -154,7 +155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyOutOfRangeDetector: {fileID: 114670445592310160}
-  SecondSound: 1
+--- !u!114 &114573154490136288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147418782498688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e799aa093fa249641b11e63c3af766d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
 --- !u!114 &114601013590464936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,7 +187,6 @@ MonoBehaviour:
   key: 276
   lerpTime: 0.2
   lerpDistance: 2.5
-  FirstSound: 0
 --- !u!114 &114670445592310160
 MonoBehaviour:
   m_ObjectHideFlags: 1

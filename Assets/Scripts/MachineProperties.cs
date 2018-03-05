@@ -40,7 +40,7 @@ public class MachineProperties : MonoBehaviour {
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         //Set start and end position that will lerp
         startPosition = transform.position;
@@ -50,8 +50,8 @@ public class MachineProperties : MonoBehaviour {
     void Update()
     {
         MachineMovement();
-        //if (type > 1)
-          //  animator.SetBool("impact", impact);
+        if (animator != null)
+            animator.SetBool("impact", impact);
 
         //When called in MachineMovement, start the lerps
         if (lerpMachine)
@@ -91,6 +91,7 @@ public class MachineProperties : MonoBehaviour {
     {
 
         //  Älskar dig <3
+        // ty
 
         if (Input.GetKeyDown(key) && lerpTimer <= 0)
             lerpMachine = OnMachineMove(button, buttonPressedSprite, lerpMachine, type);
