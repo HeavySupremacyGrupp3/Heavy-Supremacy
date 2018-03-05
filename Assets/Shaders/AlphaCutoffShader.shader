@@ -7,6 +7,7 @@
 		_EdgeColor("Edge Color", Color) = (1,1,1,1)
 		_EdgeWidth("Edge Width", Range(0,1)) = 0
 		_EdgeCutoffMultiplier("Edge Width multiplied by Cutoff", float) = 0
+		_CutoffFade("Cutoff Fade", Range(0,1)) = 0
 	}
 		SubShader{
 			Tags{
@@ -45,7 +46,7 @@ pass
 
 				sampler2D _MainTex;
 				sampler2D _CutoffTex;
-				float _Cutoff, _EdgeWidth, _EdgeCutoffMultiplier;
+				float _Cutoff, _EdgeWidth, _EdgeCutoffMultiplier, _CutoffFade, _EdgeWidthMultipliedMax;
 				fixed4 _Color, _EdgeColor;
 
 				v2f vert(appdata_t i)
@@ -60,20 +61,40 @@ pass
 
 				fixed4 frag(v2f i) : SV_Target
 				{
-					fixed4 cutOffAlpha = tex2D(_CutoffTex, i.texcoord);
+					if (_Cutoff == 0)
+						_EdgeWidthMultipliedMax = _EdgeWidth;
+
+					fixed4 cutOffTex = tex2D(_CutoffTex, i.texcoord);
 
 					fixed4 wholeTex = tex2D(_MainTex, i.texcoord);
 
 					float a = 0;
-					if (cutOffAlpha.a > _Cutoff)
+					if (cutOffTex.a > _Cutoff)
 					{
 						a = wholeTex.a;
-						if (cutOffAlpha.a - _Cutoff < _EdgeWidth * (_Cutoff * _EdgeCutoffMultiplier))
+
+						if (_EdgeWidth <= _EdgeWidthMultipliedMax && _EdgeCutoffMultiplier > 0)
+							_EdgeWidth = (_Cutoff * _EdgeCutoffMultiplier);
+
+						if (cutOffTex.a - _Cutoff < _EdgeWidth)
+						{
+
+							if (_CutoffFade > 0)
+							{
+								a -= lerp(1, 0, _EdgeWidth - _CutoffFade);
+								if (a < 0)
+									a = 0;
+								else if (a > 1)
+									a = 1;
+							}
 							wholeTex = _EdgeColor;
+
+						}
 					}
 					else
+					{
 						a = 0;
-
+					}
 
 					fixed4 c = float4(wholeTex[0], wholeTex[1], wholeTex[2], a) * _Color;
 					c.rgb *= c.a;

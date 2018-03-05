@@ -3660,6 +3660,74 @@ Transform:
   m_Father: {fileID: 555312621}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &745895551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 745895552}
+  - component: {fileID: 745895554}
+  - component: {fileID: 745895553}
+  m_Layer: 5
+  m_Name: Background_Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &745895552
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745895551}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.10000038, y: -0.5, z: 0}
+  m_LocalScale: {x: 1.0000186, y: 1.0000186, z: 1.0000186}
+  m_Children: []
+  m_Father: {fileID: 2040840782}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.25, y: 0}
+  m_AnchorMax: {x: 0.75, y: 1}
+  m_AnchoredPosition: {x: -0.1, y: -0.5}
+  m_SizeDelta: {x: 28.349998, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &745895553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745895551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: f89c75f9cd338e643ab94f8f055695ee, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &745895554
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745895551}
 --- !u!1001 &753075744
 Prefab:
   m_ObjectHideFlags: 0
@@ -3699,6 +3767,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 212564349987493258, guid: 10285977811e1c74dbcdc1245cf582c5,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2270e255bed9d7f4a9cc5e0dc6b7d56b,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10285977811e1c74dbcdc1245cf582c5, type: 2}
   m_IsPrefabParent: 0
@@ -4080,9 +4154,6 @@ MonoBehaviour:
   ActivasionKey1: 276
   ActivasionKey2: 274
   ActivasionKey3: 275
-  CanComboKey: 1
-  CanExitCollider: 0
-  targets: []
   ErrorSounds:
   - PracticeError1
   - PracticeError2
@@ -4090,8 +4161,7 @@ MonoBehaviour:
   AudioSource: {fileID: 824317877}
   MaxHealth: 15
   HealthImage: {fileID: 2040840783}
-  StandardHeart: {fileID: 21300000, guid: 7a47351438197a847ac4b407aa73dca8, type: 3}
-  BurningHeart: {fileID: 21300000, guid: 141a55d776f22f547896fd1bbc83152d, type: 3}
+  MaxHealthImage: {fileID: 1154265505}
   AngstPopupPrefab: {fileID: 1037883681889236, guid: 6262f128934fece44bd7d2a3cd54a6a1,
     type: 2}
   MetalPopupPrefab: {fileID: 1536928154513132, guid: c5018d552d607ed4ea06b4404152d178,
@@ -5687,7 +5757,7 @@ GameObject:
   - component: {fileID: 1154265506}
   - component: {fileID: 1154265505}
   m_Layer: 5
-  m_Name: Background_Image
+  m_Name: MaxHealth_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5700,15 +5770,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154265503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: -5.199997, z: 0}
   m_LocalScale: {x: 0.999922, y: 0.99992234, z: 0.99992234}
   m_Children: []
   m_Father: {fileID: 2040840782}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0}
   m_AnchorMax: {x: 0.75, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1, y: -5.2}
   m_SizeDelta: {x: 28.349998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154265505
@@ -5717,12 +5787,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154265503}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: f64599fd22742e34d8d9ccffa1bbfa95, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -5730,7 +5800,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f89c75f9cd338e643ab94f8f055695ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 444760711b89ca740808d16110bf2ded, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5883,7 +5953,7 @@ Prefab:
     - target: {fileID: 224755267757318354, guid: 80022ef44fe1c1448a5fea4e18a37413,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224755267757318354, guid: 80022ef44fe1c1448a5fea4e18a37413,
         type: 2}
@@ -12265,6 +12335,7 @@ RectTransform:
   m_LocalPosition: {x: -792, y: 348, z: 0}
   m_LocalScale: {x: 4.609354, y: 2.304677, z: 2.304677}
   m_Children:
+  - {fileID: 745895552}
   - {fileID: 1154265504}
   m_Father: {fileID: 700506060}
   m_RootOrder: 6
@@ -12285,7 +12356,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: f64599fd22742e34d8d9ccffa1bbfa95, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:

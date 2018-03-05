@@ -10,8 +10,7 @@ public class TimingString : TimingSystem
 
     public float MaxHealth = 5;
     public Image HealthImage;
-    public Sprite StandardHeart;
-    public Sprite BurningHeart;
+    public Image MaxHealthImage;
     public GameObject AngstPopupPrefab;
     public GameObject MetalPopupPrefab;
     public GameObject NoteHitEffect;
@@ -177,17 +176,18 @@ public class TimingString : TimingSystem
     {
         health += amount;
 
-        HealthImage.sprite = StandardHeart;
-
+        if (health < MaxHealth)
+            MaxHealthImage.enabled = false;
         if (health > MaxHealth)
         {
             health = MaxHealth;
-            HealthImage.sprite = BurningHeart;
+            MaxHealthImage.enabled = true;
         }
         else if (health <= 0 && GigBackgroundManager.GigSession)
         {
             FindObjectOfType<NoteGenerator>().EndGame(false);
         }
+
         HealthImage.fillAmount = health / MaxHealth;
     }
 

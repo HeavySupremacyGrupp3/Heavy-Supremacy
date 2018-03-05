@@ -35,7 +35,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistMask:
-        m_Texture: {fileID: 2800000, guid: e31a4f0845fed5b47bbd87449cc928dc, type: 3}
+        m_Texture: {fileID: 2800000, guid: b16c22b4e3fa11d4b9e83f6fcfac8cc6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistTex:
@@ -51,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 141a55d776f22f547896fd1bbc83152d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 444760711b89ca740808d16110bf2ded, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -74,7 +74,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 1
     - _DetailNormalMapScale: 1
-    - _DistMultiplier: 0.0256
+    - _DistMultiplier: 0.0201
     - _DistXSpeed: -2.6
     - _DistYSpeed: 2.7
     - _DstBlend: 0
@@ -91,12 +91,12 @@ Material:
     - _OverlayScrollSpeed: 80
     - _OverlayScrollX: 7.5
     - _Parallax: 0.02
-    - _Rotation: 90
+    - _Rotation: 65
     - _ScrollSpeedX: 0
     - _ScrollSpeedY: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 11.3
+    - _Speed: 14.92
     - _SrcBlend: 1
     - _TexBlend: 1
     - _UVSec: 0
