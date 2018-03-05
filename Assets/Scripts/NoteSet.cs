@@ -20,8 +20,9 @@ public class NoteSet : MonoBehaviour {
                 if (Notes[i] != null && Notes[i].name.Contains(activasionKey[j]))
                 {
                     correctKey = true;
-                    break;
                 }
+                else
+                    correctKey = false;
             }
         }
 

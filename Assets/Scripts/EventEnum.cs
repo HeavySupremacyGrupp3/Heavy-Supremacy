@@ -14,11 +14,6 @@ public class EventEnum : MonoBehaviour
     public GameEventManager.nodeType NodeType;
     public Sprite FameSprite, MusicSprite, SocialSprite;
 
-    private void Start()
-    {
-        GameManager.sleep += RefreshEvent;
-    }
-
     public void RefreshEvent()
     {
         if (GetComponent<Button>().interactable)

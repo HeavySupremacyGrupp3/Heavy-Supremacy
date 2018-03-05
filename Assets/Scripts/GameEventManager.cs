@@ -44,25 +44,42 @@ public class GameEventManager : MonoBehaviour
 
     private void Awake()
     {
-        LoadEvents("messageNodes", messageNodes);
-        LoadEvents("socialNodes", socialNodes);
-        LoadEvents("musicNodes", musicNodes);
-        LoadEvents("fameNodes", fameNodes);
-        LoadEvents("specialNodes", specialNodes);
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "HUBScene")
+        {
+            LoadEvents("messageNodes", messageNodes);
+            LoadEvents("socialNodes", socialNodes);
+            LoadEvents("musicNodes", musicNodes);
+            LoadEvents("fameNodes", fameNodes);
+            LoadEvents("specialNodes", specialNodes);
 
+     
+
+            if (Random.Range(0f, 1f) <= SpecialNodeChance)
+                TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
+
+            if (Random.Range(0f, 1f) <= MessageNodeChance)
+            {
+                ClearSMSPanel();
+                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            }
+        }
+    }
+
+    void Start()
+    {
         //Fetch the mappins here because they start inactive.
         foreach (EventEnum e in MapEventPins)
         {
             GameManager.sleep += e.RefreshEvent;
         }
+    }
 
-        if (Random.Range(0f, 1f) <= SpecialNodeChance)
-            TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
-
-        if (Random.Range(0f, 1f) <= MessageNodeChance)
+    private void OnDestroy()
+    {
+        //Fetch the mappins here because they start inactive.
+        foreach (EventEnum e in MapEventPins)
         {
-            ClearSMSPanel();
-            TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            GameManager.sleep -= e.RefreshEvent;
         }
     }
 
