@@ -7,7 +7,8 @@ public class produktScript : MonoBehaviour
 
     public delegate void mittEvent();
     public static event mittEvent earnMoney;
-	public static event mittEvent collidedWithBox;
+	public static event mittEvent collidedWithBox;	
+	public static event mittEvent JustReachedCheckpoint;
 
     public Sprite[] Sprites;
     public Sprite spoilSprite;   	
@@ -42,24 +43,44 @@ public class produktScript : MonoBehaviour
         checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MinigameManager
         productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager       
     }
+	
+	void OnEnable()
+	{
+		MiniGameManager.stopEverything += switchWaiting;		
+	}
+	
+	void OnDisable()
+	{
+		MiniGameManager.stopEverything -= switchWaiting;
+	}
+	
+	void switchWaiting()
+	{
+		omRörSig();
+	}
 
     void Update()
     {
-        if (transform.position.x < checkpoint.transform.position.x && !waiting || reachedCheckpoint && !waiting) //Om produkten inte är framme vid checkpoint, rör på den. Eller om Den har gått förbi check. och inte är waiting
+        if (!waiting) //Om produkten inte är framme vid checkpoint, rör på den. Eller om Den har gått förbi check. och inte är waiting
         {
             transform.Translate(Vector3.right * 3f * Time.deltaTime);                      //Rör på produkten
         }
-        else if (!waiting)                                                         
-        {
-            
-            foreach (GameObject product in productList)         //För varje produkt som är ute i scenen (som har lagts i listan i minigamemanager)
-            {
-                product.GetComponent<produktScript>().Wait();                  //Kör wait på varje produkt i scenen
-            }
-            //mgm.changeSpawnaFlaskor();
+		
+		if(transform.position.x > checkpoint.transform.position.x && !reachedCheckpoint)
+		{
+			reachedCheckpoint=true;
+			JustReachedCheckpoint();
+		}
+    }
+	
+	void omRörSig()
+	{
+		if (!waiting)                                                         
+        {     			
+			Wait();	
             StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
         }
-    }
+	}
 
     public void Wait()
     {
