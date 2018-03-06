@@ -13,16 +13,12 @@ public class produktScript : MonoBehaviour
     public Sprite spoilSprite;   	
 	
 	public int type = 0;
-	public float spacing;
 	
     public bool Spoiled = false;
 
     bool moving = true;
     bool waiting = false;
     bool reachedCheckpoint = false;   
-	
-	Vector3 startPosition;
-    Vector3 endPosition;
 	
 	MiniGameManager mgm;
     Transform checkpoint;	
@@ -36,9 +32,7 @@ public class produktScript : MonoBehaviour
     private void Start()
     {
         mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
-        moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
-        startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x + spacing / 2f, startPosition.y);
+        moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();        
         checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MinigameManager
         productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager       
     }
@@ -56,7 +50,6 @@ public class produktScript : MonoBehaviour
             {
                 product.GetComponent<produktScript>().Wait();                  //Kör wait på varje produkt i scenen
             }
-            //mgm.changeSpawnaFlaskor();
             StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
         }
     }
