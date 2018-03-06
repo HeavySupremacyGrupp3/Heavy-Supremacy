@@ -1383,6 +1383,10 @@ Prefab:
       propertyPath: button
       value: 
       objectReference: {fileID: 1039071040}
+    - target: {fileID: 1667151772045956, guid: 7035485e5743ac142b4c9e04733837d6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7035485e5743ac142b4c9e04733837d6, type: 2}
   m_IsPrefabParent: 0
@@ -1700,6 +1704,10 @@ Prefab:
       propertyPath: button
       value: 
       objectReference: {fileID: 1725222973}
+    - target: {fileID: 1145600821214002, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
   m_IsPrefabParent: 0
@@ -5592,6 +5600,10 @@ Prefab:
       propertyPath: button
       value: 
       objectReference: {fileID: 108832088}
+    - target: {fileID: 1250594219298062, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
   m_IsPrefabParent: 0

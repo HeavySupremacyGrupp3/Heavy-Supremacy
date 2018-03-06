@@ -72,7 +72,7 @@ public class produktScript : MonoBehaviour
         if (other.gameObject.tag == "Box" && gameObject != null)
         {
 			collidedWithBox();
-            if(!Spoiled)
+            if(!Spoiled && type==3)
 				earnMoney();
 
             Destroy(gameObject);
