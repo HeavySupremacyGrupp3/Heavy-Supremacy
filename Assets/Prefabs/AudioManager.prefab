@@ -376,3 +376,15 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
+  - name: HappyAudience
+    clip: {fileID: 8300000, guid: edc6c3ff973e8b949adc9c0afd1e8129, type: 3}
+    volume: 1
+    loop: 1
+    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: SadAudience
+    clip: {fileID: 8300000, guid: 70ae06ac2ba047c42bbfaad937db0f98, type: 3}
+    volume: 1
+    loop: 1
+    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}

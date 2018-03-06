@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         if (CheckEnergy(energyCost))
         {
+            AudioManager.instance.Play("DoorClick");
             StopHUBLoops();
             SceneTransition.StartTransition("WorkScene");
         }
@@ -139,7 +140,6 @@ public class GameManager : MonoBehaviour
     {
         if (CheckEnergy(energyCost))
         {
-            AudioManager.instance.Play("DoorClick");
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
             SceneTransition.StartTransition("PracticeScene");
