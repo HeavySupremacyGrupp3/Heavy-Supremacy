@@ -7,6 +7,7 @@ public class produktScript : MonoBehaviour
 
     public delegate void mittEvent();
     public static event mittEvent earnMoney;
+	public static event mittEvent collidedWithBox;
 
     public Sprite[] Sprites;
     public Sprite spoilSprite;   	
@@ -70,10 +71,9 @@ public class produktScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Box" && gameObject != null)
         {
-            //if (!Spoiled)
-                earnMoney();
+			collidedWithBox();
             if(!Spoiled)
-                mgm.addedMoney += moneyStats.difference;
+				earnMoney();
 
             Destroy(gameObject);
             mgm.RemoveFromList();

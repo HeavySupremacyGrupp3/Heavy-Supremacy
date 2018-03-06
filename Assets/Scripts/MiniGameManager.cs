@@ -62,12 +62,14 @@ public class MiniGameManager : MonoBehaviour
 
     void OnEnable()
     {
-        produktScript.earnMoney += omaewashindeiru;
+        produktScript.earnMoney += earnMoneyIfReachedEnd;
+		produktScript.collidedWithBox += stopWorkIfEnoughProducts;
     }
 
     void OnDisable()
     {
-        produktScript.earnMoney -= omaewashindeiru;
+        produktScript.earnMoney -= earnMoneyIfReachedEnd;
+		produktScript.collidedWithBox -= stopWorkIfEnoughProducts;
     }
 
     void Start()
@@ -156,16 +158,17 @@ public class MiniGameManager : MonoBehaviour
     }
 
     //counts products finished, and shows the result screen if products finished > set amount
-    void omaewashindeiru()
+    void earnMoneyIfReachedEnd()
     {
-        finishedProducts++;
-        //addedMoney += moneyStats.difference; //When a product is finished, collect data on how much money you earned (difference)
-
-        if (finishedProducts == quitWorkAfterProducts && cantStopWontStop == false)
-        {
-            LoadResultScreen();         //Load resultScreen when the number of finished products has been achieved
-        }
+		addedMoney += moneyStats.difference; //When a product is finished, collect data on how much money you earned (difference)
     }
+	
+	void stopWorkIfEnoughProducts()
+	{
+		finishedProducts++;
+		if (finishedProducts == quitWorkAfterProducts && !cantStopWontStop)
+			LoadResultScreen();   //Load resultScreen when the number of finished products has been achieved
+	}
 
     public void SpawnProduct(int rng)
     {
