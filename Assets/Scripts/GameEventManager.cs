@@ -76,7 +76,6 @@ public class GameEventManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Fetch the mappins here because they start inactive.
         foreach (EventEnum e in MapEventPins)
         {
             GameManager.sleep -= e.RefreshEvent;

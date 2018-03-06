@@ -252,10 +252,10 @@ public class NoteGenerator : MonoBehaviour
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(20 * (1 / (1 + (angst.getAmount() / 200))) * (NotesTotal / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter)))) * TimingString.MetalMultiplier;
-            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))) * (NotesTotal / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter)));
+            metalGained = Mathf.CeilToInt(20 * (1 / (1 + (angst.getAmount() / 200))) * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter)))) * TimingString.MetalMultiplier;
+            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))) * ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter)));
             moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-15 * (NotesTotal / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter))));
+            angstGained = Mathf.CeilToInt(-15 * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter))));
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();
