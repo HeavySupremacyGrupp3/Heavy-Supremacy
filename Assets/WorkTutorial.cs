@@ -36,6 +36,7 @@ public class WorkTutorial : MonoBehaviour
 			changeOrderInLayerForObject(HighlightedObjects[A], 1);
 		}	
 		
+		if(B<HighlightedObjects.Length)
 		changeOrderInLayerForObject(HighlightedObjects[B], 200);	
 	}
 	
