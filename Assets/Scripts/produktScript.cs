@@ -56,7 +56,8 @@ public class produktScript : MonoBehaviour
 	
 	void switchWaiting()
 	{
-		omRörSig();
+		//omRörSig();
+		waiting=!waiting;
 	}
 
     void Update()
@@ -66,7 +67,7 @@ public class produktScript : MonoBehaviour
             transform.Translate(Vector3.right * 3f * Time.deltaTime);                      //Rör på produkten
         }
 		
-		if(transform.position.x > checkpoint.transform.position.x && !reachedCheckpoint)
+		if(!reachedCheckpoint) //transform.position.x > checkpoint.transform.position.x && 
 		{
 			reachedCheckpoint=true;
 			JustReachedCheckpoint();
@@ -77,17 +78,11 @@ public class produktScript : MonoBehaviour
 	{
 		if (!waiting)                                                         
         {     			
-			Wait();	
-            StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
+			//Wait();	
+            //StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
         }
 	}
-
-    public void Wait()
-    {
-        waiting = true;
-        StartCoroutine(StartMovingAfter(1f));               //Kör igång coroutine som väntar 2 sekunder innan den sätter waiting till false (produkter kan röra sig igen)
-    }
-
+	
     void OnTriggerEnter2D(Collider2D other) //när produkten når slutet och man ska tjäna pengar
     {
         if (other.gameObject.tag == "Box" && gameObject != null)
@@ -105,19 +100,6 @@ public class produktScript : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = spoilSprite;
         Spoiled = true;
-    }
-
-    private IEnumerator StartMovingAfter(float time)
-    {
-        yield return new WaitForSeconds(time);  
-        waiting = false;
-    }
-
-    private IEnumerator StartMovingAfterCheckpoint(float time)
-    {
-        stopProducts();         //Event som stoppar rullband och kugghjul
-        yield return new WaitForSeconds(time);
-        reachedCheckpoint = true;
-        stopProducts();    //Samma event startar det igen (efter 2 sekunder)
-    }
+    }	
+	
 }

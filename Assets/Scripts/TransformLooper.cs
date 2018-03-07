@@ -14,12 +14,12 @@ public class TransformLooper : MonoBehaviour
 
     void OnEnable()
     {
-        produktScript.stopProducts += StopLoop;
+        MiniGameManager.stopEverything += StopLoop;
     }
 
     void OnDisable()
     {
-        produktScript.stopProducts -= StopLoop;
+        MiniGameManager.stopEverything -= StopLoop;
     }
 
     private void Start()
