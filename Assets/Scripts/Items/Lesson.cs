@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Lesson : Item {
 
-    public float PracticeAngstMultiplierIncrease;
-    public float PracticeMetalMultiplierIncrease;
-
-    private void Start()
-    {
-        //base.Start();
-    }
+    public float MetalMultiplierIncrease;
+    public float PriceIncreaseMultiplier = 2;
+    public float StartPrice;
 
     public override void ActivatePurchase()
-    {
+    { 
         base.ActivatePurchase();
         Debug.Log("PURCHASED LESSON!");
-        TimingString.AngstMultiplier += PracticeAngstMultiplierIncrease;
-        TimingString.MetalMultiplier += PracticeMetalMultiplierIncrease;
+        TimingString.MetalMultiplier += MetalMultiplierIncrease;
+
+        Price = Mathf.Round(Price * PriceIncreaseMultiplier);
+    }
+
+    public void ResetPrice()
+    {
+        Debug.Log("asdasds");
+        Price = StartPrice;
     }
 }

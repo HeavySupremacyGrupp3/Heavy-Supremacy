@@ -44,7 +44,7 @@ MonoBehaviour:
   Price: 1200
   OneTimePurchase: 1
   Name: WhiteGuitar
-  Description: White Supremacy
+  Description: Recieve double notes, double the fun!
   ProductImage: {fileID: 21300000, guid: 58c270be915f6254dac1a2cb736c216e, type: 3}
   DoubleNoteChance: 0.1
   MetalMultiplierIncrease: 0.1
