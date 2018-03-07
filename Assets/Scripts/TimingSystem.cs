@@ -11,11 +11,11 @@ public abstract class TimingSystem : MonoBehaviour
 
     protected bool TargetInRange = false;
 
-    public static float ActivatedMechanicAndMissedNotesCounter = 0;
+    public static float FailedTimingCounter = 0;
 
     private void Start()
     {
-        ActivatedMechanicAndMissedNotesCounter = 0;
+        FailedTimingCounter = 0;
     }
 
     void Update()
@@ -65,7 +65,7 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void FailTiming()
     {
         Debug.Log("FAILED TIMING!");
-        ActivatedMechanicAndMissedNotesCounter++;
+        FailedTimingCounter++;
 
         TargetInRange = false;
     }
@@ -73,7 +73,6 @@ public abstract class TimingSystem : MonoBehaviour
     public virtual void SucceedTiming(GameObject note)
     {
         Debug.Log("SUCCEEDED TIMING!");
-        ActivatedMechanicAndMissedNotesCounter++;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

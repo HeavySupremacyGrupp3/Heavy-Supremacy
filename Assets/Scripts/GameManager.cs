@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float Rent;
     public static int day = 1;
     public static int week = 1;
+    public GameObject IntroPanel;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public static string EndGameTitleText;
     public static bool ToEndGame;
     public static bool RestartGame;
+    public static bool ShowIntroPanel;
 
 	private KeyCode key=KeyCode.Escape;
 
@@ -31,6 +33,11 @@ public class GameManager : MonoBehaviour
             EndGame(EndGameTitleText);
         if (RestartGame)
             Restart();
+
+        if (ShowIntroPanel)
+        {
+            IntroPanel.SetActive(true);
+        }
 
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
@@ -225,5 +232,10 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.Play("LowEnergy");
             return false;
         }
+    }
+
+    public void SetIntroPanelBool(bool active)
+    {
+        ShowIntroPanel = active;
     }
 }

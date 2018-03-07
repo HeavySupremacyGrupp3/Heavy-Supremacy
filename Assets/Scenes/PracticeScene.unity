@@ -899,8 +899,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256634892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.5, y: 18, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 85.5, y: 22.045, z: 0}
+  m_LocalScale: {x: 0.66967845, y: 0.6696783, z: 0.6696783}
   m_Children: []
   m_Father: {fileID: 1536536005}
   m_RootOrder: 0
@@ -930,8 +930,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -942,7 +942,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return to HUB
+  m_Text: End Practice
 --- !u!222 &256634895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7317,7 +7317,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1536536004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -109.24, y: -263, z: 0}
+  m_LocalPosition: {x: -109.24, y: -277.2, z: 0}
   m_LocalScale: {x: 1.3142134, y: 1.3142146, z: 1.3142146}
   m_Children:
   - {fileID: 256634893}
@@ -7326,8 +7326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109.24, y: -263}
-  m_SizeDelta: {x: 171, y: 36}
+  m_AnchoredPosition: {x: -109.24, y: -277.2}
+  m_SizeDelta: {x: 171, y: 44.09}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1536536006
 MonoBehaviour:
@@ -7400,7 +7400,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4ee73819f71127e4c93cc056aeb550aa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
