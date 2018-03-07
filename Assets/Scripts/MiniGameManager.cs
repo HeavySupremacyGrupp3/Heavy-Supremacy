@@ -48,6 +48,8 @@ public class MiniGameManager : MonoBehaviour
 	
 	public Transform checkpoint;
 
+    int productsSeen = 0;
+
     [HideInInspector]
     public float addedMoney;
     private moneyStatScript moneyStats;
@@ -119,19 +121,22 @@ public class MiniGameManager : MonoBehaviour
             if (!hasSpawned)
                 SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
 
-			changeSpawnStopProducts();				//stanna upp allt
+            productsSeen++;
+
+            if (productsSeen > 1)
+                changeSpawnStopProducts();
         }
 
-        if (productsAreStopped) //stannar produkterna en viss tid
+        if (productsAreStopped)
         {
             stopCounter++;
-            if (stopCounter == 50) //tiden de står stilla
+            if (stopCounter == 50)
             {
-                changeSpawnStopProducts(); //säger åt dom att börja röra sig igen
+                changeSpawnStopProducts();
                 stopCounter = 0;
             }
         }
-    }	
+    }
 
     public void LoadHUB()
     {
