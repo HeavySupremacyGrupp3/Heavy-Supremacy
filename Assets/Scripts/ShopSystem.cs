@@ -17,6 +17,8 @@ public class ShopSystem : MonoBehaviour
     public GameObject AreYouSurePanel;
     public Button YesButton;
     public Text ProductDescription;
+    public Image ProductImage;
+    public Text ProductPrice;
     public AudioClip ExpensivePurchaseSound;
     public AudioClip RegularPurchaseSound;
     public AudioClip CheapPurchaseSound;
@@ -79,6 +81,11 @@ public class ShopSystem : MonoBehaviour
         AreYouSurePanel.SetActive(true);
         Item item = FindItemByName(itemToBePurchased);
         ProductDescription.text = item.Description;
+        ProductImage.sprite = item.ProductImage;
+        RectTransform rectTransform = ProductImage.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(item.ProductImage.rect.width, item.ProductImage.rect.height);
+        ProductPrice.text = item.Price.ToString();
+
         //Sufficient funds.
         if (moneyStatScript.getAmount() - item.Price >= 0)
         {

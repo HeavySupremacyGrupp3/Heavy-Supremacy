@@ -47,6 +47,9 @@ public class TimingString : TimingSystem
     [HideInInspector]
     public float health;
 
+    private Sound HappyAudience;
+    private Sound SadAudience;
+
     void Start()
     {
         health = MaxHealth;
@@ -55,6 +58,7 @@ public class TimingString : TimingSystem
             HealthImage.gameObject.SetActive(false);
 
         NotesHit = 0;
+        UpdateAudienceAudio();
     }
 
     public override void FailTiming()
@@ -190,6 +194,27 @@ public class TimingString : TimingSystem
         }
 
         HealthImage.fillAmount = health / MaxHealth;
+        UpdateAudienceAudio();
+    }
+
+    private void UpdateAudienceAudio()
+    {
+        if (GigBackgroundManager.GigSession)
+        {
+            if (HappyAudience == null)
+            {
+                HappyAudience = AudioManager.instance.GetSound("HappyAudience");
+                AudioManager.instance.Play(HappyAudience.name);
+            }
+            if (SadAudience == null)
+            {
+                SadAudience = AudioManager.instance.GetSound("SadAudience");
+                AudioManager.instance.Play(SadAudience.name);
+            }
+
+            HappyAudience.source.volume = (health / MaxHealth) * HappyAudience.volume;
+            SadAudience.source.volume = (1 - (health / MaxHealth)) * SadAudience.volume;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

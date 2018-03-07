@@ -59,19 +59,29 @@ public class MiniGameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject resultScreen;
+	
+	public delegate void mittEvent();
+    public static event mittEvent stopEverything;
 
     void OnEnable()
     {
         produktScript.earnMoney += earnMoneyIfReachedEnd;
 		produktScript.collidedWithBox += stopWorkIfEnoughProducts;
+		produktScript.JustReachedCheckpoint += checkpointReached;
     }
 
     void OnDisable()
     {
         produktScript.earnMoney -= earnMoneyIfReachedEnd;
 		produktScript.collidedWithBox -= stopWorkIfEnoughProducts;
+		produktScript.JustReachedCheckpoint -=checkpointReached;
     }
 
+	void checkpointReached()
+	{
+		Debug.Log("Checkpoint just reached.");
+	}
+	
     void Start()
     {
         AudioManager.instance.Play("rullband");
@@ -102,13 +112,14 @@ public class MiniGameManager : MonoBehaviour
                 chance += productChanse[i];                 // Exempel: 0+0.6 -> 0.6+0.2 -> 0.8+0.1 -> 0.9+0.1
                 if (rnd < chance && hasSpawned == false)   //Om ett tal mellan 0-1 är mindre än produktchansen (sätts i inspektorn) och om inget annat har spawnat
                 {
-                    SpawnProduct(i);                //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
-                    hasSpawned = true;                  //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
+					if(i<productChanse.Length-1)
+						SpawnProduct(i);                //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
+
+					hasSpawned = true;                  //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
                 }
             }
             if (!hasSpawned)
                 SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
-
 
             productsSeen++;
 
@@ -155,6 +166,7 @@ public class MiniGameManager : MonoBehaviour
     {
         spawnStuff = !spawnStuff;
         productsAreStopped = !productsAreStopped;
+		stopEverything();
     }
 
     //counts products finished, and shows the result screen if products finished > set amount

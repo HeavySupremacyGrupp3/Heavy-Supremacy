@@ -251,11 +251,13 @@ public class NoteGenerator : MonoBehaviour
             else
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
 
+            Debug.Log(TimingSystem.FailedTimingCounter);
+
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(20 * (1 / (1 + (angst.getAmount() / 200))) * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter)))) * TimingString.MetalMultiplier;
-            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))) * ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.ActivatedMechanicAndMissedNotesCounter)));
+            metalGained = Mathf.CeilToInt(20 * (1 / (1 + (angst.getAmount() / 100))) * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)))) * TimingString.MetalMultiplier;
+            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))) * ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.FailedTimingCounter)));
             moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-15 * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.ActivatedMechanicAndMissedNotesCounter))));
+            angstGained = Mathf.CeilToInt(-15 * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter))));
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();

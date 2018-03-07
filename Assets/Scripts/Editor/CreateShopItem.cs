@@ -68,6 +68,8 @@ public class CreateShopItem : EditorWindow
                 EditorGUILayout.LabelField("Item Sprite");
                 ItemPrefab.GetComponent<Image>().sprite = EditorGUILayout.ObjectField(ItemPrefab.GetComponent<Image>().sprite, typeof(Sprite), true) as Sprite;
 
+                item.ProductImage = ItemPrefab.GetComponent<Image>().sprite;
+
                 if (GUILayout.Button("Create Item"))
                     CreateItem();
             }

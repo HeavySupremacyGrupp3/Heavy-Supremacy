@@ -57,7 +57,10 @@ MonoBehaviour:
   OneTimePurchase: 1
   Name: Guitar
   Description: Guitar is broken, playing is hard. Double trouble bitches.
+  ProductImage: {fileID: 21300000, guid: 1a1ba0fe9812bc549ad0b2f0f12d07e9, type: 3}
   MetalMultiplierIncrease: 0.1
+  HUBGuitar: Practice_Button
+  ScaleMultiplier: 0.75
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1

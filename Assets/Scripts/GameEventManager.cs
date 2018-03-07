@@ -30,6 +30,7 @@ public class GameEventManager : MonoBehaviour
     public EventEnum[] MapEventPins;
 
     public Animator OpenPhoneController;
+    public GameObject MessageNotification;
 
     private List<StoryNode> choices = new List<StoryNode>();
 
@@ -131,6 +132,7 @@ public class GameEventManager : MonoBehaviour
             SenderNameTitle.text = node.Title;
 
             OpenPhoneController.SetTrigger("RecievedNotification");
+            MessageNotification.SetActive(true);
         }
         else
         {

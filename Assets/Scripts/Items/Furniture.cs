@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class Furniture : Item
 {
-    public GameObject FurnitureToInstantiate;
-    public string GameObjectToDestroy;
+    public GameObject[] FurnitureToInstantiate;
+    public string[] GameObjectToDestroy;
     public string GameObjectToReplace;
     private Vector3 myTransform;
 
     public override void UpdateFurniture()
     {
         FindPosition();
-        AddGameObject(FurnitureToInstantiate);
-        RemoveGameObject(GameObjectToDestroy);
-        ReplaceSprite(GameObjectToReplace);
+        foreach (GameObject go in FurnitureToInstantiate)
+            AddGameObject(go);
+        foreach (string s in GameObjectToDestroy)
+            RemoveGameObject(s);
     }
 
     void FindPosition()
