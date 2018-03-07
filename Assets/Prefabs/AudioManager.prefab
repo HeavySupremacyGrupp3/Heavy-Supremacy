@@ -239,25 +239,25 @@ MonoBehaviour:
     mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight1
-    clip: {fileID: 8300000, guid: 288c5c11336a5fa47a0edf700486385c, type: 3}
+    clip: {fileID: 8300000, guid: 0cfa2801513609744aa7af8e25564f60, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight2
-    clip: {fileID: 8300000, guid: f288dde67388bdb458ee5cf556e69631, type: 3}
+    clip: {fileID: 8300000, guid: 8a68eb33d0156cf479f63ea2a076edcc, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight3
-    clip: {fileID: 8300000, guid: 720ccd3d1d2f0f2498ec0f2345836ecf, type: 3}
+    clip: {fileID: 8300000, guid: ed723a3edf7fb11428ce25a8abd884fa, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: StatsHighlight4
-    clip: {fileID: 8300000, guid: 0fd301f559b6a7a4eb91137ecc8ed0f4, type: 3}
+    clip: {fileID: 8300000, guid: ce0dd6b397939fe4b89e972d7efbc095, type: 3}
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}

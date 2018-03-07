@@ -212,8 +212,8 @@ public class TimingString : TimingSystem
                 AudioManager.instance.Play(SadAudience.name);
             }
 
-            HappyAudience.source.volume = (health / MaxHealth) / 2;
-            SadAudience.source.volume = (1 - (health / MaxHealth)) / 2;
+            HappyAudience.source.volume = (health / MaxHealth) * HappyAudience.volume;
+            SadAudience.source.volume = (1 - (health / MaxHealth)) * SadAudience.volume;
         }
     }
 
