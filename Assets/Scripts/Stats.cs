@@ -42,6 +42,8 @@ public abstract class Stats : MonoBehaviour {
 		
 	void Update ()
 	{
+        if (Input.GetKeyDown(KeyCode.Q))
+            addOrRemoveAmount(10);
 		//amount+=0.01f;
 		//amount=amount%1.0f;
 	}	
@@ -49,6 +51,9 @@ public abstract class Stats : MonoBehaviour {
 	public void setAmount(float a)
 	{
 		amount=a;
+
+        if (a > max)
+            amount = max;
 	}
 	
 	//amount can't be made to exceed max or min
