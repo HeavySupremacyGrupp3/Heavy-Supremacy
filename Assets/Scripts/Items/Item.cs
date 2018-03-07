@@ -11,6 +11,7 @@ public abstract class Item : MonoBehaviour
     public bool OneTimePurchase = false;
     public string Name;
     public string Description;
+    public Sprite ProductImage;
 
     public virtual void ActivatePurchase()
     {

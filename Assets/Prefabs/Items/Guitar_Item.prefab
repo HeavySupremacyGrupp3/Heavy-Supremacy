@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4882928624459660}
   - component: {fileID: 212159010739407014}
   - component: {fileID: 114166510789418356}
-  - component: {fileID: 114470428943486704}
   m_Layer: 0
   m_Name: Guitar_Item
   m_TagString: Untagged
@@ -58,26 +57,9 @@ MonoBehaviour:
   OneTimePurchase: 1
   Name: Guitar
   Description: Guitar is broken, playing is hard. Double trouble bitches.
+  ProductImage: {fileID: 21300000, guid: 1a1ba0fe9812bc549ad0b2f0f12d07e9, type: 3}
   MetalMultiplierIncrease: 0.1
---- !u!114 &114470428943486704
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1140131721867026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9913c8a6d1318164da5e518168ac53df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 1
-  Price: 800
-  OneTimePurchase: 1
-  Name: Guitar
-  Description: 
-  FurnitureToInstantiate: []
-  GameObjectToDestroy: []
-  GameObjectToReplace: 
+  HUBGuitar: Practice_Button
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1
