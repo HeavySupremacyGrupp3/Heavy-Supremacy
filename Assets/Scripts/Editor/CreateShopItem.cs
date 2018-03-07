@@ -59,7 +59,7 @@ public class CreateShopItem : EditorWindow
             if (item.Name != null && item.Name != "")
             {
                 item.Description = EditorGUILayout.TextField("Description", item.Description);
-                item.Price = EditorGUILayout.IntField("Price", item.Price);
+                item.Price = EditorGUILayout.FloatField("Price", item.Price);
                 item.Type = Item.ItemType.Furniture; //(Item.ItemType)EditorGUILayout.EnumPopup("Type", item.Type);
                 item.OneTimePurchase = EditorGUILayout.Toggle("One Time Purchase", item.OneTimePurchase);
 

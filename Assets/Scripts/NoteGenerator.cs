@@ -85,6 +85,7 @@ public class NoteGenerator : MonoBehaviour
             SetTutorial(false);
         }
 
+        Debug.Log(ShowPracticeTutorial);
     }
 
     void Initialize()
@@ -405,6 +406,8 @@ public class NoteGenerator : MonoBehaviour
 
     public static void Reset()
     {
+        Debug.Log("RESETED");
+
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
         ShowPracticeTutorial = true;

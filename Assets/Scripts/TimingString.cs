@@ -99,18 +99,11 @@ public class TimingString : TimingSystem
 
         Destroy(Instantiate(GetNoteAccuracyPrefab(note), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
-        //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
-        //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
         GameObject noteHitEffect = Instantiate(NoteHitEffect, note.transform.position, Quaternion.identity) as GameObject;
         Vector3 tempPos = noteHitEffect.transform.position;
         tempPos.y = transform.position.y;
         noteHitEffect.transform.position = tempPos;
 
-        //metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
-        //angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
-
-        //Destroy(metalPopup, 2);
-        //Destroy(angstPopup, 2);
         Destroy(noteHitEffect, 5);
 
         StringAnimator.SetTrigger("StringStroked");

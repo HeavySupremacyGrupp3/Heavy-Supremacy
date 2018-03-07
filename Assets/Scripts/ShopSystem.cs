@@ -32,9 +32,27 @@ public class ShopSystem : MonoBehaviour
     void OnEnable()
     {
         moneyStatScript = FindObjectOfType<moneyStatScript>();
-        if (moneyStatScript.getAmount() == 0)
+
+        //Shitty fix for reseting price when restarting game.
+        Lesson x = new Lesson();
+        bool foundLesson = false;
+        foreach (Item l in MyInventory)
         {
-            MyInventory.Clear();
+            if (l.GetType() == x.GetType())
+            {
+                foundLesson = true;
+                break;
+            }
+        }
+        if (!foundLesson)
+        {
+            foreach (Item l in ShopInventory)
+            {
+                if (l.GetType() == x.GetType())
+                {
+                    ((Lesson)l).ResetPrice();
+                }
+            }
         }
 
         FetchShopUIElements();
