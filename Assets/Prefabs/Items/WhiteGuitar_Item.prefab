@@ -40,7 +40,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a989a3142a1f44b1429cdfb688dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
   Price: 1200
   OneTimePurchase: 1
   Name: WhiteGuitar
@@ -51,6 +50,7 @@ MonoBehaviour:
   MetalMultiplierIncrease: 0.1
   HUBGuitar: Practice_Button
   ScaleMultiplier: 0.6
+  PositionOffset: {x: 0, y: 0.5, z: 0}
 --- !u!114 &114910227604471364
 MonoBehaviour:
   m_ObjectHideFlags: 1

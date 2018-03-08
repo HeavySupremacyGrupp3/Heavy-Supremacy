@@ -8,6 +8,7 @@ public class WhiteGuitar : Item {
     public float MetalMultiplierIncrease = 0.1f;
     public string HUBGuitar;
     public float ScaleMultiplier = 1;
+    public Vector3 PositionOffset;
 
     private Image hubImage;
 
@@ -29,5 +30,6 @@ public class WhiteGuitar : Item {
         hubImage = GameObject.Find(HUBGuitar).GetComponent<Image>();
         hubImage.sprite = ProductImage;
         hubImage.GetComponent<RectTransform>().sizeDelta = new Vector2(ProductImage.rect.width, ProductImage.rect.height) * ScaleMultiplier;
+        hubImage.GetComponent<RectTransform>().position += PositionOffset;
     }
 }

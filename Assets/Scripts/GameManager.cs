@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
     public Animator EnergyAnimator;
+    public Image[] StatPreviewCosts;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -238,5 +239,23 @@ public class GameManager : MonoBehaviour
     public void SetIntroPanelBool(bool active)
     {
         ShowIntroPanel = active;
+    }
+
+    public void UpdateStatPreviewFill(StatPreviewData data)
+    {
+        int statIndex = data.StatIndex;
+        float value = data.Value;
+
+        float tempValue = 1 - StatPreviewCosts[statIndex].fillAmount;
+
+        StatPreviewCosts[statIndex].material.SetFloat("_EdgeWidth", tempValue + (value / 100));
+    }
+
+    public void ResetAllStatPreviews()
+    {
+        for (int i = 0; i < StatPreviewCosts.Length; i++)
+        {
+            StatPreviewCosts[i].material.SetFloat("_EdgeWidth", 0);
+        }
     }
 }

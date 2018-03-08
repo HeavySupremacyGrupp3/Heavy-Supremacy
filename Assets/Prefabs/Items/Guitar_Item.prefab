@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12be6024941ae46be7ef6357fa2c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
   Price: 800
   OneTimePurchase: 1
   Name: Guitar
@@ -61,7 +60,8 @@ MonoBehaviour:
   PurchaseSound: RedGuitarPurchase
   MetalMultiplierIncrease: 0.1
   HUBGuitar: Practice_Button
-  ScaleMultiplier: 0.75
+  ScaleMultiplier: 0.7
+  PositionOffset: {x: 0, y: 0.5, z: 0}
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1

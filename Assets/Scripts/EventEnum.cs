@@ -8,11 +8,13 @@ public class EventEnum : MonoBehaviour
 {
 
     public StoryNode Node;
-    public float EnergyCost = 0;
     public Text EnergyText;
 
     public GameEventManager.nodeType NodeType;
     public Sprite FameSprite, MusicSprite, SocialSprite;
+    public StatPreviewData[] PreviewData;
+
+    private float EnergyCost = 0, FameBonus, MetalBonus, AngstBonus;
 
     public void RefreshEvent()
     {
@@ -42,8 +44,32 @@ public class EventEnum : MonoBehaviour
 
         if (Node.EnergyBonus != null && Node.EnergyBonus != "")
             EnergyCost = float.Parse(Node.EnergyBonus);
+        if (Node.FameBonus != null && Node.FameBonus != "")
+            FameBonus = float.Parse(Node.FameBonus);
+        if (Node.MetalBonus != null && Node.MetalBonus != "")
+            MetalBonus = float.Parse(Node.MetalBonus);
+        if (Node.AngstBonus != null && Node.AngstBonus != "")
+            AngstBonus = float.Parse(Node.AngstBonus);
 
         EnergyText.text = "Energy Cost: " + EnergyCost;
+
+        PreviewData[0].Value = EnergyCost;
+        PreviewData[1].Value = FameBonus;
+        PreviewData[2].Value = MetalBonus;
+        PreviewData[3].Value = AngstBonus;
+    }
+
+    public void UpdateStatBars()
+    {
+        for (int i = 0; i < PreviewData.Length; i++)
+        {
+            FindObjectOfType<GameManager>().UpdateStatPreviewFill(PreviewData[i]);
+        }
+    }
+
+    public void ResetBars()
+    {
+        FindObjectOfType<GameManager>().ResetAllStatPreviews();
     }
 
     private void OnDestroy()

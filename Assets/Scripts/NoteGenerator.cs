@@ -445,6 +445,7 @@ public class NoteGenerator : MonoBehaviour
 
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
+        DoubleNoteChance = 0;
         ShowPracticeTutorial = true;
         ShowGigTutorial = true;
     }
