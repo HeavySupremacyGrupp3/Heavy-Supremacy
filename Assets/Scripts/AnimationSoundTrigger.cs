@@ -6,8 +6,22 @@ public class AnimationSoundTrigger : MonoBehaviour {
 
     public string SoundName;
 
+    private AudioManager audioMgr;
+
     public void OnEnable()
     {
-        FindObjectOfType<AudioManager>().Play(SoundName);
+        GetAudioManager();
+        audioMgr.Play(SoundName);
+    }
+
+    public void PlaySound(string soundName)
+    {
+        audioMgr.Play(soundName);
+    }
+
+    private void GetAudioManager()
+    {
+        if (audioMgr == null)
+            audioMgr = FindObjectOfType<AudioManager>();
     }
 }

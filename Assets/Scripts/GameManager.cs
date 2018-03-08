@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static int day = 1;
     public static int week = 1;
     public static bool IsFirstWorkRun = true;
+    public static bool IsFirstHubRun = true;
     public GameObject IntroPanel;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
@@ -50,6 +51,12 @@ public class GameManager : MonoBehaviour
         s.source.time = UnityEngine.Random.Range(0, s.clip.length);
 
         am.Play("HUBAmbience");
+
+        if (IsFirstHubRun)
+        {
+            IsFirstHubRun = !IsFirstHubRun;
+            GameObject.Find("HubTutorial").transform.GetChild(0).GetComponent<Tutorial>().Run(); // BECAUSE UNITY IS AWESOME, AND GAMEOBJECT.FIND(HUB_TUTORIAL).GETCOMPONENT<TUTORIAL>() DOESN'T WORK! YAAY! Not even mad.
+        }
     }
 
     private void Update()
