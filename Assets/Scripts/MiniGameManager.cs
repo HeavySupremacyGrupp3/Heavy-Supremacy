@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MiniGameManager : MonoBehaviour
 {
     public produktScript produktScript;
+    public Tutorial WorkTut;
 
     public GameObject produktPrefab;
     private List<GameObject> produkter;
@@ -90,6 +91,12 @@ public class MiniGameManager : MonoBehaviour
         moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
         productList = new List<GameObject>();   //Skapar en lista 
         angst = StatReference.getAmount();
+
+        if (GameManager.IsFirstWorkRun)
+        {
+            GameManager.IsFirstWorkRun = !GameManager.IsFirstWorkRun;
+            WorkTut.Run();
+        }
     }
 
     void Update()
