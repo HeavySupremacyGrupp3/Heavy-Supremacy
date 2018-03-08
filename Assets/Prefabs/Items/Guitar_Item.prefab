@@ -58,6 +58,7 @@ MonoBehaviour:
   Name: Guitar
   Description: Add an extra note to your playing.
   ProductImage: {fileID: 21300000, guid: 1a1ba0fe9812bc549ad0b2f0f12d07e9, type: 3}
+  PurchaseSound: RedGuitarPurchase
   MetalMultiplierIncrease: 0.1
   HUBGuitar: Practice_Button
   ScaleMultiplier: 0.75

@@ -31,6 +31,7 @@ public class GameEventManager : MonoBehaviour
 
     public Animator OpenPhoneController;
     public GameObject MessageNotification;
+    public GameObject HUBMessageNotification;
 
     private List<StoryNode> choices = new List<StoryNode>();
 
@@ -133,6 +134,7 @@ public class GameEventManager : MonoBehaviour
 
             OpenPhoneController.SetTrigger("RecievedNotification");
             MessageNotification.SetActive(true);
+            HUBMessageNotification.SetActive(true);
         }
         else
         {

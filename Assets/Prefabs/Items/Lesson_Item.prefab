@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcb998963ed9334cafa02e0d4cd6989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
   Price: 50
   OneTimePurchase: 0
   Name: Lesson
   Description: Increase your metal gained from both practice and gigs!
   ProductImage: {fileID: 21300000, guid: 2c1c4430e119e0e4ab216b805ae2b693, type: 3}
+  PurchaseSound: LessonPurchase
   MetalMultiplierIncrease: 0.1
   PriceIncreaseMultiplier: 2
   StartPrice: 50

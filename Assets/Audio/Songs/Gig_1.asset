@@ -16,4 +16,4 @@ MonoBehaviour:
   MIDIMusic: {fileID: 8300000, guid: 0b17e79e0c2e15147aa5410c4c3ec4e7, type: 3}
   GeneratorUpdateInterval: 0.01
   MinimumVolumeTreshold: 0.1
-  MusicDelay: 1.9
+  MusicDelay: 1.85

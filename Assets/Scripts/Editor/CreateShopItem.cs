@@ -60,7 +60,6 @@ public class CreateShopItem : EditorWindow
             {
                 item.Description = EditorGUILayout.TextField("Description", item.Description);
                 item.Price = EditorGUILayout.FloatField("Price", item.Price);
-                item.Type = Item.ItemType.Furniture; //(Item.ItemType)EditorGUILayout.EnumPopup("Type", item.Type);
                 item.OneTimePurchase = EditorGUILayout.Toggle("One Time Purchase", item.OneTimePurchase);
 
                 EditorGUILayout.LabelField("Button Sprite");
@@ -69,6 +68,8 @@ public class CreateShopItem : EditorWindow
                 ItemPrefab.GetComponent<Image>().sprite = EditorGUILayout.ObjectField(ItemPrefab.GetComponent<Image>().sprite, typeof(Sprite), true) as Sprite;
 
                 item.ProductImage = ItemPrefab.GetComponent<Image>().sprite;
+
+                item.PurchaseSound = EditorGUILayout.TextField("Purchase Sound", item.PurchaseSound);
 
                 if (GUILayout.Button("Create Item"))
                     CreateItem();

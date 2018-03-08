@@ -128,7 +128,7 @@ public class ShopSystem : MonoBehaviour
     public void MakePurchase()
     {
         Item item = FindItemByName(itemToBePurchased);
-        PlayPurchaseSound(item);
+        //PlayPurchaseSound(item);
 
         moneyStatScript.addOrRemoveAmount(-item.Price);
         item.ActivatePurchase();
@@ -205,8 +205,7 @@ public class ShopSystem : MonoBehaviour
     {
         for (int i = 0; i < MyInventory.Count; i++)
         {
-            if (MyInventory[i].Type == Item.ItemType.Furniture)
-                MyInventory[i].UpdateFurniture();
+            MyInventory[i].UpdateFurniture();
         }
     }
 }

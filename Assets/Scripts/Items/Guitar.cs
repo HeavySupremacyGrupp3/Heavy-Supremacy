@@ -22,7 +22,10 @@ public class Guitar : Item {
         Debug.Log("PURCHASED GUITAR!");
         NoteGenerator.NumberOfUniqueNotes++;
         TimingString.MetalMultiplier += MetalMultiplierIncrease;
+    }
 
+    public override void UpdateFurniture()
+    {
         hubImage = GameObject.Find(HUBGuitar).GetComponent<Image>();
         hubImage.sprite = ProductImage;
         hubImage.GetComponent<RectTransform>().sizeDelta = new Vector2(ProductImage.rect.width, ProductImage.rect.height) * ScaleMultiplier;

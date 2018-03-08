@@ -255,10 +255,30 @@ public class NoteGenerator : MonoBehaviour
             Debug.Log(TimingSystem.FailedTimingCounter);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(20 * (1 / (1 + (angst.getAmount() / 100))) * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)))) * TimingString.MetalMultiplier;
-            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))) * ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.FailedTimingCounter)));
-            moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-15 * ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter))));
+#region Calculations
+            float metalBase = 20;
+            float metalStatMltp = (1 / (1 + (angst.getAmount() / 100)));
+            float metalPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
+            float metalItemMltp = TimingString.MetalMultiplier;
+            metalGained = Mathf.CeilToInt(metalBase * metalStatMltp * metalPerformance * metalItemMltp);
+
+            float fameBase = 50;
+            float fameStatMltp = (2 / (10 - (metal.getAmount() / 15)));
+            float famePerformance = ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.FailedTimingCounter));
+            float fameItemMltp = 1;
+            fameGained = Mathf.CeilToInt(fameBase * fameStatMltp * famePerformance * fameItemMltp);
+
+            float moneyBase = 3000;
+            float moneyStatMltp = (6 / (100 - fame.getAmount()));
+            float moneyPerformance = 1;
+            float moneyItemMltp = 1;
+            moneyGained = Mathf.CeilToInt(moneyBase * moneyStatMltp * moneyPerformance * moneyItemMltp);
+
+            float angstBase = -15;
+            float angstStatMltp = 1;
+            float angstPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
+            float angstItemMltp = 1;
+            angstGained = Mathf.CeilToInt(angstBase * angstStatMltp * angstPerformance * angstItemMltp);
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();
@@ -268,19 +288,24 @@ public class NoteGenerator : MonoBehaviour
                 metalGained = metal.getMax();
             //if (angstGained > angst.getMax() || angstGained < 0)
             //    angstGained = angst.getMax();
+#endregion
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
-            MetalText.text = "" + metalGained.ToString();
-            AngstText.text = "" + angstGained.ToString();
+
+            UpdateScoreBoard(MetalText, metalBase, metalStatMltp, metalPerformance, 1, metalItemMltp, metalGained);
+            UpdateScoreBoard(AngstText, angstBase, angstStatMltp, angstPerformance, 1, angstItemMltp, angstGained);
 
             metal.addOrRemoveAmount(metalGained);
             angst.addOrRemoveAmount(angstGained);
 
             if (GigBackgroundManager.GigSession)
             {
-                FameText.text = "" + fameGained.ToString();
-                MoneyText.text = "" + moneyGained.ToString();
+                FameText.transform.parent.gameObject.SetActive(true);
+                MoneyText.transform.parent.gameObject.SetActive(true);
 
+                UpdateScoreBoard(FameText, fameBase, fameStatMltp, famePerformance, 1, fameItemMltp, fameGained);
+                UpdateScoreBoard(MoneyText, moneyBase, moneyStatMltp, moneyPerformance, 1, moneyItemMltp, moneyGained);
+                
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
 
@@ -311,6 +336,16 @@ public class NoteGenerator : MonoBehaviour
                 money.addOrRemoveAmount(150);
             }
         }
+    }
+
+    private void UpdateScoreBoard(Text text, float baseStat, float statMltp, float performance, float proficiency, float itemMltp, float total)
+    {
+        text.text = baseStat.ToString("0.00") + "\n" +
+            statMltp.ToString("0.00") + "x" + "\n" +
+            performance.ToString("0.00") + "x" + "\n" +
+            proficiency.ToString("0.00") + "x" + "\n" +
+            itemMltp.ToString("0.00") + "x" + "\n" + "\n" +
+            total.ToString("0.00");
     }
 
     public void SwitchMusicSource(bool withLead)
