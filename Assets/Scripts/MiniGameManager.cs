@@ -13,6 +13,8 @@ public class MiniGameManager : MonoBehaviour
     private List<GameObject> produkter;
 
     angstStatScript StatReference;
+    public Animator AngstAnimator;
+    private float statLerpTimer = 0.5f;
 
     public Vector3 moveProduction;
     public float productInterval;
@@ -104,6 +106,13 @@ public class MiniGameManager : MonoBehaviour
         angst += Time.deltaTime / angstTick;    //Gain x amount angst every x second (set in inspector)
         addedAngst += Time.deltaTime / angstTick;  //Same but this only keeps track on how much you've gained, not the total amount of angst
         StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));   //Set the amount stat to angst (angstAmount is x angst per second´in inspector)
+
+        statLerpTimer += Time.deltaTime / angstTick;
+        if (statLerpTimer >= 1)
+        {
+            statLerpTimer = 0;
+            AngstAnimator.SetTrigger("LerpEnergy");
+        }
 
         updateCounter += Time.deltaTime;
 
