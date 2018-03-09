@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public static int week = 1;
     public static bool IsFirstWorkRun = false;
     public static bool IsFirstHubRun = false;
-    public GameObject IntroPanel;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
     public static string EndGameTitleText;
     public static bool ToEndGame;
     public static bool RestartGame;
-    public static bool ShowIntroPanel;
 
     private KeyCode key = KeyCode.Escape;
 
@@ -37,11 +35,6 @@ public class GameManager : MonoBehaviour
             EndGame(EndGameTitleText);
         if (RestartGame)
             Restart();
-
-        if (ShowIntroPanel)
-        {
-            IntroPanel.SetActive(true);
-        }
 
         Initialize();
         fadeScript = GetComponent<FadeOutManager>();
@@ -154,7 +147,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadGig(float energy)
     {
-        if (CheckEnergy(energy))
+        if (CheckEnergy(80))
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
@@ -210,6 +203,10 @@ public class GameManager : MonoBehaviour
             week++;
             day = 1;
 
+            FindObjectOfType<fameStatScript>().UpdateWeeklyStatGains();
+            FindObjectOfType<metalStatScript>().UpdateWeeklyStatGains();
+            FindObjectOfType<angstStatScript>().UpdateWeeklyStatGains();
+
             if ((FindObjectOfType<moneyStatScript>().getAmount() - Rent) < 0)
                 EndGame("You're Broke!");
             else
@@ -241,11 +238,6 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.Play("LowEnergy");
             return false;
         }
-    }
-
-    public void SetIntroPanelBool(bool active)
-    {
-        ShowIntroPanel = active;
     }
 
     public void UpdateStatPreviewFill(StatPreviewData data)

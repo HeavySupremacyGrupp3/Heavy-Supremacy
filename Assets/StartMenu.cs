@@ -14,7 +14,6 @@ public class StartMenu : MonoBehaviour
     public void LoadHUB()
     {
         GameManager.RestartGame = true;
-        GameManager.ShowIntroPanel = true;
         SceneManager.LoadScene("HUBScene");
     }
 

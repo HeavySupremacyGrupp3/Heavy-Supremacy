@@ -22,7 +22,7 @@ public class GameEventManager : MonoBehaviour
     public GameObject RentReminderPanel;
 
     [Range(0, 1)]
-    public float SpecialNodeChance = 0, MessageNodeChance = 0;
+    public float SpecialNodeChance = 0;
 
     public float RecieveMessageDelay = 0.75f;
     public int SMSDayInterval = 1;
@@ -55,17 +55,6 @@ public class GameEventManager : MonoBehaviour
             LoadEvents("musicNodes", musicNodes);
             LoadEvents("fameNodes", fameNodes);
             LoadEvents("specialNodes", specialNodes);
-
-
-
-            if (Random.Range(0f, 1f) <= SpecialNodeChance)
-                TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
-
-            if (Random.Range(0f, 1f) <= MessageNodeChance)
-            {
-                ClearSMSPanel();
-                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
-            }
         }
     }
 

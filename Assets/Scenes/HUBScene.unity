@@ -341,7 +341,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
     m_FontSize: 31
     m_FontStyle: 0
     m_BestFit: 0
@@ -639,8 +639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
-  StartColor: {r: 0.41176474, g: 0.9294118, b: 0.9333334, a: 0}
-  EndColor: {r: 0.41176474, g: 0.9294118, b: 0.9333334, a: 1}
+  StartColor: {r: 1, g: 0, b: 0, a: 0}
+  EndColor: {r: 1, g: 0, b: 0, a: 1}
   Lerp: 1
   Reverse: 1
   StartDelay: 0
@@ -3107,6 +3107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 100
   max: 100
+  LastWeeksStatGain: 0
+  WeightWeeklyIncreaseCap: 20
 --- !u!1 &296828749
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,7 +4478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &420850589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4576,7 +4578,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -6365,6 +6367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 100
+  LastWeeksStatGain: 0
+  WeightWeeklyIncreaseCap: 20
 --- !u!4 &597264274
 Transform:
   m_ObjectHideFlags: 0
@@ -6523,6 +6527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 100
+  LastWeeksStatGain: 15
+  WeightWeeklyIncreaseCap: 20
 --- !u!4 &603373558
 Transform:
   m_ObjectHideFlags: 0
@@ -6636,7 +6642,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 622957558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -446.5, y: 452.8, z: 0}
+  m_LocalPosition: {x: -641, y: 452.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2131516973}
@@ -6645,7 +6651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -446.5, y: 452.8}
+  m_AnchoredPosition: {x: -641, y: 452.8}
   m_SizeDelta: {x: 196, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622957560
@@ -7951,9 +7957,9 @@ RectTransform:
   - {fileID: 148904519}
   - {fileID: 1033969080}
   - {fileID: 2019124301}
-  - {fileID: 1197562635}
   - {fileID: 1385744807}
   - {fileID: 930962280}
+  - {fileID: 1197562635}
   - {fileID: 1192368762}
   - {fileID: 194045716}
   - {fileID: 460704480}
@@ -8279,6 +8285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 1000000
+  LastWeeksStatGain: 0
+  WeightWeeklyIncreaseCap: 20
   difference: 8
 --- !u!4 &804460039
 Transform:
@@ -8434,7 +8442,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
     m_FontSize: 46
     m_FontStyle: 0
     m_BestFit: 0
@@ -9530,7 +9538,7 @@ RectTransform:
   - {fileID: 815389138}
   - {fileID: 1505022560}
   m_Father: {fileID: 760844919}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10684,6 +10692,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -10738,7 +10757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatIndex: 0
-  Value: 35
+  Value: -35
 --- !u!1 &1048972686
 GameObject:
   m_ObjectHideFlags: 0
@@ -10890,7 +10909,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
     m_FontSize: 46
     m_FontStyle: 0
     m_BestFit: 0
@@ -11896,11 +11915,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf3b48e9c2945e4ebcbce9ef6b079f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeIndex: 0
   EnergyText: {fileID: 1051039681}
   NodeType: 0
   FameSprite: {fileID: 21300000, guid: 40c92578bc9f194488629d878f420e3b, type: 3}
   MusicSprite: {fileID: 21300000, guid: 0c9a66c358bb7d34885f019fcf3fa00b, type: 3}
   SocialSprite: {fileID: 21300000, guid: b44b86f509e6ad74592ea493291ec947, type: 3}
+  SpecialSprite: {fileID: 21300000, guid: 26344e7d47196b44a9a77d139902bb8c, type: 3}
   PreviewData:
   - {fileID: 1130557506}
   - {fileID: 1130557505}
@@ -12309,7 +12330,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
     m_FontSize: 46
     m_FontStyle: 0
     m_BestFit: 0
@@ -13498,7 +13519,7 @@ RectTransform:
   - {fileID: 865358410}
   - {fileID: 1636622286}
   m_Father: {fileID: 760844919}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15442,7 +15463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeScript: {fileID: 0}
   Rent: 500
-  IntroPanel: {fileID: 1048972686}
   EndGamePanel: {fileID: 1064664059}
   EndGameTitle: {fileID: 1191409622}
   SceneTransition: {fileID: 1369002946}
@@ -15518,7 +15538,6 @@ MonoBehaviour:
   GigUpcomingPanel: {fileID: 1756843071}
   RentReminderPanel: {fileID: 1726190200}
   SpecialNodeChance: 0
-  MessageNodeChance: 0
   RecieveMessageDelay: 1.5
   SMSDayInterval: 2
   MapEventPins:
@@ -15613,6 +15632,7 @@ GameObject:
   - component: {fileID: 1385744808}
   - component: {fileID: 1385744811}
   - component: {fileID: 1385744812}
+  - component: {fileID: 1385744813}
   m_Layer: 5
   m_Name: Sleep_Button
   m_TagString: Untagged
@@ -15633,7 +15653,7 @@ RectTransform:
   - {fileID: 1143178887}
   - {fileID: 1711530028}
   m_Father: {fileID: 760844919}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15774,6 +15794,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1369002944}
+          m_MethodName: UpdateStatPreviewFill
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1385744813}
+            m_ObjectArgumentAssemblyTypeName: StatPreviewData, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -15782,6 +15813,17 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1711530029}
           m_MethodName: Stop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1369002944}
+          m_MethodName: ResetAllStatPreviews
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15806,6 +15848,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AlphaThreshold: 0.1
+--- !u!114 &1385744813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1385744806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f5e21923e89e34cadd705bc29f1283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatIndex: 0
+  Value: 100
 --- !u!1 &1403294613
 GameObject:
   m_ObjectHideFlags: 0
@@ -19809,11 +19864,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf3b48e9c2945e4ebcbce9ef6b079f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeIndex: 1
   EnergyText: {fileID: 809841925}
   NodeType: 0
   FameSprite: {fileID: 21300000, guid: 40c92578bc9f194488629d878f420e3b, type: 3}
   MusicSprite: {fileID: 21300000, guid: 0c9a66c358bb7d34885f019fcf3fa00b, type: 3}
   SocialSprite: {fileID: 21300000, guid: b44b86f509e6ad74592ea493291ec947, type: 3}
+  SpecialSprite: {fileID: 21300000, guid: 26344e7d47196b44a9a77d139902bb8c, type: 3}
   PreviewData:
   - {fileID: 1789072683}
   - {fileID: 1789072682}
@@ -20279,11 +20336,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf3b48e9c2945e4ebcbce9ef6b079f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeIndex: 2
   EnergyText: {fileID: 1147243481}
   NodeType: 0
   FameSprite: {fileID: 21300000, guid: 40c92578bc9f194488629d878f420e3b, type: 3}
   MusicSprite: {fileID: 21300000, guid: 0c9a66c358bb7d34885f019fcf3fa00b, type: 3}
   SocialSprite: {fileID: 21300000, guid: b44b86f509e6ad74592ea493291ec947, type: 3}
+  SpecialSprite: {fileID: 21300000, guid: 26344e7d47196b44a9a77d139902bb8c, type: 3}
   PreviewData:
   - {fileID: 1820522529}
   - {fileID: 1820522528}
@@ -21295,7 +21354,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1879403883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -643.4, y: 454.6, z: 0}
+  m_LocalPosition: {x: -449, y: 454.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2146667346}
@@ -21304,7 +21363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -643.4, y: 454.6}
+  m_AnchoredPosition: {x: -449, y: 454.6}
   m_SizeDelta: {x: 183, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1879403885
@@ -22014,6 +22073,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 20
   max: 100
+  LastWeeksStatGain: 5
+  WeightWeeklyIncreaseCap: 20
 --- !u!4 &1939318169
 Transform:
   m_ObjectHideFlags: 0
@@ -23424,6 +23485,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 770999416}
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: practiceHighlight
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -23478,7 +23550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatIndex: 0
-  Value: 35
+  Value: -35
 --- !u!1 &2024703106
 GameObject:
   m_ObjectHideFlags: 0
@@ -23493,7 +23565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2024703107
 RectTransform:
   m_ObjectHideFlags: 0

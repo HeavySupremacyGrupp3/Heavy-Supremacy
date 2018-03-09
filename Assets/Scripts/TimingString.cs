@@ -56,6 +56,8 @@ public class TimingString : TimingSystem
         HealthImage.fillAmount = MaxHealth;
         if (!GigBackgroundManager.GigSession)
             HealthImage.gameObject.SetActive(false);
+        else
+            HealthImage.gameObject.SetActive(true);
 
         NotesHit = 0;
         UpdateAudienceAudio();

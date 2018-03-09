@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Guitar : Item {
+public class Guitar : Item
+{
 
     public float MetalMultiplierIncrease = 0.1f;
     public string HUBGuitar;
     public float ScaleMultiplier = 1;
-    public Vector3 PositionOffset;
 
     private Image hubImage;
+
+    public static bool Purchased;
 
     private void Start()
     {
@@ -30,6 +32,5 @@ public class Guitar : Item {
         hubImage = GameObject.Find(HUBGuitar).GetComponent<Image>();
         hubImage.sprite = ProductImage;
         hubImage.GetComponent<RectTransform>().sizeDelta = new Vector2(ProductImage.rect.width, ProductImage.rect.height) * ScaleMultiplier;
-        hubImage.GetComponent<RectTransform>().position += PositionOffset;
     }
 }
