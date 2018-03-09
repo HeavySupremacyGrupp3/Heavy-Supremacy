@@ -44,6 +44,8 @@ public class GameEventManager : MonoBehaviour
     [HideInInspector]
     public enum nodeType { social, musical, fame, special }
 
+    private StoryNode firstNode;
+
     private void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "HUBScene")
@@ -54,7 +56,7 @@ public class GameEventManager : MonoBehaviour
             LoadEvents("fameNodes", fameNodes);
             LoadEvents("specialNodes", specialNodes);
 
-     
+
 
             if (Random.Range(0f, 1f) <= SpecialNodeChance)
                 TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
@@ -170,7 +172,11 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEvent(StoryNode node)
     {
+        if (node.EnergyBonus != null && node.EnergyBonus != "" && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
+            return;
+
         Debug.Log(node.Title);
+
 
         EventPanel.SetActive(true);
 
@@ -187,7 +193,10 @@ public class GameEventManager : MonoBehaviour
             PanelChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
         }
 
-        GiveRewards(node);
+        if (choices.Count > 1)
+            firstNode = node;
+        if (choices.Count < 2)
+            GiveRewards(firstNode);
 
         if (!PanelChoiceButtons[0].activeSelf)
         {

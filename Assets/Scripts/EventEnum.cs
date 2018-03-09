@@ -14,7 +14,7 @@ public class EventEnum : MonoBehaviour
     public Sprite FameSprite, MusicSprite, SocialSprite;
     public StatPreviewData[] PreviewData;
 
-    private float EnergyCost = 0, FameBonus, MetalBonus, AngstBonus;
+    private float EnergyCost = 0, FameBonus = 0, MetalBonus = 0, AngstBonus = 0;
 
     public void RefreshEvent()
     {

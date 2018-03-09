@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour
     public static int day = 1;
     public static int week = 1;
     public static bool IsFirstWorkRun = true;
-    public static bool IsFirstHubRun = true;
+    public static bool IsFirstHubRun = false;
     public GameObject IntroPanel;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
     public Animator EnergyAnimator;
     public Image[] StatPreviewCosts;
+    public Image[] StatPreviewRewards;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     public static bool RestartGame;
     public static bool ShowIntroPanel;
 
-	private KeyCode key=KeyCode.Escape;
+    private KeyCode key = KeyCode.Escape;
 
     void Start()
     {
@@ -70,9 +71,8 @@ public class GameManager : MonoBehaviour
             Restart();
         if (Input.GetKeyDown(KeyCode.G))
             LoadGig(10);
-		//if(Input.GetKeyDown(key))
-		//	Quit();
-		
+        //if(Input.GetKeyDown(key))
+        //	Quit();
     }
 
     void Initialize()
@@ -131,9 +131,9 @@ public class GameManager : MonoBehaviour
         LoadHUB();
     }
 
-    public void LoadWork(float energyCost)
+    public void LoadWork(float energy)
     {
-        if (CheckEnergy(energyCost))
+        if (CheckEnergy(energy))
         {
             AudioManager.instance.Play("DoorClick");
             StopHUBLoops();
@@ -141,9 +141,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadPractice(float energyCost)
+    public void LoadPractice(float energy)
     {
-        if (CheckEnergy(energyCost))
+        if (CheckEnergy(energy))
         {
             AudioManager.instance.Play("practiceClick");
             StopHUBLoops();
@@ -152,9 +152,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadGig(float energyCost)
+    public void LoadGig(float energy)
     {
-        if (CheckEnergy(energyCost))
+        if (CheckEnergy(energy))
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("HUBScene");
     }
 
-    public void LoadSleep()
+    public void LoadSleep(float energy)
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
@@ -253,9 +253,20 @@ public class GameManager : MonoBehaviour
         int statIndex = data.StatIndex;
         float value = data.Value;
 
+        if (value == 0)
+            return;
+
         float tempValue = 1 - StatPreviewCosts[statIndex].fillAmount;
 
-        StatPreviewCosts[statIndex].material.SetFloat("_EdgeWidth", tempValue + (value / 100));
+        if (value < 0)
+        {
+            value *= -1;
+            StatPreviewCosts[statIndex].material.SetFloat("_EdgeWidth", tempValue + (value / 100));
+        }
+        else if (value > 0)
+        {
+            StatPreviewRewards[statIndex].fillAmount = StatPreviewCosts[statIndex].fillAmount + (value / 100) - 0.01f; //0.01f is for not showing top green when bar is full. This is because of the fillshader...;
+        }
     }
 
     public void ResetAllStatPreviews()
@@ -263,6 +274,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < StatPreviewCosts.Length; i++)
         {
             StatPreviewCosts[i].material.SetFloat("_EdgeWidth", 0);
+            StatPreviewRewards[i].fillAmount = 0;
         }
     }
 }

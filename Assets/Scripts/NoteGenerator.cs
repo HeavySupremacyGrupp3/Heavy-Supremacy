@@ -325,10 +325,10 @@ public class NoteGenerator : MonoBehaviour
 
             if (GigBackgroundManager.GigSession)
             {
-                FameText.text = "-10";
-                MetalText.text = "-20";
-                AngstText.text = "20";
-                MoneyText.text = "150";
+                UpdateScoreBoard(FameText, -10, 1, 1, 1, 1, -10);
+                UpdateScoreBoard(MetalText, -20, 1, 1, 1, 1, -20);
+                UpdateScoreBoard(AngstText, 20, 1, 1, 1, 1, 20);
+                UpdateScoreBoard(MoneyText, 150, 1, 1, 1, 1, 150);
 
                 fame.addOrRemoveAmount(-10);
                 metal.addOrRemoveAmount(-20);
