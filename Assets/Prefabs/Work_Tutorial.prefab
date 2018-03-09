@@ -1094,8 +1094,8 @@ MonoBehaviour:
   - FourthStationConveyer
   - FifthStationConveyer
   Buttons: 430100004301000043010000430100004301000043010000
-  MiniGameManager: {fileID: 0}
-  Machines:
+  ObjectsToDisableOnStart:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1234,7 +1234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Produce as many cans as possible by pressing the right key on your keyboard
+  m_Text: "Produce as many cans as possible by pressing the correct key on your keyboard
     (left, down or right) as the items pass under the machines.\n\n<color=red>You
     get paid for each completed can, so don\u2019t mess up!</color>"
 --- !u!114 &114678269132100652
