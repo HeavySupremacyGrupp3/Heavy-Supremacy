@@ -16,9 +16,8 @@ public abstract class Stats : MonoBehaviour {
 	
 	protected int thisStat;
 
-    //[HideInInspector]
+    [HideInInspector]
     public float LastWeeksStatGain = 0;
-    public float WeightWeeklyIncreaseCap = 20;
 
 	//public GameObject SliderObject;
 	//public Slider progressSlider;
@@ -107,7 +106,8 @@ public abstract class Stats : MonoBehaviour {
 
     public void UpdateWeeklyStatGains()
     {
-        LastWeeksStatGain = amount;
+        LastWeeksStatGain = LastWeeksStatGain - amount;
+        Debug.Log("Last Week I Earned: " + LastWeeksStatGain);
     }
 }
 

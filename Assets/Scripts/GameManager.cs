@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public float Rent;
     public static int day = 1;
     public static int week = 1;
-    public static bool IsFirstWorkRun = false;
-    public static bool IsFirstHubRun = false;
+    public static bool IsFirstWorkRun = true;
+    public static bool IsFirstHubRun = true;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
@@ -71,7 +71,9 @@ public class GameManager : MonoBehaviour
     void Initialize()
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
+        {
             Destroy(FindObjectsOfType<GameManager>()[0].gameObject);
+        }
 
         DontDestroyOnLoad(gameObject);
     }
@@ -121,7 +123,8 @@ public class GameManager : MonoBehaviour
         day = 1;
         week = 1;
 
-        LoadHUB();
+        if (SceneManager.GetActiveScene().name != "HUBScene")
+            LoadHUB();
     }
 
     public void LoadWork(float energy)

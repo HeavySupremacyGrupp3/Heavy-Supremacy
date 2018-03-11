@@ -21,18 +21,22 @@ public class GameEventManager : MonoBehaviour
     public GameObject GigUpcomingPanel;
     public GameObject RentReminderPanel;
 
-    [Range(0, 1)]
-    public float SpecialNodeChance = 0;
-
-    public float RecieveMessageDelay = 0.75f;
-    public int SMSDayInterval = 1;
-
     public EventEnum[] MapEventPins;
 
     public Animator OpenPhoneController;
     public GameObject MessageNotification;
     public GameObject HUBMessageNotification;
 
+    [Header("Event Variables")]
+    [Range(0, 1)]
+    public float SpecialNodeChance = 0;
+
+    public float FameWeekCap, MusicWeekCap, SocialWeekCap;
+
+    public float RecieveMessageDelay = 0.75f;
+    public int SMSDayInterval = 1;
+
+ 
     private List<StoryNode> choices = new List<StoryNode>();
 
     public static List<StoryNode> messageNodes = new List<StoryNode>();

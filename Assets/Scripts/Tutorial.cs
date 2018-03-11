@@ -32,7 +32,7 @@ public class Tutorial : MonoBehaviour
         foreach (GameObject objects in ObjectsToDisableOnStart)
             objects.SetActive(false);
         sections = (uint)TextSections.Length;
-        TextSections[currentIndex].SetActive(true);
+        ShowText();
     }
 
     void highlightCurrentObject()

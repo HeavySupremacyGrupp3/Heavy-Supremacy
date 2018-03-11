@@ -22,61 +22,69 @@ public class EventEnum : MonoBehaviour
     private void Start()
     {
         GameManager.sleep += RefreshEvent;
+
+        if (NodesSelected[NodeIndex] != null)
+        {
+            GetComponent<Button>().interactable = true;
+            Node = NodesSelected[NodeIndex];
+
+            if (Node.EnergyBonus != null && Node.EnergyBonus != "")
+                EnergyCost = float.Parse(Node.EnergyBonus);
+
+            EnergyText.text = "Energy Cost: " + EnergyCost;
+
+            PreviewData[0].Value = EnergyCost;
+        }
     }
 
     public void RefreshEvent()
     {
-        if (GameManager.day % 7 == 0)
-            goto skipCommonDayCheck;
-        Debug.Log(GameManager.day % 3);
-        if (GameManager.day % 3 != 0 || GetComponent<Button>().interactable) //If the event is not clicked, do not update it, unless it's the correct day.
-            return;
-
-        skipCommonDayCheck:
-
-        GetComponent<Button>().interactable = true;
-
-        ChooseStatPool();
-
-        if (NodeType == GameEventManager.nodeType.fame)
+        if (GameManager.day % 7 == 0 || GameManager.day == 4 || !GetComponent<Button>().interactable)
         {
-            Node = GameEventManager.fameNodes[Random.Range(0, GameEventManager.fameNodes.Count)];
-            GetComponent<Image>().sprite = FameSprite;
-        }
-        else if (NodeType == GameEventManager.nodeType.musical)
-        {
-            Node = GameEventManager.musicNodes[Random.Range(0, GameEventManager.musicNodes.Count)];
-            GetComponent<Image>().sprite = MusicSprite;
-        }
-        else if (NodeType == GameEventManager.nodeType.social)
-        {
-            Node = GameEventManager.socialNodes[Random.Range(0, GameEventManager.socialNodes.Count)];
-            GetComponent<Image>().sprite = SocialSprite;
-        }
-        else if (NodeType == GameEventManager.nodeType.special)
-        {
-            Node = GameEventManager.specialNodes[Random.Range(0, GameEventManager.specialNodes.Count)];
-            GetComponent<Image>().sprite = SpecialSprite;
-        }
+            GetComponent<Button>().interactable = true;
 
-        if (Node != null)
-            NodesSelected[NodeIndex] = Node;
+            ChooseStatPool();
 
-        if (Node.EnergyBonus != null && Node.EnergyBonus != "")
-            EnergyCost = float.Parse(Node.EnergyBonus);
-        if (Node.FameBonus != null && Node.FameBonus != "")
-            FameBonus = float.Parse(Node.FameBonus);
-        if (Node.MetalBonus != null && Node.MetalBonus != "")
-            MetalBonus = float.Parse(Node.MetalBonus);
-        if (Node.AngstBonus != null && Node.AngstBonus != "")
-            AngstBonus = float.Parse(Node.AngstBonus);
+            if (NodeType == GameEventManager.nodeType.fame)
+            {
+                Node = GameEventManager.fameNodes[Random.Range(0, GameEventManager.fameNodes.Count)];
+                GetComponent<Image>().sprite = FameSprite;
+            }
+            else if (NodeType == GameEventManager.nodeType.musical)
+            {
+                Node = GameEventManager.musicNodes[Random.Range(0, GameEventManager.musicNodes.Count)];
+                GetComponent<Image>().sprite = MusicSprite;
+            }
+            else if (NodeType == GameEventManager.nodeType.social)
+            {
+                Node = GameEventManager.socialNodes[Random.Range(0, GameEventManager.socialNodes.Count)];
+                GetComponent<Image>().sprite = SocialSprite;
+            }
+            else if (NodeType == GameEventManager.nodeType.special)
+            {
+                Node = GameEventManager.specialNodes[Random.Range(0, GameEventManager.specialNodes.Count)];
+                GetComponent<Image>().sprite = SpecialSprite;
+            }
 
-        EnergyText.text = "Energy Cost: " + EnergyCost;
+            if (Node != null)
+                NodesSelected[NodeIndex] = Node;
 
-        PreviewData[0].Value = EnergyCost;
-        //PreviewData[1].Value = FameBonus;
-        //PreviewData[2].Value = MetalBonus;
-        //PreviewData[3].Value = AngstBonus;
+            if (Node.EnergyBonus != null && Node.EnergyBonus != "")
+                EnergyCost = float.Parse(Node.EnergyBonus);
+            if (Node.FameBonus != null && Node.FameBonus != "")
+                FameBonus = float.Parse(Node.FameBonus);
+            if (Node.MetalBonus != null && Node.MetalBonus != "")
+                MetalBonus = float.Parse(Node.MetalBonus);
+            if (Node.AngstBonus != null && Node.AngstBonus != "")
+                AngstBonus = float.Parse(Node.AngstBonus);
+
+            EnergyText.text = "Energy Cost: " + EnergyCost;
+
+            PreviewData[0].Value = EnergyCost;
+            //PreviewData[1].Value = FameBonus;
+            //PreviewData[2].Value = MetalBonus;
+            //PreviewData[3].Value = AngstBonus;
+        }
     }
 
     public void UpdateStatBars()
@@ -94,14 +102,19 @@ public class EventEnum : MonoBehaviour
 
     private void ChooseStatPool()
     {
-        FameChance = FindObjectOfType<fameStatScript>().LastWeeksStatGain / FindObjectOfType<fameStatScript>().WeightWeeklyIncreaseCap;
-        SocialChance = FindObjectOfType<angstStatScript>().LastWeeksStatGain / FindObjectOfType<angstStatScript>().WeightWeeklyIncreaseCap;
-        MusicChance = FindObjectOfType<metalStatScript>().LastWeeksStatGain / FindObjectOfType<metalStatScript>().WeightWeeklyIncreaseCap;
+        FameChance = FindObjectOfType<fameStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().FameWeekCap;
+        SocialChance = FindObjectOfType<angstStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().SocialWeekCap;
+        MusicChance = FindObjectOfType<metalStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().MusicWeekCap;
         SpecialChance = FindObjectOfType<GameEventManager>().SpecialNodeChance;
 
         float sum = FameChance + SocialChance + MusicChance;
         if (sum <= 0)
-            sum = 1;
+        {
+            FameChance = 1;
+            SocialChance = 1;
+            MusicChance = 1;
+            sum = FameChance + SocialChance + MusicChance;
+        }
 
         float fameRng = Mathf.Clamp((FameChance / sum) * (1 - SpecialChance), 0, 1);
         float socialRng = Mathf.Clamp((SocialChance / sum) * (1 - SpecialChance), 0, 1);
@@ -123,6 +136,11 @@ public class EventEnum : MonoBehaviour
     }
 
     private void OnDestroy()
+    {
+        GameManager.sleep -= RefreshEvent;
+    }
+
+    private void OnLevelWasLoaded(int level)
     {
         GameManager.sleep -= RefreshEvent;
     }
