@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
-            SceneManager.LoadScene(PracticeScene);
+            SceneTransition.StartTransition(PracticeScene);
         }
     }
 
@@ -191,20 +191,20 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseWeek()
     {
-        if (day % 5 == 0)
+        if (day == 5)
         {
             FindObjectOfType<GameEventManager>().TriggerRentReminder();
         }
-        if (day % 6 == 0)
+        if (day == 6)
         {
             FindObjectOfType<GameEventManager>().TriggerUpcomingGig();
         }
-        if (day % 7 == 0)
+        if (day == 7)
         {
             FindObjectOfType<GameEventManager>().TriggerGig();
         }
 
-        if (day % 8 == 0)
+        if (day == 8)
         {
             week++;
             day = 1;

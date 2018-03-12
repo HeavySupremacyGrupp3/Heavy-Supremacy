@@ -42,7 +42,7 @@ public class moneyStatScript : Stats {
         {
             if (a < 0)
                 a *= -1;
-            _MoneyParticles.emissionRate = a;
+            _MoneyParticles.emissionRate = a / 4;
             _MoneyParticles.Play();
         }
     }

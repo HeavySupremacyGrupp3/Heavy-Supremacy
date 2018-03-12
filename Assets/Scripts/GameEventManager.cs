@@ -31,6 +31,7 @@ public class GameEventManager : MonoBehaviour
     [Range(0, 1)]
     public float SpecialNodeChance = 0;
 
+    [Range(0, 100)]
     public float FameWeekCap, MusicWeekCap, SocialWeekCap;
 
     public float RecieveMessageDelay = 0.75f;
@@ -49,6 +50,7 @@ public class GameEventManager : MonoBehaviour
     public enum nodeType { social, musical, fame, special }
 
     private StoryNode firstNode;
+    private string YesChar = "#";
 
     private void Awake()
     {
@@ -190,7 +192,7 @@ public class GameEventManager : MonoBehaviour
 
         if (choices.Count > 1)
             firstNode = node;
-        if (choices.Count < 2)
+        if (choices.Count < 2 && node.EnergyBonus == YesChar)
             GiveRewards(firstNode);
 
         if (!PanelChoiceButtons[0].activeSelf)
