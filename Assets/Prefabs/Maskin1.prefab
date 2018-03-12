@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114034213965195218}
   - component: {fileID: 114601013590464936}
   - component: {fileID: 95435296052157086}
-  - component: {fileID: 114439127020833918}
+  - component: {fileID: 114573154490136288}
   m_Layer: 0
   m_Name: Maskin1
   m_TagString: Maskin
@@ -68,9 +68,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147418782498688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.1, y: 5.2369514, z: 0.0028942889}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4288304268752442}
   m_Father: {fileID: 0}
@@ -118,7 +118,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 6.68, y: 22.84}
-    newSize: {x: 1.65, y: 1.65}
+    newSize: {x: 3.54, y: 3.22}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -135,7 +135,7 @@ Animator:
   m_GameObject: {fileID: 1147418782498688}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b55601049ac7fba409000e0bf1f9fbbb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -154,15 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bbe80e6b5ce664e8b34eae72ff0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivasionKey1: 0
-  ActivasionKey2: 0
-  ActivasionKey3: 0
-  CanComboKey: 0
-  CanExitCollider: 0
   MyOutOfRangeDetector: {fileID: 114670445592310160}
-  myType: 0
-  SecondSound: 1
---- !u!114 &114439127020833918
+--- !u!114 &114573154490136288
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -170,9 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1147418782498688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a01fde0e06f30429712f8edac08fba, type: 3}
+  m_Script: {fileID: 11500000, guid: e799aa093fa249641b11e63c3af766d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
 --- !u!114 &114601013590464936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  buttonName: Button_Left
+  button: {fileID: 0}
   buttonPressedSprite: {fileID: 21300000, guid: 9c6154896ad1fd24e9762c586be6887b,
     type: 3}
   animator: {fileID: 0}
@@ -193,7 +187,6 @@ MonoBehaviour:
   key: 276
   lerpTime: 0.2
   lerpDistance: 2.5
-  FirstSound: 0
 --- !u!114 &114670445592310160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,12 +232,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: f6189e17be914774db387e11265cfa66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b0195630f4aec34ebe3189931f1a8d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.65, y: 1.65}
+  m_Size: {x: 3.54, y: 3.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

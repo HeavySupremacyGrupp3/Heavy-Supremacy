@@ -10,8 +10,7 @@ public class TimingString : TimingSystem
 
     public float MaxHealth = 5;
     public Image HealthImage;
-    public Sprite StandardHeart;
-    public Sprite BurningHeart;
+    public Image MaxHealthImage;
     public GameObject AngstPopupPrefab;
     public GameObject MetalPopupPrefab;
     public GameObject NoteHitEffect;
@@ -33,6 +32,8 @@ public class TimingString : TimingSystem
     public Text StreakCounter;
     public Text HighestStreakCounter;
     public GameObject StreakEffect;
+    public Bloodshot BloodShotEffect;
+    public float MaxStreakEffectCounter;
 
     public NoteGenerator NoteGen;
 
@@ -40,9 +41,14 @@ public class TimingString : TimingSystem
     public static float MetalMultiplier = 1;
     public static float NotesHit = 0;
 
-    private int streakCounter = 0;
-    private int streakHighScoreCounter = 0;
-    private float health;
+    private float streakCounter = 0;
+    private float streakHighScoreCounter = 0;
+    private float perfectCounter = 0;
+    [HideInInspector]
+    public float health;
+
+    private Sound HappyAudience;
+    private Sound SadAudience;
 
     void Start()
     {
@@ -50,85 +56,79 @@ public class TimingString : TimingSystem
         HealthImage.fillAmount = MaxHealth;
         if (!GigBackgroundManager.GigSession)
             HealthImage.gameObject.SetActive(false);
+        else
+            HealthImage.gameObject.SetActive(true);
 
         NotesHit = 0;
+        UpdateAudienceAudio();
     }
 
     public override void FailTiming()
     {
-        //Make sure note cannot fail if it has been hit.
-        if (hitTargets.Count > 0 && targets.Count > 0 && hitTargets.Contains(targets[0].gameObject))
-        {
-            ClearHitTargetList();
-            return;
-        }
-        else
-        {
             base.FailTiming();
 
             NoteGen.SwitchMusicSource(false);
             Destroy(Instantiate(MissPopupPrefab, new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
             AddOrRemoveHealth(-1);
-            UpdateStreakCounter(-streakCounter);
+            UpdateStreakCounters(-1000000, null);
+            perfectCounter = 0;
 
-            ClearHitTargetList();
-        }
 
         AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
         //StringAnimator.SetTrigger("StringStroked");
     }
 
-    void ClearHitTargetList()
+    public override void SucceedTiming(GameObject note)
     {
-        foreach (GameObject go in hitTargets)
-        {
-            Destroy(go);
-        }
-        hitTargets.Clear();
-    }
-
-    public override void SucceedTiming()
-    {
-        base.SucceedTiming();
+        base.SucceedTiming(note);
 
         NoteGen.SwitchMusicSource(true);
 
         NotesHit++;
-        UpdateStreakCounter(1);
+        UpdateStreakCounters(1, note);
 
-        if (streakCounter % RequiredStreaksForHealth == 0)
+        if (streakCounter % RequiredStreaksForHealth == 0 && streakCounter > 0)
         {
             AddOrRemoveHealth(HealthGainedPerStreak);
+        }
+
+        if (GigBackgroundManager.GigSession && perfectCounter % RequiredStreaksForEffect == 0 && perfectCounter > 0)
+        {
+            Destroy(Instantiate(StreakEffect), 3);
             AudioManager.instance.Play("StreakSound");
         }
 
-        if (streakCounter % RequiredStreaksForEffect == 0)
-            Destroy(Instantiate(StreakEffect), 3);
+        Destroy(Instantiate(GetNoteAccuracyPrefab(note), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
 
-        Destroy(Instantiate(GetNoteAccuracyPrefab(), new Vector2(transform.position.x, transform.position.y + 5), Quaternion.identity), 3);
+        GameObject noteHitEffect = Instantiate(NoteHitEffect, note.transform.position, Quaternion.identity) as GameObject;
+        Vector3 tempPos = noteHitEffect.transform.position;
+        tempPos.y = transform.position.y;
+        noteHitEffect.transform.position = tempPos;
 
-        //GameObject metalPopup = Instantiate(MetalPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
-        //GameObject angstPopup = Instantiate(AngstPopupPrefab, target.transform.position, Quaternion.identity) as GameObject;
-        GameObject noteHitEffect = Instantiate(NoteHitEffect, targets[0].transform.position, Quaternion.identity) as GameObject;
-
-        //metalPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
-        //angstPopup.GetComponent<TransformAndRotate>().RotationZ *= Random.Range(0.2f, 1.4f);
-
-        //Destroy(metalPopup, 2);
-        //Destroy(angstPopup, 2);
         Destroy(noteHitEffect, 5);
 
         StringAnimator.SetTrigger("StringStroked");
 
-        Destroy(targets[0]);
+        note.name = "DEAD_NOTE";
 
-        targets.Clear();
+        GameObject tempTarget = note;
+        note.GetComponent<BoxCollider2D>().enabled = false;
+
+        note.transform.GetComponentInChildren<CutoffLerp>().Lerp = true;
+
+        Destroy(tempTarget, 1);
+
+        TargetInRange = false;
+
     }
 
-    private GameObject GetNoteAccuracyPrefab()
+    private GameObject GetNoteAccuracyPrefab(GameObject note)
     {
-        float distance = transform.position.y - targets[0].transform.position.y;
+        if (!TargetInRange)
+            return new GameObject();
+
+        float distance = transform.position.y - note.transform.position.y;
         if (distance < 0)
             distance *= -1;
 
@@ -147,9 +147,19 @@ public class TimingString : TimingSystem
         return go;
     }
 
-    private void UpdateStreakCounter(int value)
+    private void UpdateStreakCounters(int value, GameObject note)
     {
         streakCounter += value;
+
+        if (GetNoteAccuracyPrefab(note).name.Contains("Perfect"))
+            perfectCounter += value;
+        else
+            perfectCounter = 0;
+
+        if (streakCounter < 0)
+            streakCounter = 0;
+        if (perfectCounter < 0)
+            perfectCounter = 0;
 
         if (streakCounter > streakHighScoreCounter)
         {
@@ -157,31 +167,65 @@ public class TimingString : TimingSystem
             HighestStreakCounter.text = "Highest Streak: " + streakCounter.ToString();
         }
         StreakCounter.text = streakCounter.ToString();
+
+        if (GigBackgroundManager.GigSession && streakCounter >= 10 || streakCounter == 0)
+            BloodShotEffect.Progress = streakCounter / MaxStreakEffectCounter;
     }
 
     private void AddOrRemoveHealth(int amount)
     {
         health += amount;
 
-        HealthImage.sprite = StandardHeart;
-
+        if (health < MaxHealth)
+            MaxHealthImage.enabled = false;
         if (health > MaxHealth)
         {
             health = MaxHealth;
-            HealthImage.sprite = BurningHeart;
+            MaxHealthImage.enabled = true;
         }
         else if (health <= 0 && GigBackgroundManager.GigSession)
         {
             FindObjectOfType<NoteGenerator>().EndGame(false);
         }
+
         HealthImage.fillAmount = health / MaxHealth;
+        UpdateAudienceAudio();
+    }
+
+    private void UpdateAudienceAudio()
+    {
+        if (GigBackgroundManager.GigSession)
+        {
+            if (HappyAudience == null)
+            {
+                HappyAudience = AudioManager.instance.GetSound("HappyAudience");
+                AudioManager.instance.Play(HappyAudience.name);
+            }
+            if (SadAudience == null)
+            {
+                SadAudience = AudioManager.instance.GetSound("SadAudience");
+                AudioManager.instance.Play(SadAudience.name);
+            }
+
+            HappyAudience.source.volume = (health / MaxHealth) * HappyAudience.volume;
+            SadAudience.source.volume = (1 - (health / MaxHealth)) * SadAudience.volume;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!CanExitCollider && collision.transform.position.y < transform.position.y - 0.5f)
+        if (collision.name != "DEAD_NOTE")
         {
             FailTiming();
+            //Remove notes in the set until there is only one left, then remove the whole set.
+            if (NoteGenerator.NoteSets[0].Notes.Count == 1)
+            {
+                NoteGenerator.NoteSets.RemoveAt(0);
+            }
+            else
+            {
+                NoteGenerator.NoteSets[0].Notes.RemoveAt(0);
+            }
         }
     }
 

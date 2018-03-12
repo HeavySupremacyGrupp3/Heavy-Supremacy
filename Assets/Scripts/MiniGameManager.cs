@@ -7,19 +7,19 @@ using UnityEngine.UI;
 public class MiniGameManager : MonoBehaviour
 {
     public produktScript produktScript;
+    public Tutorial WorkTut;
 
     public GameObject produktPrefab;
     private List<GameObject> produkter;
 
     angstStatScript StatReference;
+    public Animator AngstAnimator;
+    private float statLerpTimer = 0.5f;
 
     public Vector3 moveProduction;
     public float productInterval;
     float updateCounter = 0;
     bool spawnStuff = true;
-
-    public delegate void mittEvent();
-    public static event mittEvent stopProducts;
 
     bool productsAreStopped = false;
 
@@ -37,10 +37,14 @@ public class MiniGameManager : MonoBehaviour
     private float angstTick = 1f;
     [SerializeField]
     private int angstAmount = 1;
-    private float angst = 0f;
+    private float angst;
+    private float addedAngst = 0;
 
     [SerializeField]
     private Text angstText;
+
+    [SerializeField]
+    private Text moneyText;
 
     [HideInInspector]
     public List<GameObject> productList;
@@ -49,35 +53,66 @@ public class MiniGameManager : MonoBehaviour
 
     int productsSeen = 0;
 
+    [HideInInspector]
+    public float addedMoney;
+    private moneyStatScript moneyStats;
+
     [SerializeField]
     private int quitWorkAfterProducts;
 
     [SerializeField]
     private GameObject resultScreen;
+	
+	public delegate void mittEvent();
+    public static event mittEvent stopEverything;
 
     void OnEnable()
     {
-        produktScript.earnMoney += omaewashindeiru;
+        produktScript.earnMoney += earnMoneyIfReachedEnd;
+		produktScript.collidedWithBox += stopWorkIfEnoughProducts;
+		produktScript.JustReachedCheckpoint += checkpointReached;
     }
 
     void OnDisable()
     {
-        produktScript.earnMoney -= omaewashindeiru;
+        produktScript.earnMoney -= earnMoneyIfReachedEnd;
+		produktScript.collidedWithBox -= stopWorkIfEnoughProducts;
+		produktScript.JustReachedCheckpoint -=checkpointReached;
     }
 
+	void checkpointReached()
+	{
+		Debug.Log("Checkpoint just reached.");
+	}
+	
     void Start()
     {
         AudioManager.instance.Play("rullband");
         AudioManager.instance.Play("hiss");
         StatReference = GameObject.Find("angstObject").GetComponent<angstStatScript>();
+        moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
         productList = new List<GameObject>();   //Skapar en lista 
-        //angstText.text = "Shit"; 
+        angst = StatReference.getAmount();
+
+        if (GameManager.IsFirstWorkRun)
+        {
+            GameManager.IsFirstWorkRun = !GameManager.IsFirstWorkRun;
+            WorkTut.Run();
+        }
     }
 
     void Update()
     {
-        angst += Time.deltaTime / angstTick;
-        StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));
+        angst += Time.deltaTime / angstTick;    //Gain x amount angst every x second (set in inspector)
+        addedAngst += Time.deltaTime / angstTick;  //Same but this only keeps track on how much you've gained, not the total amount of angst
+        StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));   //Set the amount stat to angst (angstAmount is x angst per second´in inspector)
+
+        statLerpTimer += Time.deltaTime / angstTick;
+        if (statLerpTimer >= 1)
+        {
+            statLerpTimer = 0;
+            AngstAnimator.SetTrigger("LerpEnergy");
+        }
 
         updateCounter += Time.deltaTime;
 
@@ -86,17 +121,21 @@ public class MiniGameManager : MonoBehaviour
             updateCounter = 0;
 
             bool hasSpawned = false;
+            float rnd = Random.value;
+            float chance = 0f;
             for (int i = 1; i < productChanse.Length; i++)    //Går igenom varje produkttyps chans att spawna från en lista
             {
-                if (Random.value < productChanse[i] && hasSpawned == false)   //Om ett tal mellan 0-1 är mindre än produktchansen (sätts i inspektorn) och om inget annat har spawnat
+                chance += productChanse[i];                 // Exempel: 0+0.6 -> 0.6+0.2 -> 0.8+0.1 -> 0.9+0.1
+                if (rnd < chance && hasSpawned == false)   //Om ett tal mellan 0-1 är mindre än produktchansen (sätts i inspektorn) och om inget annat har spawnat
                 {
-                    SpawnProduct(i);                  //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
-                    hasSpawned = true;                //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
+					if(i<productChanse.Length-1)
+						SpawnProduct(i);                //Spawna den produkt som for-satsen var på i listan som mötte kraven (talet var mindre än chansen)
+
+					hasSpawned = true;                  //Spawna inget mer förrän updateCounter möter conditions igen och processen börjar om
                 }
             }
             if (!hasSpawned)
                 SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
-
 
             productsSeen++;
 
@@ -115,14 +154,8 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-    public void QuitWork()
-    {
-        StatReference.addOrRemoveAmount(15f);
-    }
-
     public void LoadHUB()
     {
-        //QuitWork();
         SceneManager.LoadScene("HUBScene");
     }
 
@@ -136,15 +169,12 @@ public class MiniGameManager : MonoBehaviour
         SceneManager.LoadScene("WorkScene");
     }
 
-    public void MenuIsClicked()
-    {
-        spawnStuff = false;
-    }
-
     public void LoadResultScreen()
     {
-        angstText.text = "+" + Mathf.RoundToInt(angst) + " Angst";
-        resultScreen.SetActive(true);
+        Time.timeScale = 0;     //Pause the game/production
+        angstText.text = "+" + Mathf.RoundToInt(addedAngst);  //Show how much angst you've gained
+        moneyText.text = "+" + addedMoney;       //Show how much money you earned
+        resultScreen.SetActive(true);                          //activate the resultScreen
     }
 
     //switches spawning on/off, stops/moves products
@@ -152,20 +182,21 @@ public class MiniGameManager : MonoBehaviour
     {
         spawnStuff = !spawnStuff;
         productsAreStopped = !productsAreStopped;
-        stopProducts();
+		stopEverything();
     }
-
 
     //counts products finished, and shows the result screen if products finished > set amount
-    void omaewashindeiru()
+    void earnMoneyIfReachedEnd()
     {
-        finishedProducts++;
-
-        if (finishedProducts == quitWorkAfterProducts && cantStopWontStop == false)
-        {
-            resultScreen.SetActive(true);  
-        }
+		addedMoney += moneyStats.difference; //When a product is finished, collect data on how much money you earned (difference)
     }
+	
+	void stopWorkIfEnoughProducts()
+	{
+		finishedProducts++;
+		if (finishedProducts == quitWorkAfterProducts && !cantStopWontStop)
+			LoadResultScreen();   //Load resultScreen when the number of finished products has been achieved
+	}
 
     public void SpawnProduct(int rng)
     {

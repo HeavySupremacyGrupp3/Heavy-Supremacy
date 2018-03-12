@@ -11,9 +11,14 @@ public class GameManager : MonoBehaviour
     public float Rent;
     public static int day = 1;
     public static int week = 1;
+    public static bool IsFirstWorkRun = true;
+    public static bool IsFirstHubRun = true;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
+    public Animator EnergyAnimator;
+    public Image[] StatPreviewCosts;
+    public Image[] StatPreviewRewards;
 
     public delegate void mittEvent();
     public static event mittEvent sleep;
@@ -22,7 +27,7 @@ public class GameManager : MonoBehaviour
     public static bool ToEndGame;
     public static bool RestartGame;
 
-	private KeyCode key=KeyCode.Escape;
+    private KeyCode key = KeyCode.Escape;
 
     void Start()
     {
@@ -40,6 +45,12 @@ public class GameManager : MonoBehaviour
         s.source.time = UnityEngine.Random.Range(0, s.clip.length);
 
         am.Play("HUBAmbience");
+
+        if (IsFirstHubRun)
+        {
+            IsFirstHubRun = !IsFirstHubRun;
+            GameObject.Find("HubTutorial").transform.GetChild(0).GetComponent<Tutorial>().Run(); // BECAUSE UNITY IS AWESOME, AND GAMEOBJECT.FIND(HUB_TUTORIAL).GETCOMPONENT<TUTORIAL>() DOESN'T WORK! YAAY! Not even mad.
+        }
     }
 
     private void Update()
@@ -51,15 +62,18 @@ public class GameManager : MonoBehaviour
         //WeekText.text = "Approximately week: " + week;
         if (Input.GetKeyDown(KeyCode.R))
             Restart();
-		//if(Input.GetKeyDown(key))
-		//	Quit();
-		
+        if (Input.GetKeyDown(KeyCode.G))
+            LoadGig(10);
+        //if(Input.GetKeyDown(key))
+        //	Quit();
     }
 
     void Initialize()
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
+        {
             Destroy(FindObjectsOfType<GameManager>()[0].gameObject);
+        }
 
         DontDestroyOnLoad(gameObject);
     }
@@ -109,35 +123,38 @@ public class GameManager : MonoBehaviour
         day = 1;
         week = 1;
 
-        LoadHUB();
+        if (SceneManager.GetActiveScene().name != "HUBScene")
+            LoadHUB();
     }
 
-    public void LoadWork(float energyCost)
+    public void LoadWork(float energy)
     {
-        if (CheckEnergy(energyCost))
+        if (CheckEnergy(energy))
         {
+            AudioManager.instance.Play("DoorClick");
             StopHUBLoops();
             SceneTransition.StartTransition("WorkScene");
         }
     }
 
-    public void LoadPractice(float energyCost)
+    public void LoadPractice(float energy)
     {
-        if (CheckEnergy(energyCost))
+        if (CheckEnergy(energy))
         {
+            AudioManager.instance.Play("practiceClick");
             StopHUBLoops();
             GigBackgroundManager.GigSession = false;
             SceneTransition.StartTransition("PracticeScene");
         }
     }
 
-    public void LoadGig(float energyCost)
+    public void LoadGig(float energy)
     {
-        if (CheckEnergy(energyCost))
+        if (CheckEnergy(80))
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
-            SceneManager.LoadScene("PracticeScene");
+            SceneTransition.StartTransition("PracticeScene");
         }
     }
 
@@ -154,7 +171,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("HUBScene");
     }
 
-    public void LoadSleep()
+    public void LoadSleep(float energy)
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
         fadeScript.FadeOut();
@@ -171,10 +188,27 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseWeek()
     {
+        if (day % 5 == 0)
+        {
+            FindObjectOfType<GameEventManager>().TriggerRentReminder();
+        }
+        if (day % 6 == 0)
+        {
+            FindObjectOfType<GameEventManager>().TriggerUpcomingGig();
+        }
+        if (day % 7 == 0)
+        {
+            FindObjectOfType<GameEventManager>().TriggerGig();
+        }
+
         if (day % 8 == 0)
         {
             week++;
             day = 1;
+
+            FindObjectOfType<fameStatScript>().UpdateWeeklyStatGains();
+            FindObjectOfType<metalStatScript>().UpdateWeeklyStatGains();
+            FindObjectOfType<angstStatScript>().UpdateWeeklyStatGains();
 
             if ((FindObjectOfType<moneyStatScript>().getAmount() - Rent) < 0)
                 EndGame("You're Broke!");
@@ -202,6 +236,40 @@ public class GameManager : MonoBehaviour
             return true;
         }
         else
+        {
+            EnergyAnimator.SetTrigger("LerpEnergy");
+            AudioManager.instance.Play("LowEnergy");
             return false;
+        }
+    }
+
+    public void UpdateStatPreviewFill(StatPreviewData data)
+    {
+        int statIndex = data.StatIndex;
+        float value = data.Value;
+
+        if (value == 0)
+            return;
+
+        float tempValue = 1 - StatPreviewCosts[statIndex].fillAmount;
+
+        if (value < 0)
+        {
+            value *= -1;
+            StatPreviewCosts[statIndex].material.SetFloat("_EdgeWidth", tempValue + (value / 100));
+        }
+        else if (value > 0)
+        {
+            StatPreviewRewards[statIndex].fillAmount = StatPreviewCosts[statIndex].fillAmount + (value / 100) - 0.01f; //0.01f is for not showing top green when bar is full. This is because of the fillshader...;
+        }
+    }
+
+    public void ResetAllStatPreviews()
+    {
+        for (int i = 0; i < StatPreviewCosts.Length; i++)
+        {
+            StatPreviewCosts[i].material.SetFloat("_EdgeWidth", 0);
+            StatPreviewRewards[i].fillAmount = 0;
+        }
     }
 }

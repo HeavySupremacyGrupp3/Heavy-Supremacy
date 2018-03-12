@@ -9,17 +9,9 @@ public class NoteGenerator : MonoBehaviour
 {
     public int SongIndex = 0;
 
-    public AudioClip[] PracticeWithLeadSongs;
-    public AudioClip[] PracticeWithoutLeadSongs;
-    public AudioClip[] PracticeMIDISongs;
+    public Song[] PracticeSongs;
+    public Song[] GigSongs;
 
-    public AudioClip[] GigWithLeadSongs;
-    public AudioClip[] GigWithoutLeadSongs;
-    public AudioClip[] GigMIDISongs;
-
-    private AudioClip MusicWithLead;
-    private AudioClip MusicWithoutLead;
-    private AudioClip NoteGenerationAudio;
     public AudioSource MusicWithLeadAudioSource;
     public AudioSource MusicWithoutLeadAudioSource;
     public AudioSource NoteGenerationAudioSource;
@@ -29,9 +21,7 @@ public class NoteGenerator : MonoBehaviour
     public AudioMixerGroup GigWithLeadMixer;
     public AudioMixerGroup GigWithoutLeadMixer;
 
-    public float UpdateInterval = 0.1f; //For optimizing performance.
     private int SampleDataLength = 1024;  //1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
-    public float MusicStartDelay = 1;
     public float NoteGenerationStartDelay = 1;
 
     public GameObject[] NotePrefabs;
@@ -49,21 +39,30 @@ public class NoteGenerator : MonoBehaviour
 
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 2;
+    public static float DoubleNoteChance = 0;
     public static float NotesTotal = 0;
     public static bool ShowPracticeTutorial = true;
     public static bool ShowGigTutorial = true;
 
-    public AudioClip VictorySound;
+    public AudioClip VictorySoundHard;
+    public AudioClip VictorySoundMedium;
+    public AudioClip VictorySoundEasy;
     public AudioClip DefeatSound;
+
+    public Item HardGuitar;
+    public Item MediumGuitar;
 
     private float clipTime = 0;
     private float clipVolume;
     private float lastClipVolume;
     private float volumeTreshold = 0.1f;
+    private float UpdateInterval = 0.1f; //For optimizing performance. And to not check same note twice, and at the same time update fast enough to not miss notes.
+    private float musicStartDelay = 1;
     private float[] clipSampleData;
     private bool canSendNextNote = true;
     private float noteSpawnTimer = 0;
     private int noteIndex = 0;
+    public static List<NoteSet> NoteSets = new List<NoteSet>();
 
     private bool useLeadAudioSource = true;
     private bool lerpAudio = false;
@@ -71,8 +70,12 @@ public class NoteGenerator : MonoBehaviour
     [SerializeField]
     private float lerpSeconds = 0.25f;
 
+    private Song selectedSong;
+
     void Start()
     {
+        NoteSets.Clear();
+
         if (ShowPracticeTutorial || ShowGigTutorial)
         {
             SetTutorial(true);
@@ -82,6 +85,7 @@ public class NoteGenerator : MonoBehaviour
             SetTutorial(false);
         }
 
+        Debug.Log(ShowPracticeTutorial);
     }
 
     void Initialize()
@@ -94,31 +98,30 @@ public class NoteGenerator : MonoBehaviour
         //Assign audioclips.
         if (!GigBackgroundManager.GigSession)
         {
-            MusicWithLead = PracticeWithLeadSongs[SongIndex];
-            MusicWithoutLead = PracticeWithoutLeadSongs[SongIndex];
-            NoteGenerationAudio = PracticeMIDISongs[SongIndex];
-
+            selectedSong = PracticeSongs[SongIndex];
+            
             MusicWithLeadAudioSource.outputAudioMixerGroup = PracticeWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = PracticeWithoutLeadMixer;
         }
         else if (GigBackgroundManager.GigSession)
         {
-            MusicWithLead = GigWithLeadSongs[SongIndex];
-            MusicWithoutLead = GigWithoutLeadSongs[SongIndex];
-            NoteGenerationAudio = GigMIDISongs[SongIndex];
+            selectedSong = GigSongs[SongIndex];
 
             MusicWithLeadAudioSource.outputAudioMixerGroup = GigWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = GigWithoutLeadMixer;
         }
+        UpdateInterval = selectedSong.GeneratorUpdateInterval;
+        volumeTreshold = selectedSong.MinimumVolumeTreshold;
+        musicStartDelay = selectedSong.MusicDelay;
 
         //Play the music.
-        MusicWithLeadAudioSource.clip = MusicWithLead;
-        MusicWithLeadAudioSource.PlayDelayed(MusicStartDelay);
+        MusicWithLeadAudioSource.clip = selectedSong.MusicWithLead;
+        MusicWithLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        MusicWithoutLeadAudioSource.clip = MusicWithoutLead;
-        MusicWithoutLeadAudioSource.PlayDelayed(MusicStartDelay);
+        MusicWithoutLeadAudioSource.clip = selectedSong.MusicWithoutLead;
+        MusicWithoutLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        NoteGenerationAudioSource.clip = NoteGenerationAudio;
+        NoteGenerationAudioSource.clip = selectedSong.MIDIMusic;
         NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
     }
 
@@ -131,11 +134,11 @@ public class NoteGenerator : MonoBehaviour
             NoteGenerationAudioSource.time = NoteGenerationAudioSource.clip.length - 2;
         }
 
-        if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) || !ShowGigTutorial)
+        if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) && !PracticeTutorialPanel.activeSelf || !ShowGigTutorial && !GigTutorialPanel.activeSelf)
         {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
-            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf) //End game if song is over and the game hasn't already ended.
+            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0) //End game if song is over and the game hasn't already ended.
                 EndGame(true);
 
             if (lerpAudio)
@@ -163,15 +166,15 @@ public class NoteGenerator : MonoBehaviour
             //Debug.Log(clipVolume);
 
             //Set volumetreshold to the volume of the first note.
-            if (volumeTreshold <= 1 && clipVolume > 1 || clipVolume < volumeTreshold && clipVolume > 1)
-                volumeTreshold = clipVolume;
+            //if (volumeTreshold <= 1 && clipVolume > 1 || clipVolume < volumeTreshold && clipVolume > 1)
+            //    volumeTreshold = clipVolume;
 
             //If the tone is long, create only one note.
-            if (clipVolume >= lastClipVolume)
-                canSendNextNote = true;
-            lastClipVolume = clipVolume;
+            //if (clipVolume >= lastClipVolume)
+            //    canSendNextNote = true;
+            //lastClipVolume = clipVolume;
 
-            if (clipVolume >= volumeTreshold && canSendNextNote)
+            if (clipVolume >= volumeTreshold)
             {
                 clipVolume = 0f;
                 canSendNextNote = false;
@@ -184,20 +187,32 @@ public class NoteGenerator : MonoBehaviour
 
     void SendNote()
     {
+        NoteSet noteSet = new NoteSet();
+
+        float doubleNoteRng = Random.Range(0f, 1f);
+        if (doubleNoteRng < DoubleNoteChance)
+            NoteMultiplier++;
+
         int tempIndex = 0;
         for (int i = 0; i < NoteMultiplier; i++)
         {
-            //Commented lines are to ensure unique notes every send.
-            //do
-            //{
-            tempIndex = Random.Range(0, NumberOfUniqueNotes);
-            //}
-            //while (noteIndex == tempIndex);
+            //While-loop are to ensure unique notes every send.
+            do
+            {
+                tempIndex = Random.Range(0, NumberOfUniqueNotes);
+            }
+            while (noteIndex == tempIndex && doubleNoteRng < DoubleNoteChance);
             noteIndex = tempIndex;
 
-            Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity);
+
+            noteSet.Notes.Add(Instantiate(NotePrefabs[noteIndex], new Vector2(transform.position.x + NoteSpawnXOffset[noteIndex], transform.position.y), Quaternion.identity));
             NotesTotal++;
         }
+        NoteSets.Add(noteSet);
+
+        if (NoteMultiplier > 1)
+            NoteMultiplier = 1;
+
         noteSpawnTimer = 0;
     }
 
@@ -206,6 +221,8 @@ public class NoteGenerator : MonoBehaviour
         Debug.Log("ENDED GAME");
 
         EndGamePanel.SetActive(true);
+        FindObjectOfType<TimingString>().enabled = false;
+
         MusicWithLeadAudioSource.Stop();
         MusicWithoutLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
@@ -226,13 +243,42 @@ public class NoteGenerator : MonoBehaviour
         {
             Debug.Log("VICTORY");
 
-            MusicWithLeadAudioSource.PlayOneShot(VictorySound);
+            //Victory sound, based on the most expensive guitar purchased.
+            SwitchMusicSource(true);
+            if (ShopSystem.MyInventory.Contains(HardGuitar))
+                MusicWithLeadAudioSource.PlayOneShot(VictorySoundHard);
+            else if (ShopSystem.MyInventory.Contains(MediumGuitar))
+                MusicWithLeadAudioSource.PlayOneShot(VictorySoundMedium);
+            else
+                MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
+
+            Debug.Log(TimingSystem.FailedTimingCounter);
 
             //Calculate rewards then apply them.
-            metalGained = Mathf.CeilToInt(30 * (1 / (1 + (angst.getAmount() / 20))) * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
-            fameGained = Mathf.CeilToInt(50 * (2 / (10 - (metal.getAmount() / 15))));
-            moneyGained = Mathf.CeilToInt(3000 * (6 / (100 - fame.getAmount())));
-            angstGained = Mathf.CeilToInt(-25 * (TimingString.NotesHit / TimingSystem.ActivatedMechanicAndMissedNotesCounter));
+#region Calculations
+            float metalBase = 20;
+            float metalStatMltp = (1 / (1 + (angst.getAmount() / 100)));
+            float metalPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
+            float metalItemMltp = TimingString.MetalMultiplier;
+            metalGained = Mathf.CeilToInt(metalBase * metalStatMltp * metalPerformance * metalItemMltp);
+
+            float fameBase = 50;
+            float fameStatMltp = (2 / (10 - (metal.getAmount() / 15)));
+            float famePerformance = ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.FailedTimingCounter));
+            float fameItemMltp = 1;
+            fameGained = Mathf.CeilToInt(fameBase * fameStatMltp * famePerformance * fameItemMltp);
+
+            float moneyBase = 3000;
+            float moneyStatMltp = (6 / (100 - fame.getAmount()));
+            float moneyPerformance = 1;
+            float moneyItemMltp = 1;
+            moneyGained = Mathf.CeilToInt(moneyBase * moneyStatMltp * moneyPerformance * moneyItemMltp);
+
+            float angstBase = -15;
+            float angstStatMltp = 1;
+            float angstPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
+            float angstItemMltp = 1;
+            angstGained = Mathf.CeilToInt(angstBase * angstStatMltp * angstPerformance * angstItemMltp);
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();
@@ -242,19 +288,24 @@ public class NoteGenerator : MonoBehaviour
                 metalGained = metal.getMax();
             //if (angstGained > angst.getMax() || angstGained < 0)
             //    angstGained = angst.getMax();
+#endregion
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
-            MetalText.text = "" + metalGained.ToString();
-            AngstText.text = "" + angstGained.ToString();
+
+            UpdateScoreBoard(MetalText, metalBase, metalStatMltp, metalPerformance, 1, metalItemMltp, metalGained);
+            UpdateScoreBoard(AngstText, angstBase, angstStatMltp, angstPerformance, 1, angstItemMltp, angstGained);
 
             metal.addOrRemoveAmount(metalGained);
             angst.addOrRemoveAmount(angstGained);
 
             if (GigBackgroundManager.GigSession)
             {
-                FameText.text = "" + fameGained.ToString();
-                MoneyText.text = "" + moneyGained.ToString();
+                FameText.transform.parent.gameObject.SetActive(true);
+                MoneyText.transform.parent.gameObject.SetActive(true);
 
+                UpdateScoreBoard(FameText, fameBase, fameStatMltp, famePerformance, 1, fameItemMltp, fameGained);
+                UpdateScoreBoard(MoneyText, moneyBase, moneyStatMltp, moneyPerformance, 1, moneyItemMltp, moneyGained);
+                
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
 
@@ -269,16 +320,32 @@ public class NoteGenerator : MonoBehaviour
         {
             Debug.Log("DEFEAT");
 
+            SwitchMusicSource(true);
             MusicWithLeadAudioSource.PlayOneShot(DefeatSound);
 
             if (GigBackgroundManager.GigSession)
             {
+                UpdateScoreBoard(FameText, -10, 1, 1, 1, 1, -10);
+                UpdateScoreBoard(MetalText, -20, 1, 1, 1, 1, -20);
+                UpdateScoreBoard(AngstText, 20, 1, 1, 1, 1, 20);
+                UpdateScoreBoard(MoneyText, 150, 1, 1, 1, 1, 150);
+
                 fame.addOrRemoveAmount(-10);
                 metal.addOrRemoveAmount(-20);
                 angst.addOrRemoveAmount(20);
                 money.addOrRemoveAmount(150);
             }
         }
+    }
+
+    private void UpdateScoreBoard(Text text, float baseStat, float statMltp, float performance, float proficiency, float itemMltp, float total)
+    {
+        text.text = baseStat.ToString("0.00") + "\n" +
+            statMltp.ToString("0.00") + "x" + "\n" +
+            performance.ToString("0.00") + "x" + "\n" +
+            proficiency.ToString("0.00") + "x" + "\n" +
+            itemMltp.ToString("0.00") + "x" + "\n" + "\n" +
+            total.ToString("0.00");
     }
 
     public void SwitchMusicSource(bool withLead)
@@ -332,7 +399,12 @@ public class NoteGenerator : MonoBehaviour
             GigTutorialPanel.SetActive(active);
         }
 
-        if (active)
+        ToggleMusic(!active);
+    }
+
+    public void ToggleMusic(bool resume)
+    {
+        if (!resume)
         {
             NoteGenerationAudioSource.Pause();
             MusicWithLeadAudioSource.Pause();
@@ -341,7 +413,7 @@ public class NoteGenerator : MonoBehaviour
             FindObjectOfType<TimingString>().enabled = false;
             Time.timeScale = 0;
         }
-        else if (!active)
+        else if (resume)
         {
             NoteGenerationAudioSource.UnPause();
             MusicWithLeadAudioSource.UnPause();
@@ -350,10 +422,9 @@ public class NoteGenerator : MonoBehaviour
             FindObjectOfType<TimingString>().enabled = true;
             Time.timeScale = 1;
 
-            if (!NoteGenerationAudioSource.isPlaying)
+            if (!NoteGenerationAudioSource.isPlaying && NoteGenerationAudioSource.time <= 0)
                 Initialize();
         }
-
     }
 
     public void LoadHub()
@@ -370,8 +441,11 @@ public class NoteGenerator : MonoBehaviour
 
     public static void Reset()
     {
+        Debug.Log("RESETED");
+
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
+        DoubleNoteChance = 0;
         ShowPracticeTutorial = true;
         ShowGigTutorial = true;
     }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class barScript : MonoBehaviour {
 
-	private Slider progressSlider;
+	private Image progressSlider;
 	public int StatIndex;
 	Stats StatReference;
 	
@@ -13,7 +13,7 @@ public class barScript : MonoBehaviour {
 
 	void Start()
 	{
-		progressSlider=GetComponent<Slider>();
+		progressSlider=GetComponent<Image>();
 	}
 	
 	void Update ()
@@ -29,9 +29,9 @@ public class barScript : MonoBehaviour {
 			//if(arr[i].getStat()==InitialReference.getStat())
 				//StatReference=InitialReference;
 				amount=StatReference.getAmount();
-				progressSlider.minValue=StatReference.getMin();
-				progressSlider.maxValue=StatReference.getMax();
-				progressSlider.value=amount;
+				//progressSlider.minValue=StatReference.getMin();
+				//progressSlider.maxValue=StatReference.getMax();
+				progressSlider.fillAmount = amount / StatReference.getMax();
 				
 				//Debug.Log(amount);
 				//Debug.Log("amount: "+arr[i].getAmount()+" stat: "+arr[i].getStat());

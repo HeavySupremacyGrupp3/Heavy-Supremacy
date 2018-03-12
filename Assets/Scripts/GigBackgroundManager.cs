@@ -7,18 +7,29 @@ public class GigBackgroundManager : MonoBehaviour
 {
     //Added in acending order, based on amount of fame.
     public Sprite[] Backgrounds;
+    public GameObject[] Audiences;
+    [Range(0,1)]
+    public float[] AudienceHealthTresholds;
     public float[] FameRequirementLevels;
     public Image Background;
+
+
     public static int BackgroundIndex = 0;
     public static bool GigSession = false;
 
+    private TimingString timingString;
+
     private void Awake()
     {
+        timingString = FindObjectOfType<TimingString>();
+
         if (GigSession)
+        {
             Background.sprite = Backgrounds[GetBackgroundIndex()];
+        }
         else
         {
-            FindObjectOfType<TimingString>().MaxHealth = 0;
+            timingString.MaxHealth = 0;
         }
     }
 
@@ -33,5 +44,21 @@ public class GigBackgroundManager : MonoBehaviour
         }
 
         return index;
+    }
+
+    private void Update()
+    {
+        if (GigSession)
+        {
+            float healthPrct = timingString.health / timingString.MaxHealth;
+
+            for (int i = 0; i < Audiences.Length; i++)
+            {
+                if (healthPrct >= AudienceHealthTresholds[i])
+                    Audiences[i].SetActive(true);
+                else
+                    Audiences[i].SetActive(false);
+            }
+        }
     }
 }

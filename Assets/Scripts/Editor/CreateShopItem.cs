@@ -59,14 +59,17 @@ public class CreateShopItem : EditorWindow
             if (item.Name != null && item.Name != "")
             {
                 item.Description = EditorGUILayout.TextField("Description", item.Description);
-                item.Price = EditorGUILayout.IntField("Price", item.Price);
-                item.Type = Item.ItemType.Furniture; //(Item.ItemType)EditorGUILayout.EnumPopup("Type", item.Type);
+                item.Price = EditorGUILayout.FloatField("Price", item.Price);
                 item.OneTimePurchase = EditorGUILayout.Toggle("One Time Purchase", item.OneTimePurchase);
 
                 EditorGUILayout.LabelField("Button Sprite");
                 ItemButton.GetComponent<Image>().sprite = EditorGUILayout.ObjectField(ItemButton.GetComponent<Image>().sprite, typeof(Sprite), true) as Sprite;
                 EditorGUILayout.LabelField("Item Sprite");
                 ItemPrefab.GetComponent<Image>().sprite = EditorGUILayout.ObjectField(ItemPrefab.GetComponent<Image>().sprite, typeof(Sprite), true) as Sprite;
+
+                item.ProductImage = ItemPrefab.GetComponent<Image>().sprite;
+
+                item.PurchaseSound = EditorGUILayout.TextField("Purchase Sound", item.PurchaseSound);
 
                 if (GUILayout.Button("Create Item"))
                     CreateItem();

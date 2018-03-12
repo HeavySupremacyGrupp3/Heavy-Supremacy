@@ -17,6 +17,8 @@ public class ShopSystem : MonoBehaviour
     public GameObject AreYouSurePanel;
     public Button YesButton;
     public Text ProductDescription;
+    public Image ProductImage;
+    public Text ProductPrice;
     public AudioClip ExpensivePurchaseSound;
     public AudioClip RegularPurchaseSound;
     public AudioClip CheapPurchaseSound;
@@ -30,9 +32,27 @@ public class ShopSystem : MonoBehaviour
     void OnEnable()
     {
         moneyStatScript = FindObjectOfType<moneyStatScript>();
-        if (moneyStatScript.getAmount() == 0)
+
+        //Shitty fix for reseting price when restarting game.
+        Lesson x = new Lesson();
+        bool foundLesson = false;
+        foreach (Item l in MyInventory)
         {
-            MyInventory.Clear();
+            if (l.GetType() == x.GetType())
+            {
+                foundLesson = true;
+                break;
+            }
+        }
+        if (!foundLesson)
+        {
+            foreach (Item l in ShopInventory)
+            {
+                if (l.GetType() == x.GetType())
+                {
+                    ((Lesson)l).ResetPrice();
+                }
+            }
         }
 
         FetchShopUIElements();
@@ -79,6 +99,11 @@ public class ShopSystem : MonoBehaviour
         AreYouSurePanel.SetActive(true);
         Item item = FindItemByName(itemToBePurchased);
         ProductDescription.text = item.Description;
+        ProductImage.sprite = item.ProductImage;
+        RectTransform rectTransform = ProductImage.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(item.ProductImage.rect.width, item.ProductImage.rect.height);
+        ProductPrice.text = item.Price.ToString();
+
         //Sufficient funds.
         if (moneyStatScript.getAmount() - item.Price >= 0)
         {
@@ -103,7 +128,7 @@ public class ShopSystem : MonoBehaviour
     public void MakePurchase()
     {
         Item item = FindItemByName(itemToBePurchased);
-        PlayPurchaseSound(item);
+        //PlayPurchaseSound(item);
 
         moneyStatScript.addOrRemoveAmount(-item.Price);
         item.ActivatePurchase();
@@ -180,8 +205,7 @@ public class ShopSystem : MonoBehaviour
     {
         for (int i = 0; i < MyInventory.Count; i++)
         {
-            if (MyInventory[i].Type == Item.ItemType.Furniture)
-                MyInventory[i].UpdateFurniture();
+            MyInventory[i].UpdateFurniture();
         }
     }
 }

@@ -17,12 +17,26 @@ public class GameEventManager : MonoBehaviour
     public GameObject SentMessagePrefab;
     public GameObject SMSScrollContent;
 
+    public GameObject GigMessagePanel;
+    public GameObject GigUpcomingPanel;
+    public GameObject RentReminderPanel;
+
+    public EventEnum[] MapEventPins;
+
+    public Animator OpenPhoneController;
+    public GameObject MessageNotification;
+    public GameObject HUBMessageNotification;
+
+    [Header("Event Variables")]
     [Range(0, 1)]
-    public float SpecialNodeChance = 0, MessageNodeChance = 0;
+    public float SpecialNodeChance = 0;
+
+    public float FameWeekCap, MusicWeekCap, SocialWeekCap;
 
     public float RecieveMessageDelay = 0.75f;
     public int SMSDayInterval = 1;
 
+ 
     private List<StoryNode> choices = new List<StoryNode>();
 
     public static List<StoryNode> messageNodes = new List<StoryNode>();
@@ -34,21 +48,34 @@ public class GameEventManager : MonoBehaviour
     [HideInInspector]
     public enum nodeType { social, musical, fame, special }
 
+    private StoryNode firstNode;
+
     private void Awake()
     {
-        LoadEvents("messageNodes", messageNodes);
-        LoadEvents("socialNodes", socialNodes);
-        LoadEvents("musicNodes", musicNodes);
-        LoadEvents("fameNodes", fameNodes);
-        LoadEvents("specialNodes", specialNodes);
-
-        if (Random.Range(0f, 1f) <= SpecialNodeChance)
-            TriggerSMSEvent(specialNodes[Random.Range(0, specialNodes.Count)]);
-
-        if (Random.Range(0f, 1f) <= MessageNodeChance)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "HUBScene")
         {
-            ClearSMSPanel();
-            TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            LoadEvents("messageNodes", messageNodes);
+            LoadEvents("socialNodes", socialNodes);
+            LoadEvents("musicNodes", musicNodes);
+            LoadEvents("fameNodes", fameNodes);
+            LoadEvents("specialNodes", specialNodes);
+        }
+    }
+
+    void Start()
+    {
+        //Fetch the mappins here because they start inactive.
+        foreach (EventEnum e in MapEventPins)
+        {
+            GameManager.sleep += e.RefreshEvent;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (EventEnum e in MapEventPins)
+        {
+            GameManager.sleep -= e.RefreshEvent;
         }
     }
 
@@ -99,6 +126,10 @@ public class GameEventManager : MonoBehaviour
             ClearSMSPanel();
             AudioManager.instance.Play("MobilNotification");
             SenderNameTitle.text = node.Title;
+
+            OpenPhoneController.SetTrigger("RecievedNotification");
+            MessageNotification.SetActive(true);
+            HUBMessageNotification.SetActive(true);
         }
         else
         {
@@ -134,7 +165,11 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEvent(StoryNode node)
     {
+        if (node.EnergyBonus != null && node.EnergyBonus != "" && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
+            return;
+
         Debug.Log(node.Title);
+
 
         EventPanel.SetActive(true);
 
@@ -151,7 +186,10 @@ public class GameEventManager : MonoBehaviour
             PanelChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
         }
 
-        GiveRewards(node);
+        if (choices.Count > 1)
+            firstNode = node;
+        if (choices.Count < 2)
+            GiveRewards(firstNode);
 
         if (!PanelChoiceButtons[0].activeSelf)
         {
@@ -209,5 +247,23 @@ public class GameEventManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
+    }
+
+    public void TriggerGig()
+    {
+        GigMessagePanel.SetActive(true);
+        GigMessagePanel.transform.parent.parent.gameObject.SetActive(true);
+    }
+
+    public void TriggerUpcomingGig()
+    {
+        GigUpcomingPanel.SetActive(true);
+        GigUpcomingPanel.transform.parent.parent.gameObject.SetActive(true);
+    }
+
+    public void TriggerRentReminder()
+    {
+        RentReminderPanel.SetActive(true);
+        RentReminderPanel.transform.parent.parent.gameObject.SetActive(true);
     }
 }

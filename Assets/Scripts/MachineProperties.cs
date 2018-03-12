@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MachineProperties : MonoBehaviour {
 
-    public int type = 0;
+    public int type;
 
     [SerializeField]
     private GameObject button;
@@ -36,11 +36,11 @@ public class MachineProperties : MonoBehaviour {
 	public delegate void musicEvent(string s);
 	public static event musicEvent moveSound;
 	
-	public string FirstSound;
+	//public string FirstSound;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         //Set start and end position that will lerp
         startPosition = transform.position;
@@ -50,8 +50,8 @@ public class MachineProperties : MonoBehaviour {
     void Update()
     {
         MachineMovement();
-        //if (type > 1)
-          //  animator.SetBool("impact", impact);
+        if (animator != null)
+            animator.SetBool("impact", impact);
 
         //When called in MachineMovement, start the lerps
         if (lerpMachine)
@@ -91,6 +91,7 @@ public class MachineProperties : MonoBehaviour {
     {
 
         //  Älskar dig <3
+        // ty
 
         if (Input.GetKeyDown(key) && lerpTimer <= 0)
             lerpMachine = OnMachineMove(button, buttonPressedSprite, lerpMachine, type);
@@ -102,7 +103,7 @@ public class MachineProperties : MonoBehaviour {
         Sprite oldSprite = sr.sprite;
         sr.sprite = sprite;
 		//moveSound(FirstSound);
-		AudioManager.instance.Play(FirstSound);
+		AudioManager.instance.Play("Machine"+type+"Down");
 
         StartCoroutine(ButtonTimer(sr, oldSprite));
 

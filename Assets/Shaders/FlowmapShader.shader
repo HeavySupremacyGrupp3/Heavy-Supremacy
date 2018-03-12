@@ -48,15 +48,15 @@
 			fixed4 _Color;
 
 			//Vertexshader. Executes on each vertex on the geometry in the scene.
-			v2f vert(appdata_t IN)
+			v2f vert(appdata_t i)
 			{
-				v2f OUT;
+				v2f o;
 
-				OUT.vertex = UnityObjectToClipPos(IN.vertex); // Equals to "= mul(UNITY_MATRIX_MVP)", but more efficient. Tranforms position from object to homogenous space
-				OUT.texcoord = IN.texcoord;
-				OUT.color = IN.color * _Color;
+				o.vertex = UnityObjectToClipPos(i.vertex); // Equals to "= mul(UNITY_MATRIX_MVP)", but more efficient. Tranforms position from object to homogenous space
+				o.texcoord = i.texcoord;
+				o.color = i.color * _Color;
 
-				return OUT;
+				return o;
 			}
 
 			sampler2D _MainTex;
@@ -65,21 +65,23 @@
 			float _FlowSpeed;
 
 			//Fragmentshader. Executes on each pixel on the image in the renderwindow.
-			fixed4 frag(v2f IN) : SV_Target
+			fixed4 frag(v2f i) : SV_Target
 			{
-				float3 flowDir = tex2D(_FlowMap, IN.texcoord) * 2.0f - 1.0f;
+				float3 flowDir = tex2D(_FlowMap, i.texcoord) * 2.0f - 1.0f;
 				flowDir *= _FlowSpeed;
+
+				fixed mask = tex2D(_MaskTex, i.texcoord)[0];
 
 				float phase0 = frac(_Time[1] * 0.5f + 0.5f); //frac = returns 0.23 if 1.23 was the input. Likewise if input is 5.6 it returns 0.6.
 				float phase1 = frac(_Time[1] * 0.5f + 1.0f);
 
-				half3 tex0 = tex2D(_MainTex, IN.texcoord + flowDir.xy * phase0); //Half = half the precision of a float.
-				half3 tex1 = tex2D(_MainTex, IN.texcoord + flowDir.xy * phase1); //Render the maintexture twice and hide the one that will "jump back" at the end of the flow-loop. Phase0 and Phase1 are used for this method.
+				fixed4 tex0 = tex2D(_MainTex, i.texcoord + flowDir.xy * phase0 * mask); //Half = half the precision of a float.
+				fixed4 tex1 = tex2D(_MainTex, i.texcoord + flowDir.xy * phase1 * mask); //Render the maintexture twice and hide the one that will "jump back" at the end of the flow-loop. Phase0 and Phase1 are used for this method.
 
 				float flowLerp = abs((0.5f - phase0) / 0.5f); //Used to create a seamless loop between the two textures.
-				half3 finalColor = lerp(tex0, tex1, flowLerp); //Lerp between two textures depending on the third argument (flowLerp).
+				fixed4 finalColor = lerp(tex0, tex1, flowLerp); //Lerp between two textures depending on the third argument (flowLerp).
 
-				fixed4 c = float4(finalColor, 1.0f) * IN.color;
+				fixed4 c = float4(finalColor) * i.color;
 				c.rgb *= c.a;
 				return c;
 			}

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4583841623016450}
   - component: {fileID: 212703037989466500}
+  - component: {fileID: 114362774191969022}
   m_Layer: 0
   m_Name: Art
   m_TagString: Untagged
@@ -65,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287834282934586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0949473, y: -11.291792, z: 0}
-  m_LocalScale: {x: 0.88337666, y: 0.8833774, z: 0.8833774}
+  m_LocalPosition: {x: -6.8519664, y: -11.022848, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4583841623016450}
   m_Father: {fileID: 0}
@@ -117,6 +118,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2763348, y: 1.1943719}
   m_EdgeRadius: 0
+--- !u!114 &114362774191969022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068990859563422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29f3c56978c8d34db68c08e8e933644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  Lerp: 0
+  Reverse: 0
+  StartDelay: 0
 --- !u!212 &212703037989466500
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -131,7 +147,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bdecb39d18074ce43952804ac0ee62e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +166,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: f57295d6cc27e8143ba26e420b267846, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
