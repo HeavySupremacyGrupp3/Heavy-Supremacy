@@ -156,7 +156,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadHUB()
     {
-        SceneManager.LoadScene("HUBScene");
+        SceneManager.LoadScene(GameManager.HUBScene);
     }
 
     public void LoadTutorial()
@@ -166,7 +166,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadWork()
     {
-        SceneManager.LoadScene("WorkScene");
+        SceneManager.LoadScene(GameManager.WorkScene);
     }
 
     public void LoadResultScreen()

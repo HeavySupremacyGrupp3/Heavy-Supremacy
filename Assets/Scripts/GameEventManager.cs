@@ -52,7 +52,7 @@ public class GameEventManager : MonoBehaviour
 
     private void Awake()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "HUBScene")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == GameManager.HUBScene)
         {
             LoadEvents("messageNodes", messageNodes);
             LoadEvents("socialNodes", socialNodes);

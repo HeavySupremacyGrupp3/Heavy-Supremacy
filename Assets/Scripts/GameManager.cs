@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public FadeOutManager fadeScript;
     public float Rent;
+    public float GigEnergyCost;
     public static int day = 1;
     public static int week = 1;
     public static bool IsFirstWorkRun = true;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
     public static bool RestartGame;
 
     private KeyCode key = KeyCode.Escape;
+
+    public static string HUBScene = "HUBScene", WorkScene = "WorkScene", PracticeScene = "PracticeScene", StartScene = "StartScene";
 
     void Start()
     {
@@ -123,7 +126,7 @@ public class GameManager : MonoBehaviour
         day = 1;
         week = 1;
 
-        if (SceneManager.GetActiveScene().name != "HUBScene")
+        if (SceneManager.GetActiveScene().name != HUBScene)
             LoadHUB();
     }
 
@@ -133,7 +136,7 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.instance.Play("DoorClick");
             StopHUBLoops();
-            SceneTransition.StartTransition("WorkScene");
+            SceneTransition.StartTransition(WorkScene);
         }
     }
 
@@ -144,31 +147,31 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.Play("practiceClick");
             StopHUBLoops();
             GigBackgroundManager.GigSession = false;
-            SceneTransition.StartTransition("PracticeScene");
+            SceneTransition.StartTransition(PracticeScene);
         }
     }
 
     public void LoadGig(float energy)
     {
-        if (CheckEnergy(80))
+        if (CheckEnergy(GigEnergyCost))
         {
             StopHUBLoops();
             GigBackgroundManager.GigSession = true;
-            SceneManager.LoadScene("PracticeScene");
+            SceneManager.LoadScene(PracticeScene);
         }
     }
 
     public void LoadStart()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene(StartScene);
     }
 
     public void LoadHUB()
     {
         StopHUBLoops();
         GigBackgroundManager.GigSession = false;
-        SceneManager.LoadScene("HUBScene");
+        SceneManager.LoadScene(HUBScene);
     }
 
     public void LoadSleep(float energy)
@@ -260,7 +263,7 @@ public class GameManager : MonoBehaviour
         }
         else if (value > 0)
         {
-            StatPreviewRewards[statIndex].fillAmount = StatPreviewCosts[statIndex].fillAmount + (value / 100) - 0.01f; //0.01f is for not showing top green when bar is full. This is because of the fillshader...;
+            StatPreviewRewards[statIndex].fillAmount = StatPreviewCosts[statIndex].fillAmount + (value / 100) - 0.02f; //0.02f is for not showing top green when bar is full. This is because of the fillshader...;
         }
     }
 

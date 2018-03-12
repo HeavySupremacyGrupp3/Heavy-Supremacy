@@ -38,7 +38,7 @@ public class moneyStatScript : Stats {
     {
         base.addOrRemoveAmount(a);
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "HUBScene")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == GameManager.HUBScene)
         {
             if (a < 0)
                 a *= -1;

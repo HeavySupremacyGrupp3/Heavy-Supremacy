@@ -11,7 +11,7 @@ public class TutorialMenuScript : MonoBehaviour {
 
 	public void LoadHUB()
     {
-		SceneTransition.StartTransition("HUBScene");
+		SceneTransition.StartTransition(GameManager.HUBScene);
 		//SceneManager.LoadScene("HUBScene");
     }
 	
@@ -25,19 +25,19 @@ public class TutorialMenuScript : MonoBehaviour {
 	{
 		//NoteGenerator.showGigTutorial=true;
 		NoteGenerator.ShowPracticeTutorial=true;
-		SceneTransition.StartTransition("PracticeScene");
+		SceneTransition.StartTransition(GameManager.PracticeScene);
 	}
 	
 	public void LoadGigTutorial()
 	{
 		//NoteGenerator.showPracticeTutorial=false;
 		NoteGenerator.ShowGigTutorial=true;
-		SceneTransition.StartTransition("PracticeScene");
+		SceneTransition.StartTransition(GameManager.PracticeScene);
 	}
 	
 	public void LoadWork()
     {
-		SceneTransition.StartTransition("WorkScene");
+		SceneTransition.StartTransition(GameManager.WorkScene);
 		Debug.Log("Loading work - regular");
     }
 }
