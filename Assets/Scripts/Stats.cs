@@ -60,7 +60,7 @@ public abstract class Stats : MonoBehaviour {
 	}
 	
 	//amount can't be made to exceed max or min
-	public void addOrRemoveAmount(float a)
+	public virtual void addOrRemoveAmount(float a)
 	{
 		if(amount+a<max && amount+a>min)
 		{
@@ -106,7 +106,7 @@ public abstract class Stats : MonoBehaviour {
 
     public void UpdateWeeklyStatGains()
     {
-        LastWeeksStatGain = LastWeeksStatGain - amount;
+        LastWeeksStatGain = amount - LastWeeksStatGain;
         Debug.Log("Last Week I Earned: " + LastWeeksStatGain);
     }
 }

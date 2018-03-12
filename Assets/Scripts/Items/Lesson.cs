@@ -19,7 +19,6 @@ public class Lesson : Item {
 
     public void ResetPrice()
     {
-        Debug.Log("asdasds");
         Price = StartPrice;
     }
 }

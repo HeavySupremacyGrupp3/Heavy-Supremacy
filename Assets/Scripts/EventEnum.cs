@@ -19,12 +19,11 @@ public class EventEnum : MonoBehaviour
 
     private float FameChance = 0, SocialChance = 0, MusicChance = 0, SpecialChance = 0;
 
-    private void Start()
+    public void StartEventEnum()
     {
-        GameManager.sleep += RefreshEvent;
-
         if (NodesSelected[NodeIndex] != null)
         {
+            Debug.Log("BUTTON ON");
             GetComponent<Button>().interactable = true;
             Node = NodesSelected[NodeIndex];
 
@@ -39,7 +38,10 @@ public class EventEnum : MonoBehaviour
 
     public void RefreshEvent()
     {
-        if (GameManager.day % 7 == 0 || GameManager.day == 4 || !GetComponent<Button>().interactable)
+        if (this == null)
+            return;
+
+        if (GameManager.day == 7 || GameManager.day == 4 || !GetComponent<Button>().interactable && NodesSelected[NodeIndex] == null)
         {
             GetComponent<Button>().interactable = true;
 
@@ -136,11 +138,6 @@ public class EventEnum : MonoBehaviour
     }
 
     private void OnDestroy()
-    {
-        GameManager.sleep -= RefreshEvent;
-    }
-
-    private void OnLevelWasLoaded(int level)
     {
         GameManager.sleep -= RefreshEvent;
     }

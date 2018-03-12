@@ -17,6 +17,8 @@ public class Furniture : Item
             AddGameObject(go);
         foreach (string s in GameObjectToDestroy)
             RemoveGameObject(s);
+
+        ReplaceSprite(GameObjectToReplace);
     }
 
     void FindPosition()
@@ -44,10 +46,11 @@ public class Furniture : Item
 
     void ReplaceSprite(string name)
     {
+        Debug.Log("ASDASDSAD");
         if (name != null && name != "")
         {
-            Button goReplaceable = GameObject.Find(name).GetComponent<Button>();
-            goReplaceable.image.sprite = GetComponent<Image>().sprite;
+            Image goReplaceable = GameObject.Find(name).GetComponent<Image>();
+            goReplaceable.sprite = GetComponent<Image>().sprite;
 
             goReplaceable.transform.localPosition = transform.position;
             goReplaceable.transform.localRotation = transform.rotation;
