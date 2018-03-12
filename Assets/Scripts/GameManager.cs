@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public static int week = 1;
     public static bool IsFirstWorkRun = true;
     public static bool IsFirstHubRun = true;
+    public static bool IsFirstPracticeRun = true;
     public GameObject EndGamePanel;
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (IsFirstHubRun)
         {
             IsFirstHubRun = !IsFirstHubRun;
-            GameObject.Find("HubTutorial").transform.GetChild(0).GetComponent<Tutorial>().Run(); // BECAUSE UNITY IS AWESOME, AND GAMEOBJECT.FIND(HUB_TUTORIAL).GETCOMPONENT<TUTORIAL>() DOESN'T WORK! YAAY! Not even mad.
+            GameObject.Find("HubTutorial").transform.GetChild(0).GetComponent<Tutorial>().Run(); // BECAUSE UNITY IS AWESOME, AND GAMEOBJECT.FIND("HUB_TUTORIAL").GETCOMPONENT<TUTORIAL>() DOESN'T WORK! YAAY! Not even mad.
         }
     }
 

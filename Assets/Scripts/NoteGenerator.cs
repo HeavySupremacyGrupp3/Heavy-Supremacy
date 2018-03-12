@@ -79,16 +79,16 @@ public class NoteGenerator : MonoBehaviour
 
         NoteSets.Clear();
 
-        if (ShowPracticeTutorial || ShowGigTutorial)
-        {
-            SetTutorial(true);
-        }
-        else if (!ShowPracticeTutorial || !ShowGigTutorial)
-        {
-            SetTutorial(false);
-        }
+        //if (ShowPracticeTutorial || ShowGigTutorial)
+        //{
+        //    SetTutorial(true);
+        //}
+        //else if (!ShowPracticeTutorial || !ShowGigTutorial)
+        //{
+        //    SetTutorial(false);
+        //}
 
-        Debug.Log(ShowPracticeTutorial);
+        ToggleMusic(false);
     }
 
     void Initialize()
@@ -389,7 +389,7 @@ public class NoteGenerator : MonoBehaviour
             lerpAudio = false;
     }
 
-    public void SetTutorial(bool active)
+    /*public void SetTutorial(bool active)
     {
         if (!GigBackgroundManager.GigSession)
         {
@@ -403,7 +403,7 @@ public class NoteGenerator : MonoBehaviour
         }
 
         ToggleMusic(!active);
-    }
+    }*/
 
     public void ToggleMusic(bool resume)
     {
@@ -414,7 +414,7 @@ public class NoteGenerator : MonoBehaviour
             MusicWithoutLeadAudioSource.Pause();
 
             FindObjectOfType<TimingString>().enabled = false;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
         else if (resume)
         {
@@ -423,7 +423,7 @@ public class NoteGenerator : MonoBehaviour
             MusicWithoutLeadAudioSource.UnPause();
 
             FindObjectOfType<TimingString>().enabled = true;
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
 
             if (!NoteGenerationAudioSource.isPlaying && NoteGenerationAudioSource.time <= 0)
                 Initialize();

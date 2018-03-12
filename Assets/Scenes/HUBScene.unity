@@ -6905,13 +6905,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 640228939}
-  m_LocalRotation: {x: -0.7113116, y: -0, z: -0, w: 0.70287687}
-  m_LocalPosition: {x: -146, y: -1, z: 0}
+  m_LocalRotation: {x: 0.00000010922949, y: 0.7028768, z: -0.71131164, w: -0.00000011618248}
+  m_LocalPosition: {x: -145.99998, y: 103.9, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 679192130}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90.683, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -269.31702, y: -180.002, z: -0.0020141602}
 --- !u!199 &640228941
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -6947,7 +6947,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 8
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -6973,7 +6973,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 640228939}
   serializedVersion: 5
-  lengthInSec: 0.5
+  lengthInSec: 1.1
   simulationSpeed: 1.5
   stopAction: 0
   looping: 0
@@ -7026,14 +7026,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1602443569
+  randomSeed: -808903294
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7074,8 +7074,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 7
-      minScalar: 5
+      scalar: 1.3754743
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7178,7 +7178,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.55
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7300,7 +7300,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -7341,7 +7341,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -7382,8 +7382,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 6.283185
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7470,7 +7470,7 @@ ParticleSystem:
     serializedVersion: 5
     enabled: 1
     type: 4
-    angle: 27.855356
+    angle: 11.635141
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -7491,7 +7491,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.28766775
+      value: 0.2
       mode: 0
       spread: 0
       speed:
@@ -7586,8 +7586,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
-      minScalar: 10
+      scalar: 0
+      minScalar: 7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7665,15 +7665,15 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
+    m_BurstCount: 2
     m_Bursts:
     - serializedVersion: 2
       time: 0
       countCurve:
         serializedVersion: 2
-        minMaxState: 0
-        scalar: 0
-        minScalar: 0
+        minMaxState: 3
+        scalar: 3
+        minScalar: 1
         maxCurve:
           serializedVersion: 2
           m_Curve: []
@@ -7686,8 +7686,29 @@ ParticleSystem:
           m_PreInfinity: 0
           m_PostInfinity: 0
           m_RotationOrder: 0
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 4
+      repeatInterval: 0.25
+    - serializedVersion: 2
+      time: 0.05
+      countCurve:
+        serializedVersion: 2
+        minMaxState: 0
+        scalar: 1
+        minScalar: 1
+        maxCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 0
+          m_PostInfinity: 0
+          m_RotationOrder: 0
+        minCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 0
+          m_PostInfinity: 0
+          m_RotationOrder: 0
+      cycleCount: 4
+      repeatInterval: 0.15
   SizeModule:
     enabled: 0
     curve:
@@ -22998,38 +23019,6 @@ Prefab:
     - target: {fileID: 4884668682917552, guid: 5f4077324bc0739488249b212483d9b4, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4884668682917552, guid: 5f4077324bc0739488249b212483d9b4, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4884668682917552, guid: 5f4077324bc0739488249b212483d9b4, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4884668682917552, guid: 5f4077324bc0739488249b212483d9b4, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198986076586142230, guid: 5f4077324bc0739488249b212483d9b4,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198986076586142230, guid: 5f4077324bc0739488249b212483d9b4,
-        type: 2}
-      propertyPath: randomSeed
-      value: -208183349
-      objectReference: {fileID: 0}
-    - target: {fileID: 198986076586142230, guid: 5f4077324bc0739488249b212483d9b4,
-        type: 2}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198986076586142230, guid: 5f4077324bc0739488249b212483d9b4,
-        type: 2}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f4077324bc0739488249b212483d9b4, type: 2}
