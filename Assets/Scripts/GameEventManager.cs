@@ -67,6 +67,7 @@ public class GameEventManager : MonoBehaviour
         //Fetch the mappins here because they start inactive.
         foreach (EventEnum e in MapEventPins)
         {
+            e.StartEventEnum();
             GameManager.sleep += e.RefreshEvent;
         }
     }
@@ -116,7 +117,8 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEventFromPool(EventEnum eventEnum)
     {
-        TriggerEvent(eventEnum.Node);
+        TriggerEvent(EventEnum.NodesSelected[eventEnum.NodeIndex]);
+        EventEnum.NodesSelected[eventEnum.NodeIndex] = null;
     }
 
     public void TriggerSMSEvent(StoryNode node, bool firstNode = true)
