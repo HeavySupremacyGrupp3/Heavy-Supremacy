@@ -71,6 +71,7 @@ public class EventEnum : MonoBehaviour
             if (Node != null)
                 NodesSelected[NodeIndex] = Node;
 
+
             if (Node.EnergyBonus != null && Node.EnergyBonus != "")
                 EnergyCost = float.Parse(Node.EnergyBonus);
             if (Node.FameBonus != null && Node.FameBonus != "")
@@ -79,6 +80,15 @@ public class EventEnum : MonoBehaviour
                 MetalBonus = float.Parse(Node.MetalBonus);
             if (Node.AngstBonus != null && Node.AngstBonus != "")
                 AngstBonus = float.Parse(Node.AngstBonus);
+
+            float highestBonus = Mathf.Max(MetalBonus, FameBonus, AngstBonus);
+            if (highestBonus == MetalBonus)
+                GetComponent<Image>().sprite = MusicSprite;
+            else if (highestBonus == AngstBonus)
+                GetComponent<Image>().sprite = SocialSprite;
+            else if (highestBonus == FameBonus)
+                GetComponent<Image>().sprite = FameSprite;
+
 
             EnergyText.text = "Energy Cost: " + EnergyCost;
 

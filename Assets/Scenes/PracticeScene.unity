@@ -1219,6 +1219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 0
+  LastWeeksStatGain: 0
 --- !u!114 &311167214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,6 +1233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 0
+  LastWeeksStatGain: 0
 --- !u!4 &311167215
 Transform:
   m_ObjectHideFlags: 0
@@ -3996,10 +3998,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35be371ca049f2d4ca7959b99120bdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SongIndex: 0
   PracticeSongs:
   - {fileID: 11400000, guid: 8cc930b21d64e1a4b8376265f247694b, type: 2}
+  - {fileID: 11400000, guid: 79b5a932f51ee4b43bcc6bd62fef5ab1, type: 2}
   GigSongs:
+  - {fileID: 11400000, guid: 1a0ce773c64091c4c95a284fdb05a6a5, type: 2}
   - {fileID: 11400000, guid: 1a0ce773c64091c4c95a284fdb05a6a5, type: 2}
   MusicWithLeadAudioSource: {fileID: 326710480}
   MusicWithoutLeadAudioSource: {fileID: 383403982}

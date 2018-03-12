@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f9dda8bae53e384b9ac2d039aae14eb, type: 3}
-  m_Name: Gig_1
+  m_Name: Gig_2
   m_EditorClassIdentifier: 
-  MusicWithLead: {fileID: 8300000, guid: cf4d01adf165b9a44a7428bc5d95afd3, type: 3}
+  MusicWithLead: {fileID: 8300000, guid: ad9d6fa9fbcec3b4e9765463de2c46d5, type: 3}
   MusicWithoutLead: {fileID: 8300000, guid: 95e801b6b043f9e4e8dd42ebfe2012a7, type: 3}
   MIDIMusic: {fileID: 8300000, guid: 0b17e79e0c2e15147aa5410c4c3ec4e7, type: 3}
   GeneratorUpdateInterval: 0.01
   MinimumVolumeTreshold: 0.1
-  MusicDelay: 1.9
+  MusicDelay: 1.85

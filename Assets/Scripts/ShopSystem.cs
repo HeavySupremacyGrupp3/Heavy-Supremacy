@@ -95,6 +95,11 @@ public class ShopSystem : MonoBehaviour
 
     public void AtemptPurchase(string name)
     {
+        if (GameObject.Find("Browser_1"))
+            AreYouSurePanel.GetComponent<Image>().color = new Color(0.85f, 0.87f, 0.96f); 
+        else if (GameObject.Find("Browser_2"))
+            AreYouSurePanel.GetComponent<Image>().color = new Color(0.725f, 0.725f, 0.725f);
+
         itemToBePurchased = name;
         AreYouSurePanel.SetActive(true);
         Item item = FindItemByName(itemToBePurchased);

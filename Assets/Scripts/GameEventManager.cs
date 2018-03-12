@@ -148,9 +148,14 @@ public class GameEventManager : MonoBehaviour
         message.GetComponentInChildren<Text>().text = node.Text;
 
         choices.Clear();
+
+        for (int i = 0; i < SMSChoiceButtons.Length; i++)
+        {
+            SMSChoiceButtons[i].SetActive(false);
+        }
+
         for (int i = 0; i < node.Choices.Count; i++)
         {
-
             choices.Add(node.Choices[i]);
             SMSChoiceButtons[i].SetActive(true);
             SMSChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
