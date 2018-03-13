@@ -25,6 +25,12 @@ public class ChangeArrows : MonoBehaviour
     {
         SetPosAndRot();
     }
+	
+	public void ResetArrows()
+	{
+		index = 0;
+        SetPosAndRot();
+	}
 
     public void NextArrowIndex()
     {

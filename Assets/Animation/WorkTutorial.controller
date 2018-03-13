@@ -13,31 +13,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SecondStationConveyer
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ThirdStationConveyer
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: FourthStationConveyer
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: FifthStationConveyer
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -339,19 +339,19 @@ AnimatorStateMachine:
     m_Position: {x: 276, y: -48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102318642481907142}
-    m_Position: {x: 276, y: 36, z: 0}
+    m_Position: {x: 276, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102659615005217448}
-    m_Position: {x: 312, y: 180, z: 0}
+    m_Position: {x: 276, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102214952519407622}
-    m_Position: {x: 340, y: 260, z: 0}
+    m_Position: {x: 276, y: 168, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102745185033145752}
-    m_Position: {x: 360, y: 336, z: 0}
+    m_Position: {x: 276, y: 228, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102148944475653106}
-    m_Position: {x: 300, y: 108, z: 0}
+    m_Position: {x: 276, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

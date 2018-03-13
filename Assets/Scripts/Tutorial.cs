@@ -56,7 +56,7 @@ public class Tutorial : MonoBehaviour
             if (HighlightedObjects[i] == null)
                 continue;
 
-            changeOrderInLayerForObject(HighlightedObjects[i], DefaultLayer);
+            changeOrderInLayerForObject(HighlightedObjects[i], DefaultLayer, true);
         }
     }
 
@@ -87,6 +87,8 @@ public class Tutorial : MonoBehaviour
             gameObject.SetActive(false);
             foreach (GameObject objects in ObjectsToDisableOnStart)
                 objects.SetActive(true);
+				
+			HideText();
             return;
         }
 
