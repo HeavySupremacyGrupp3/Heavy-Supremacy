@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CutoffLerp : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CutoffLerp : MonoBehaviour
     public float StartDelay = 0;
 
     private SpriteRenderer spriteRenderer;
+    private Image image;
     private float timer = 1;
     private float currentTransition;
     private string materialValueName = "_Cutoff";
@@ -19,9 +21,12 @@ public class CutoffLerp : MonoBehaviour
             StartCoroutine(StartLerp());
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
 
         if (spriteRenderer != null)
             spriteRenderer.material.SetFloat(materialValueName, currentTransition);
+        if (image != null)
+            image.material.SetFloat(materialValueName, currentTransition);
     }
 
     IEnumerator StartLerp()
@@ -47,6 +52,8 @@ public class CutoffLerp : MonoBehaviour
 
         if (spriteRenderer != null)
             spriteRenderer.material.SetFloat(materialValueName, currentTransition);
+        if (image != null)
+            image.material.SetFloat(materialValueName, currentTransition);
     }
 
     public void ReverseLerp()

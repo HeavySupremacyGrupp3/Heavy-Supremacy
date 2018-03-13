@@ -37,12 +37,15 @@ public class NoteGenerator : MonoBehaviour
     public Text MetalText;
     public Slider ProgressionSlider;
 
+    public float ProficiencyGainPerPractice = 0.25f;
+
+    public static float ProficiencyBonus = 0;
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 2;
     public static float DoubleNoteChance = 0;
     public static float NotesTotal = 0;
-    public static bool ShowPracticeTutorial = true;
-    public static bool ShowGigTutorial = true;
+    //public static bool ShowPracticeTutorial = false;
+    //public static bool ShowGigTutorial = false;
 
     public AudioClip VictorySoundHard;
     public AudioClip VictorySoundMedium;
@@ -99,7 +102,7 @@ public class NoteGenerator : MonoBehaviour
 
     private void OnEnable()
     {
-        ToggleMusic(true);
+        ToggleMusic(false);
     }
 
     private void OnDisable()
@@ -118,7 +121,7 @@ public class NoteGenerator : MonoBehaviour
         if (!GigBackgroundManager.GigSession)
         {
             selectedSong = PracticeSongs[SongIndex];
-            
+
             MusicWithLeadAudioSource.outputAudioMixerGroup = PracticeWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = PracticeWithoutLeadMixer;
         }
@@ -140,12 +143,20 @@ public class NoteGenerator : MonoBehaviour
         MusicWithoutLeadAudioSource.clip = selectedSong.MusicWithoutLead;
         MusicWithoutLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        NoteGenerationAudioSource.clip = selectedSong.MIDIMusic;
+        if (ProficiencyBonus >= 2)
+            NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[2];
+        else if (ProficiencyBonus >= 1)
+            NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[1];
+        else
+            NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[0];
+
         NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
     }
 
     void Update()
     {
+        Debug.Log(Time.timeScale);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             MusicWithLeadAudioSource.time = MusicWithLeadAudioSource.clip.length - 2;
@@ -153,8 +164,6 @@ public class NoteGenerator : MonoBehaviour
             NoteGenerationAudioSource.time = NoteGenerationAudioSource.clip.length - 2;
         }
 
-        if ((!ShowPracticeTutorial && !GigBackgroundManager.GigSession) && !PracticeTutorialPanel.activeSelf || !ShowGigTutorial && !GigTutorialPanel.activeSelf)
-        {
             if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
                 SendNote();
             else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0) //End game if song is over and the game hasn't already ended.
@@ -164,7 +173,7 @@ public class NoteGenerator : MonoBehaviour
             {
                 LerpAudioSourceVolume();
             }
-        }
+        
 
         if (MusicWithLeadAudioSource.clip != null)
             ProgressionSlider.value = MusicWithLeadAudioSource.time / MusicWithLeadAudioSource.clip.length;
@@ -246,6 +255,8 @@ public class NoteGenerator : MonoBehaviour
         MusicWithoutLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
+        ProficiencyBonus += ProficiencyGainPerPractice;
+
         angstStatScript angst = FindObjectOfType<angstStatScript>();
         metalStatScript metal = FindObjectOfType<metalStatScript>();
         fameStatScript fame = FindObjectOfType<fameStatScript>();
@@ -257,12 +268,12 @@ public class NoteGenerator : MonoBehaviour
 
         FindObjectOfType<TimingString>().enabled = false;
 
-        //Practice always goes to victory.
+        //Practice always goes to victory, except if you quit via pause-menu.
         if (victory)
         {
             Debug.Log("VICTORY");
 
-            //Victory sound, based on the most expensive guitar purchased.
+            //Victory sound.
             SwitchMusicSource(true);
             if (ShopSystem.MyInventory.Contains(HardGuitar))
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundHard);
@@ -274,7 +285,7 @@ public class NoteGenerator : MonoBehaviour
             Debug.Log(TimingSystem.FailedTimingCounter);
 
             //Calculate rewards then apply them.
-#region Calculations
+            #region Calculations
             float metalBase = 20;
             float metalStatMltp = (1 / (1 + (angst.getAmount() / 100)));
             float metalPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
@@ -307,7 +318,7 @@ public class NoteGenerator : MonoBehaviour
                 metalGained = metal.getMax();
             //if (angstGained > angst.getMax() || angstGained < 0)
             //    angstGained = angst.getMax();
-#endregion
+            #endregion
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
 
@@ -324,7 +335,7 @@ public class NoteGenerator : MonoBehaviour
 
                 UpdateScoreBoard(FameText, fameBase, fameStatMltp, famePerformance, 1, fameItemMltp, fameGained);
                 UpdateScoreBoard(MoneyText, moneyBase, moneyStatMltp, moneyPerformance, 1, moneyItemMltp, moneyGained);
-                
+
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
 
@@ -362,7 +373,7 @@ public class NoteGenerator : MonoBehaviour
         text.text = baseStat.ToString("0.00") + "\n" +
             statMltp.ToString("0.00") + "x" + "\n" +
             performance.ToString("0.00") + "x" + "\n" +
-            proficiency.ToString("0.00") + "x" + "\n" +
+            ProficiencyBonus.ToString("0.00") + "x" + "\n" +
             itemMltp.ToString("0.00") + "x" + "\n" + "\n" +
             total.ToString("0.00");
     }
@@ -425,6 +436,7 @@ public class NoteGenerator : MonoBehaviour
     {
         if (!resume)
         {
+            Debug.Log("PAUSED");
             NoteGenerationAudioSource.Pause();
             MusicWithLeadAudioSource.Pause();
             MusicWithoutLeadAudioSource.Pause();
@@ -434,6 +446,7 @@ public class NoteGenerator : MonoBehaviour
         }
         else if (resume)
         {
+            Debug.Log("RESUMED");
             NoteGenerationAudioSource.UnPause();
             MusicWithLeadAudioSource.UnPause();
             MusicWithoutLeadAudioSource.UnPause();
@@ -465,7 +478,7 @@ public class NoteGenerator : MonoBehaviour
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
         DoubleNoteChance = 0;
-        ShowPracticeTutorial = true;
-        ShowGigTutorial = true;
+        //ShowPracticeTutorial = true;
+        //ShowGigTutorial = true;
     }
 }

@@ -24,14 +24,14 @@ public class TutorialMenuScript : MonoBehaviour {
 	public void LoadPracticeTutorial()
 	{
 		//NoteGenerator.showGigTutorial=true;
-		NoteGenerator.ShowPracticeTutorial=true;
+		//NoteGenerator.ShowPracticeTutorial=true;
 		SceneTransition.StartTransition(GameManager.PracticeScene);
 	}
 	
 	public void LoadGigTutorial()
 	{
 		//NoteGenerator.showPracticeTutorial=false;
-		NoteGenerator.ShowGigTutorial=true;
+		//NoteGenerator.ShowGigTutorial=true;
 		SceneTransition.StartTransition(GameManager.PracticeScene);
 	}
 	

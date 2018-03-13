@@ -13,7 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicWithLead: {fileID: 8300000, guid: cf239b8677f5ca34b94b32359775d9dd, type: 3}
   MusicWithoutLead: {fileID: 8300000, guid: 1a5939c9b54d0894bb4bca4f4a1f8a15, type: 3}
-  MIDIMusic: {fileID: 8300000, guid: 6a448b1f99f14404fbfa60aa7405da6c, type: 3}
+  MIDIMusic:
+  - {fileID: 8300000, guid: f5e0950db791ac44289213773e7abaad, type: 3}
+  - {fileID: 8300000, guid: 16c56c7b1f4d75648b52ec7a326d99dc, type: 3}
+  - {fileID: 8300000, guid: 6a448b1f99f14404fbfa60aa7405da6c, type: 3}
   GeneratorUpdateInterval: 0.01
   MinimumVolumeTreshold: 0.01
   MusicDelay: 1.95

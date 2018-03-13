@@ -11,9 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9dda8bae53e384b9ac2d039aae14eb, type: 3}
   m_Name: Gig_2
   m_EditorClassIdentifier: 
-  MusicWithLead: {fileID: 8300000, guid: ad9d6fa9fbcec3b4e9765463de2c46d5, type: 3}
-  MusicWithoutLead: {fileID: 8300000, guid: 95e801b6b043f9e4e8dd42ebfe2012a7, type: 3}
-  MIDIMusic: {fileID: 8300000, guid: 0b17e79e0c2e15147aa5410c4c3ec4e7, type: 3}
+  MusicWithLead: {fileID: 8300000, guid: 0050b2c61ec05d3428102f945fa02410, type: 3}
+  MusicWithoutLead: {fileID: 8300000, guid: b8a9e00c304732244afbff70cebb7ee8, type: 3}
+  MIDIMusic:
+  - {fileID: 8300000, guid: 5e975ac29fbe36d4c9f8a0ba0e0a79ca, type: 3}
+  - {fileID: 8300000, guid: 470d0e9f25392774d8e3935647348df4, type: 3}
+  - {fileID: 8300000, guid: 245f627491e58f146ab92f1e33b3c98a, type: 3}
   GeneratorUpdateInterval: 0.01
   MinimumVolumeTreshold: 0.1
   MusicDelay: 1.85
