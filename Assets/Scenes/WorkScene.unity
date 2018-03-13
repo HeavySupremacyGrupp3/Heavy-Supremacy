@@ -628,7 +628,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 0
+  LastWeeksStatGain: 0
   difference: 8
+  MoneyParticles: {fileID: 0}
 --- !u!1 &197506065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,6 +2692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   max: 100
+  LastWeeksStatGain: 0
 --- !u!1 &982833760
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,8 +4937,13 @@ Prefab:
     - target: {fileID: 114248828484419018, guid: 80022ef44fe1c1448a5fea4e18a37413,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadWorkTutorial
+      value: Run
       objectReference: {fileID: 0}
+    - target: {fileID: 114248828484419018, guid: 80022ef44fe1c1448a5fea4e18a37413,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1924639457}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80022ef44fe1c1448a5fea4e18a37413, type: 2}
   m_IsPrefabParent: 0
