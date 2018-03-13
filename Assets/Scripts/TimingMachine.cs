@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimingMachine : MonoBehaviour {
 	
-	public machineOutOfRangeDetector MyOutOfRangeDetector;
+	public Sprite spoilSprite;
 	private int myType;
 	
 	//public string SecondSound;
@@ -15,25 +15,14 @@ public class TimingMachine : MonoBehaviour {
 		myType=GetComponent<MachineProperties>().type;
 	}
 	
-	void OnEnable()
-	{
-		MyOutOfRangeDetector.productToSpoilDetected += spoilProducts;
-	}
-	
-	void OnDisable()
-	{
-		MyOutOfRangeDetector.productToSpoilDetected -= spoilProducts;
-	}
-	
 	private void OnTriggerEnter2D(Collider2D collision) //OnTriggerEnter2D nummer 2
 	{
 		produktScript sc=collision.GetComponent<produktScript>();
 		
-		Debug.Log("mytype: " + myType + " :: sc.type: " + sc.type);
-		
 		if(myType<sc.type) // spoils the product if it is NOT in the correct stage
 		{
 			sc.spoil();
+			sc.GetComponent<SpriteRenderer>().sprite = spoilSprite;
 			AudioManager.instance.Play("spoilLjud");
 		}
 		
@@ -45,15 +34,5 @@ public class TimingMachine : MonoBehaviour {
 		}
 		
 		//AudioManager.instance.Play(SecondSound); //plays if it hits something
-	}
-	
-	private void spoilProducts(GameObject ta) // if the product passes the machine while in the wrong stage
-	{		
-		produktScript sc=ta.GetComponent<produktScript>();
-		
-		if(myType==sc.type)
-		{
-			sc.spoil();
-		}
 	}
 }

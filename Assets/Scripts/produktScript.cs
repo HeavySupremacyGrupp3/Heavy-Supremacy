@@ -10,8 +10,7 @@ public class produktScript : MonoBehaviour
 	public static event mittEvent collidedWithBox;	
 	public static event mittEvent JustReachedCheckpoint;
 
-    public Sprite[] Sprites;
-    public Sprite spoilSprite;   	
+    public Sprite[] Sprites;	
 	
 	public int type = 0;
 	public float spacing;
@@ -91,7 +90,6 @@ public class produktScript : MonoBehaviour
 
     public void spoil() //förstör produkten
     {
-        GetComponent<SpriteRenderer>().sprite = spoilSprite;
         Spoiled = true;
     }
 

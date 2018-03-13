@@ -1292,6 +1292,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114813783571596254, guid: 7035485e5743ac142b4c9e04733837d6,
+        type: 2}
+      propertyPath: SpoilProductsOfType.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4460941675764992, guid: 7035485e5743ac142b4c9e04733837d6, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.29
@@ -1343,6 +1348,32 @@ Prefab:
       propertyPath: m_Size.x
       value: 6.738888
       objectReference: {fileID: 0}
+    - target: {fileID: 114813783571596254, guid: 7035485e5743ac142b4c9e04733837d6,
+        type: 2}
+      propertyPath: SpoilProductsOfType.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813783571596254, guid: 7035485e5743ac142b4c9e04733837d6,
+        type: 2}
+      propertyPath: SpoilProductsOfType.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813783571596254, guid: 7035485e5743ac142b4c9e04733837d6,
+        type: 2}
+      propertyPath: SpoilProductsOfType.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813783571596254, guid: 7035485e5743ac142b4c9e04733837d6,
+        type: 2}
+      propertyPath: SpoilOnDoubleUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813783571596254, guid: 7035485e5743ac142b4c9e04733837d6,
+        type: 2}
+      propertyPath: spoilSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff9b5304540e1c64b9e2b512433fc3fb,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7035485e5743ac142b4c9e04733837d6, type: 2}
   m_IsPrefabParent: 0
@@ -1684,6 +1715,12 @@ Prefab:
       propertyPath: m_Size.x
       value: 2.5992541
       objectReference: {fileID: 0}
+    - target: {fileID: 114039442047385304, guid: 62c08a9bab482d54ab07f937d21f6bb6,
+        type: 2}
+      propertyPath: spoilSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bdc87737a95fdf749bcd0b734fb4fff8,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
   m_IsPrefabParent: 0
@@ -5556,6 +5593,12 @@ Prefab:
       propertyPath: m_Size.x
       value: 4.1158876
       objectReference: {fileID: 0}
+    - target: {fileID: 114160764764194296, guid: 1d779c99a42b1814bb79b1901c6a5166,
+        type: 2}
+      propertyPath: spoilSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c67a59c93b87c646b6d426197767c44,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
   m_IsPrefabParent: 0
