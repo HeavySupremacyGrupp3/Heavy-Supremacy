@@ -32,6 +32,9 @@ public class MiniGameManager : MonoBehaviour
     [Range(0, 1)]
     private float[] productChanse;
 
+	private float timeStopped = 0;
+	[SerializeField]
+	private float stopProductsForSeconds;
 
     [SerializeField]
     private float angstTick = 1f;
@@ -71,6 +74,7 @@ public class MiniGameManager : MonoBehaviour
         produktScript.earnMoney += earnMoneyIfReachedEnd;
 		produktScript.collidedWithBox += stopWorkIfEnoughProducts;
 		produktScript.JustReachedCheckpoint += checkpointReached;
+		setProductActiveState(true);
     }
 
     void OnDisable()
@@ -78,7 +82,16 @@ public class MiniGameManager : MonoBehaviour
         produktScript.earnMoney -= earnMoneyIfReachedEnd;
 		produktScript.collidedWithBox -= stopWorkIfEnoughProducts;
 		produktScript.JustReachedCheckpoint -=checkpointReached;
+		setProductActiveState(false);
     }
+	
+	void setProductActiveState(bool isActive)
+	{
+		foreach (GameObject product in productList)
+		{
+			product.SetActive(isActive);
+		}
+	}	
 
 	void checkpointReached()
 	{
@@ -138,18 +151,16 @@ public class MiniGameManager : MonoBehaviour
                 SpawnProduct(0);                    //Om inget i listan spawnade, spawna metallklumpen
 
             productsSeen++;
-
-            if (productsSeen > 1)
-                changeSpawnStopProducts();
+			changeSpawnStopProducts();
         }
 
         if (productsAreStopped)
         {
-            stopCounter++;
-            if (stopCounter == 50)
+			timeStopped += Time.deltaTime;
+            if (timeStopped > stopProductsForSeconds)
             {
                 changeSpawnStopProducts();
-                stopCounter = 0;
+                timeStopped = 0;
             }
         }
     }

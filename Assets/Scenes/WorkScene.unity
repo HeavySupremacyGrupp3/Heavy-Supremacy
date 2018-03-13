@@ -147,14 +147,15 @@ MonoBehaviour:
     type: 2}
   AngstAnimator: {fileID: 1522101786}
   moveProduction: {x: -16, y: -3.7, z: 0}
-  productInterval: 2.2
-  cantStopWontStop: 0
+  productInterval: 2.18
+  cantStopWontStop: 1
   productChanse:
   - 0.6
   - 0.15
   - 0.1
   - 0
   - 0.15
+  stopProductsForSeconds: 1
   angstTick: 2
   angstAmount: 1
   angstText: {fileID: 496926837}

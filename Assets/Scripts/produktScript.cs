@@ -28,6 +28,8 @@ public class produktScript : MonoBehaviour
 	MiniGameManager mgm;
     Transform checkpoint;	
     List<GameObject> productList;
+	
+	float timeSinceCoroutineStarted = 0;
 
     public delegate void Event();
     public static event Event stopProducts;
@@ -46,7 +48,8 @@ public class produktScript : MonoBehaviour
 	
 	void OnEnable()
 	{
-		MiniGameManager.stopEverything += switchWaiting;		
+		MiniGameManager.stopEverything += switchWaiting;
+		waiting = false;
 	}
 	
 	void OnDisable()
@@ -56,7 +59,7 @@ public class produktScript : MonoBehaviour
 	
 	void switchWaiting()
 	{
-		omRörSig();
+		waiting=!waiting;
 	}
 
     void Update()
@@ -72,21 +75,6 @@ public class produktScript : MonoBehaviour
 			JustReachedCheckpoint();
 		}
     }
-	
-	void omRörSig()
-	{
-		if (!waiting)                                                         
-        {     			
-			Wait();	
-            StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
-        }
-	}
-
-    public void Wait()
-    {
-        waiting = true;
-        StartCoroutine(StartMovingAfter(1f));               //Kör igång coroutine som väntar 2 sekunder innan den sätter waiting till false (produkter kan röra sig igen)
-    }
 
     void OnTriggerEnter2D(Collider2D other) //när produkten når slutet och man ska tjäna pengar
     {
@@ -96,8 +84,8 @@ public class produktScript : MonoBehaviour
             if(!Spoiled && type==3)
 				earnMoney();
 
-            Destroy(gameObject);
             mgm.RemoveFromList();
+            Destroy(gameObject);
         }
     }
 
@@ -107,9 +95,14 @@ public class produktScript : MonoBehaviour
         Spoiled = true;
     }
 
-    private IEnumerator StartMovingAfter(float time)
+    /*private IEnumerator StartMovingAfter(float time)
     {
-        yield return new WaitForSeconds(time);  
+		timeSinceCoroutineStarted = 0;
+		while (timeSinceCoroutineStarted <= time)
+		{
+			yield return null;
+			timeSinceCoroutineStarted += Time.deltaTime;
+		}
         waiting = false;
     }
 
@@ -120,4 +113,20 @@ public class produktScript : MonoBehaviour
         reachedCheckpoint = true;
         stopProducts();    //Samma event startar det igen (efter 2 sekunder)
     }
+	
+	void omRörSig()
+	{
+		if (!waiting)                                                         
+        {
+			//Wait();	
+            //StartCoroutine(StartMovingAfterCheckpoint(1f));            //En separat coroutine som säger att produkten har gått förbi checkpointen när den har stått där i 2 sek (2f)
+        }
+	}
+	
+	public void Wait()
+    {
+        waiting = true;
+        StartCoroutine(StartMovingAfter(1f));               //Kör igång coroutine som väntar 2 sekunder innan den sätter waiting till false (produkter kan röra sig igen)
+    }
+	*/
 }
