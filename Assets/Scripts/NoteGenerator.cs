@@ -29,17 +29,17 @@ public class NoteGenerator : MonoBehaviour
 
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
-    public GameObject PracticeTutorialPanel;
-    public GameObject GigTutorialPanel;
+    //public GameObject PracticeTutorialPanel;
+    //public GameObject GigTutorialPanel;
     public Text FameText;
     public Text MoneyText;
     public Text AngstText;
     public Text MetalText;
     public Slider ProgressionSlider;
 
-    public float ProficiencyGainPerPractice = 0.25f;
+    public float ProficiencyGainPerPractice = 0.2f;
 
-    public static float ProficiencyBonus = 0;
+    public static float ProficiencyBonus = 0.8f;
     public static int NoteMultiplier = 1;
     public static int NumberOfUniqueNotes = 2;
     public static float DoubleNoteChance = 0;
@@ -56,6 +56,10 @@ public class NoteGenerator : MonoBehaviour
     public Item MediumGuitar;
 
     public Tutorial PracticeTutorial;
+    public Tutorial GigTutorial;
+    public GameObject StartButton;
+    public GameObject PracticeHelpButton;
+    public GameObject GigHelpButton;
 
     private float clipTime = 0;
     private float clipVolume;
@@ -79,24 +83,49 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
+        NotesTotal = 0;
+
         if (SongIndex == PracticeSongs.Length)
             SongIndex = PracticeSongs.Length - 1;
 
         NoteSets.Clear();
 
-        //if (ShowPracticeTutorial || ShowGigTutorial)
-        //{
-        //    SetTutorial(true);
-        //}
-        //else if (!ShowPracticeTutorial || !ShowGigTutorial)
-        //{
-        //    SetTutorial(false);
-        //}
+        if (GigBackgroundManager.GigSession)
+            GigHelpButton.SetActive(true);
+        else if (!GigBackgroundManager.GigSession)
+            PracticeHelpButton.SetActive(true);
 
-        if (GameManager.IsFirstPracticeRun)
+        if (GameManager.IsFirstPracticeRun && !GigBackgroundManager.GigSession)
+        {
+            TriggerTutorial(true);
+        }
+        else if (GameManager.IsFirstGigRun && GigBackgroundManager.GigSession)
+        {
+            TriggerTutorial(false);
+        }
+    }
+
+    public void TriggerTutorial(bool isPractice)
+    {
+        ToggleMusic(false);
+
+        if (isPractice)
         {
             PracticeTutorial.Run();
             GameManager.IsFirstPracticeRun = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            GigTutorial.Run();
+            GameManager.IsFirstGigRun = false;
+            Time.timeScale = 1;
+        }
+
+        //Hide all notes.
+        foreach (Rigidbody2D rb in FindObjectsOfType<Rigidbody2D>())
+        {
+            rb.gameObject.SetActive(false);
         }
     }
 
@@ -114,7 +143,6 @@ public class NoteGenerator : MonoBehaviour
     {
         Debug.Log("INITIALIZE");
 
-        NotesTotal = 0;
         clipSampleData = new float[SampleDataLength];
 
         //Assign audioclips.
@@ -143,9 +171,9 @@ public class NoteGenerator : MonoBehaviour
         MusicWithoutLeadAudioSource.clip = selectedSong.MusicWithoutLead;
         MusicWithoutLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        if (ProficiencyBonus >= 2)
+        if (ProficiencyBonus >= 2.4f)
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[2];
-        else if (ProficiencyBonus >= 1)
+        else if (ProficiencyBonus >= 1.6f)
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[1];
         else
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[0];
@@ -164,16 +192,40 @@ public class NoteGenerator : MonoBehaviour
             NoteGenerationAudioSource.time = NoteGenerationAudioSource.clip.length - 2;
         }
 
-            if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
-                SendNote();
-            else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0) //End game if song is over and the game hasn't already ended.
-                EndGame(true);
-
-            if (lerpAudio)
+        if (!PracticeTutorial.gameObject.activeSelf && !GigTutorial.gameObject.activeSelf)
+        {
+            //Tutorial has ended!
+            if (!NoteGenerationAudioSource.isPlaying && Time.timeScale == 1 && (NoteGenerationAudioSource.time == 0 || NotesTotal > 0))
             {
-                LerpAudioSourceVolume();
+                Debug.Log("ENDED TUTORIAL");
+                Time.timeScale = 0;
+                StartButton.SetActive(true);
+
+                if (NotesTotal > 0)
+                {
+                    ToggleMusic(true);
+                    Time.timeScale = 1;
+
+                    //Remove hidden notes from play.
+                    NoteSets.Clear();
+                }
             }
-        
+        }
+
+        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
+            SendNote();
+        else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0 && !PracticeTutorial.gameObject.activeSelf && !GigTutorial.gameObject.activeSelf) //End game if song is over and the game hasn't already ended.
+        {
+            Debug.Log("GENERATION: " + NoteGenerationAudioSource.isPlaying);
+            Debug.Log("LEAD: " + MusicWithLeadAudioSource.isPlaying);
+            EndGame(true);
+        }
+
+        if (lerpAudio)
+        {
+            LerpAudioSourceVolume();
+        }
+
 
         if (MusicWithLeadAudioSource.clip != null)
             ProgressionSlider.value = MusicWithLeadAudioSource.time / MusicWithLeadAudioSource.clip.length;
@@ -255,8 +307,6 @@ public class NoteGenerator : MonoBehaviour
         MusicWithoutLeadAudioSource.Stop();
         NoteGenerationAudioSource.Stop();
 
-        ProficiencyBonus += ProficiencyGainPerPractice;
-
         angstStatScript angst = FindObjectOfType<angstStatScript>();
         metalStatScript metal = FindObjectOfType<metalStatScript>();
         fameStatScript fame = FindObjectOfType<fameStatScript>();
@@ -290,25 +340,25 @@ public class NoteGenerator : MonoBehaviour
             float metalStatMltp = (1 / (1 + (angst.getAmount() / 100)));
             float metalPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
             float metalItemMltp = TimingString.MetalMultiplier;
-            metalGained = Mathf.CeilToInt(metalBase * metalStatMltp * metalPerformance * metalItemMltp);
+            metalGained = Mathf.CeilToInt(metalBase * metalStatMltp * metalPerformance * metalItemMltp * ProficiencyBonus);
 
             float fameBase = 50;
             float fameStatMltp = (2 / (10 - (metal.getAmount() / 15)));
             float famePerformance = ((1.5f * NotesTotal) / (NotesTotal + TimingSystem.FailedTimingCounter));
             float fameItemMltp = 1;
-            fameGained = Mathf.CeilToInt(fameBase * fameStatMltp * famePerformance * fameItemMltp);
+            fameGained = Mathf.CeilToInt(fameBase * fameStatMltp * famePerformance * fameItemMltp * ProficiencyBonus);
 
             float moneyBase = 3000;
             float moneyStatMltp = (6 / (100 - fame.getAmount()));
             float moneyPerformance = 1;
             float moneyItemMltp = 1;
-            moneyGained = Mathf.CeilToInt(moneyBase * moneyStatMltp * moneyPerformance * moneyItemMltp);
+            moneyGained = Mathf.CeilToInt(moneyBase * moneyStatMltp * moneyPerformance * moneyItemMltp * ProficiencyBonus);
 
             float angstBase = -15;
             float angstStatMltp = 1;
             float angstPerformance = ((1.5f * NotesTotal) / (NotesTotal + (2 * TimingSystem.FailedTimingCounter)));
             float angstItemMltp = 1;
-            angstGained = Mathf.CeilToInt(angstBase * angstStatMltp * angstPerformance * angstItemMltp);
+            angstGained = Mathf.CeilToInt(angstBase * angstStatMltp * angstPerformance * angstItemMltp * ProficiencyBonus);
 
             if (moneyGained > money.getMax() || moneyGained < 0)
                 moneyGained = money.getMax();
@@ -322,8 +372,8 @@ public class NoteGenerator : MonoBehaviour
 
             Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
 
-            UpdateScoreBoard(MetalText, metalBase, metalStatMltp, metalPerformance, 1, metalItemMltp, metalGained);
-            UpdateScoreBoard(AngstText, angstBase, angstStatMltp, angstPerformance, 1, angstItemMltp, angstGained);
+            UpdateScoreBoard(MetalText, metalBase, metalStatMltp, metalPerformance, metalItemMltp, metalGained);
+            UpdateScoreBoard(AngstText, angstBase, angstStatMltp, angstPerformance, angstItemMltp, angstGained);
 
             metal.addOrRemoveAmount(metalGained);
             angst.addOrRemoveAmount(angstGained);
@@ -333,8 +383,8 @@ public class NoteGenerator : MonoBehaviour
                 FameText.transform.parent.gameObject.SetActive(true);
                 MoneyText.transform.parent.gameObject.SetActive(true);
 
-                UpdateScoreBoard(FameText, fameBase, fameStatMltp, famePerformance, 1, fameItemMltp, fameGained);
-                UpdateScoreBoard(MoneyText, moneyBase, moneyStatMltp, moneyPerformance, 1, moneyItemMltp, moneyGained);
+                UpdateScoreBoard(FameText, fameBase, fameStatMltp, famePerformance, fameItemMltp, fameGained);
+                UpdateScoreBoard(MoneyText, moneyBase, moneyStatMltp, moneyPerformance, moneyItemMltp, moneyGained);
 
                 fame.addOrRemoveAmount(fameGained);
                 money.addOrRemoveAmount(moneyGained);
@@ -344,6 +394,10 @@ public class NoteGenerator : MonoBehaviour
                     GameManager.ToEndGame = true;
                     GameManager.EndGameTitleText = "You're famous and won the game!";
                 }
+            }
+            else if(!GigBackgroundManager.GigSession)
+            {
+                ProficiencyBonus += ProficiencyGainPerPractice;
             }
         }
         else
@@ -355,10 +409,10 @@ public class NoteGenerator : MonoBehaviour
 
             if (GigBackgroundManager.GigSession)
             {
-                UpdateScoreBoard(FameText, -10, 1, 1, 1, 1, -10);
-                UpdateScoreBoard(MetalText, -20, 1, 1, 1, 1, -20);
-                UpdateScoreBoard(AngstText, 20, 1, 1, 1, 1, 20);
-                UpdateScoreBoard(MoneyText, 150, 1, 1, 1, 1, 150);
+                UpdateScoreBoard(FameText, -10, 1, 1, 1, -10);
+                UpdateScoreBoard(MetalText, -20, 1, 1, 1, -20);
+                UpdateScoreBoard(AngstText, 20, 1, 1, 1, 20);
+                UpdateScoreBoard(MoneyText, 150, 1, 1, 1, 150);
 
                 fame.addOrRemoveAmount(-10);
                 metal.addOrRemoveAmount(-20);
@@ -368,7 +422,7 @@ public class NoteGenerator : MonoBehaviour
         }
     }
 
-    private void UpdateScoreBoard(Text text, float baseStat, float statMltp, float performance, float proficiency, float itemMltp, float total)
+    private void UpdateScoreBoard(Text text, float baseStat, float statMltp, float performance, float itemMltp, float total)
     {
         text.text = baseStat.ToString("0.00") + "\n" +
             statMltp.ToString("0.00") + "x" + "\n" +
@@ -441,7 +495,8 @@ public class NoteGenerator : MonoBehaviour
             MusicWithLeadAudioSource.Pause();
             MusicWithoutLeadAudioSource.Pause();
 
-            FindObjectOfType<TimingString>().enabled = false;
+            if (FindObjectOfType<TimingString>())
+                FindObjectOfType<TimingString>().enabled = false;
             Time.timeScale = 0;
         }
         else if (resume)
@@ -451,7 +506,8 @@ public class NoteGenerator : MonoBehaviour
             MusicWithLeadAudioSource.UnPause();
             MusicWithoutLeadAudioSource.UnPause();
 
-            FindObjectOfType<TimingString>().enabled = true;
+            if (FindObjectOfType<TimingString>())
+                FindObjectOfType<TimingString>().enabled = true;
             Time.timeScale = 1;
 
             if (!NoteGenerationAudioSource.isPlaying && NoteGenerationAudioSource.time <= 0)
