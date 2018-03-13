@@ -29,6 +29,8 @@ public class TimingMachine : MonoBehaviour {
 	{
 		produktScript sc=collision.GetComponent<produktScript>();
 		
+		Debug.Log("mytype: " + myType + " :: sc.type: " + sc.type);
+		
 		if(myType<sc.type) // spoils the product if it is NOT in the correct stage
 		{
 			sc.spoil();

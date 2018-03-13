@@ -19,9 +19,27 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: {x: 17.28, y: 1.2, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 4.422, y: 0, z: 0}
+        value: {x: 9.12, y: -3.73, z: 0}
+        inSlope: {x: -0, y: -0, z: -0}
+        outSlope: {x: 4.537499, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.8000002
+        value: {x: 12.75, y: -3.73, z: 0}
+        inSlope: {x: 4.537499, y: -0, z: -0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.1999998
+        value: {x: 12.75, y: -3.73, z: 0}
+        inSlope: {x: -0, y: -0, z: -0}
+        outSlope: {x: 4.887499, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2
+        value: {x: 16.66, y: -3.73, z: 0}
+        inSlope: {x: 4.887499, y: -0, z: -0}
+        outSlope: {x: 0.45365918, y: 3.6073177, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -88,7 +106,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -109,9 +127,27 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 17.28
-        inSlope: 0
-        outSlope: 4.422
+        value: 9.12
+        inSlope: -0
+        outSlope: 4.537499
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 0.8000002
+        value: 12.75
+        inSlope: 4.537499
+        outSlope: 0
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 1.1999998
+        value: 12.75
+        inSlope: -0
+        outSlope: 4.887499
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 2
+        value: 16.66
+        inSlope: 4.887499
+        outSlope: 0.45365918
         tangentMode: 69
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -125,10 +161,28 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 1.2
-        inSlope: 0
+        value: -3.73
+        inSlope: -0
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 0.8000002
+        value: -3.73
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 1.1999998
+        value: -3.73
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 2
+        value: -3.73
+        inSlope: -0
+        outSlope: 3.6073177
+        tangentMode: 69
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -142,9 +196,27 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 0
+        inSlope: -0
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 0.8000002
+        value: 0
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 1.1999998
+        value: 0
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+      - serializedVersion: 2
+        time: 2
+        value: 0
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -260,18 +332,18 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0
-    functionName: ShowText
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: ShowArrow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 3
+    messageOptions: 0
+  - time: 0
+    functionName: ShowText
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
   - time: 0
     functionName: HideHighlightedObjects
@@ -280,7 +352,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
+  - time: 2
     functionName: AllowClick
     data: 
     objectReferenceParameter: {fileID: 0}
