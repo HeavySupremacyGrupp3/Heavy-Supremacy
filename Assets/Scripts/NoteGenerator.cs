@@ -52,6 +52,8 @@ public class NoteGenerator : MonoBehaviour
     public Item HardGuitar;
     public Item MediumGuitar;
 
+    public Tutorial PracticeTutorial;
+
     private float clipTime = 0;
     private float clipVolume;
     private float lastClipVolume;
@@ -88,6 +90,20 @@ public class NoteGenerator : MonoBehaviour
         //    SetTutorial(false);
         //}
 
+        if (GameManager.IsFirstPracticeRun)
+        {
+            PracticeTutorial.Run();
+            GameManager.IsFirstPracticeRun = false;
+        }
+    }
+
+    private void OnEnable()
+    {
+        ToggleMusic(true);
+    }
+
+    private void OnDisable()
+    {
         ToggleMusic(false);
     }
 
@@ -414,7 +430,7 @@ public class NoteGenerator : MonoBehaviour
             MusicWithoutLeadAudioSource.Pause();
 
             FindObjectOfType<TimingString>().enabled = false;
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
         }
         else if (resume)
         {
@@ -423,7 +439,7 @@ public class NoteGenerator : MonoBehaviour
             MusicWithoutLeadAudioSource.UnPause();
 
             FindObjectOfType<TimingString>().enabled = true;
-            //Time.timeScale = 1;
+            Time.timeScale = 1;
 
             if (!NoteGenerationAudioSource.isPlaying && NoteGenerationAudioSource.time <= 0)
                 Initialize();
