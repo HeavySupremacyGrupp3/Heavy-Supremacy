@@ -45,7 +45,7 @@ MonoBehaviour:
   Name: AMP
   Description: Amplify your experience with this awesome AMP!
   ProductImage: {fileID: 21300000, guid: 1931f05395c6dfa4c859dc267344de63, type: 3}
-  PurchaseSound: 
+  PurchaseSound: AMPPurchase
   FurnitureToInstantiate: []
   GameObjectToDestroy: []
   GameObjectToReplace: Gig_Button

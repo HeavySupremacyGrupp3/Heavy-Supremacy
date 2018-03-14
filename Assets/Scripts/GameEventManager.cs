@@ -33,6 +33,7 @@ public class GameEventManager : MonoBehaviour
 
     [Range(0, 100)]
     public float FameWeekCap, MusicWeekCap, SocialWeekCap;
+    public float MoneyCap = 1000;
 
     public float RecieveMessageDelay = 0.75f;
     public int SMSDayInterval = 1;
@@ -44,10 +45,11 @@ public class GameEventManager : MonoBehaviour
     public static List<StoryNode> socialNodes = new List<StoryNode>();
     public static List<StoryNode> musicNodes = new List<StoryNode>();
     public static List<StoryNode> fameNodes = new List<StoryNode>();
+    public static List<StoryNode> moneyNodes = new List<StoryNode>();
     public static List<StoryNode> specialNodes = new List<StoryNode>();
 
     [HideInInspector]
-    public enum nodeType { social, musical, fame, special }
+    public enum nodeType { social, musical, fame, special, money }
 
     private StoryNode firstNode;
     private string YesChar = "#";
@@ -60,6 +62,7 @@ public class GameEventManager : MonoBehaviour
             LoadEvents("socialNodes", socialNodes);
             LoadEvents("musicNodes", musicNodes);
             LoadEvents("fameNodes", fameNodes);
+            LoadEvents("moneyNodes", moneyNodes);
             LoadEvents("specialNodes", specialNodes);
         }
     }
@@ -174,7 +177,7 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEvent(StoryNode node)
     {
-        if (node.EnergyBonus != null && node.EnergyBonus != "" && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
+        if (node.EnergyBonus != null && node.EnergyBonus != "" && node.EnergyBonus != YesChar && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
             return;
 
         Debug.Log(node.Title);

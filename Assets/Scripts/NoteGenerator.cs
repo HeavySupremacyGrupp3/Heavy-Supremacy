@@ -29,8 +29,6 @@ public class NoteGenerator : MonoBehaviour
 
     public float NoteSpawnMinInterval = 0.1f;
     public GameObject EndGamePanel;
-    //public GameObject PracticeTutorialPanel;
-    //public GameObject GigTutorialPanel;
     public Text FameText;
     public Text MoneyText;
     public Text AngstText;
@@ -44,8 +42,6 @@ public class NoteGenerator : MonoBehaviour
     public static int NumberOfUniqueNotes = 2;
     public static float DoubleNoteChance = 0;
     public static float NotesTotal = 0;
-    //public static bool ShowPracticeTutorial = false;
-    //public static bool ShowGigTutorial = false;
 
     public AudioClip VictorySoundHard;
     public AudioClip VictorySoundMedium;
@@ -102,6 +98,10 @@ public class NoteGenerator : MonoBehaviour
         else if (GameManager.IsFirstGigRun && GigBackgroundManager.GigSession)
         {
             TriggerTutorial(false);
+        }
+        else if ((!GameManager.IsFirstPracticeRun && !GigBackgroundManager.GigSession) || (!GameManager.IsFirstGigRun && GigBackgroundManager.GigSession))
+        {
+            StartButton.SetActive(true);
         }
     }
 
@@ -192,25 +192,7 @@ public class NoteGenerator : MonoBehaviour
             NoteGenerationAudioSource.time = NoteGenerationAudioSource.clip.length - 2;
         }
 
-        if (!PracticeTutorial.gameObject.activeSelf && !GigTutorial.gameObject.activeSelf)
-        {
-            //Tutorial has ended!
-            if (!NoteGenerationAudioSource.isPlaying && Time.timeScale == 1 && (NoteGenerationAudioSource.time == 0 || NotesTotal > 0))
-            {
-                Debug.Log("ENDED TUTORIAL");
-                Time.timeScale = 0;
-                StartButton.SetActive(true);
-
-                if (NotesTotal > 0)
-                {
-                    ToggleMusic(true);
-                    Time.timeScale = 1;
-
-                    //Remove hidden notes from play.
-                    NoteSets.Clear();
-                }
-            }
-        }
+        CheckTutorial();
 
         if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
             SendNote();
@@ -231,6 +213,31 @@ public class NoteGenerator : MonoBehaviour
             ProgressionSlider.value = MusicWithLeadAudioSource.time / MusicWithLeadAudioSource.clip.length;
     }
 
+    private void CheckTutorial()
+    {
+        if (!PracticeTutorial.gameObject.activeSelf && !GigTutorial.gameObject.activeSelf)
+        {
+            //Tutorial has ended!
+            if (!NoteGenerationAudioSource.isPlaying && Time.timeScale == 1 && (NoteGenerationAudioSource.time == 0 || NotesTotal > 0))
+            {
+                Debug.Log("ENDED TUTORIAL");
+                Time.timeScale = 0;
+                StartButton.SetActive(true);
+
+                //Mid-game tutorial ended.
+                if (NotesTotal > 0)
+                {
+                    if (NoteGenerationAudioSource.clip != null && NoteGenerationAudioSource.time < NoteGenerationAudioSource.clip.length - 8 && NoteGenerationAudioSource.time > 1)
+                        ToggleMusic(true);
+                    Time.timeScale = 1;
+
+                    //Remove hidden notes from play.
+                    NoteSets.Clear();
+                }
+            }
+        }
+    }
+
     bool CheckForNote()
     {
         noteSpawnTimer += Time.deltaTime;
@@ -243,16 +250,6 @@ public class NoteGenerator : MonoBehaviour
             {
                 clipVolume += Mathf.Abs(sample);
             }
-            //Debug.Log(clipVolume);
-
-            //Set volumetreshold to the volume of the first note.
-            //if (volumeTreshold <= 1 && clipVolume > 1 || clipVolume < volumeTreshold && clipVolume > 1)
-            //    volumeTreshold = clipVolume;
-
-            //If the tone is long, create only one note.
-            //if (clipVolume >= lastClipVolume)
-            //    canSendNextNote = true;
-            //lastClipVolume = clipVolume;
 
             if (clipVolume >= volumeTreshold)
             {
@@ -395,7 +392,7 @@ public class NoteGenerator : MonoBehaviour
                     GameManager.EndGameTitleText = "You're famous and won the game!";
                 }
             }
-            else if(!GigBackgroundManager.GigSession)
+            else if (!GigBackgroundManager.GigSession)
             {
                 ProficiencyBonus += ProficiencyGainPerPractice;
             }
@@ -409,6 +406,9 @@ public class NoteGenerator : MonoBehaviour
 
             if (GigBackgroundManager.GigSession)
             {
+                FameText.transform.parent.gameObject.SetActive(true);
+                MoneyText.transform.parent.gameObject.SetActive(true);
+
                 UpdateScoreBoard(FameText, -10, 1, 1, 1, -10);
                 UpdateScoreBoard(MetalText, -20, 1, 1, 1, -20);
                 UpdateScoreBoard(AngstText, 20, 1, 1, 1, 20);

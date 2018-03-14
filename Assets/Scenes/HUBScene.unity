@@ -19128,7 +19128,7 @@ MonoBehaviour:
   FameSprite: {fileID: 21300000, guid: 40c92578bc9f194488629d878f420e3b, type: 3}
   MusicSprite: {fileID: 21300000, guid: 0c9a66c358bb7d34885f019fcf3fa00b, type: 3}
   SocialSprite: {fileID: 21300000, guid: b44b86f509e6ad74592ea493291ec947, type: 3}
-  SpecialSprite: {fileID: 21300000, guid: 26344e7d47196b44a9a77d139902bb8c, type: 3}
+  MoneySprite: {fileID: 21300000, guid: 0e266bc9ea7dbb0418700d3c756feaa1, type: 3}
   PreviewData:
   - {fileID: 1130557506}
   - {fileID: 1130557505}
@@ -22876,10 +22876,11 @@ MonoBehaviour:
   OpenPhoneController: {fileID: 296828754}
   MessageNotification: {fileID: 1179775910}
   HUBMessageNotification: {fileID: 1965926918}
-  SpecialNodeChance: 0.1
+  SpecialNodeChance: 1
   FameWeekCap: 30
   MusicWeekCap: 30
   SocialWeekCap: 30
+  MoneyCap: 1000
   RecieveMessageDelay: 1.5
   SMSDayInterval: 2
 --- !u!1 &1377262723
@@ -27405,7 +27406,7 @@ MonoBehaviour:
   FameSprite: {fileID: 21300000, guid: 40c92578bc9f194488629d878f420e3b, type: 3}
   MusicSprite: {fileID: 21300000, guid: 0c9a66c358bb7d34885f019fcf3fa00b, type: 3}
   SocialSprite: {fileID: 21300000, guid: b44b86f509e6ad74592ea493291ec947, type: 3}
-  SpecialSprite: {fileID: 21300000, guid: 26344e7d47196b44a9a77d139902bb8c, type: 3}
+  MoneySprite: {fileID: 21300000, guid: 0e266bc9ea7dbb0418700d3c756feaa1, type: 3}
   PreviewData:
   - {fileID: 1789072683}
   - {fileID: 1789072682}
@@ -27877,7 +27878,7 @@ MonoBehaviour:
   FameSprite: {fileID: 21300000, guid: 40c92578bc9f194488629d878f420e3b, type: 3}
   MusicSprite: {fileID: 21300000, guid: 0c9a66c358bb7d34885f019fcf3fa00b, type: 3}
   SocialSprite: {fileID: 21300000, guid: b44b86f509e6ad74592ea493291ec947, type: 3}
-  SpecialSprite: {fileID: 21300000, guid: 26344e7d47196b44a9a77d139902bb8c, type: 3}
+  MoneySprite: {fileID: 21300000, guid: 0e266bc9ea7dbb0418700d3c756feaa1, type: 3}
   PreviewData:
   - {fileID: 1820522529}
   - {fileID: 1820522528}
@@ -31566,7 +31567,7 @@ Prefab:
     - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
         type: 2}
       propertyPath: sounds.Array.size
-      value: 61
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 4424243644251912, guid: 74543d1b2bd1cea4b8bc61d46874123a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -31620,6 +31621,27 @@ Prefab:
       propertyPath: sounds.Array.data[60].mixer
       value: 
       objectReference: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121,
+        type: 2}
+    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
+        type: 2}
+      propertyPath: sounds.Array.data[61].name
+      value: AMPPurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
+        type: 2}
+      propertyPath: sounds.Array.data[61].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f52da0d451f594148a1278e8f5490218, type: 3}
+    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
+        type: 2}
+      propertyPath: sounds.Array.data[61].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114694986802562932, guid: 74543d1b2bd1cea4b8bc61d46874123a,
+        type: 2}
+      propertyPath: sounds.Array.data[61].mixer
+      value: 
+      objectReference: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74543d1b2bd1cea4b8bc61d46874123a, type: 2}
