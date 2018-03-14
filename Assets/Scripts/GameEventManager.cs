@@ -102,21 +102,9 @@ public class GameEventManager : MonoBehaviour
 
     public void CheckForStatEvents()
     {
-        //Currently take the highest stat and trigger a event based on the highest one.
-        int[] statValues = new int[3];
-        statValues[0] = Mathf.RoundToInt(FindObjectOfType<metalStatScript>().getAmount());
-        statValues[1] = Mathf.RoundToInt(FindObjectOfType<fameStatScript>().getAmount());
-        statValues[2] = Mathf.RoundToInt(FindObjectOfType<angstStatScript>().getAmount());
-
         if (GameManager.day % SMSDayInterval == 0)
         {
-            //TODO: Replace statValues[0,1,2] with different Nodelists accordingly.
-            if (Mathf.Max(statValues) == statValues[0])
-                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
-            else if (Mathf.Max(statValues) == statValues[1])
-                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
-            else if (Mathf.Max(statValues) == statValues[2])
-                TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
+            TriggerSMSEvent(messageNodes[Random.Range(0, messageNodes.Count)]);
         }
     }
 

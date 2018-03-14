@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 
 public class NoteGenerator : MonoBehaviour
 {
-    public static int SongIndex = 1;
+    public static int SongIndex = 0;
 
     public Song[] PracticeSongs;
     public Song[] GigSongs;

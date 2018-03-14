@@ -13,6 +13,8 @@ public abstract class TimingSystem : MonoBehaviour
 
     public static float FailedTimingCounter = 0;
 
+    private List<string> keysPressed = new List<string>();
+
     private void Start()
     {
         FailedTimingCounter = 0;
@@ -33,8 +35,6 @@ public abstract class TimingSystem : MonoBehaviour
         }
         else if (TargetInRange)
         {
-            List<string> keysPressed = new List<string>();
-
             //Need multiple if-statements to handle simultanious notes.
             if (TargetInRange && Input.GetKey(ActivasionKey1))
             {
@@ -56,7 +56,6 @@ public abstract class TimingSystem : MonoBehaviour
                     SucceedTiming(note);
                 }
                 NoteGenerator.NoteSets.RemoveAt(0);
-
             }
             return;
         }
@@ -68,11 +67,14 @@ public abstract class TimingSystem : MonoBehaviour
         FailedTimingCounter++;
 
         TargetInRange = false;
+
+        keysPressed.Clear();
     }
 
     public virtual void SucceedTiming(GameObject note)
     {
         Debug.Log("SUCCEEDED TIMING!");
+        keysPressed.Clear();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
