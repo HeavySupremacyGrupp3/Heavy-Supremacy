@@ -1372,7 +1372,7 @@ Prefab:
         type: 2}
       propertyPath: spoilSprite
       value: 
-      objectReference: {fileID: 21300000, guid: ff9b5304540e1c64b9e2b512433fc3fb,
+      objectReference: {fileID: 21300000, guid: fbd1e582c59bb2c4790486c8b39ba4b7,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7035485e5743ac142b4c9e04733837d6, type: 2}
@@ -1719,7 +1719,7 @@ Prefab:
         type: 2}
       propertyPath: spoilSprite
       value: 
-      objectReference: {fileID: 21300000, guid: bdc87737a95fdf749bcd0b734fb4fff8,
+      objectReference: {fileID: 21300000, guid: 2d8d485332700f4489e3af2220d4bc11,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62c08a9bab482d54ab07f937d21f6bb6, type: 2}
@@ -5597,7 +5597,7 @@ Prefab:
         type: 2}
       propertyPath: spoilSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1c67a59c93b87c646b6d426197767c44,
+      objectReference: {fileID: 21300000, guid: 189c8876d53e3ae47b62a7ba596b0a08,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d779c99a42b1814bb79b1901c6a5166, type: 2}
