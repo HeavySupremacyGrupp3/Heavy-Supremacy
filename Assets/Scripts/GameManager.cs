@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public delegate void mittEvent();
     public static event mittEvent sleep;
 
-    public static string EndGameTitleText;
+    public string WinGameText;
+    public string LoseGameText;
     public static bool ToEndGame;
     public static bool RestartGame;
 
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if (ToEndGame)
-            EndGame(EndGameTitleText);
+            EndGame(0);
         if (RestartGame)
             Restart();
 
@@ -102,11 +103,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void EndGame(string title)
+    public void EndGame(int textChildIndex)
     {
         ToEndGame = false;
         EndGamePanel.SetActive(true);
-        EndGameTitle.text = title;
+        EndGamePanel.transform.GetChild(textChildIndex).gameObject.SetActive(true);
     }
 
     public void Restart()
@@ -218,7 +219,7 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<angstStatScript>().UpdateWeeklyStatGains();
 
             if ((FindObjectOfType<moneyStatScript>().getAmount() - Rent) < 0)
-                EndGame("You're Broke!");
+                EndGame(2);
             else
                 FindObjectOfType<moneyStatScript>().addOrRemoveAmount(-Rent);
         }

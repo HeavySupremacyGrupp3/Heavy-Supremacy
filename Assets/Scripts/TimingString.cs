@@ -76,7 +76,6 @@ public class TimingString : TimingSystem
 
 
         AudioManager.instance.Play(ErrorSounds[Random.Range(0, ErrorSounds.Length)]);
-        //StringAnimator.SetTrigger("StringStroked");
     }
 
     public override void SucceedTiming(GameObject note)

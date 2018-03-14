@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 
 public class NoteGenerator : MonoBehaviour
 {
-    public static int SongIndex = 0;
+    public static int SongIndex = 1;
 
     public Song[] PracticeSongs;
     public Song[] GigSongs;
@@ -183,7 +183,6 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Time.timeScale);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -198,8 +197,6 @@ public class NoteGenerator : MonoBehaviour
             SendNote();
         else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0 && !PracticeTutorial.gameObject.activeSelf && !GigTutorial.gameObject.activeSelf) //End game if song is over and the game hasn't already ended.
         {
-            Debug.Log("GENERATION: " + NoteGenerationAudioSource.isPlaying);
-            Debug.Log("LEAD: " + MusicWithLeadAudioSource.isPlaying);
             EndGame(true);
         }
 
@@ -389,7 +386,6 @@ public class NoteGenerator : MonoBehaviour
                 if (fame.getAmount() >= fame.getMax())
                 {
                     GameManager.ToEndGame = true;
-                    GameManager.EndGameTitleText = "You're famous and won the game!";
                 }
             }
             else if (!GigBackgroundManager.GigSession)

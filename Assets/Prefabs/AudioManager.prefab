@@ -1286,19 +1286,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 68659ce8e1c1c6140bc20f2aca675419, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243241040353178898, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: Machine1Hit
     clip: {fileID: 8300000, guid: bd52514586c2a9b4fa003e05a7e83448, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243241040353178898, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: Machine2Hit
     clip: {fileID: 8300000, guid: 9d549c9de9db3264381a3717df30681d, type: 3}
     volume: 1
     loop: 0
-    mixer: {fileID: 243002246615861548, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243241040353178898, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: bordslampaHUBOn
     clip: {fileID: 8300000, guid: d5c0f32baa9dc774e9eed3fbbfba49b9, type: 3}
@@ -1362,15 +1362,15 @@ MonoBehaviour:
     source: {fileID: 82078265706946586}
   - name: HappyAudience
     clip: {fileID: 8300000, guid: edc6c3ff973e8b949adc9c0afd1e8129, type: 3}
-    volume: 0.35
+    volume: 0.25
     loop: 1
-    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243260048906613784, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: SadAudience
     clip: {fileID: 8300000, guid: 70ae06ac2ba047c42bbfaad937db0f98, type: 3}
-    volume: 0.35
+    volume: 0.25
     loop: 1
-    mixer: {fileID: 243749092122542922, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    mixer: {fileID: 243260048906613784, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: RedGuitarPurchase
     clip: {fileID: 8300000, guid: d7759a0d616cc0f4b88c56a2956d28db, type: 3}
@@ -1401,4 +1401,10 @@ MonoBehaviour:
     volume: 1
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: AMPPurchase
+    clip: {fileID: 8300000, guid: f52da0d451f594148a1278e8f5490218, type: 3}
+    volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
