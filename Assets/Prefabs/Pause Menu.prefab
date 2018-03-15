@@ -863,7 +863,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 224820943179990118}
   m_HandleRect: {fileID: 224809001183937300}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -30
   m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 0
@@ -2312,7 +2312,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 224777451752474662}
   m_HandleRect: {fileID: 224919726637834192}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -30
   m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 0
@@ -2541,6 +2541,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 24100000, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+  volumeSlider: {fileID: 114028833877542258}
+  SFXSlider: {fileID: 114794932251473836}
+  musicSlider: {fileID: 114634669758950848}
 --- !u!114 &114789716004129188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2613,7 +2616,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 224603886863443408}
   m_HandleRect: {fileID: 224570574912343212}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -30
   m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 0
