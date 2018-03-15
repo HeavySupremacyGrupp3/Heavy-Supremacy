@@ -1330,7 +1330,7 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
-  - name: shopPoster
+  - name: PosterPurchase
     clip: {fileID: 8300000, guid: 7520e3b0bce85d04b84817c0d2b246ce, type: 3}
     volume: 1
     loop: 0

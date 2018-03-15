@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 81132f3260300fc41bf3a385e245209e, type: 3}
   - {fileID: 8300000, guid: fcac8850769caca45b07307badabc390, type: 3}
   GeneratorUpdateInterval: 0.01
-  MinimumVolumeTreshold: 0.1
+  MinimumVolumeTreshold: 0.07
   MusicDelay: 1.95

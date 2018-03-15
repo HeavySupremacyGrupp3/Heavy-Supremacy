@@ -29,7 +29,7 @@ public class EventEnum : MonoBehaviour
             GetComponent<Button>().interactable = true;
             Node = NodesSelected[NodeIndex];
 
-            if (Node.EnergyBonus != null && Node.EnergyBonus != "")
+            if (!string.IsNullOrEmpty(Node.EnergyBonus))
                 EnergyCost = float.Parse(Node.EnergyBonus);
 
             EnergyText.text = "Energy Cost: " + EnergyCost;
@@ -74,15 +74,15 @@ public class EventEnum : MonoBehaviour
                 NodesSelected[NodeIndex] = Node;
 
 
-            if (Node.EnergyBonus != null && Node.EnergyBonus != "")
+            if (!string.IsNullOrEmpty(Node.EnergyBonus))
                 EnergyCost = float.Parse(Node.EnergyBonus);
-            if (Node.FameBonus != null && Node.FameBonus != "")
+            if (!string.IsNullOrEmpty(Node.FameBonus))
                 FameBonus = float.Parse(Node.FameBonus);
-            if (Node.MetalBonus != null && Node.MetalBonus != "")
+            if (!string.IsNullOrEmpty(Node.MetalBonus))
                 MetalBonus = float.Parse(Node.MetalBonus);
-            if (Node.AngstBonus != null && Node.AngstBonus != "")
+            if (!string.IsNullOrEmpty(Node.AngstBonus))
                 AngstBonus = float.Parse(Node.AngstBonus);
-            if (Node.CashBonus != null && Node.CashBonus != "")
+            if (!string.IsNullOrEmpty(Node.CashBonus))
                 MoneyBonus = float.Parse(Node.CashBonus);
 
             if (AngstBonus < 0)
