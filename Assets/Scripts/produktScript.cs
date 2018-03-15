@@ -7,8 +7,7 @@ public class produktScript : MonoBehaviour
 
     public delegate void mittEvent();
     public static event mittEvent earnMoney;
-	public static event mittEvent collidedWithBox;	
-	public static event mittEvent JustReachedCheckpoint;
+	public static event mittEvent collidedWithBox;
 
     public Sprite[] Sprites;	
 	
@@ -16,33 +15,17 @@ public class produktScript : MonoBehaviour
 	public float spacing;
 	
     public bool Spoiled = false;
-
-    bool moving = true;
+    
     bool waiting = false;
     bool reachedCheckpoint = false;   
 	
-	Vector3 startPosition;
-    Vector3 endPosition;
-	
 	MiniGameManager mgm;
-    Transform checkpoint;	
-    List<GameObject> productList;
-	
-	float timeSinceCoroutineStarted = 0;
-
-    public delegate void Event();
-    public static event Event stopProducts;
-
-    private moneyStatScript moneyStats;
+    Transform checkpoint;
 
     private void Start()
     {
         mgm = GameObject.Find("WorkManager").GetComponent<MiniGameManager>();
-        moneyStats = GameObject.Find("moneyObject").GetComponent<moneyStatScript>();
-        startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x + spacing / 2f, startPosition.y);
-        checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MinigameManager
-        productList = mgm.productList;              //Hämtar listan av produkter som är spawnade från MiniGameManager       
+        checkpoint = mgm.checkpoint;               //Hämtar checkpoints från MinigameManager     
     }
 	
 	void OnEnable()
@@ -71,7 +54,6 @@ public class produktScript : MonoBehaviour
 		if(transform.position.x > checkpoint.transform.position.x && !reachedCheckpoint)
 		{
 			reachedCheckpoint=true;
-			JustReachedCheckpoint();
 		}
     }
 

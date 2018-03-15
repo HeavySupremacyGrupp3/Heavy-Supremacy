@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteSet : MonoBehaviour {
+public class NoteSet {
 
     public List<GameObject> Notes = new List<GameObject>();
     public bool Succeeded = false;

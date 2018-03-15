@@ -21,7 +21,6 @@ public class WhiteGuitar : Item
     public override void ActivatePurchase()
     {
         base.ActivatePurchase();
-        Debug.Log("PURCHASED WHITE GUITAR!");
         NoteGenerator.DoubleNoteChance = DoubleNoteChance;
         TimingString.MetalMultiplier += MetalMultiplierIncrease;
     }

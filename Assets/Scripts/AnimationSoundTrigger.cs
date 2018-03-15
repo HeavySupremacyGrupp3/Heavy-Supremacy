@@ -11,7 +11,8 @@ public class AnimationSoundTrigger : MonoBehaviour {
     public void OnEnable()
     {
         GetAudioManager();
-        audioMgr.Play(SoundName);
+        if (!string.IsNullOrEmpty(SoundName))
+            audioMgr.Play(SoundName);
     }
 
     public void PlaySound(string soundName)

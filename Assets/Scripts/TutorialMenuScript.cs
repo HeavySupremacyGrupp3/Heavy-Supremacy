@@ -18,7 +18,7 @@ public class TutorialMenuScript : MonoBehaviour {
 	public void LoadWorkTutorial()
 	{
 		SceneTransition.StartTransition("WorkTutorialScene");
-		Debug.Log("Loading work - tutorial");
+		//Debug.Log("Loading work - tutorial");
 	}
 	
 	public void LoadPracticeTutorial()
@@ -38,6 +38,6 @@ public class TutorialMenuScript : MonoBehaviour {
 	public void LoadWork()
     {
 		SceneTransition.StartTransition(GameManager.WorkScene);
-		Debug.Log("Loading work - regular");
+		//Debug.Log("Loading work - regular");
     }
 }

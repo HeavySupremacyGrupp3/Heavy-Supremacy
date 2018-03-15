@@ -73,6 +73,7 @@ public class GameEventManager : MonoBehaviour
         foreach (EventEnum e in MapEventPins)
         {
             e.StartEventEnum();
+                if (e != null)
             GameManager.sleep += e.RefreshEvent;
         }
     }
@@ -81,7 +82,8 @@ public class GameEventManager : MonoBehaviour
     {
         foreach (EventEnum e in MapEventPins)
         {
-            GameManager.sleep -= e.RefreshEvent;
+            if (e != null)
+                GameManager.sleep -= e.RefreshEvent;
         }
     }
 
@@ -133,8 +135,6 @@ public class GameEventManager : MonoBehaviour
         if (node.Text == "" || node.Text == null)
             return;
 
-        Debug.Log(node.Title);
-
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
         message.GetComponentInChildren<Text>().text = node.Text;
 
@@ -176,8 +176,6 @@ public class GameEventManager : MonoBehaviour
         choices.Clear();
         for (int i = 0; i < node.Choices.Count; i++)
         {
-            Debug.Log(node.Choices.Count);
-
             choices.Add(node.Choices[i]);
             PanelChoiceButtons[i].SetActive(true);
             PanelChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;

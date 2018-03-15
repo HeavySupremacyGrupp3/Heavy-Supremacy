@@ -107,7 +107,6 @@ public abstract class Stats : MonoBehaviour {
     public void UpdateWeeklyStatGains()
     {
         LastWeeksStatGain = amount - LastWeeksStatGain;
-        Debug.Log("Last Week I Earned: " + LastWeeksStatGain);
     }
 }
 

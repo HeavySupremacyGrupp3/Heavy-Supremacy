@@ -66,7 +66,6 @@ public class NoteGenerator : MonoBehaviour
     private float UpdateInterval = 0.1f; //For optimizing performance. And to not check same note twice, and at the same time update fast enough to not miss notes.
     private float musicStartDelay = 1;
     private float[] clipSampleData;
-    private bool canSendNextNote = true;
     private float noteSpawnTimer = 0;
     private int noteIndex = 0;
     public static List<NoteSet> NoteSets = new List<NoteSet>();
@@ -143,7 +142,6 @@ public class NoteGenerator : MonoBehaviour
 
     void Initialize()
     {
-        Debug.Log("INITIALIZE");
 
         clipSampleData = new float[SampleDataLength];
 
@@ -254,7 +252,6 @@ public class NoteGenerator : MonoBehaviour
             if (clipVolume >= volumeTreshold)
             {
                 clipVolume = 0f;
-                canSendNextNote = false;
                 return true;
             }
         }
@@ -295,7 +292,6 @@ public class NoteGenerator : MonoBehaviour
 
     public void EndGame(bool victory = true)
     {
-        Debug.Log("ENDED GAME");
 
         EndGamePanel.SetActive(true);
         FindObjectOfType<TimingString>().enabled = false;
@@ -316,7 +312,6 @@ public class NoteGenerator : MonoBehaviour
         //Practice always goes to victory, except if you quit via pause-menu.
         if (victory)
         {
-            Debug.Log("VICTORY");
 
             //Victory sound.
             SwitchMusicSource(true);
@@ -327,7 +322,7 @@ public class NoteGenerator : MonoBehaviour
             else
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
 
-            Debug.Log(TimingSystem.FailedTimingCounter);
+            //Debug.Log(TimingSystem.FailedTimingCounter);
 
             //Calculate rewards then apply them.
             #region Calculations
@@ -396,7 +391,6 @@ public class NoteGenerator : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEFEAT");
 
             SwitchMusicSource(true);
             MusicWithLeadAudioSource.PlayOneShot(DefeatSound);
@@ -487,7 +481,6 @@ public class NoteGenerator : MonoBehaviour
     {
         if (!resume)
         {
-            Debug.Log("PAUSED");
             NoteGenerationAudioSource.Pause();
             MusicWithLeadAudioSource.Pause();
             MusicWithoutLeadAudioSource.Pause();
@@ -498,7 +491,6 @@ public class NoteGenerator : MonoBehaviour
         }
         else if (resume)
         {
-            Debug.Log("RESUMED");
             NoteGenerationAudioSource.UnPause();
             MusicWithLeadAudioSource.UnPause();
             MusicWithoutLeadAudioSource.UnPause();
@@ -526,8 +518,6 @@ public class NoteGenerator : MonoBehaviour
 
     public static void Reset()
     {
-        Debug.Log("RESETED");
-
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
         DoubleNoteChance = 0;

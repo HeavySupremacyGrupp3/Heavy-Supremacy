@@ -217,13 +217,16 @@ public class TimingString : TimingSystem
         {
             FailTiming();
             //Remove notes in the set until there is only one left, then remove the whole set.
-            if (NoteGenerator.NoteSets[0].Notes.Count == 1)
+            if (NoteGenerator.NoteSets.Count > 0)
             {
-                NoteGenerator.NoteSets.RemoveAt(0);
-            }
-            else
-            {
-                NoteGenerator.NoteSets[0].Notes.RemoveAt(0);
+                if (NoteGenerator.NoteSets[0].Notes.Count == 1)
+                {
+                    NoteGenerator.NoteSets.RemoveAt(0);
+                }
+                else
+                {
+                    NoteGenerator.NoteSets[0].Notes.RemoveAt(0);
+                }
             }
         }
     }

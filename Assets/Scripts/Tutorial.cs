@@ -14,7 +14,6 @@ public class Tutorial : MonoBehaviour
     public int DefaultLayer = 1, PopOutLayer = 200;
 
     private uint currentIndex = 0;
-    private uint sections = 0;
     private Animator anim;
     private bool isAllowedClick = false;
     private KeyCode nextButton;
@@ -31,7 +30,6 @@ public class Tutorial : MonoBehaviour
         currentIndex = 0;
         foreach (GameObject objects in ObjectsToDisableOnStart)
             objects.SetActive(false);
-        sections = (uint)TextSections.Length;
         ShowText();
     }
 

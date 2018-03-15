@@ -140,7 +140,6 @@ public class CreateShopItem : EditorWindow
 
     void SavePrefab()
     {
-        Object prefab = PrefabUtility.CreatePrefab("Assets/Prefabs/Items/" + ItemPrefab.name + ".prefab", ItemPrefab);
         GameObject item = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Items/" + ItemPrefab.name + ".prefab", typeof(GameObject)) as GameObject;
         Shop.ShopInventory.Add(item.GetComponent<Item>());
         DestroyImmediate(ItemPrefab);

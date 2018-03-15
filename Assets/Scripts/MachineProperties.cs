@@ -33,9 +33,6 @@ public class MachineProperties : MonoBehaviour {
     [SerializeField]
     private float lerpDistance;
 	
-	public delegate void musicEvent(string s);
-	public static event musicEvent moveSound;
-	
 	//public string FirstSound;
 
     void Start()

@@ -10,6 +10,8 @@ public class moneyStatScript : Stats
 
     public ParticleSystem MoneyRecievedParticles;
     public ParticleSystem MoneySpentParticles;
+    public static ParticleSystem.EmissionModule _MoneyRecievedE;
+    public static ParticleSystem.EmissionModule _MoneySpentE;
     public static ParticleSystem _MoneyRecieved;
     public static ParticleSystem _MoneySpent;
 
@@ -17,6 +19,8 @@ public class moneyStatScript : Stats
     {
         thisStat = 4;
 
+        _MoneyRecievedE = MoneyRecievedParticles.emission;
+        _MoneySpentE = MoneySpentParticles.emission;
         _MoneyRecieved = MoneyRecievedParticles;
         _MoneySpent = MoneySpentParticles;
     }
@@ -47,12 +51,12 @@ public class moneyStatScript : Stats
             if (a < 0)
             {
                 a *= -1;
-                _MoneySpent.emissionRate = a / 8;
+                _MoneySpentE.rateOverTime = a / 8;
                 _MoneySpent.Play();
             }
             else
             {
-                _MoneyRecieved.emissionRate = a / 8;
+                _MoneyRecievedE.rateOverTime = a / 8;
                 _MoneyRecieved.Play();
             }
         }

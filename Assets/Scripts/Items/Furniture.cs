@@ -8,25 +8,15 @@ public class Furniture : Item
     public GameObject[] FurnitureToInstantiate;
     public string[] GameObjectToDestroy;
     public string GameObjectToReplace;
-    private Vector3 myTransform;
 
     public override void UpdateFurniture()
     {
-        FindPosition();
         foreach (GameObject go in FurnitureToInstantiate)
             AddGameObject(go);
         foreach (string s in GameObjectToDestroy)
             RemoveGameObject(s);
 
         ReplaceSprite(GameObjectToReplace);
-    }
-
-    void FindPosition()
-    {
-        RectTransform myRect = GetComponent<RectTransform>();
-        myTransform = new Vector3(myRect.position.x, myRect.position.y, 0);
-
-        myTransform = Camera.main.ViewportToScreenPoint(transform.position);
     }
 
     void AddGameObject(GameObject go)
@@ -46,7 +36,6 @@ public class Furniture : Item
 
     void ReplaceSprite(string name)
     {
-        Debug.Log("ASDASDSAD");
         if (name != null && name != "")
         {
             Image goReplaceable = GameObject.Find(name).GetComponent<Image>();

@@ -34,7 +34,7 @@ public class ShopSystem : MonoBehaviour
         moneyStatScript = FindObjectOfType<moneyStatScript>();
 
         //Shitty fix for reseting price when restarting game.
-        Lesson x = new Lesson();
+        Lesson x = gameObject.AddComponent<Lesson>();
         bool foundLesson = false;
         foreach (Item l in MyInventory)
         {
@@ -54,6 +54,7 @@ public class ShopSystem : MonoBehaviour
                 }
             }
         }
+        Destroy(x);
 
         FetchShopUIElements();
     }
@@ -120,13 +121,11 @@ public class ShopSystem : MonoBehaviour
             else
             {
                 YesButton.interactable = false;
-                Debug.Log("THE ITEM IS UNIQUE");
             }
         }
         else
         {
             YesButton.interactable = false;
-            Debug.Log("TOO POOR");
         }
     }
 

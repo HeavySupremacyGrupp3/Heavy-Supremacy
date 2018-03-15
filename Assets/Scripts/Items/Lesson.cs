@@ -11,7 +11,6 @@ public class Lesson : Item {
     public override void ActivatePurchase()
     { 
         base.ActivatePurchase();
-        Debug.Log("PURCHASED LESSON!");
         TimingString.MetalMultiplier += MetalMultiplierIncrease;
 
         Price = Mathf.Round(Price * PriceIncreaseMultiplier);

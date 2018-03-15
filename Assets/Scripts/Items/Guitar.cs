@@ -22,7 +22,6 @@ public class Guitar : Item
     public override void ActivatePurchase()
     {
         base.ActivatePurchase();
-        Debug.Log("PURCHASED GUITAR!");
         NoteGenerator.NumberOfUniqueNotes++;
         TimingString.MetalMultiplier += MetalMultiplierIncrease;
     }

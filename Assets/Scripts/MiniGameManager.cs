@@ -23,7 +23,6 @@ public class MiniGameManager : MonoBehaviour
 
     bool productsAreStopped = false;
 
-    int stopCounter = 0;
     int finishedProducts = 0;
 
     public bool cantStopWontStop;
@@ -73,7 +72,6 @@ public class MiniGameManager : MonoBehaviour
     {
         produktScript.earnMoney += earnMoneyIfReachedEnd;
 		produktScript.collidedWithBox += stopWorkIfEnoughProducts;
-		produktScript.JustReachedCheckpoint += checkpointReached;
 		setProductActiveState(true);
     }
 
@@ -81,22 +79,17 @@ public class MiniGameManager : MonoBehaviour
     {
         produktScript.earnMoney -= earnMoneyIfReachedEnd;
 		produktScript.collidedWithBox -= stopWorkIfEnoughProducts;
-		produktScript.JustReachedCheckpoint -=checkpointReached;
 		setProductActiveState(false);
     }
-	
-	void setProductActiveState(bool isActive)
-	{
-		foreach (GameObject product in productList)
-		{
-			product.SetActive(isActive);
-		}
-	}	
 
-	void checkpointReached()
-	{
-		Debug.Log("Checkpoint just reached.");
-	}
+    void setProductActiveState(bool isActive)
+    {
+        foreach (GameObject product in productList)
+        {
+            if (product != null)
+                product.SetActive(isActive);
+        }
+    }
 	
     void Start()
     {

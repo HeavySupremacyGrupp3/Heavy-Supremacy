@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
     public static bool ToEndGame;
     public static bool RestartGame;
 
-    private KeyCode key = KeyCode.Escape;
-
     public static string HUBScene = "HUBScene", WorkScene = "WorkScene", PracticeScene = "PracticeScene", StartScene = "StartScene";
 
     void Start()
@@ -51,6 +49,8 @@ public class GameManager : MonoBehaviour
         s.source.time = UnityEngine.Random.Range(0, s.clip.length);
 
         am.Play("HUBAmbience");
+
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnLevelLoaded;
 
         if (IsFirstHubRun)
         {
@@ -84,12 +84,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnLevelWasLoaded(int level)
+    private void OnLevelLoaded(Scene scene, LoadSceneMode loadMode)
     {
-        if (level == 0)
+        if (scene.buildIndex == 0)
             Destroy(gameObject);
 
-        if (level == 1)
+        if (scene.buildIndex == 1)
         {
             Time.timeScale = 1;
             PauseMenu.paused = false;
@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
 
     public void ToggleGameObject(GameObject target)
     {
-        target.SetActive(!target.active);
+        target.SetActive(!target.activeSelf);
     }
 
     bool CheckEnergy(float energyCost)

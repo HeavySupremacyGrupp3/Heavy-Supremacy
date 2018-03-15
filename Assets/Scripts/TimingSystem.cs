@@ -67,7 +67,7 @@ public abstract class TimingSystem : MonoBehaviour
 
     private void CheckNoteClearence()
     {
-        if (NoteGenerator.NoteSets != null && NoteGenerator.NotesTotal > 0)
+        if (NoteGenerator.NoteSets != null && NoteGenerator.NotesTotal > 0 && NoteGenerator.NoteSets.Count > 0)
         {
             if (NoteGenerator.NoteSets[0].CheckNotes(keysPressed) && graceTimer > 0)
             {
@@ -82,7 +82,6 @@ public abstract class TimingSystem : MonoBehaviour
 
     public virtual void FailTiming()
     {
-        Debug.Log("FAILED TIMING!");
         FailedTimingCounter++;
 
         TargetInRange = false;
@@ -92,7 +91,6 @@ public abstract class TimingSystem : MonoBehaviour
 
     public virtual void SucceedTiming(GameObject note)
     {
-        Debug.Log("SUCCEEDED TIMING!");
         keysPressed.Clear();
     }
 
