@@ -35,7 +35,9 @@ public class NoteGenerator : MonoBehaviour
     public Text MetalText;
     public Slider ProgressionSlider;
 
+    public int PracticeHardDifficultyTreshold = 8, PracticeMediumDifficultyTreshold = 4;
     public float ProficiencyGainPerPractice = 0.2f;
+    private float ProficiencyStartValue = 0.8f;
 
     public static float ProficiencyBonus = 0.8f;
     public static int NoteMultiplier = 1;
@@ -171,14 +173,16 @@ public class NoteGenerator : MonoBehaviour
         MusicWithoutLeadAudioSource.clip = selectedSong.MusicWithoutLead;
         MusicWithoutLeadAudioSource.PlayDelayed(musicStartDelay);
 
-        if (ProficiencyBonus >= 2.4f)
+        if (ProficiencyBonus >= ProficiencyStartValue + (ProficiencyGainPerPractice * PracticeHardDifficultyTreshold))
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[2];
-        else if (ProficiencyBonus >= 1.6f)
+        else if (ProficiencyBonus >= ProficiencyStartValue + (ProficiencyGainPerPractice * PracticeMediumDifficultyTreshold))
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[1];
         else
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[0];
 
         NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
+
+        Debug.Log("DIFICULTY: " + NoteGenerationAudioSource.clip);
     }
 
     void Update()
@@ -193,7 +197,7 @@ public class NoteGenerator : MonoBehaviour
 
         CheckTutorial();
 
-        if (NoteGenerationAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
+        if (NoteGenerationAudioSource.isPlaying && MusicWithLeadAudioSource.isPlaying && CheckForNote() && noteSpawnTimer >= NoteSpawnMinInterval && !EndGamePanel.activeSelf)
             SendNote();
         else if (!MusicWithLeadAudioSource.isPlaying && Application.isFocused && !EndGamePanel.activeSelf && !PauseMenu.paused && Time.timeScale > 0 && !PracticeTutorial.gameObject.activeSelf && !GigTutorial.gameObject.activeSelf) //End game if song is over and the game hasn't already ended.
         {
@@ -217,7 +221,6 @@ public class NoteGenerator : MonoBehaviour
             //Tutorial has ended!
             if (!NoteGenerationAudioSource.isPlaying && Time.timeScale == 1 && (NoteGenerationAudioSource.time == 0 || NotesTotal > 0))
             {
-                Debug.Log("ENDED TUTORIAL");
                 Time.timeScale = 0;
                 StartButton.SetActive(true);
 
@@ -309,8 +312,6 @@ public class NoteGenerator : MonoBehaviour
         float fameGained = 0;
         float moneyGained = 0;
         float angstGained = 0;
-
-        FindObjectOfType<TimingString>().enabled = false;
 
         //Practice always goes to victory, except if you quit via pause-menu.
         if (victory)
@@ -530,7 +531,6 @@ public class NoteGenerator : MonoBehaviour
         NoteMultiplier = 1;
         NumberOfUniqueNotes = 2;
         DoubleNoteChance = 0;
-        //ShowPracticeTutorial = true;
-        //ShowGigTutorial = true;
+        ProficiencyBonus = 0.8f;
     }
 }

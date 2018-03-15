@@ -14,6 +14,8 @@ public abstract class TimingSystem : MonoBehaviour
     public static float FailedTimingCounter = 0;
 
     private List<string> keysPressed = new List<string>();
+    private float graceTimer = 0;
+    private float graceDuration = 0.25f;
 
     private void Start()
     {
@@ -24,6 +26,13 @@ public abstract class TimingSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(ActivasionKey1) || Input.GetKeyDown(ActivasionKey2) || Input.GetKeyDown(ActivasionKey3))
             ActivateMechanic();
+
+        if (graceTimer >= 0)
+        {
+            graceTimer -= Time.deltaTime;
+        }
+
+        CheckNoteClearence();
     }
 
     void ActivateMechanic()
@@ -35,21 +44,32 @@ public abstract class TimingSystem : MonoBehaviour
         }
         else if (TargetInRange)
         {
+            if (graceTimer < 0)
+                graceTimer = graceDuration;
+
             //Need multiple if-statements to handle simultanious notes.
-            if (TargetInRange && Input.GetKey(ActivasionKey1))
+            if (TargetInRange && Input.GetKeyDown(ActivasionKey1))
             {
                 keysPressed.Add("_1");
             }
-            if (TargetInRange && Input.GetKey(ActivasionKey2))
+            if (TargetInRange && Input.GetKeyDown(ActivasionKey2))
             {
                 keysPressed.Add("_2");
             }
-            if (TargetInRange && Input.GetKey(ActivasionKey3))
+            if (TargetInRange && Input.GetKeyDown(ActivasionKey3))
             {
                 keysPressed.Add("_3");
             }
 
-            if (NoteGenerator.NoteSets[0].CheckNotes(keysPressed))
+            return;
+        }
+    }
+
+    private void CheckNoteClearence()
+    {
+        if (NoteGenerator.NoteSets != null && NoteGenerator.NotesTotal > 0)
+        {
+            if (NoteGenerator.NoteSets[0].CheckNotes(keysPressed) && graceTimer > 0)
             {
                 foreach (GameObject note in NoteGenerator.NoteSets[0].Notes)
                 {
@@ -57,7 +77,6 @@ public abstract class TimingSystem : MonoBehaviour
                 }
                 NoteGenerator.NoteSets.RemoveAt(0);
             }
-            return;
         }
     }
 

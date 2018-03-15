@@ -1289,8 +1289,8 @@ MonoBehaviour:
     mixer: {fileID: 243241040353178898, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: Machine1Hit
-    clip: {fileID: 8300000, guid: bd52514586c2a9b4fa003e05a7e83448, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: de8e539cbf30b8041bab65a5abf4cc42, type: 3}
+    volume: 0.25
     loop: 0
     mixer: {fileID: 243241040353178898, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
@@ -1397,14 +1397,20 @@ MonoBehaviour:
     mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: PlantClick
-    clip: {fileID: 8300000, guid: 1bde60f369586ee4ca44fa93dece3291, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 013079fbbd974cb4a948bb08b0a6e668, type: 3}
+    volume: 0.25
     loop: 0
     mixer: {fileID: 243237355847454064, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
   - name: AMPPurchase
     clip: {fileID: 8300000, guid: f52da0d451f594148a1278e8f5490218, type: 3}
     volume: 1
+    loop: 0
+    mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
+    source: {fileID: 0}
+  - name: PlantHighlight
+    clip: {fileID: 8300000, guid: 8f37f1922747ad24fbe122b16b1624be, type: 3}
+    volume: 0.25
     loop: 0
     mixer: {fileID: 243021224881999250, guid: 1cbf86622dcc45a4e89f41932eeda121, type: 2}
     source: {fileID: 0}
