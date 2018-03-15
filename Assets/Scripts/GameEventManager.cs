@@ -165,11 +165,8 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEvent(StoryNode node)
     {
-        if (node.EnergyBonus != null && node.EnergyBonus != "" && node.EnergyBonus != YesChar && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
+        if ((string.IsNullOrEmpty(node.EnergyBonus) || node.EnergyBonus != YesChar) && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
             return;
-
-        Debug.Log(node.Title);
-
 
         EventPanel.SetActive(true);
 
@@ -203,15 +200,16 @@ public class GameEventManager : MonoBehaviour
 
     void GiveRewards(StoryNode node)
     {
-        if (node.MetalBonus != null && node.MetalBonus != "")
+        //Debug.Log(string.Format("GIVE REWARDS NAO!\n" + "M: {0}\n" + "C: {1}\n" + "A: {2}\n" + "F: {3}\n" + "E: {4}", node.MetalBonus, node.CashBonus, node.AngstBonus, node.FameBonus, node.EnergyBonus));
+        if (!string.IsNullOrEmpty(node.MetalBonus))
             FindObjectOfType<metalStatScript>().addOrRemoveAmount(float.Parse(node.MetalBonus));
-        if (node.CashBonus != null && node.CashBonus != "")
+        if (!string.IsNullOrEmpty(node.CashBonus))
             FindObjectOfType<moneyStatScript>().addOrRemoveAmount(float.Parse(node.CashBonus));
-        if (node.AngstBonus != null && node.AngstBonus != "")
+        if (!string.IsNullOrEmpty(node.AngstBonus))
             FindObjectOfType<angstStatScript>().addOrRemoveAmount(float.Parse(node.AngstBonus));
-        if (node.FameBonus != null && node.FameBonus != "")
+        if (!string.IsNullOrEmpty(node.FameBonus))
             FindObjectOfType<fameStatScript>().addOrRemoveAmount(float.Parse(node.FameBonus));
-        if (node.EnergyBonus != null && node.EnergyBonus != "")
+        if (!string.IsNullOrEmpty(node.EnergyBonus))
             FindObjectOfType<energyStatScript>().addOrRemoveAmount(float.Parse(node.EnergyBonus));
     }
 
