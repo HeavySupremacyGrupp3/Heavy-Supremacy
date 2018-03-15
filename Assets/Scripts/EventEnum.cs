@@ -17,7 +17,7 @@ public class EventEnum : MonoBehaviour
 
     private float EnergyCost = 0, FameBonus = 0, MetalBonus = 0, AngstBonus = 0, MoneyBonus = 0;
 
-    private float FameChance = 0, SocialChance = 0, MusicChance = 0, SpecialChance = 0, MoneyChance = 0;
+    private float  SocialChance = 0, MusicChance = 0, SpecialChance = 0, MoneyChance = 0;
 
     private float MoneySpriteWeightDivider = 6;
 
@@ -49,11 +49,7 @@ public class EventEnum : MonoBehaviour
 
             ChooseStatPool();
 
-            if (NodeType == GameEventManager.nodeType.fame)
-            {
-                Node = GameEventManager.fameNodes[Random.Range(0, GameEventManager.fameNodes.Count)];
-            }
-            else if (NodeType == GameEventManager.nodeType.musical)
+            if (NodeType == GameEventManager.nodeType.musical)
             {
                 Node = GameEventManager.musicNodes[Random.Range(0, GameEventManager.musicNodes.Count)];
             }
@@ -85,8 +81,8 @@ public class EventEnum : MonoBehaviour
             if (!string.IsNullOrEmpty(Node.CashBonus))
                 MoneyBonus = float.Parse(Node.CashBonus);
 
-            if (AngstBonus < 0)
-                AngstBonus *= -1;
+
+            AngstBonus *= -1; //Positive angst is bad and negative angst is good.
 
             float highestBonus = Mathf.Max(MetalBonus, FameBonus, AngstBonus, MoneyBonus / MoneySpriteWeightDivider);
             if (highestBonus == MetalBonus)
@@ -123,42 +119,37 @@ public class EventEnum : MonoBehaviour
 
     private void ChooseStatPool()
     {
-        FameChance = FindObjectOfType<fameStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().FameWeekCap;
         SocialChance = FindObjectOfType<angstStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().SocialWeekCap;
         MusicChance = FindObjectOfType<metalStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().MusicWeekCap;
         MoneyChance = FindObjectOfType<moneyStatScript>().LastWeeksStatGain / FindObjectOfType<GameEventManager>().MoneyCap;
         SpecialChance = FindObjectOfType<GameEventManager>().SpecialNodeChance;
 
-        float sum = FameChance + SocialChance + MusicChance + MoneyChance;
+        float sum =  SocialChance + MusicChance + MoneyChance;
         if (sum <= 0)
         {
-            FameChance = 1;
             SocialChance = 1;
             MusicChance = 1;
             MoneyChance = 1;
-            sum = FameChance + SocialChance + MusicChance + MoneyChance;
+            sum =  SocialChance + MusicChance + MoneyChance;
         }
 
-        float fameRng = Mathf.Clamp((FameChance / sum) * (1 - SpecialChance), 0, 1);
         float socialRng = Mathf.Clamp((SocialChance / sum) * (1 - SpecialChance), 0, 1);
         float musicalRng = Mathf.Clamp((MusicChance / sum) * (1 - SpecialChance), 0, 1);
         float moneyRng = Mathf.Clamp((MoneyChance / sum) * (1 - SpecialChance), 0, 1);
 
         float rng = Random.Range(0f, 1f);
 
-        if (rng < fameRng)
-            NodeType = GameEventManager.nodeType.fame;
-        else if (rng < fameRng + socialRng)
+        if (rng < socialRng)
             NodeType = GameEventManager.nodeType.social;
-        else if (rng < fameRng + socialRng + musicalRng)
+        else if (rng < socialRng + musicalRng)
             NodeType = GameEventManager.nodeType.musical;
-        else if (rng < fameRng + socialRng + musicalRng + moneyRng)
+        else if (rng < socialRng + musicalRng + moneyRng)
             NodeType = GameEventManager.nodeType.money;
         else
             NodeType = GameEventManager.nodeType.special;
 
 
-        Debug.Log("FameRNG: " + fameRng + " SocialRNG: " + socialRng + " MusicalRNG: " + musicalRng + " SpecialRNG: " + SpecialChance + " MoneyRNG: " + moneyRng + " NodeType: " + NodeType + " RNG: " + rng);
+        Debug.Log("SocialRNG: " + socialRng + " MusicalRNG: " + musicalRng + " SpecialRNG: " + SpecialChance + " MoneyRNG: " + moneyRng + " NodeType: " + NodeType + " RNG: " + rng);
     }
 
     private void OnDestroy()
