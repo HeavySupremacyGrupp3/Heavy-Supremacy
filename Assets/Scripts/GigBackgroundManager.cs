@@ -13,6 +13,7 @@ public class GigBackgroundManager : MonoBehaviour
     public float[] FameRequirementLevels;
     public Image Background;
     public GameObject PracticeBackground;
+    public GameObject SpotLights;
 
     public static int BackgroundIndex = 0;
     public static bool GigSession = false;
@@ -27,6 +28,7 @@ public class GigBackgroundManager : MonoBehaviour
         {
             Background.sprite = Backgrounds[GetBackgroundIndex()];
             PracticeBackground.SetActive(false);
+            SpotLights.SetActive(true);
         }
         else
         {
