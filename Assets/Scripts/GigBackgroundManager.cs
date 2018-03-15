@@ -12,7 +12,7 @@ public class GigBackgroundManager : MonoBehaviour
     public float[] AudienceHealthTresholds;
     public float[] FameRequirementLevels;
     public Image Background;
-
+    public GameObject PracticeBackground;
 
     public static int BackgroundIndex = 0;
     public static bool GigSession = false;
@@ -26,6 +26,7 @@ public class GigBackgroundManager : MonoBehaviour
         if (GigSession)
         {
             Background.sprite = Backgrounds[GetBackgroundIndex()];
+            PracticeBackground.SetActive(false);
         }
         else
         {

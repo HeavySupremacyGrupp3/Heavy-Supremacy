@@ -32,7 +32,7 @@ public class GameEventManager : MonoBehaviour
     public float SpecialNodeChance = 0;
 
     [Range(0, 100)]
-    public float FameWeekCap, MusicWeekCap, SocialWeekCap;
+    public float MusicWeekCap, SocialWeekCap;
     public float MoneyCap = 1000;
 
     public float RecieveMessageDelay = 0.75f;
@@ -44,12 +44,11 @@ public class GameEventManager : MonoBehaviour
     public static List<StoryNode> messageNodes = new List<StoryNode>();
     public static List<StoryNode> socialNodes = new List<StoryNode>();
     public static List<StoryNode> musicNodes = new List<StoryNode>();
-    public static List<StoryNode> fameNodes = new List<StoryNode>();
     public static List<StoryNode> moneyNodes = new List<StoryNode>();
     public static List<StoryNode> specialNodes = new List<StoryNode>();
 
     [HideInInspector]
-    public enum nodeType { social, musical, fame, special, money }
+    public enum nodeType { social, musical, special, money }
 
     private StoryNode firstNode;
     private string YesChar = "#";
@@ -61,7 +60,6 @@ public class GameEventManager : MonoBehaviour
             LoadEvents("messageNodes", messageNodes);
             LoadEvents("socialNodes", socialNodes);
             LoadEvents("musicNodes", musicNodes);
-            LoadEvents("fameNodes", fameNodes);
             LoadEvents("moneyNodes", moneyNodes);
             LoadEvents("specialNodes", specialNodes);
         }
