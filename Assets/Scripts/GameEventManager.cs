@@ -196,7 +196,6 @@ public class GameEventManager : MonoBehaviour
 
     void GiveRewards(StoryNode node)
     {
-        //Debug.Log(string.Format("GIVE REWARDS NAO!\n" + "M: {0}\n" + "C: {1}\n" + "A: {2}\n" + "F: {3}\n" + "E: {4}", node.MetalBonus, node.CashBonus, node.AngstBonus, node.FameBonus, node.EnergyBonus));
         if (!string.IsNullOrEmpty(node.MetalBonus))
             FindObjectOfType<metalStatScript>().addOrRemoveAmount(float.Parse(node.MetalBonus));
         if (!string.IsNullOrEmpty(node.CashBonus))

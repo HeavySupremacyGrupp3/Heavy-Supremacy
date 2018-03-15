@@ -57,8 +57,7 @@ public class AudioManager : MonoBehaviour
         {
             CreateAudioSource(s);
         }
-
-        //Debug.Log("Playing: " + s.source.clip.name + " From: " + s.name);
+        
         s.source.Play();
     }
 
@@ -75,8 +74,7 @@ public class AudioManager : MonoBehaviour
         {
             CreateAudioSource(s);
         }
-
-        //Debug.Log("Stopped: " + s.source.clip.name + " From: " + s.name);
+        
         s.source.Stop();
     }
 

@@ -179,8 +179,6 @@ public class NoteGenerator : MonoBehaviour
             NoteGenerationAudioSource.clip = selectedSong.MIDIMusic[0];
 
         NoteGenerationAudioSource.PlayDelayed(NoteGenerationStartDelay);
-
-        Debug.Log("DIFICULTY: " + NoteGenerationAudioSource.clip);
     }
 
     void Update()
@@ -321,8 +319,7 @@ public class NoteGenerator : MonoBehaviour
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundMedium);
             else
                 MusicWithLeadAudioSource.PlayOneShot(VictorySoundEasy);
-
-            //Debug.Log(TimingSystem.FailedTimingCounter);
+            
 
             //Calculate rewards then apply them.
             #region Calculations
@@ -359,8 +356,7 @@ public class NoteGenerator : MonoBehaviour
             //if (angstGained > angst.getMax() || angstGained < 0)
             //    angstGained = angst.getMax();
             #endregion
-
-            Debug.Log(NotesTotal + " TOTAL, " + TimingString.NotesHit + " HIT");
+            
 
             UpdateScoreBoard(MetalText, metalBase, metalStatMltp, metalPerformance, metalItemMltp, metalGained);
             UpdateScoreBoard(AngstText, angstBase, angstStatMltp, angstPerformance, angstItemMltp, angstGained);

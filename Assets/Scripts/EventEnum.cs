@@ -25,7 +25,6 @@ public class EventEnum : MonoBehaviour
     {
         if (NodesSelected[NodeIndex] != null)
         {
-            Debug.Log("BUTTON ON");
             GetComponent<Button>().interactable = true;
             Node = NodesSelected[NodeIndex];
 
@@ -94,7 +93,6 @@ public class EventEnum : MonoBehaviour
             if (highestBonus == MoneyBonus)
                 GetComponent<Image>().sprite = MoneySprite;
 
-            Debug.Log(GetComponent<Image>().sprite);
             EnergyText.text = "Energy Cost: " + EnergyCost;
 
             PreviewData[0].Value = EnergyCost;
@@ -147,9 +145,6 @@ public class EventEnum : MonoBehaviour
             NodeType = GameEventManager.nodeType.money;
         else
             NodeType = GameEventManager.nodeType.special;
-
-
-        Debug.Log("SocialRNG: " + socialRng + " MusicalRNG: " + musicalRng + " SpecialRNG: " + SpecialChance + " MoneyRNG: " + moneyRng + " NodeType: " + NodeType + " RNG: " + rng);
     }
 
     private void OnDestroy()

@@ -24,7 +24,6 @@ public class FadeOutManager : MonoBehaviour
 
     public void FadeOut(bool makeALoop = true)
     {
-        //Debug.Log("Sleeping");
         fadeImage.enabled = true;
         StartCoroutine(FadeAway(true, makeALoop));
     }
@@ -73,10 +72,7 @@ public class FadeOutManager : MonoBehaviour
                 {
                     fadeImage.color = new Color(0, 0, 0, 0);
 
-                    break;
-
-                    //Debug.Log("fade out test");
-                    //fadeImage.enabled = false;  //This isn't working yet :c					
+                    break;	
                 }
 
             }
