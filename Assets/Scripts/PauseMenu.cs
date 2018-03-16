@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour {
         {
             if (paused == false)
                 Pause();
+            else 
+                Resume();
         }
 	}
 
