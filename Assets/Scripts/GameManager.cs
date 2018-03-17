@@ -147,16 +147,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadWork(float energy)
-    {
-        if (CheckEnergy(energy))
+    {        
+        if (CheckAngst())
         {
-            if (CheckAngst())
+            if (CheckEnergy(energy))
             {
                 AudioManager.instance.Play("DoorClick");
                 StopHUBLoops();
                 SceneTransition.StartTransition(WorkScene);
             }
-        }
+        }  
     }
 
     public void LoadPractice(float energy)
@@ -254,22 +254,19 @@ public class GameManager : MonoBehaviour
 
     bool CheckEnergy(float energyCost)
     {
-        if (CheckAngst())
+
+        if (FindObjectOfType<energyStatScript>().getAmount() - energyCost >= 0)
         {
-            if (FindObjectOfType<energyStatScript>().getAmount() - energyCost >= 0)
-            {
-                FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
-                return true;
-            }
-            else
-            {
-                EnergyAnimator.SetTrigger("LerpEnergy");
-                AudioManager.instance.Play("LowEnergy");
-                return false;
-            }
+            FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
+            return true;
         }
         else
+        {
+            EnergyAnimator.SetTrigger("LerpEnergy");
+            AudioManager.instance.Play("LowEnergy");
             return false;
+        }
+
     }
 
     bool CheckAngst()
