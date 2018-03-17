@@ -14,6 +14,10 @@ public class StartMenu : MonoBehaviour
     public void LoadHUB()
     {
         GameManager.RestartGame = true;
+        GameManager.IsFirstHubRun = true;
+        GameManager.IsFirstWorkRun = true;
+        GameManager.IsFirstPracticeRun = true;
+        GameManager.IsFirstGigRun = true;
         SceneManager.LoadScene(GameManager.HUBScene);
     }
 

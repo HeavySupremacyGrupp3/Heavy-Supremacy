@@ -7,6 +7,8 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    //public static GameManager instance;
+
     public FadeOutManager fadeScript;
     public float Rent;
     public float GigEnergyCost;
@@ -32,6 +34,16 @@ public class GameManager : MonoBehaviour
     public static bool RestartGame;
 
     public static string HUBScene = "HUBScene", WorkScene = "WorkScene", PracticeScene = "PracticeScene", StartScene = "StartScene";
+
+    /*
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+        else if(instance != this)
+            Destroy(gameObject);
+    }
+    */
 
     void Start()
     {
