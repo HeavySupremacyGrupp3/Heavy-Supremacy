@@ -39,7 +39,8 @@ public class GameEventManager : MonoBehaviour
     public int SMSDayInterval = 1;
 
 
-    private List<StoryNode> choices = new List<StoryNode>();
+    private List<StoryNode> eventChoices = new List<StoryNode>();
+    private List<StoryNode> smsChoices = new List<StoryNode>();
 
     public static List<StoryNode> messageNodes = new List<StoryNode>();
     public static List<StoryNode> socialNodes = new List<StoryNode>();
@@ -136,7 +137,7 @@ public class GameEventManager : MonoBehaviour
         GameObject message = Instantiate(RecievedMessagePrefab, SMSScrollContent.transform, false);
         message.GetComponentInChildren<Text>().text = node.Text;
 
-        choices.Clear();
+        smsChoices.Clear();
 
         for (int i = 0; i < SMSChoiceButtons.Length; i++)
         {
@@ -145,9 +146,9 @@ public class GameEventManager : MonoBehaviour
 
         for (int i = 0; i < node.Choices.Count; i++)
         {
-            choices.Add(node.Choices[i]);
+            smsChoices.Add(node.Choices[i]);
             SMSChoiceButtons[i].SetActive(true);
-            SMSChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
+            SMSChoiceButtons[i].transform.GetComponentInChildren<Text>().text = smsChoices[i].Title;
         }
 
         GiveRewards(node);
@@ -178,17 +179,17 @@ public class GameEventManager : MonoBehaviour
         TitleText.text = node.Title;
         DescriptionText.text = node.Text;
 
-        choices.Clear();
+        eventChoices.Clear();
         for (int i = 0; i < node.Choices.Count; i++)
         {
-            choices.Add(node.Choices[i]);
+            eventChoices.Add(node.Choices[i]);
             PanelChoiceButtons[i].SetActive(true);
-            PanelChoiceButtons[i].transform.GetComponentInChildren<Text>().text = choices[i].Title;
+            PanelChoiceButtons[i].transform.GetComponentInChildren<Text>().text = eventChoices[i].Title;
         }
 
-        if (choices.Count > 1)
+        if (eventChoices.Count > 1)
             firstNode = node;
-        if (choices.Count < 2 && node.EnergyBonus == YesChar)
+        if (eventChoices.Count < 2 && node.EnergyBonus == YesChar)
             GiveRewards(firstNode);
 
         if (!PanelChoiceButtons[0].activeSelf)
@@ -222,7 +223,7 @@ public class GameEventManager : MonoBehaviour
             PanelChoiceButtons[i].SetActive(false);
         }
 
-        TriggerEvent(choices[index]);
+        TriggerEvent(eventChoices[index]);
     }
 
     public void MakeSMSChoice(int index)
@@ -233,7 +234,7 @@ public class GameEventManager : MonoBehaviour
         }
 
         GameObject message = Instantiate(SentMessagePrefab, SMSScrollContent.transform, false);
-        message.GetComponentInChildren<Text>().text = choices[index].Title;
+        message.GetComponentInChildren<Text>().text = smsChoices[index].Title;
 
         StartCoroutine(WaitForSMS(index));
     }
@@ -243,7 +244,7 @@ public class GameEventManager : MonoBehaviour
         SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
         yield return new WaitForSeconds(RecieveMessageDelay);
 
-        TriggerSMSEvent(choices[index], false);
+        TriggerSMSEvent(smsChoices[index], false);
 
         yield return new WaitForEndOfFrame();
         SMSScrollContent.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;

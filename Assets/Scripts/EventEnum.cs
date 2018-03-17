@@ -94,8 +94,6 @@ public class EventEnum : MonoBehaviour
             if (highestBonus == MoneyBonus)
                 GetComponent<Image>().sprite = MoneySprite;
 
-            Debug.Log(name + "    " + highestBonus + "      " + NodeType + "     " + GetComponent<Image>().sprite + " " + MetalBonus + " " + FameBonus + " " + AngstBonus);
-
             EnergyText.text = EnergyCost.ToString();
 
             PreviewData[0].Value = EnergyCost;
