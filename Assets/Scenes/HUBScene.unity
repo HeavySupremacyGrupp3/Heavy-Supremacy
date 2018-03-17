@@ -23295,6 +23295,7 @@ MonoBehaviour:
   EndGameTitle: {fileID: 1191409622}
   SceneTransition: {fileID: 1369002946}
   EnergyAnimator: {fileID: 1969906767}
+  AngstAnimator: {fileID: 1969906767}
   StatPreviewCosts:
   - {fileID: 1969906764}
   - {fileID: 266074498}

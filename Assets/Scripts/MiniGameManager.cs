@@ -113,6 +113,11 @@ public class MiniGameManager : MonoBehaviour
         addedAngst += Time.deltaTime / angstTick;  //Same but this only keeps track on how much you've gained, not the total amount of angst
         StatReference.setAmount(Mathf.RoundToInt((angst) * angstAmount));   //Set the amount stat to angst (angstAmount is x angst per second´in inspector)
 
+        float currentAngst = StatReference.getAmount();
+        if (currentAngst >= 100)
+            LoadResultScreen();
+
+
         statLerpTimer += Time.deltaTime / angstTick;
         if (statLerpTimer >= 1)
         {

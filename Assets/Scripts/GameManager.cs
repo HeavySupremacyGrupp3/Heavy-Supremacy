@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Text EndGameTitle;
     public SceneTransitionScript SceneTransition;
     public Animator EnergyAnimator;
+    public Animator AngstAnimator;
     public Image[] StatPreviewCosts;
     public Image[] StatPreviewRewards;
 
@@ -149,9 +150,12 @@ public class GameManager : MonoBehaviour
     {
         if (CheckEnergy(energy))
         {
-            AudioManager.instance.Play("DoorClick");
-            StopHUBLoops();
-            SceneTransition.StartTransition(WorkScene);
+            if (CheckAngst())
+            {
+                AudioManager.instance.Play("DoorClick");
+                StopHUBLoops();
+                SceneTransition.StartTransition(WorkScene);
+            }
         }
     }
 
@@ -250,17 +254,35 @@ public class GameManager : MonoBehaviour
 
     bool CheckEnergy(float energyCost)
     {
-        if (FindObjectOfType<energyStatScript>().getAmount() - energyCost >= 0)
+        if (CheckAngst())
         {
-            FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
-            return true;
+            if (FindObjectOfType<energyStatScript>().getAmount() - energyCost >= 0)
+            {
+                FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
+                return true;
+            }
+            else
+            {
+                EnergyAnimator.SetTrigger("LerpEnergy");
+                AudioManager.instance.Play("LowEnergy");
+                return false;
+            }
         }
         else
+            return false;
+    }
+
+    bool CheckAngst()
+    {
+        float angstAmount = FindObjectOfType<angstStatScript>().getAmount();
+        if (angstAmount >= 100)
         {
-            EnergyAnimator.SetTrigger("LerpEnergy");
+            AngstAnimator.SetTrigger("LerpEnergy");
             AudioManager.instance.Play("LowEnergy");
             return false;
-        }
+        }  
+        else
+         return true;      
     }
 
     public void UpdateStatPreviewFill(StatPreviewData data)
