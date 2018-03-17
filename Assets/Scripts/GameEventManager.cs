@@ -38,7 +38,7 @@ public class GameEventManager : MonoBehaviour
     public float RecieveMessageDelay = 0.75f;
     public int SMSDayInterval = 1;
 
- 
+
     private List<StoryNode> choices = new List<StoryNode>();
 
     public static List<StoryNode> messageNodes = new List<StoryNode>();
@@ -71,8 +71,8 @@ public class GameEventManager : MonoBehaviour
         foreach (EventEnum e in MapEventPins)
         {
             e.StartEventEnum();
-                if (e != null)
-            GameManager.sleep += e.RefreshEvent;
+            if (e != null)
+                GameManager.sleep += e.RefreshEvent;
         }
     }
 
@@ -163,8 +163,15 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEvent(StoryNode node)
     {
-        if ((string.IsNullOrEmpty(node.EnergyBonus) || node.EnergyBonus != YesChar) && FindObjectOfType<energyStatScript>().getAmount() - float.Parse(node.EnergyBonus) < 0)
+        float tempEnergy = 0;
+        if (!string.IsNullOrEmpty(node.EnergyBonus) && node.EnergyBonus != YesChar)
+            tempEnergy = float.Parse(node.EnergyBonus);
+
+        if ((string.IsNullOrEmpty(node.EnergyBonus) || node.EnergyBonus != YesChar) && FindObjectOfType<energyStatScript>().getAmount() - tempEnergy < 0)
+        {
+            ClosePanelButton.SetActive(true);
             return;
+        }
 
         EventPanel.SetActive(true);
 

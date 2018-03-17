@@ -31,7 +31,7 @@ public class EventEnum : MonoBehaviour
             if (!string.IsNullOrEmpty(Node.EnergyBonus))
                 EnergyCost = float.Parse(Node.EnergyBonus);
 
-            EnergyText.text = "Energy Cost: " + EnergyCost;
+            EnergyText.text = EnergyCost.ToString();
 
             PreviewData[0].Value = EnergyCost;
         }
@@ -80,10 +80,11 @@ public class EventEnum : MonoBehaviour
             if (!string.IsNullOrEmpty(Node.CashBonus))
                 MoneyBonus = float.Parse(Node.CashBonus);
 
+            MoneyBonus = Mathf.RoundToInt(MoneyBonus / MoneySpriteWeightDivider);
 
             AngstBonus *= -1; //Positive angst is bad and negative angst is good.
 
-            float highestBonus = Mathf.Max(MetalBonus, FameBonus, AngstBonus, MoneyBonus / MoneySpriteWeightDivider);
+            float highestBonus = Mathf.Max(MetalBonus, FameBonus, AngstBonus, MoneyBonus);
             if (highestBonus == MetalBonus)
                 GetComponent<Image>().sprite = MusicSprite;
             if (highestBonus == AngstBonus)
@@ -93,7 +94,9 @@ public class EventEnum : MonoBehaviour
             if (highestBonus == MoneyBonus)
                 GetComponent<Image>().sprite = MoneySprite;
 
-            EnergyText.text = "Energy Cost: " + EnergyCost;
+            Debug.Log(name + "    " + highestBonus + "      " + NodeType + "     " + GetComponent<Image>().sprite + " " + MetalBonus + " " + FameBonus + " " + AngstBonus);
+
+            EnergyText.text = EnergyCost.ToString();
 
             PreviewData[0].Value = EnergyCost;
             //PreviewData[1].Value = FameBonus;
