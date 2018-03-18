@@ -3035,7 +3035,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1040265525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -827.0001, y: -414.875, z: 0}
+  m_LocalPosition: {x: -815, y: -503.875, z: 0}
   m_LocalScale: {x: 1.7867191, y: 1.7867167, z: 1.7867167}
   m_Children:
   - {fileID: 1460122973}
@@ -3044,8 +3044,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1817.0001, y: 142}
-  m_SizeDelta: {x: 70, y: 30}
+  m_AnchoredPosition: {x: -1805, y: 53}
+  m_SizeDelta: {x: 178.08, y: 53.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040265527
 MonoBehaviour:
@@ -3059,16 +3059,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0.116}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0.247}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3111,7 +3111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3809,7 +3809,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344146157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -592, y: -501, z: 0}
+  m_LocalPosition: {x: -680, y: -416, z: 0}
   m_LocalScale: {x: 1.4288633, y: 1.4288635, z: 1.4288635}
   m_Children:
   - {fileID: 2053892434}
@@ -3818,7 +3818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 368, y: 39}
+  m_AnchoredPosition: {x: 280, y: 124}
   m_SizeDelta: {x: 213.81, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1344146159
@@ -4109,6 +4109,7 @@ GameObject:
   - component: {fileID: 1460122973}
   - component: {fileID: 1460122975}
   - component: {fileID: 1460122974}
+  - component: {fileID: 1460122976}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -4146,7 +4147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.42647058, g: 0.43002027, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4155,10 +4156,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 35
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4166,13 +4167,29 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HUB
+  m_Text: 'GO HOME
+
+'
 --- !u!222 &1460122975
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460122972}
+--- !u!114 &1460122976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460122972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.835}
+  m_EffectDistance: {x: 2.5, y: -0.32}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1466270410
 GameObject:
   m_ObjectHideFlags: 0
