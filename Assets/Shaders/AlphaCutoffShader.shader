@@ -66,7 +66,7 @@ pass
 					fixed4 cutOffTex = tex2D(_CutoffTex, i.texcoord);
 
 					fixed4 wholeTex = tex2D(_MainTex, i.texcoord);
-
+					
 					float a = 0;
 					if (cutOffTex.a > _Cutoff)
 					{

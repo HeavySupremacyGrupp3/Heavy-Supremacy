@@ -1,5 +1,4 @@
-﻿/*© 2018 ARVID ENOCHSSON ALL RIGHTS RESERVED*/
-
+﻿
 Shader "Custom/DistortionShader"
 {
 	Properties

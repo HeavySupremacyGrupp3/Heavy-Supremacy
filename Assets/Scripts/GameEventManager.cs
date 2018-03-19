@@ -111,8 +111,16 @@ public class GameEventManager : MonoBehaviour
 
     public void TriggerEventFromPool(EventEnum eventEnum)
     {
-        TriggerEvent(EventEnum.NodesSelected[eventEnum.NodeIndex]);
-        EventEnum.NodesSelected[eventEnum.NodeIndex] = null;
+        float temp = float.Parse(eventEnum.Node.EnergyBonus);
+        if (temp < 0)
+            temp *= -1;
+
+        if (FindObjectOfType<GameManager>().CheckEnergy(temp, false))
+        {
+            eventEnum.gameObject.GetComponent<Button>().interactable = false;
+            TriggerEvent(EventEnum.NodesSelected[eventEnum.NodeIndex]);
+            EventEnum.NodesSelected[eventEnum.NodeIndex] = null;
+        }
     }
 
     public void TriggerSMSEvent(StoryNode node, bool firstNode = true)

@@ -15300,17 +15300,6 @@ MonoBehaviour:
           m_StringArgument: MapEventClick
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 715316117}
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &715316118
@@ -23295,7 +23284,7 @@ MonoBehaviour:
   EndGameTitle: {fileID: 1191409622}
   SceneTransition: {fileID: 1369002946}
   EnergyAnimator: {fileID: 1969906767}
-  AngstAnimator: {fileID: 1969906767}
+  AngstAnimator: {fileID: 0}
   StatPreviewCosts:
   - {fileID: 1969906764}
   - {fileID: 266074498}
@@ -28517,17 +28506,6 @@ MonoBehaviour:
           m_StringArgument: MapEventClick
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1820522523}
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1820522524
@@ -31697,17 +31675,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MapEventClick
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2023892719}
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

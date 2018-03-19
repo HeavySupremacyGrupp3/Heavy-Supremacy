@@ -90,7 +90,7 @@
 			//blendedOverlayBump = lerp(_OverlayBump, Yon, blendNormal.y);
 
 
-
+			
 			if (dot(o.Normal, IN.worldNormal.y) >= _OverlaySpread && IN.worldNormal.y > 0)
 			{
 				o.Albedo = blendedOverlay.rgb * _Color;

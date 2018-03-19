@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadWork(float energy)
-    {        
+    {
         if (CheckAngst())
         {
             if (CheckEnergy(energy))
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
                 StopHUBLoops();
                 SceneTransition.StartTransition(WorkScene);
             }
-        }  
+        }
     }
 
     public void LoadPractice(float energy)
@@ -252,12 +252,13 @@ public class GameManager : MonoBehaviour
         target.SetActive(!target.activeSelf);
     }
 
-    bool CheckEnergy(float energyCost)
+    public bool CheckEnergy(float energyCost, bool reduceEnergy = true)
     {
 
         if (FindObjectOfType<energyStatScript>().getAmount() - energyCost >= 0)
         {
-            FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
+            if (reduceEnergy)
+                FindObjectOfType<energyStatScript>().addOrRemoveAmount(-energyCost);
             return true;
         }
         else
@@ -277,9 +278,9 @@ public class GameManager : MonoBehaviour
             AngstAnimator.SetTrigger("LerpEnergy");
             AudioManager.instance.Play("LowEnergy");
             return false;
-        }  
+        }
         else
-         return true;      
+            return true;
     }
 
     public void UpdateStatPreviewFill(StatPreviewData data)
