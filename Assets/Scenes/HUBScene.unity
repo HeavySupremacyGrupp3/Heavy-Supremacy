@@ -7776,11 +7776,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4cd4358c92161cc4ca5daf3f0f927b8b, type: 3}
-    m_FontSize: 51
+    m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 60
+    m_MinSize: 5
+    m_MaxSize: 66
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -27088,6 +27088,10 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1510399565775546, guid: e96c8eb48f2a04d45bc7a3313289f0ba, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520732682499588, guid: e96c8eb48f2a04d45bc7a3313289f0ba, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
