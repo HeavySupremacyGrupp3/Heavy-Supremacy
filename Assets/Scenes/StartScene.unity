@@ -766,12 +766,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1997394910}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 965633265}
+          m_MethodName: set_sprite
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 21300000, guid: d5159a99e0c1c194eb3583b1260d1de9,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -794,12 +795,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1997394910}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 965633265}
+          m_MethodName: set_sprite
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 21300000, guid: d8ca947c7f8c18a49b8825338ba44eb7,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -4918,7 +4920,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 578, y: 427}
-  m_SizeDelta: {x: 126.5, y: 34.08}
+  m_SizeDelta: {x: 127.84, y: 34.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124814531
 MonoBehaviour:
@@ -5049,12 +5051,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 313160696}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 2124814532}
+          m_MethodName: set_sprite
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 21300000, guid: 9cd7b50d933f2f748aeea76d74398633,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -5077,12 +5080,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 313160696}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 2124814532}
+          m_MethodName: set_sprite
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 21300000, guid: a0b39c53e86b4b64b8ceddf33ca0b989,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
