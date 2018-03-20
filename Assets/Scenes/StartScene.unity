@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 965633264}
   - component: {fileID: 965633267}
   - component: {fileID: 965633268}
+  - component: {fileID: 965633269}
   m_Layer: 0
   m_Name: QuitButton
   m_TagString: Untagged
@@ -778,6 +779,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 965633269}
+          m_MethodName: LargeSize
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -807,9 +819,36 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 965633269}
+          m_MethodName: SmallSize
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &965633269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965633262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e0e1bba8735de4ab5661f9fc1a7291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  largeWidth: 353.9
+  largeHeight: 124.7
+  smallWidth: 126.5
+  smallHeight: 34.08
+  thisButton: {fileID: 965633264}
 --- !u!1 &1111460745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4896,6 +4935,7 @@ GameObject:
   - component: {fileID: 2124814531}
   - component: {fileID: 2124814534}
   - component: {fileID: 2124814535}
+  - component: {fileID: 2124814536}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: Untagged
@@ -5063,6 +5103,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 2124814536}
+          m_MethodName: LargeSize
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -5092,9 +5143,36 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 2124814536}
+          m_MethodName: SmallSize
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &2124814536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2124814529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e0e1bba8735de4ab5661f9fc1a7291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  largeWidth: 309.6
+  largeHeight: 111
+  smallWidth: 127.84
+  smallHeight: 34.08
+  thisButton: {fileID: 2124814531}
 --- !u!1 &2137502370
 GameObject:
   m_ObjectHideFlags: 0
