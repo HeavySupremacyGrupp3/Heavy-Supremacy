@@ -44,3 +44,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.db
+Assets/Graphics/Phone/Thumbs.db.meta
+Assets/Graphics/Hub/Thumbs.db.meta
