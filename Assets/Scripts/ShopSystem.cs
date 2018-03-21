@@ -81,9 +81,6 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.M))
-            FindObjectOfType<moneyStatScript>().addOrRemoveAmount(100);
-
         if (Input.GetMouseButtonDown(0))
         {
             // Check if the mouse was clicked over a UI element, if so, play click-sound.

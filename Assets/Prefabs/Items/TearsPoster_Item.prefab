@@ -70,7 +70,9 @@ MonoBehaviour:
   Price: 100
   OneTimePurchase: 1
   Name: TearsPoster
-  Description: Decorate your room with this awesome poster!
+  Description: "Have you ever want to see an angel cry. Then it\u2019s your lucky
+    day, now you can buy this extremely detailed master piece of art and you will
+    have your own crying angel. "
   ProductImage: {fileID: 21300000, guid: 28e00fd3e46f6c44dbeb0c08ed694935, type: 3}
   PurchaseSound: PosterPurchase
   FurnitureToInstantiate:

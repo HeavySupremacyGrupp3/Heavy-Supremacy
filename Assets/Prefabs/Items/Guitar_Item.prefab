@@ -55,13 +55,15 @@ MonoBehaviour:
   Price: 800
   OneTimePurchase: 1
   Name: Guitar
-  Description: Add an extra note to your playing.
+  Description: "A guitar made from the finest oak, from the deepest Scandinavian forest.
+    The creator named it Nova Inferno due to its bright red colour.  Given its hellish
+    nature, the player can expect an extra column of notes \u2013 but the rewards
+    for playing it will be great and the consequences even greater!!!!!!! "
   ProductImage: {fileID: 21300000, guid: 1a1ba0fe9812bc549ad0b2f0f12d07e9, type: 3}
   PurchaseSound: RedGuitarPurchase
   MetalMultiplierIncrease: 0.1
   HUBGuitar: Practice_Button
   ScaleMultiplier: 0.7
-  PositionOffset: {x: 0, y: 0.5, z: 0}
 --- !u!212 &212159010739407014
 SpriteRenderer:
   m_ObjectHideFlags: 1

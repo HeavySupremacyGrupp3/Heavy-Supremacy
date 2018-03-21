@@ -72,21 +72,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-            FindObjectOfType<fameStatScript>().addOrRemoveAmount(10);
-        if (Input.GetKeyDown(KeyCode.A))
-            FindObjectOfType<angstStatScript>().addOrRemoveAmount(-10.2f);
-        //WeekText.text = "Approximately week: " + week;
-        if (Input.GetKeyDown(KeyCode.R))
-            Restart();
-        if (Input.GetKeyDown(KeyCode.G))
-            LoadGig(10);
-        //if(Input.GetKeyDown(key))
-        //	Quit();
-    }
-
     void Initialize()
     {
         if (FindObjectsOfType<GameManager>().Length > 1)

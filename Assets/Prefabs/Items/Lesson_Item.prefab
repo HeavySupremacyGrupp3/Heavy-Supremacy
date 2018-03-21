@@ -55,7 +55,10 @@ MonoBehaviour:
   Price: 50
   OneTimePurchase: 0
   Name: Lesson
-  Description: Increase your metal gained from both practice and gigs!
+  Description: "Teaches you the why, the how, the when and the \u201Cfuck yeah\u2019s\u201D
+    of metal, in simple English. Read it, use it, and improve with it. The next practice
+    session or gig after reading one of these is sure to give you a lot more insight
+    into metal."
   ProductImage: {fileID: 21300000, guid: 2c1c4430e119e0e4ab216b805ae2b693, type: 3}
   PurchaseSound: LessonPurchase
   MetalMultiplierIncrease: 0.1

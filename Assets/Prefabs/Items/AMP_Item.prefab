@@ -43,7 +43,11 @@ MonoBehaviour:
   Price: 200
   OneTimePurchase: 1
   Name: AMP
-  Description: Amplify your experience with this awesome AMP!
+  Description: "Do you want to metal? Do you want to sound like the devil himself?
+    \ Then we have the perfect tool for you!  Buy this amp and even the devil will
+    cry tears of joy due to your amazing sound! (The description above is purely for
+    glamorizing reasons. Deaf Dennis\u2019 does not take responsibility for instances
+    where the devil does not cry, approve or even exist). "
   ProductImage: {fileID: 21300000, guid: 1931f05395c6dfa4c859dc267344de63, type: 3}
   PurchaseSound: AMPPurchase
   FurnitureToInstantiate: []

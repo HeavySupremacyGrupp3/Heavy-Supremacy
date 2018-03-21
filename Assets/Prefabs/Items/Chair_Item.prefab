@@ -60,7 +60,7 @@ MonoBehaviour:
   Price: 100
   OneTimePurchase: 1
   Name: Chair
-  Description: It's a chair... This will replace your stool.
+  Description: "It\u2019s just an ordinary chair (NOTHING SPECIAL ABOUT IT!) "
   ProductImage: {fileID: 21300000, guid: c53eaa499ff13774d9fa2202f0b4a640, type: 3}
   PurchaseSound: ChairPurchase
   FurnitureToInstantiate:

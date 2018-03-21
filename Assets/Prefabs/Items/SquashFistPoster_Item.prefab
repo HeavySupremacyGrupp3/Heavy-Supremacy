@@ -43,7 +43,10 @@ MonoBehaviour:
   Price: 100
   OneTimePurchase: 1
   Name: SquashFistPoster
-  Description: Decorate your room with this awesome poster!
+  Description: "Do you remember the hit song Cupid Rock? Or maybe you\u2019re more
+    of a 1989 fan? Everyone has their favourite Fisting Squash song. Fisting Squash
+    is out on tour yet again and their marvellous album artwork is for sale as a poster
+    right here, right now! "
   ProductImage: {fileID: 21300000, guid: 3adeeeccce68408468b62dc90ba0c351, type: 3}
   PurchaseSound: PosterPurchase
   FurnitureToInstantiate:

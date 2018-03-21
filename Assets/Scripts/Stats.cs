@@ -45,8 +45,6 @@ public abstract class Stats : MonoBehaviour {
 		
 	void Update ()
 	{
-        if (Input.GetKeyDown(KeyCode.Q))
-            addOrRemoveAmount(10);
 		//amount+=0.01f;
 		//amount=amount%1.0f;
 	}	
