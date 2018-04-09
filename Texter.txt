@@ -1,9 +1,0 @@
-Hub.Stats.HappinessTooltip_Your happiness is^
-
-
-
-
-Hub.doorToolTip_This is a tooltop^
-
-// This is a comment^
-wdb.dodwrToolTip_dwdwdwdwltop^

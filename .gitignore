@@ -47,3 +47,4 @@ sysinfo.txt
 *.db
 Assets/Graphics/Phone/Thumbs.db.meta
 Assets/Graphics/Hub/Thumbs.db.meta
+*.ide
