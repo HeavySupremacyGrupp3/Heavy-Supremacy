@@ -7,11 +7,6 @@ using UnityEngine.Audio;
 
 public class NoteGenerator : MonoBehaviour
 {
-    public static int SongIndex = 0;
-
-    public Song[] PracticeSongs;
-    public Song[] GigSongs;
-
     public AudioSource MusicWithLeadAudioSource;
     public AudioSource MusicWithoutLeadAudioSource;
     public AudioSource NoteGenerationAudioSource;
@@ -82,8 +77,8 @@ public class NoteGenerator : MonoBehaviour
     {
         NotesTotal = 0;
 
-        if (SongIndex == PracticeSongs.Length)
-            SongIndex = PracticeSongs.Length - 1;
+        if (GameManager.SongIndex == GameManager.PracticeSongs.Length)
+            GameManager.SongIndex = GameManager.PracticeSongs.Length - 1;
 
         NoteSets.Clear();
 
@@ -148,14 +143,14 @@ public class NoteGenerator : MonoBehaviour
         //Assign audioclips.
         if (!GigBackgroundManager.GigSession)
         {
-            selectedSong = PracticeSongs[SongIndex];
+            selectedSong = GameManager.PracticeSongs[GameManager.SongIndex];
 
             MusicWithLeadAudioSource.outputAudioMixerGroup = PracticeWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = PracticeWithoutLeadMixer;
         }
         else if (GigBackgroundManager.GigSession)
         {
-            selectedSong = GigSongs[SongIndex];
+            selectedSong = GameManager.GigSongs[GameManager.SongIndex];
 
             MusicWithLeadAudioSource.outputAudioMixerGroup = GigWithLeadMixer;
             MusicWithoutLeadAudioSource.outputAudioMixerGroup = GigWithoutLeadMixer;

@@ -26,6 +26,14 @@ public class GameManager : MonoBehaviour
     public Image[] StatPreviewCosts;
     public Image[] StatPreviewRewards;
 
+    [Header("Songs")]
+    public static int SongIndex = 0;
+    public static Song[] PracticeSongs;
+    public static Song[] GigSongs;
+
+    public Song[] Practice;
+    public Song[] Gig;
+
     public delegate void mittEvent();
     public static event mittEvent sleep;
 
@@ -70,6 +78,9 @@ public class GameManager : MonoBehaviour
             IsFirstHubRun = !IsFirstHubRun;
             GameObject.Find("HubTutorial").transform.GetChild(0).GetComponent<Tutorial>().Run(); // BECAUSE UNITY IS AWESOME, AND GAMEOBJECT.FIND("HUB_TUTORIAL").GETCOMPONENT<TUTORIAL>() DOESN'T WORK! YAAY! Not even mad.
         }
+
+        PracticeSongs = Practice;
+        GigSongs = Gig;
     }
 
     void Initialize()
@@ -213,7 +224,7 @@ public class GameManager : MonoBehaviour
             week++;
             day = 1;
 
-            NoteGenerator.SongIndex++;
+            SongIndex++;
 
             FindObjectOfType<fameStatScript>().UpdateWeeklyStatGains();
             FindObjectOfType<metalStatScript>().UpdateWeeklyStatGains();

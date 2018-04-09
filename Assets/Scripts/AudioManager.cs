@@ -78,6 +78,11 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    public AudioSource GetSource(string name)
+    {
+        return Array.Find(sounds, Sound => Sound.name == name).source;
+    }
+
     public void AddSoundForNextScene(string name)
     {
         SoundsForNextScene.Add(name);
