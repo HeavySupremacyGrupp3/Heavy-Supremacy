@@ -406,11 +406,17 @@ public class NoteGenerator : MonoBehaviour
 
     private void UpdateScoreBoard(Text text, float baseStat, float statMltp, float performance, float itemMltp, float total)
     {
-        text.text = baseStat.ToString("0.00") + "\n" +
+        Color col = text.color;
+        col.r -= col.r / 2.3f;
+        col.g -= col.g / 2.3f;
+        col.b -= col.b / 2.3f;
+        string hexVal = ColorUtility.ToHtmlStringRGBA(col);
+
+        text.text = "<color=#" + hexVal +">" + baseStat.ToString("0.00") + "\n" +
             statMltp.ToString("0.00") + "x" + "\n" +
             performance.ToString("0.00") + "x" + "\n" +
             ProficiencyBonus.ToString("0.00") + "x" + "\n" +
-            itemMltp.ToString("0.00") + "x" + "\n" + "\n" +
+            itemMltp.ToString("0.00") + "x" + "\n" + "\n</color>" +
             total.ToString("0.00");
     }
 
