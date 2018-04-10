@@ -192,7 +192,11 @@ public class GameManager : MonoBehaviour
     public void LoadSleep(float energy)
     {
         fadeScript = FindObjectOfType<FadeOutManager>();
-        fadeScript.FadeOut();
+        fadeScript.FadeOut(true, ContinueSleep);
+    }
+
+    private void ContinueSleep()
+    {
         IncreaseDay();
         sleep();
     }

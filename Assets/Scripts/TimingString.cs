@@ -114,7 +114,10 @@ public class TimingString : TimingSystem
         GameObject tempTarget = note;
         note.GetComponent<BoxCollider2D>().enabled = false;
 
-        note.transform.GetComponentInChildren<CutoffLerp>().Lerp = true;
+        foreach (CutoffLerp coLerp in note.transform.GetComponentsInChildren<CutoffLerp>())
+        {
+            coLerp.Lerp = true;
+        }
 
         Destroy(tempTarget, 1);
 

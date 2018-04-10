@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class FadeOutManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class FadeOutManager : MonoBehaviour
     public float SpeedMultiplier = 1;
     public float FadeInSeconds = 1f;
     private float TimeLeft = 0;
+    private Action HalfwayCallback = null;
 
     private void Start()
     {
@@ -22,16 +24,11 @@ public class FadeOutManager : MonoBehaviour
         }
     }
 
-    public void FadeOut(bool makeALoop = true)
+    public void FadeOut(bool makeALoop = true, Action callback = null)
     {
+        HalfwayCallback = callback;
         fadeImage.enabled = true;
         StartCoroutine(FadeAway(true, makeALoop));
-    }
-
-    public void StartFade()
-    {
-        halfFadeImage.enabled = true;
-        StartCoroutine(Fade(true));
     }
 
     IEnumerator FadeAway(bool fadeAway, bool makeALoop = true)
@@ -52,6 +49,7 @@ public class FadeOutManager : MonoBehaviour
                 if (TimeLeft <= 0.05f && makeALoop)
                 {
                     fadeImage.color = new Color(0, 0, 0, 1);
+                    HalfwayCallback();
                     StartCoroutine(FadeAway(false));
                     break;
                 }
@@ -79,26 +77,5 @@ public class FadeOutManager : MonoBehaviour
             fadeImage.enabled = false;
             GetComponent<Image>().enabled = false;
         }
-    }
-
-
-    IEnumerator Fade(bool fade)
-    {
-
-        if (fade)
-        {
-            // loop over 1 second 
-            for (float i = 0; i <= 0.5; i += Time.deltaTime * SpeedMultiplier)
-            {
-                // alpha opaque
-                halfFadeImage.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.05f);
-
-                if (i >= 0.45)
-                    StartCoroutine(Fade(false));
-            }
-
-        }
-
     }
 }

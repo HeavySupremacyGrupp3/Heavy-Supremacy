@@ -55,13 +55,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4291195445252690}
   - component: {fileID: 212856155117544584}
+  - component: {fileID: 114608824199739962}
   m_Layer: 0
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4291195445252690
 Transform:
   m_ObjectHideFlags: 1
@@ -163,6 +164,21 @@ MonoBehaviour:
   Lerp: 0
   Reverse: 0
   StartDelay: 0
+--- !u!114 &114608824199739962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471526341389640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29f3c56978c8d34db68c08e8e933644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 2.5
+  Lerp: 0
+  Reverse: 0
+  StartDelay: 0
 --- !u!212 &212703037989466500
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -176,6 +192,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: bdecb39d18074ce43952804ac0ee62e9, type: 2}
   m_StaticBatchInfo:
@@ -197,7 +214,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: f57295d6cc27e8143ba26e420b267846, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29f0da255761372419997873f70b72aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -220,6 +237,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -264,8 +282,9 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bdecb39d18074ce43952804ac0ee62e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
