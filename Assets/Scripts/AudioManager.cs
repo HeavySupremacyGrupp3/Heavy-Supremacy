@@ -80,7 +80,14 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource GetSource(string name)
     {
-        return Array.Find(sounds, Sound => Sound.name == name).source;
+        Sound s = Array.Find(sounds, Sound => Sound.name == name);
+
+        if (s.source == null)
+        {
+            CreateAudioSource(s);
+        }
+
+        return s.source;
     }
 
     public void AddSoundForNextScene(string name)

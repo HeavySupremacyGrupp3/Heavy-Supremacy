@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public static int day = 1;
     public static int week = 1;
     public static bool IsFirstWorkRun = true;
-    public static bool IsFirstHubRun = true;
+    public static bool IsFirstHubRun = false;
     public static bool IsFirstPracticeRun = true;
     public static bool IsFirstGigRun = true;
     public GameObject EndGamePanel;
