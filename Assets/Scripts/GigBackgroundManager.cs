@@ -8,7 +8,7 @@ public class GigBackgroundManager : MonoBehaviour
     //Added in acending order, based on amount of fame.
     public Sprite[] Backgrounds;
     public GameObject[] Audiences;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float[] AudienceHealthTresholds;
     public float[] FameRequirementLevels;
     public Image Background;
@@ -57,10 +57,16 @@ public class GigBackgroundManager : MonoBehaviour
 
             for (int i = 0; i < Audiences.Length; i++)
             {
+                if (!Audiences[i].activeSelf)
+                    Audiences[i].SetActive(true); //Reverse Lerp
+
                 if (healthPrct >= AudienceHealthTresholds[i])
-                    Audiences[i].SetActive(true);
-                else
-                    Audiences[i].SetActive(false);
+                {
+                    if (Audiences[i].GetComponent<Image>().color == Color.clear)
+                        Audiences[i].GetComponent<ColorLerp>().ReverseLerp();
+                }
+                else if (Audiences[i].GetComponent<Image>().color == Color.white)
+                    Audiences[i].GetComponent<ColorLerp>().ReverseLerp();
             }
         }
     }
